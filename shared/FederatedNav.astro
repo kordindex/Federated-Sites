@@ -1,16 +1,17 @@
 ---
 // This is your Shared Navigation Component
+const { activePillar } = Astro.props;
 ---
 <nav class="fed-nav" id="global-nav">
-    <a href="https://federated-sites-9bgd.vercel.app/" class="pillar pillar-inst active">
+    <a href="https://federated-sites-9bgd.vercel.app/" class={`pillar pillar-inst ${activePillar === 'institute' ? 'active' : ''}`}>
         <span>The Master Brand</span>
         <h4>The Institute</h4>
     </a>
-    <a href="https://coherence-brand.vercel.app/" class="pillar pillar-cohe">
+    <a href="https://federated-sites-hmy5.vercel.app/" class={`pillar pillar-cohe ${activePillar === 'coherence' ? 'active' : ''}`}>
         <span>B2B / Organizations</span>
         <h4>The Coherence Co.</h4>
     </a>
-    <a href="https://kahane-coaching.vercel.app/" class="pillar pillar-coac">
+    <a href="https://federated-sites.vercel.app/" class={`pillar pillar-coac ${activePillar === 'kahane' ? 'active' : ''}`}>
         <span>B2C / Individuals</span>
         <h4>Kahane Coaching</h4>
     </a>
@@ -24,7 +25,7 @@
     }
     .pillar {
         display: flex; flex-direction: column; justify-content: center; align-items: center;
-        text-decoration: none; cursor: pointer; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         border-bottom: 6px solid transparent; text-align: center;
     }
     .pillar span { font-size: 0.55rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; opacity: 0.6; }
@@ -32,6 +33,6 @@
     .pillar-inst { background: #1A1C1E; color: #fff; }
     .pillar-cohe { background: #333639; color: #fff; }
     .pillar-coac { background: #9C7E41; color: #fff; }
-    .pillar.active { border-bottom: 8px solid #fff; opacity: 1; }
+    .pillar.active { border-bottom: 8px solid #fff; opacity: 1 !important; }
     .pillar:not(.active) { opacity: 0.4; }
 </style>
