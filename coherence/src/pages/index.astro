@@ -1,101 +1,225 @@
----
-import FederatedNav from '../../../shared/FederatedNav.astro';
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institute UNLearning | Workplace Culture</title>
+    <title>UNLearning Ecosystem | Federated IA Mockup</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Palette based on Design Brief PMS Swatches */
             --bg-mist: #EAEAEA;
-            --gold-deep: #9C7E41;
-            --gold-bright: #B59353;
-            --ink: #1A1C1E;
-            --silver-border: #D1D1D1;
+            --ink-institute: #111e1c; /* PMS 627/5467 Deep Green [cite: 38-41] */
+            --navy-coherence: #1b263b; /* PMS 2767/5395 Deep Navy [cite: 43-46] */
+            --gold-accent: #b59353;    /* PMS 1245/131 Gold [cite: 52-55] */
+            --silver-gray: #b1b3b3;    /* PMS 443 Silver [cite: 48-49] */
+            
             --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-mist); color: var(--ink); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-mist); color: var(--ink-institute); overflow-x: hidden; }
         
+        /* Typography Scale per Design Brief */
         .serif { font-family: 'Playfair Display', serif; }
-        .sans { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        .sans { font-family: 'Inter', sans-serif; letter-spacing: 1px; }
 
-        /* Tier 2 Header */
+        /* --- TIER 1: FEDERATED DASHBOARD --- */
+        .fed-nav {
+            position: fixed; top: 0; width: 100%; z-index: 2000;
+            display: grid; grid-template-columns: 1fr 1fr 1fr;
+            height: 90px; background: #fff; border-bottom: 4px solid var(--ink-institute);
+        }
+        .pillar {
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-decoration: none; cursor: pointer; transition: var(--transition);
+            border-bottom: 6px solid transparent; text-align: center;
+        }
+        .pillar span { font-size: 0.55rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; opacity: 0.6; }
+        .pillar h4 { font-size: 0.8rem; letter-spacing: 1px; margin-top: 4px; font-family: 'Inter', sans-serif; text-transform: uppercase;}
+
+        .pillar-inst { background: var(--ink-institute); color: #fff; }
+        .pillar-cohe { background: var(--navy-coherence); color: #fff; }
+        .pillar-coac { background: var(--gold-accent); color: #fff; }
+        .pillar.active { border-bottom: 8px solid #fff; opacity: 1; }
+        .pillar:not(.active) { opacity: 0.4; }
+
+        /* --- TIER 2: SITE-SPECIFIC NAV --- */
         .site-header {
             position: fixed; top: 90px; width: 100%; z-index: 1000;
             background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--silver-border); height: 70px;
-            display: flex; align-items: center;
+            border-bottom: 1px solid var(--silver-gray); height: 70px;
+            display: flex; align-items: center; transition: var(--transition);
         }
         .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; }
         .site-nav-links a { text-decoration: none; color: inherit; transition: 0.3s; }
-        .site-nav-links a:hover { color: var(--gold-deep); }
+        .site-nav-links a:hover { color: var(--gold-accent); }
 
-        /* Content Section */
-        .hero { padding: 80px 0; min-height: 70vh; display: flex; align-items: center; margin-top: 160px; }
+        /* --- CONTENT CONTAINERS --- */
+        .site-section { display: none; padding-top: 160px; min-height: 100vh; animation: fadeIn 0.5s ease; }
+        .site-section.active { display: block; }
+
+        .hero { padding: 80px 0; min-height: 70vh; display: flex; align-items: center; }
         .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero p.lead { font-size: 1.25rem; max-width: 800px; margin-bottom: 2rem; }
+        
+        /* Contrast-heavy Titles [cite: 3, 4] */
+        .hero h1 { font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
+        .hero p.lead { font-size: 1.5rem; max-width: 850px; margin-bottom: 2rem; }
 
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 60px 0; }
-        .card { padding: 2.5rem; border: 1px solid var(--silver-border); background: #fff; }
-        .card h3 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--gold-deep); }
-        .card ul { list-style: none; font-size: 0.9rem; opacity: 0.8; }
-        .card li { margin-bottom: 0.5rem; }
+        .card { padding: 2.5rem; border: 1px solid var(--silver-gray); background: rgba(255,255,255,0.05); }
+        .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--gold-accent); font-weight: 400; }
 
-        footer { background: #111; color: #fff; padding: 60px 0; text-align: center; font-size: 0.8rem; }
-        .fed-footer-link { color: var(--gold-bright); text-decoration: none; margin: 0 10px; font-weight: 700; }
+        .btn { display: inline-block; padding: 1rem 2.5rem; background: var(--ink-institute); color: #fff; text-decoration: none; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- BRAND-SPECIFIC OVERRIDES [cite: 8, 16, 24] --- */
+        
+        /* 1. INSTITUTE: Playfair Titles, Sans Body, Mixed Case [cite: 9, 10, 12] */
+        #institute h1, #institute h2, #institute h3 { font-family: 'Playfair Display', serif; text-transform: none; font-weight: 900; }
+        
+        /* 2. COHERENCE: ALL CAPS Sans Titles, Navy Background [cite: 17, 18, 43] */
+        #coherence { background: var(--navy-coherence); color: #fff; }
+        #coherence h1, #coherence h2, #coherence h3 { font-family: 'Inter', sans-serif; text-transform: uppercase; font-weight: 800; letter-spacing: -2px; }
+        
+        /* 3. COACHING: Playfair Titles & Subheads, Unbold Accent Subtitles [cite: 25, 26, 28, 23] */
+        #site-coaching { background: #fff; }
+        #site-coaching h1 { font-family: 'Playfair Display', serif; text-transform: none; font-weight: 700; }
+        #site-coaching h3 { font-family: 'Playfair Display', serif; color: var(--gold-accent); font-weight: 400; text-transform: none; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- FOOTER --- */
+        footer { background: #000; color: #fff; padding: 80px 0; text-align: center; font-size: 0.85rem; }
+        .fed-footer-link { color: var(--gold-accent); text-decoration: none; margin: 0 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-    <FederatedNav />
-
-    <nav class="site-header">
-        <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
-            <span class="serif" style="font-weight:900; text-transform: uppercase;">Institute <span style="color:var(--gold-deep)">UNLearning</span></span>
-            <ul class="site-nav-links sans">
-                <li><a href="#">Methodology</a></li>
-                <li><a href="#">Research</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+    <nav class="fed-nav" id="global-nav">
+        <div class="pillar pillar-inst active" onclick="switchBrand('institute', this, '#111e1c')">
+            <span>The Master Brand</span>
+            <h4>The Institute</h4>
+        </div>
+        <div class="pillar pillar-cohe" onclick="switchBrand('coherence', this, '#1b263b')">
+            <span>B2B / Organizations</span>
+            <h4>The Coherence Co.</h4>
+        </div>
+        <div class="pillar pillar-coac" onclick="switchBrand('coaching', this, '#b59353')">
+            <span>B2C / Individuals</span>
+            <h4>Kahane Coaching</h4>
         </div>
     </nav>
 
-    <main class="hero">
-        <div class="container">
-            <span class="sans" style="color:var(--gold-deep); font-size:0.7rem; font-weight:800; display:block; margin-bottom:1rem;">IP Anchor & Thought Leadership</span>
-            <h1 class="serif">Workplace Culture That <br><span style="font-style:italic;">Grows Itself.</span></h1>
-            <p class="lead serif">Serving as the credibility anchor and IP holder for the world's most critical organizations.</p>
-            
-            <div class="grid-3">
-                <div class="card">
-                    <h3 class="serif">Thought Leadership</h3>
-                    <ul><li>State of Workplace Culture</li><li>Academic White Papers</li><li>Expert Commentary</li></ul>
-                </div>
-                <div class="card">
-                    <h3 class="serif">IP Library</h3>
-                    <ul><li>Foundational Frameworks</li><li>Methodology Deep-Dives</li><li>Certification Program</li></ul>
-                </div>
-                <div class="card">
-                    <h3 class="serif">Media Center</h3>
-                    <ul><li>Speaking Request Portal</li><li>Press Kit</li><li>Media Appearances</li></ul>
+    <section id="institute" class="site-section active">
+        <nav class="site-header">
+            <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
+                <span class="serif" style="font-weight:900; font-size: 1.2rem;">Institute <span style="color:var(--gold-accent)">UNLearning</span></span>
+                <ul class="site-nav-links sans">
+                    <li><a href="#">Methodology</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero">
+            <div class="container">
+                <span class="sans" style="color:var(--gold-accent); font-size:0.8rem; font-weight:800; display:block; margin-bottom:1.5rem;">IP Anchor & Thought Leadership</span>
+                <h1 class="serif">Workplace Culture That <br><span style="font-style:italic;">Grows Itself.</span></h1>
+                <p class="lead serif">Serving as the credibility anchor and IP holder for the world's most critical organizations.</p>
+                <div class="grid-3">
+                    <div class="card" style="background:#fff">
+                        <h3>Thought Leadership Hub</h3>
+                        <ul class="sans"><li>State of Workplace Culture Reports</li><li>Academic White Papers</li></ul>
+                    </div>
+                    <div class="card" style="background:#fff">
+                        <h3>IP Library</h3>
+                        <ul class="sans"><li>Foundational Frameworks</li><li>Certification Program</li></ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <section id="coherence" class="site-section">
+        <nav class="site-header" style="background: rgba(27, 38, 59, 0.95); color: #fff; border-bottom: 1px solid #333;">
+            <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
+                <span class="sans" style="font-weight:900; letter-spacing:0px;">COHERENCE <span style="color:var(--gold-accent)">COMPANY</span></span>
+                <ul class="site-nav-links sans">
+                    <li><a href="#">Philosophy</a></li>
+                    <li><a href="#">Canvas</a></li>
+                    <li><a href="#">Intensive</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero">
+            <div class="container">
+                <span class="sans" style="color:var(--gold-accent); font-size:0.8rem; font-weight:800; display:block; margin-bottom:1.5rem;">B2B Center of Excellence</span>
+                <h1 class="sans">STOP RUNNING FASTER <br>THAN YOUR TEAM <span style="color:var(--gold-accent)">UNDERSTANDS.</span> </h1>
+                <p class="lead">Building regenerative workplace cultures through integrated organizational transformation.</p>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3 style="color:var(--gold-accent)">THE COHERENCE CANVAS</h3>
+                        <p style="font-size:0.9rem; opacity: 0.8;">Our 9-block framework for systemic alignment. [cite: 20]</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="color:var(--gold-accent)">ENTERPRISE INTENSIVE</h3>
+                        <p style="font-size:0.9rem; opacity: 0.8;">High-impact workshops for global leadership teams.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="site-coaching" class="site-section">
+        <nav class="site-header">
+            <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
+                <span class="serif" style="font-weight:900; text-transform:none; font-size: 1.2rem;">Kahane <span style="color:var(--gold-accent)">Coaching</span></span>
+                <ul class="site-nav-links sans">
+                    <li><a href="#">About Christine</a></li>
+                    <li><a href="#">Coaching</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                    <div>
+                        <span class="sans" style="color:var(--gold-accent); font-size:0.8rem; font-weight:800; display:block; margin-bottom:1.5rem;">Community of Practice</span>
+                        <h1 class="serif">Unlearn. <br><span style="font-style:italic">Lead with Genius.</span></h1>
+                        <p class="lead serif">A space where individual leaders discover their innate brilliance.</p>
+                    </div>
+                    <div class="card" style="border-top: 8px solid var(--gold-accent);">
+                        <h3 class="serif">Christine Kahane, NBC-HWC</h3>
+                        <p style="font-size:1rem; margin-bottom:1rem; opacity: 0.7;">25+ years of experience in emotional intelligence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
-            <p style="margin-bottom: 1rem; opacity: 0.6;">An <span style="color:#fff; font-weight:800;">Institute for Unlearning</span> Brand</p>
-            <p style="font-size: 0.65rem; opacity: 0.4;">© 2026 Institute for Unlearning.</p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.5; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">An <span style="color:#fff; font-weight:800;">Institute for Unlearning</span> Brand</p>
+            <div style="margin-bottom: 3rem;">
+                <a href="#" class="fed-footer-link">The Institute</a>
+                <a href="#" class="fed-footer-link">Coherence Co.</a>
+                <a href="#" class="fed-footer-link">Kahane Coaching</a>
+            </div>
+            <p style="font-size: 0.7rem; opacity: 0.3;">© 2026 Institute for Unlearning. Powered by the UNLearning Methodology™.</p>
         </div>
     </footer>
 
+    <script>
+        function switchBrand(brandId, el, borderColor) {
+            document.querySelectorAll('.pillar').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('global-nav').style.borderBottomColor = borderColor;
+            document.querySelectorAll('.site-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(brandId === 'institute' ? 'institute' : brandId === 'coherence' ? 'coherence' : 'site-coaching').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
