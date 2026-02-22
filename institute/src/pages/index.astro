@@ -1,5 +1,5 @@
 ---
-// Institute for UNLearning - Master Brand Island (Complete Refactor)
+import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -11,9 +11,9 @@
     <style>
         :root {
             --bg-mist: #EAEAEA;
-            --ink-institute: #111e1c; /* PMS 627/5467 Deep Green [cite: 38-41] */
-            --gold-accent: #b59353;    /* PMS 1245/131 [cite: 52-55] */
-            --silver-gray: #b1b3b3;    /* PMS 443 [cite: 48-49] */
+            --ink-institute: #111e1c; 
+            --gold-accent: #b59353;    
+            --silver-gray: #b1b3b3;    
             --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             --nav-height-t1: 90px;
             --nav-height-t2: 70px;
@@ -31,42 +31,28 @@
         .serif { font-family: 'Playfair Display', serif; }
         .sans { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- TIER 1: BRAND SWITCHER --- */
-        .fed-nav {
-            position: fixed; top: 0; width: 100%; z-index: 2000;
-            display: grid; grid-template-columns: 1fr 1fr 1fr;
-            height: var(--nav-height-t1); background: #fff; border-bottom: 4px solid var(--ink-institute);
-            transition: var(--transition);
-        }
-        .pillar {
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-decoration: none; transition: var(--transition);
-            border-bottom: 6px solid transparent; text-align: center;
-            padding: 0 10px;
-        }
-        .pillar span { font-size: 0.55rem; text-transform: uppercase; font-weight: 800; opacity: 0.6; }
-        .pillar h4 { font-size: 0.8rem; margin-top: 4px; font-family: 'Inter', sans-serif; text-transform: uppercase;}
-        
-        .pillar-inst { background: var(--ink-institute); color: #fff; opacity: 1; border-bottom: 8px solid #fff; }
-        .pillar-cohe { background: #1b263b; color: #fff; opacity: 0.4; }
-        .pillar-coac { background: var(--gold-accent); color: #fff; opacity: 0.4; }
-
         /* --- TIER 2: INSTITUTE NAV --- */
         .site-header {
-            position: fixed; top: var(--nav-height-t1); width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--silver-gray); height: var(--nav-height-t2);
-            display: flex; align-items: center; transition: var(--transition);
+            position: fixed; 
+            top: var(--nav-height-t1); 
+            width: 100%; 
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--silver-gray); 
+            height: var(--nav-height-t2);
+            display: flex; 
+            align-items: center; 
+            transition: var(--transition);
         }
         .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; }
         .site-nav-links a { text-decoration: none; color: inherit; transition: 0.3s; }
         .site-nav-links a:hover { color: var(--gold-accent); }
 
-        /* --- HERO: ACADEMIC & CONTRAST --- */
+        /* --- CONTENT --- */
         .hero { padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; min-height: 80vh; }
         .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
         
-        /* Main Titles: Mixed Punctuation, NO Cap Lock  */
         h1 { 
             font-size: clamp(2.5rem, 7vw, 5.5rem); 
             line-height: 1.1; 
@@ -91,10 +77,7 @@
                 --nav-height-t1: 65px;
                 --nav-height-t2: 55px;
             }
-            .pillar h4 { font-size: 0.65rem; }
-            .pillar span { display: none; }
             
-            /* Horizontal Scroll Mobile Nav */
             .site-header {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
@@ -107,7 +90,7 @@
             .site-header span.serif { display: none; } 
             
             .hero { padding-top: 140px; text-align: center; }
-            h1 { font-size: 2.8rem; } /* [cite: 3] */
+            h1 { font-size: 2.8rem; }
             p.lead { font-size: 1.25rem; }
             .card { padding: 2rem; }
         }
@@ -117,20 +100,7 @@
 </head>
 <body>
 
-    <nav class="fed-nav">
-        <a href="#" class="pillar pillar-inst">
-            <span>The Master Brand</span>
-            <h4>The Institute</h4>
-        </a>
-        <a href="https://federated-sites-hmy5.vercel.app/" class="pillar pillar-cohe">
-            <span>B2B / Organizations</span>
-            <h4>The Coherence Co.</h4>
-        </a>
-        <a href="https://federated-sites.vercel.app/" class="pillar pillar-coac">
-            <span>B2C / Individuals</span>
-            <h4>Kahane Coaching</h4>
-        </a>
-    </nav>
+    <BrandSwitcher activeBrand="institute" />
 
     <header class="site-header">
         <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
@@ -152,11 +122,11 @@
             <div class="grid-3">
                 <div class="card">
                     <h3>Thought Leadership Hub</h3>
-                    <p>State of Workplace Culture Reports and Academic White Papers[cite: 1, 8].</p>
+                    <p>State of Workplace Culture Reports and Academic White Papers.</p>
                 </div>
                 <div class="card">
                     <h3>IP Library</h3>
-                    <p>Foundational Frameworks and Certification Programs[cite: 1, 8].</p>
+                    <p>Foundational Frameworks and Certification Programs.</p>
                 </div>
             </div>
         </div>

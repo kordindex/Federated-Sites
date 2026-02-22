@@ -1,0 +1,52 @@
+---
+// BrandSwitcher.astro - Neutral Territory Component
+const { activeBrand } = Astro.props;
+---
+
+<nav class="fed-nav">
+    <a href="https://federated-sites-9bgd.vercel.app/" 
+       class=`pillar pillar-inst ${activeBrand === 'institute' ? 'active' : ''}`>
+        <span>The Master Brand</span>
+        <h4>The Institute</h4>
+    </a>
+    <a href="https://federated-sites-hmy5.vercel.app/" 
+       class=`pillar pillar-cohe ${activeBrand === 'coherence' ? 'active' : ''}`>
+        <span>B2B / Organizations</span>
+        <h4>The Coherence Co.</h4>
+    </a>
+    <a href="https://federated-sites.vercel.app/" 
+       class=`pillar pillar-coac ${activeBrand === 'coaching' ? 'active' : ''}`>
+        <span>B2C / Individuals</span>
+        <h4>Kahane Coaching</h4>
+    </a>
+</nav>
+
+<style>
+    .fed-nav {
+        position: fixed; top: 0; width: 100%; z-index: 2000;
+        display: grid; grid-template-columns: 1fr 1fr 1fr;
+        height: 90px; background: #fff; border-bottom: 4px solid #111e1c;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pillar {
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        text-decoration: none; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 6px solid transparent; text-align: center;
+        padding: 0 10px;
+    }
+    .pillar span { font-size: 0.55rem; text-transform: uppercase; font-weight: 800; opacity: 0.6; }
+    .pillar h4 { font-size: 0.8rem; margin-top: 4px; font-family: 'Inter', sans-serif; text-transform: uppercase;}
+    
+    .pillar-inst { background: #111e1c; color: #fff; }
+    .pillar-cohe { background: #1b263b; color: #fff; }
+    .pillar-coac { background: #b59353; color: #fff; }
+    
+    .active { border-bottom: 8px solid #fff; opacity: 1 !important; }
+    .pillar:not(.active) { opacity: 0.4; }
+
+    @media (max-width: 768px) {
+        .fed-nav { height: 65px; }
+        .pillar h4 { font-size: 0.65rem; }
+        .pillar span { display: none; }
+    }
+</style>
