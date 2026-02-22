@@ -1,20 +1,20 @@
 ---
-// BrandSwitcher.astro - Neutral Territory Component
+// BrandSwitcher.astro - The Final Triple-Island Switcher
 const { activeBrand } = Astro.props;
 ---
 
 <nav class="fed-nav">
-    <a href="https://federated-sites-9bgd.vercel.app/" 
+    <a href="https://institute.vercel.app/" 
        class=`pillar pillar-inst ${activeBrand === 'institute' ? 'active' : ''}`>
         <span>The Master Brand</span>
         <h4>The Institute</h4>
     </a>
-    <a href="https://federated-sites-hmy5.vercel.app/" 
+    <a href="https://coherence-company.vercel.app/" 
        class=`pillar pillar-cohe ${activeBrand === 'coherence' ? 'active' : ''}`>
         <span>B2B / Organizations</span>
         <h4>The Coherence Co.</h4>
     </a>
-    <a href="https://federated-sites.vercel.app/" 
+    <a href="https://kahane-coaching.vercel.app/" 
        class=`pillar pillar-coac ${activeBrand === 'coaching' ? 'active' : ''}`>
         <span>B2C / Individuals</span>
         <h4>Kahane Coaching</h4>
