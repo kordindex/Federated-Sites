@@ -1,5 +1,5 @@
 ---
-// Coherence Company - B2B Island (Refactored for Response)
+// Coherence Company - B2B Island (Complete Refactor with Mobile Nav)
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,13 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--navy-coherence); color: #fff; overflow-x: hidden; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--navy-coherence); 
+            color: #fff; 
+            overflow-x: hidden; 
+        }
         
         .sans-bold { font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
 
@@ -51,39 +57,77 @@
             border-bottom: 1px solid rgba(255,255,255,0.1); height: var(--nav-height-t2);
             display: flex; align-items: center; transition: var(--transition);
         }
-        .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+        .site-nav-links { 
+            display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; 
+            font-weight: 700; text-transform: uppercase; 
+        }
         .site-nav-links a { text-decoration: none; color: #fff; transition: 0.3s; }
+        .site-nav-links a:hover { color: var(--gold-accent); }
 
-        /* --- CONTENT --- */
-        .hero { padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; min-height: 80vh; }
+        /* --- HERO: ALL CAPS & CONTRAST --- */
+        .hero { 
+            padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; 
+            min-height: 80vh; 
+        }
         .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
         
-        h1 { font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; text-transform: uppercase; }
-        p.lead { font-size: 1.6rem; max-width: 800px; margin-bottom: 3rem; opacity: 0.9; font-weight: 400; }
+        h1 { 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            line-height: 0.95; 
+            margin-bottom: 2rem; 
+            text-transform: uppercase; /* */
+        }
+        p.lead { 
+            font-size: 1.6rem; 
+            max-width: 800px; 
+            margin-bottom: 3rem; 
+            opacity: 0.9;
+            font-weight: 400;
+        }
 
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 60px 0; }
         .card { padding: 3rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); }
-        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--gold-accent); text-transform: uppercase; }
+        .card h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: var(--gold-accent); 
+            text-transform: uppercase; 
+        }
 
         /* --- RESPONSIVE REFACTOR --- */
         @media (max-width: 768px) {
             :root {
-                --nav-height-t1: 65px; /* Sync with Coaching */
-                --nav-height-t2: 60px;
+                --nav-height-t1: 65px; /* Shrink switcher */
+                --nav-height-t2: 55px; /* Slimmer for mobile nav */
             }
             .pillar h4 { font-size: 0.65rem; }
             .pillar span { display: none; }
             
-            .site-nav-links { display: none; }
+            /* Horizontal Scroll Mobile Nav */
+            .site-header {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                justify-content: flex-start;
+                padding: 0 1rem;
+            }
+            .site-header .container {
+                justify-content: flex-start !important;
+                gap: 2rem;
+            }
+            .site-nav-links {
+                gap: 1.5rem;
+                padding-right: 2rem;
+            }
+            .site-nav-links li { white-space: nowrap; }
+            .site-header span.sans-bold { display: none; } /* Hide logo on mobile to prioritize links */
             
-            .hero { padding-top: 160px; text-align: center; }
-            h1 { font-size: 2.8rem; letter-spacing: -1px; } /* Tighten tracking for mobile */
+            .hero { padding-top: 140px; text-align: center; }
+            h1 { font-size: 2.8rem; letter-spacing: -1px; } /* */
             p.lead { font-size: 1.2rem; }
-            
-            .card { padding: 2rem; } /* Save space inside cards */
+            .card { padding: 2rem; }
         }
 
-        footer { background: #000; color: #fff; padding: 60px 0; text-align: center; }
+        footer { background: #000; color: #fff; padding: 80px 0; text-align: center; }
     </style>
 </head>
 <body>
@@ -110,6 +154,7 @@
                 <li><a href="#">Philosophy</a></li>
                 <li><a href="#">Canvas</a></li>
                 <li><a href="#">Intensive</a></li>
+                <li><a href="#">Resources</a></li>
             </ul>
         </div>
     </header>
