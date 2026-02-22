@@ -1,0 +1,94 @@
+---
+// GlobalFooter.astro - The "Pro" Ecosystem Footer
+const year = new Date().getFullYear();
+---
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <span class="institute-mark">UNL</span>
+            <p>The Institute for UNLearning is the foundational IP holder for Coherence and Coaching methodologies.</p>
+        </div>
+        
+        <div class="footer-links">
+            <h4>Ecosystem</h4>
+            <a href="https://institute-unlearning.vercel.app/">The Institute</a>
+            <a href="https://coherence-company.vercel.app/">Coherence Co.</a>
+            <a href="https://kahane-coaching.vercel.app/">Kahane Coaching</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Connect</h4>
+            <a href="#">LinkedIn</a>
+            <a href="#">Newsletter</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© {year} The Institute for UNLearning. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: #000;
+        color: #fff;
+        padding: 80px 2rem;
+        font-family: 'Inter', sans-serif;
+    }
+    .footer-grid {
+        max-width: 1250px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 4rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 4rem;
+    }
+    .footer-brand p {
+        opacity: 0.6;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-top: 1.5rem;
+        max-width: 300px;
+    }
+    .institute-mark {
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        color: #b59353; /* PMS 1245 Gold */
+    }
+    .footer-links h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        color: #b59353;
+    }
+    .footer-links a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0.5;
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+        transition: 0.3s;
+    }
+    .footer-links a:hover { opacity: 1; }
+    
+    .footer-bottom {
+        max-width: 1250px;
+        margin: 2rem auto 0;
+        text-align: center;
+        opacity: 0.3;
+        font-size: 0.7rem;
+    }
+    .footer-bottom a { color: #fff; text-decoration: underline; }
+
+    @media (max-width: 768px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+        .footer-brand p { margin: 1.5rem auto 0; }
+    }
+</style>
