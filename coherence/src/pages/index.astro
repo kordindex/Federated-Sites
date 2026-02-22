@@ -1,19 +1,101 @@
 ---
-
+import FederatedNav from '../../../shared/FederatedNav.astro';
 ---
-
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-		<h1>Institute - Connection Test Success!</h1>
-		<p>The circuit is complete.</p> Push. One. 
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute UNLearning | Workplace Culture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-mist: #EAEAEA;
+            --gold-deep: #9C7E41;
+            --gold-bright: #B59353;
+            --ink: #1A1C1E;
+            --silver-border: #D1D1D1;
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-mist); color: var(--ink); overflow-x: hidden; }
+        
+        .serif { font-family: 'Playfair Display', serif; }
+        .sans { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Tier 2 Header */
+        .site-header {
+            position: fixed; top: 90px; width: 100%; z-index: 1000;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--silver-border); height: 70px;
+            display: flex; align-items: center;
+        }
+        .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; }
+        .site-nav-links a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .site-nav-links a:hover { color: var(--gold-deep); }
+
+        /* Content Section */
+        .hero { padding: 80px 0; min-height: 70vh; display: flex; align-items: center; margin-top: 160px; }
+        .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero p.lead { font-size: 1.25rem; max-width: 800px; margin-bottom: 2rem; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 60px 0; }
+        .card { padding: 2.5rem; border: 1px solid var(--silver-border); background: #fff; }
+        .card h3 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--gold-deep); }
+        .card ul { list-style: none; font-size: 0.9rem; opacity: 0.8; }
+        .card li { margin-bottom: 0.5rem; }
+
+        footer { background: #111; color: #fff; padding: 60px 0; text-align: center; font-size: 0.8rem; }
+        .fed-footer-link { color: var(--gold-bright); text-decoration: none; margin: 0 10px; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <FederatedNav />
+
+    <nav class="site-header">
+        <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
+            <span class="serif" style="font-weight:900; text-transform: uppercase;">Institute <span style="color:var(--gold-deep)">UNLearning</span></span>
+            <ul class="site-nav-links sans">
+                <li><a href="#">Methodology</a></li>
+                <li><a href="#">Research</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="container">
+            <span class="sans" style="color:var(--gold-deep); font-size:0.7rem; font-weight:800; display:block; margin-bottom:1rem;">IP Anchor & Thought Leadership</span>
+            <h1 class="serif">Workplace Culture That <br><span style="font-style:italic;">Grows Itself.</span></h1>
+            <p class="lead serif">Serving as the credibility anchor and IP holder for the world's most critical organizations.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3 class="serif">Thought Leadership</h3>
+                    <ul><li>State of Workplace Culture</li><li>Academic White Papers</li><li>Expert Commentary</li></ul>
+                </div>
+                <div class="card">
+                    <h3 class="serif">IP Library</h3>
+                    <ul><li>Foundational Frameworks</li><li>Methodology Deep-Dives</li><li>Certification Program</li></ul>
+                </div>
+                <div class="card">
+                    <h3 class="serif">Media Center</h3>
+                    <ul><li>Speaking Request Portal</li><li>Press Kit</li><li>Media Appearances</li></ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 1rem; opacity: 0.6;">An <span style="color:#fff; font-weight:800;">Institute for Unlearning</span> Brand</p>
+            <p style="font-size: 0.65rem; opacity: 0.4;">© 2026 Institute for Unlearning.</p>
+        </div>
+    </footer>
+
+</body>
 </html>
