@@ -1,44 +1,41 @@
 ---
-// Coherence Company - B2B Island
+// Coherence Company - B2B Island (Refactored for Response)
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Coherence Company | Organizational Transformation</title>
+    <title>The Coherence Company | B2B Transformation</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-mist: #EAEAEA;
-            --navy-coherence: #1b263b; /* PMS 2767/5395 [cite: 43-46] */
-            --gold-accent: #b59353;    /* PMS 1245/131 [cite: 52-55] */
-            --silver-gray: #b1b3b3;    /* PMS 443 [cite: 48-49] */
+            --navy-coherence: #1b263b; /* PMS 2767/5395 */
+            --gold-accent: #b59353;    /* PMS 1245/131 */
+            --silver-gray: #b1b3b3;    /* PMS 443 */
             --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --nav-height-t1: 90px;
+            --nav-height-t2: 70px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Coherence Typography: All Sans Serif [cite: 18] */
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--navy-coherence); 
-            color: #fff; 
-            overflow-x: hidden; 
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--navy-coherence); color: #fff; overflow-x: hidden; }
         
         .sans-bold { font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
 
-        /* --- TIER 1: BRAND SWITCHER (COHERENCE ACTIVE) --- */
+        /* --- TIER 1: BRAND SWITCHER --- */
         .fed-nav {
             position: fixed; top: 0; width: 100%; z-index: 2000;
             display: grid; grid-template-columns: 1fr 1fr 1fr;
-            height: 90px; background: #fff; border-bottom: 4px solid #000;
+            height: var(--nav-height-t1); background: #fff; border-bottom: 4px solid #000;
+            transition: var(--transition);
         }
         .pillar {
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-decoration: none; transition: var(--transition);
             border-bottom: 6px solid transparent; text-align: center;
+            padding: 0 10px;
         }
         .pillar span { font-size: 0.55rem; text-transform: uppercase; font-weight: 800; opacity: 0.6; }
         .pillar h4 { font-size: 0.8rem; margin-top: 4px; font-family: 'Inter', sans-serif; text-transform: uppercase;}
@@ -49,43 +46,44 @@
 
         /* --- TIER 2: COHERENCE NAV --- */
         .site-header {
-            position: fixed; top: 90px; width: 100%; z-index: 1000;
+            position: fixed; top: var(--nav-height-t1); width: 100%; z-index: 1000;
             background: rgba(27, 38, 59, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1); height: 70px;
-            display: flex; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1); height: var(--nav-height-t2);
+            display: flex; align-items: center; transition: var(--transition);
         }
         .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
         .site-nav-links a { text-decoration: none; color: #fff; transition: 0.3s; }
-        .site-nav-links a:hover { color: var(--gold-accent); }
 
-        /* --- HERO: ALL CAPS & CONTRAST [cite: 17, 20] --- */
-        .hero { padding: 240px 0 100px; min-height: 80vh; }
+        /* --- CONTENT --- */
+        .hero { padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; min-height: 80vh; }
         .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
         
-        h1 { 
-            font-size: clamp(3rem, 8vw, 6rem); 
-            line-height: 0.95; 
-            margin-bottom: 2rem; 
-            text-transform: uppercase; /*  */
-        }
-        p.lead { 
-            font-size: 1.6rem; 
-            max-width: 800px; 
-            margin-bottom: 3rem; 
-            opacity: 0.9;
-            font-weight: 400;
-        }
+        h1 { font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; text-transform: uppercase; }
+        p.lead { font-size: 1.6rem; max-width: 800px; margin-bottom: 3rem; opacity: 0.9; font-weight: 400; }
 
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 60px 0; }
         .card { padding: 3rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); }
-        .card h3 { 
-            font-size: 1.5rem; 
-            margin-bottom: 1rem; 
-            color: var(--gold-accent); 
-            text-transform: uppercase; /*  */
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--gold-accent); text-transform: uppercase; }
+
+        /* --- RESPONSIVE REFACTOR --- */
+        @media (max-width: 768px) {
+            :root {
+                --nav-height-t1: 65px; /* Sync with Coaching */
+                --nav-height-t2: 60px;
+            }
+            .pillar h4 { font-size: 0.65rem; }
+            .pillar span { display: none; }
+            
+            .site-nav-links { display: none; }
+            
+            .hero { padding-top: 160px; text-align: center; }
+            h1 { font-size: 2.8rem; letter-spacing: -1px; } /* Tighten tracking for mobile */
+            p.lead { font-size: 1.2rem; }
+            
+            .card { padding: 2rem; } /* Save space inside cards */
         }
 
-        footer { background: #000; color: #fff; padding: 80px 0; text-align: center; }
+        footer { background: #000; color: #fff; padding: 60px 0; text-align: center; }
     </style>
 </head>
 <body>
@@ -112,7 +110,6 @@
                 <li><a href="#">Philosophy</a></li>
                 <li><a href="#">Canvas</a></li>
                 <li><a href="#">Intensive</a></li>
-                <li><a href="#">Resources</a></li>
             </ul>
         </div>
     </header>
@@ -126,7 +123,7 @@
             <div class="grid-3">
                 <div class="card">
                     <h3 class="sans-bold">The Coherence Canvas</h3>
-                    <p>Our 9-block framework for systemic alignment. Designed for executive teams seeking innovation recovery.</p>
+                    <p>Our 9-block framework for systemic alignment.</p>
                 </div>
                 <div class="card">
                     <h3 class="sans-bold">Enterprise Intensive</h3>
