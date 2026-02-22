@@ -1,5 +1,5 @@
 ---
-// Kahane Coaching - B2C Island (Refactored for Response)
+// Kahane Coaching - B2C Island (Complete Refactor with Mobile Nav)
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,14 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #fff; color: var(--ink-dark); overflow-x: hidden; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #fff; 
+            color: var(--ink-dark); 
+            overflow-x: hidden; 
+        }
+        
         .serif { font-family: 'Playfair Display', serif; }
         .sans { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -39,6 +46,7 @@
         }
         .pillar span { font-size: 0.55rem; text-transform: uppercase; font-weight: 800; opacity: 0.6; }
         .pillar h4 { font-size: 0.8rem; margin-top: 4px; font-family: 'Inter', sans-serif; text-transform: uppercase;}
+        
         .pillar-inst { background: #111e1c; color: #fff; opacity: 0.4; }
         .pillar-cohe { background: #1b263b; color: #fff; opacity: 0.4; }
         .pillar-coac { background: var(--gold-accent); color: #fff; opacity: 1; border-bottom: 8px solid #fff; }
@@ -56,6 +64,7 @@
         /* --- CONTENT --- */
         .hero { padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; min-height: 80vh; }
         .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
+        
         h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 1.1; margin-bottom: 2rem; font-family: 'Playfair Display', serif; }
         .subhead { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 1.5rem; line-height: 1.4; }
         .subtitle { font-family: 'Inter', sans-serif; color: var(--gold-accent); font-weight: 400; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; display: block; margin-bottom: 1rem; }
@@ -64,25 +73,34 @@
         .card { padding: 3rem; border: 1px solid var(--silver-gray); border-top: 8px solid var(--gold-accent); }
         .card h3 { font-size: 1.6rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
 
-        /* --- RESPONSIVE REFACTOR (THE MAGIC) --- */
+        /* --- RESPONSIVE REFACTOR --- */
         @media (max-width: 768px) {
             :root {
-                --nav-height-t1: 65px; /* Shrink switcher on mobile */
-                --nav-height-t2: 60px; /* Shrink tier 2 nav */
+                --nav-height-t1: 65px;
+                --nav-height-t2: 55px;
             }
-            .pillar h4 { font-size: 0.65rem; } /* Prevent text wrap overlap */
-            .pillar span { display: none; } /* Hide sub-labels to save space */
+            .pillar h4 { font-size: 0.65rem; }
+            .pillar span { display: none; }
             
-            .site-nav-links { display: none; } /* Simplified: hide links on tiny screens for now */
+            /* Horizontal Scroll Mobile Nav */
+            .site-header {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                justify-content: flex-start;
+                padding: 0 1rem;
+            }
+            .site-header .container { justify-content: flex-start !important; gap: 2rem; }
+            .site-nav-links { gap: 1.5rem; padding-right: 2rem; }
+            .site-nav-links li { white-space: nowrap; }
+            .site-header span.serif { display: none; } 
             
-            .grid-2 { grid-template-columns: 1fr; gap: 2rem; } /* STACK the hero columns */
-            .hero { padding-top: 160px; text-align: center; } /* Re-center for mobile */
-            
-            h1 { font-size: 2.8rem; } /* Explicit font shrink */
-            .subhead { font-size: 1.3rem; } /* Maintain contrast ratio */
+            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+            .hero { padding-top: 140px; text-align: center; }
+            h1 { font-size: 2.8rem; }
+            .subhead { font-size: 1.3rem; }
         }
 
-        footer { background: #000; color: #fff; padding: 60px 0; text-align: center; }
+        footer { background: #000; color: #fff; padding: 80px 0; text-align: center; }
     </style>
 </head>
 <body>
@@ -106,8 +124,9 @@
         <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
             <span class="serif" style="font-weight:900; font-size: 1.3rem;">Kahane <span style="color:var(--gold-accent)">Coaching</span></span>
             <ul class="site-nav-links sans">
-                <li><a href="#">About</a></li>
+                <li><a href="#">About Christine</a></li>
                 <li><a href="#">Coaching</a></li>
+                <li><a href="#">Community</a></li>
             </ul>
         </div>
     </header>
@@ -122,7 +141,7 @@
                 </div>
                 <div class="card">
                     <h3 class="serif">Christine Kahane, NBC-HWC</h3>
-                    <p style="opacity: 0.7; line-height: 1.6;">25+ years of experience in emotional intelligence.</p>
+                    <p style="opacity: 0.7; line-height: 1.6;">25+ years of experience in communication science and emotional intelligence.</p>
                 </div>
             </div>
         </div>
