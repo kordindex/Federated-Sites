@@ -1,5 +1,6 @@
 ---
 import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
+import GlobalFooter from '../../../shared/GlobalFooter.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -31,71 +32,37 @@ import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
         .serif { font-family: 'Playfair Display', serif; }
         .sans { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- TIER 2: INSTITUTE NAV --- */
         .site-header {
-            position: fixed; 
-            top: var(--nav-height-t1); 
-            width: 100%; 
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--silver-gray); 
-            height: var(--nav-height-t2);
-            display: flex; 
-            align-items: center; 
-            transition: var(--transition);
+            position: fixed; top: var(--nav-height-t1); width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--silver-gray); height: var(--nav-height-t2);
+            display: flex; align-items: center; transition: var(--transition);
         }
         .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; }
         .site-nav-links a { text-decoration: none; color: inherit; transition: 0.3s; }
-        .site-nav-links a:hover { color: var(--gold-accent); }
 
-        /* --- CONTENT --- */
         .hero { padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; min-height: 80vh; }
         .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
         
-        h1 { 
-            font-size: clamp(2.5rem, 7vw, 5.5rem); 
-            line-height: 1.1; 
-            margin-bottom: 2rem; 
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-        }
-        p.lead { 
-            font-size: 1.5rem; 
-            max-width: 850px; 
-            margin-bottom: 3rem; 
-            font-family: 'Playfair Display', serif;
-        }
+        h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 1.1; margin-bottom: 2rem; font-family: 'Playfair Display', serif; font-weight: 900; }
+        p.lead { font-size: 1.5rem; max-width: 850px; margin-bottom: 3rem; font-family: 'Playfair Display', serif; }
 
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 60px 0; }
         .card { padding: 3rem; border: 1px solid var(--silver-gray); background: #fff; }
         .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--gold-accent); font-family: 'Playfair Display', serif; font-weight: 700; }
 
-        /* --- RESPONSIVE REFACTOR --- */
         @media (max-width: 768px) {
-            :root {
-                --nav-height-t1: 65px;
-                --nav-height-t2: 55px;
-            }
-            
-            .site-header {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                justify-content: flex-start;
-                padding: 0 1rem;
-            }
+            :root { --nav-height-t1: 65px; --nav-height-t2: 55px; }
+            .site-header { overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; padding: 0 1rem; }
             .site-header .container { justify-content: flex-start !important; gap: 2rem; }
             .site-nav-links { gap: 1.5rem; padding-right: 2rem; }
             .site-nav-links li { white-space: nowrap; }
             .site-header span.serif { display: none; } 
-            
             .hero { padding-top: 140px; text-align: center; }
             h1 { font-size: 2.8rem; }
             p.lead { font-size: 1.25rem; }
             .card { padding: 2rem; }
         }
-
-        footer { background: #000; color: #fff; padding: 80px 0; text-align: center; }
     </style>
 </head>
 <body>
@@ -132,11 +99,7 @@ import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p style="opacity: 0.5; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">An Institute for Unlearning Brand</p>
-        </div>
-    </footer>
+    <GlobalFooter />
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 ---
 import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
+import GlobalFooter from '../../../shared/GlobalFooter.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -11,9 +12,9 @@ import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
     <style>
         :root {
             --bg-mist: #EAEAEA;
-            --gold-accent: #b59353;    
-            --silver-gray: #b1b3b3;    
-            --ink-dark: #111e1c;       
+            --gold-accent: #b59353;    /* PMS 1245/131 */
+            --silver-gray: #b1b3b3;    /* PMS 443 */
+            --ink-dark: #111e1c;       /* PMS 627 */
             --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             --nav-height-t1: 90px;
             --nav-height-t2: 70px;
@@ -86,8 +87,6 @@ import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
             h1 { font-size: 2.8rem; }
             .subhead { font-size: 1.3rem; }
         }
-
-        footer { background: #000; color: #fff; padding: 80px 0; text-align: center; }
     </style>
 </head>
 <body>
@@ -121,11 +120,7 @@ import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p style="opacity: 0.5; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">An Institute for Unlearning Brand</p>
-        </div>
-    </footer>
+    <GlobalFooter />
 
 </body>
 </html>
