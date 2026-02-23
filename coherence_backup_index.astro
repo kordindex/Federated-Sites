@@ -1,0 +1,171 @@
+---
+import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
+import GlobalFooter from '../../../shared/GlobalFooter.astro';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Coherence Company | B2B Transformation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-mist: #EAEAEA;
+            --navy-coherence: #1b263b; /* PMS 2767/5395 */
+            --gold-accent: #b59353;    /* PMS 1245/131 */
+            --silver-gray: #b1b3b3;    /* PMS 443 */
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --nav-height-t1: 90px;
+            --nav-height-t2: 70px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--navy-coherence); 
+            color: #fff; 
+            overflow-x: hidden; 
+        }
+        
+        .sans-bold { font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
+
+        /* --- TIER 2: COHERENCE NAV --- */
+        .site-header {
+            position: fixed; 
+            top: var(--nav-height-t1); 
+            width: 100%; 
+            z-index: 1000;
+            background: rgba(27, 38, 59, 0.95); 
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+            height: var(--nav-height-t2);
+            display: flex; 
+            align-items: center; 
+            transition: var(--transition);
+        }
+        .site-nav-links { 
+            display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; 
+            font-weight: 700; text-transform: uppercase; 
+        }
+        .site-nav-links a { text-decoration: none; color: #fff; transition: 0.3s; }
+        .site-nav-links a:hover { color: var(--gold-accent); }
+
+        /* --- CONTENT --- */
+        .hero { 
+            padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; 
+            min-height: 80vh; 
+        }
+        .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
+        
+        h1 { 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            line-height: 0.95; 
+            margin-bottom: 2rem; 
+            text-transform: uppercase; /* */
+        }
+        p.lead { 
+            font-size: 1.6rem; 
+            max-width: 800px; 
+            margin-bottom: 3rem; 
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 60px 0; }
+        .card { padding: 3rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); }
+        .card h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: var(--gold-accent); 
+            text-transform: uppercase; 
+        }
+
+        /* --- RESPONSIVE REFACTOR --- */
+        @media (max-width: 768px) {
+            :root {
+                --nav-height-t1: 65px;
+                --nav-height-t2: 55px;
+            }
+            
+            .site-header {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                justify-content: flex-start;
+                padding: 0 1rem;
+            }
+            .site-header .container {
+                justify-content: flex-start !important;
+                gap: 2rem;
+            }
+            .site-nav-links {
+                gap: 1.5rem;
+                padding-right: 2rem;
+            }
+            .site-nav-links li { white-space: nowrap; }
+            .site-header span.sans-bold { display: none; } 
+            
+            .hero { padding-top: 140px; text-align: center; }
+            h1 { font-size: 2.8rem; letter-spacing: -1px; } 
+            p.lead { font-size: 1.2rem; }
+            .card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <BrandSwitcher activeBrand="coherence" />
+
+    <header class="site-header">
+        <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
+            <span class="sans-bold" style="font-size: 1.2rem;">COHERENCE <span style="color:var(--gold-accent)">COMPANY</span></span>
+            <ul class="site-nav-links">
+                <li><a href="#">Philosophy</a></li>
+                <li><a href="#">Canvas</a></li>
+                <li><a href="#">Intensive</a></li>
+                <li><a href="#">Resources</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="hero">
+        <div class="container">
+            <span class="sans-bold" style="color:var(--gold-accent); font-size:0.8rem; display:block; margin-bottom:1.5rem;">B2B Center of Excellence</span>
+            <h1 class="sans-bold">Stop Running Faster <br>Than Your Team <span style="color:var(--gold-accent)">Understands.</span></h1>
+            <p class="lead">Building regenerative workplace cultures through integrated organizational transformation.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3 class="sans-bold">The Coherence Canvas</h3>
+                    <p>Our 9-block framework for systemic alignment.</p>
+                </div>
+                <div class="card">
+                    <h3 class="sans-bold">Enterprise Intensive</h3>
+                    <p>High-impact workshop experiences for global leadership teams.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <GlobalFooter />
+<!-- Default Statcounter code for CK Coherence
+https://coherence-company.vercel.app/ -->
+<script type="text/javascript">
+var sc_project=13206432; 
+var sc_invisible=1; 
+var sc_security="f8829670"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/13206432/0/f8829670/1/"
+alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+</body>
+</html>
