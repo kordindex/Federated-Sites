@@ -2,6 +2,7 @@
 // CoherenceLayout.astro
 // Base layout for all Coherence Company pages
 // Usage: <CoherenceLayout title="Page Title">...content...</CoherenceLayout>
+// Styles live in: src/styles/coherence.css
 
 import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
 import GlobalFooter from '../../../shared/GlobalFooter.astro';
@@ -15,7 +16,43 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-    <style is:global>
+    <link rel="stylesheet" href="/styles/coherence.css">
+    <slot name="head" />
+</head>
+
+<body>
+
+    <BrandSwitcher activeBrand="coherence" />
+
+    <slot />
+
+    <GlobalFooter />
+
+    <!-- Statcounter -->
+    <script type="text/javascript">
+        var sc_project=13206432;
+        var sc_invisible=1;
+        var sc_security="f8829670";
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    <noscript>
+        <div class="statcounter">
+            <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
+                <img class="statcounter" src="https://c.statcounter.com/13206432/0/f8829670/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade">
+            </a>
+        </div>
+    </noscript>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <style>
         /* ─── CSS Variables ────────────────────────────────────────────────── */
         :root {
             --bg-mist: #1b263b;
@@ -41,7 +78,7 @@ const { title } = Astro.props;
             overflow-x: hidden;
         }
 
-       main h1, main h2, main h3, main h4, .logo {
+        h1, h2, h3, h4, .logo {
             font-family: 'Playfair Display', serif;
             text-transform: uppercase;
             letter-spacing: -0.01em;
