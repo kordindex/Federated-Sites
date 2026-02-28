@@ -9,8 +9,6 @@ const currentPath = Astro.url.pathname;
       <span class="standard-badge">GLOBAL STANDARD</span>
     </div>
     <ul class="nav-links">
-      <li><a href="/philosophy" class={currentPath.startsWith('/philosophy') ? 'active' : ''}>PHILOSOPHY</a></li>
-      <li><a href="/canvas" class={currentPath.startsWith('/canvas') ? 'active' : ''}>CANVAS</a></li>
       <li><a href="/intensive" class={currentPath.startsWith('/intensive') ? 'active' : ''}>INTENSIVE</a></li>
     </ul>
     <a href="/contact" class="nav-cta">GET YOUR COHERENCE SCORE</a>
