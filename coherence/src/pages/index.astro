@@ -1,1365 +1,399 @@
 ---
-import CoherenceLayout from '../layouts/CoherenceLayout.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  ignoreTitleTemplate: true,
+};
 ---
-<CoherenceLayout title="The Coherence Company | Turn Your Vision Into Team Momentum">
 
-    <fragment slot="head">
-    <style>
-        /* ─── Modal ─────────────────────────────────────────────────────────── */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(26, 28, 30, 0.95);
-            backdrop-filter: blur(15px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            overflow-y: auto;
-        }
-
-        .modal-overlay.active { display: flex; }
-
-        .modal-content {
-            background: var(--bg-mist);
-            width: 95%;
-            max-width: 900px;
-            padding: 2rem;
-            position: relative;
-            border: 1px solid var(--silver-border);
-            margin: 2rem auto;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1.5rem; right: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--ink);
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: 0.3s;
-        }
-
-        .close-modal:hover { color: var(--gold-deep); }
-
-        /* ─── Quiz ──────────────────────────────────────────────────────────── */
-        .quiz-container { width: 100%; }
-        .quiz-progress-wrapper { margin-bottom: 2rem; }
-
-        .quiz-progress-bar {
-            height: 4px; width: 100%;
-            background: var(--silver-border);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .quiz-progress-fill {
-            height: 100%;
-            background: var(--gold-deep);
-            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .quiz-progress-text {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.75rem;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            color: var(--charcoal);
-            opacity: 0.6;
-        }
-
-        .quiz-question-card {
-            background: var(--card-white);
-            border: 1px solid var(--silver-border);
-            padding: 2.5rem;
-            border-radius: 4px;
-        }
-
-        .quiz-question-header { margin-bottom: 2.5rem; }
-
-        .quiz-question-category {
-            display: block;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            font-weight: 700;
-            color: var(--gold-deep);
-            margin-bottom: 1rem;
-        }
-
-        .quiz-question-text {
-            font-size: 1.8rem;
-            font-weight: 400;
-            line-height: 1.3;
-            color: var(--ink);
-        }
-
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .quiz-option {
-            width: 100%;
-            text-align: left;
-            padding: 1.5rem;
-            border: 2px solid var(--silver-border);
-            background: var(--bg-mist);
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 4px;
-        }
-
-        .quiz-option:hover { border-color: var(--charcoal); }
-
-        .quiz-option.selected {
-            border-color: var(--gold-deep);
-            background: var(--ink);
-            color: #fff;
-        }
-
-        .quiz-option-content { display: flex; align-items: flex-start; gap: 1rem; }
-
-        .quiz-option-letter {
-            font-weight: 700;
-            font-size: 0.9rem;
-            opacity: 0.4;
-            min-width: 1.5rem;
-        }
-
-        .quiz-option.selected .quiz-option-letter { opacity: 0.6; }
-        .quiz-option-text { flex: 1; }
-        .quiz-option-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
-        .quiz-option-subtext { font-size: 0.8rem; line-height: 1.5; opacity: 0.7; }
-
-        .quiz-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--silver-border);
-            gap: 1rem;
-        }
-
-        .quiz-navigation .btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
-        .quiz-navigation .btn:disabled:hover { background: var(--ink); transform: none; }
-
-        .quiz-results { padding: 2rem 0; }
-
-        .quiz-result-title {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-            color: var(--ink);
-        }
-
-        .quiz-result-subtitle {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            font-weight: 700;
-            color: var(--gold-deep);
-            margin-bottom: 2.5rem;
-        }
-
-        .quiz-result-content { margin-bottom: 2.5rem; }
-        .quiz-result-content p { margin-bottom: 1.25rem; line-height: 1.7; color: var(--charcoal); }
-
-        .quiz-next-step {
-            background: var(--bg-mist);
-            padding: 2rem;
-            border: 1px solid var(--silver-border);
-            border-radius: 4px;
-            margin-bottom: 2rem;
-        }
-
-        .quiz-next-step h4 {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            font-weight: 700;
-            color: var(--gold-deep);
-            margin-bottom: 0.75rem;
-        }
-
-        .quiz-next-step p { color: var(--ink); font-weight: 600; font-size: 0.95rem; }
-
-        /* ─── Hero ──────────────────────────────────────────────────────────── */
-        header {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 0 20px;
-            background: radial-gradient(circle at 10% 20%, rgba(156, 126, 65, 0.08) 0%, transparent 50%);
-            animation: fadeIn var(--transition-slow);
-        }
-
-        .hero-content h1 {
-            font-size: clamp(3.5rem, 8vw, 5.5rem);
-            line-height: 0.95;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-audience {
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gold-deep);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .hero-content .sub-headline {
-            border-left: none;
-            padding-left: 0;
-            margin-top: 1.5rem;
-        }
-
-        .hero-ctas { display: flex; gap: 15px; margin-bottom: 4rem; }
-
-        .roi-matrix {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            border-top: 1px solid var(--silver-border);
-            padding-top: 2rem;
-            margin-top: 4rem;
-        }
-
-        .roi-val { font-size: 2.5rem; font-weight: 800; color: var(--gold-deep); display: block; }
-
-        .roi-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--charcoal);
-            opacity: 0.7;
-            margin-top: 0.5rem;
-        }
-
-        .roi-desc { font-size: 0.8rem; color: var(--charcoal); margin-top: 0.5rem; opacity: 0.8; }
-
-        .trust-badge {
-            display: inline-flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 1rem 1.5rem;
-            background: rgba(156, 126, 65, 0.05);
-            border: 1px solid var(--silver-border);
-            font-size: 0.75rem;
-            color: var(--charcoal);
-            letter-spacing: 0.5px;
-        }
-
-        /* ─── Social Proof ──────────────────────────────────────────────────── */
-        .social-proof-section { background: var(--card-white); }
-
-        .logos-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-            align-items: center;
-            justify-items: center;
-        }
-
-        .logo-placeholder {
-            width: 120px;
-            height: 80px;
-            background: var(--bg-mist);
-            border: 1px solid var(--silver-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: var(--charcoal);
-            text-align: center;
-            padding: 1rem;
-        }
-
-        /* ─── Philosophy ────────────────────────────────────────────────────── */
-        .core-thesis {
-            font-style: italic;
-            color: var(--gold-deep);
-            font-size: 1.8rem;
-            margin-bottom: 4rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .dim-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--silver-border); }
-        .dim-card { background: var(--card-white); padding: 4rem; }
-        .dim-card h3 { color: var(--gold-deep); margin-bottom: 1.5rem; font-size: 1.8rem; }
-        .dim-card p { color: var(--charcoal); }
-
-        /* ─── Canvas ────────────────────────────────────────────────────────── */
-        .canvas-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--silver-border);
-            margin-top: 4rem;
-        }
-
-        .canvas-block {
-            background: var(--card-white);
-            padding: 2.5rem;
-            min-height: 300px;
-            transition: 0.4s;
-        }
-
-        .canvas-block:hover { background: #fdfdfd; }
-
-        .canvas-block .num {
-            color: var(--gold-deep);
-            font-weight: 800;
-            font-size: 0.8rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .canvas-block h4 { font-size: 1.1rem; margin-bottom: 1rem; }
-
-        .canvas-block .diagnostic-q {
-            font-style: italic;
-            font-size: 0.85rem;
-            color: var(--gold-deep);
-            margin-bottom: 1rem;
-            display: block;
-            line-height: 1.4;
-            font-weight: 600;
-        }
-
-        .canvas-block p { font-size: 0.85rem; color: var(--charcoal); opacity: 0.9; }
-
-        /* ─── Intensive ─────────────────────────────────────────────────────── */
-        .intensive-intro {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin-bottom: 2rem;
-            line-height: 1.5;
-            color: var(--ink);
-            font-weight: 500;
-        }
-
-        .intensive-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--silver-border);
-            margin-top: 3rem;
-            border: 1px solid var(--silver-border);
-        }
-
-        .intensive-card {
-            background: var(--card-white);
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .intensive-card h3 { color: var(--gold-deep); font-size: 1.1rem; margin-bottom: 1.5rem; letter-spacing: 1px; }
-
-        .intensive-card h4 {
-            font-size: 0.85rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            margin-top: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--ink);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .intensive-card ul { list-style: none; padding: 0; }
-
-        .intensive-card ul li {
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-            padding-left: 1.25rem;
-            position: relative;
-            line-height: 1.5;
-            color: var(--charcoal);
-        }
-
-        .intensive-card ul li::before {
-            content: "•";
-            color: var(--gold-deep);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .intensive-footer-box {
-            margin-top: 3rem;
-            background: rgba(156, 126, 65, 0.03);
-            border: 1px solid var(--silver-border);
-            padding: 3rem;
-        }
-
-        .intensive-logistics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-
-        .logistics-col h5 {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            margin-bottom: 1.25rem;
-            color: var(--ink);
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--silver-border);
-            padding-bottom: 0.5rem;
-        }
-
-        .logistics-col p { font-size: 0.85rem; margin-bottom: 1rem; color: var(--charcoal); }
-
-        .schedule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
-
-        .schedule-item {
-            font-size: 0.85rem;
-            border-left: 2px solid var(--gold-deep);
-            padding-left: 0.75rem;
-            color: var(--charcoal);
-        }
-
-        .intensive-cta-group { display: flex; gap: 1rem; margin-top: 2rem; justify-content: flex-start; }
-
-        /* ─── FAQ ───────────────────────────────────────────────────────────── */
-        .faq-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem; }
-        .faq-item { background: var(--card-white); border: 1px solid var(--silver-border); }
-
-        .faq-question {
-            padding: 2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-            background: var(--card-white);
-        }
-
-        .faq-question:hover { background: var(--bg-mist); }
-        .faq-question h4 { font-size: 1.1rem; margin: 0; }
-        .faq-toggle { font-size: 1.5rem; color: var(--gold-deep); font-weight: bold; }
-
-        .faq-answer {
-            display: none;
-            padding: 0 2rem 2rem 2rem;
-            color: var(--charcoal);
-            line-height: 1.8;
-        }
-
-        .faq-answer.active { display: block; }
-
-        /* ─── Download ──────────────────────────────────────────────────────── */
-        .download-container { text-align: center; }
-
-        .download-box {
-            background: var(--bg-mist);
-            padding: 3rem;
-            border: 1px solid var(--silver-border);
-            display: inline-block;
-        }
-
-        .tight-bullets { list-style: none; padding-left: 0; text-align: left; }
-        .tight-bullets li { position: relative; padding-left: 0.7rem; }
-        .tight-bullets li::before { content: "•"; position: absolute; left: 0; top: 0.1em; }
-
-        .download-form { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; }
-
-        .download-form input {
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--silver-border);
-            font-size: 0.9rem;
-            width: 250px;
-        }
-
-        /* ─── Contact ───────────────────────────────────────────────────────── */
-        #contact .container { text-align: center; }
-
-        .contact-form {
-            background: var(--card-white);
-            padding: 4rem;
-            border: 1px solid var(--silver-border);
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .thank-you-message {
-            display: none;
-            text-align: center;
-            padding: 4rem 3rem;
-            background: var(--card-white);
-            border: 1px solid var(--silver-border);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .thank-you-message h2 { font-size: 2.5rem; color: var(--ink); margin-bottom: 1.5rem; }
-        .thank-you-message p { color: var(--charcoal); font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; }
-        .thank-you-message p:last-child { margin-bottom: 0; opacity: 0.8; }
-
-        body.form-success .contact-form { display: none; }
-        body.form-success .thank-you-message { display: block; }
-
-        /* ─── Responsive (page-specific) ────────────────────────────────────── */
-        @media (max-width: 768px) {
-            .modal-content { width: 100%; margin: 0; max-height: 100vh; border-radius: 0; }
-            .quiz-question-card { padding: 1.5rem; }
-            .quiz-question-text { font-size: 1.4rem; }
-            .quiz-navigation { flex-direction: column-reverse; }
-            .quiz-navigation .btn { width: 100%; }
-        }
-
-        @media (max-width: 1024px) {
-            .dim-grid, .canvas-grid, .roi-matrix,
-            .logos-grid, .intensive-grid, .intensive-logistics-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .download-form { flex-direction: column; }
-            .download-form input { width: 100%; }
-        }
-    </style>
-    </fragment>
-
-    <!-- ─── Site Nav ──────────────────────────────────────────────────────── -->
-    <nav>
-        <div class="logo-group">
-            <div class="logo">THE COHERENCE CO.</div>
-            <div class="standard-badge">GLOBAL STANDARD</div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#philosophy">PHILOSOPHY</a></li>
-            <li><a href="#canvas">CANVAS</a></li>
-            <li><a href="#intensive">INTENSIVE</a></li>
-        </ul>
-        <button onclick="toggleModal()" class="btn">GET YOUR COHERENCE SCORE</button>
-    </nav>
-<main>
-    <!-- ─── Quiz Modal ────────────────────────────────────────────────────── -->
-    <div id="diagModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal" onclick="toggleModal()">&times;</button>
-            <div id="quiz-app"></div>
-        </div>
-    </div>
-
-    <!-- ─── Hero ─────────────────────────────────────────────────────────── -->
-    <header id="home">
-        <div class="container hero-content">
-            <div class="trust-badge">
-                ✓ Certified Executive Coaches | 15+ Years Enterprise Leadership | 100% Confidential
-            </div>
-
-            <p class="hero-audience">For C-Suite Executives &amp; Hard-Charging Leaders</p>
-
-            <h1>Turn Your Vision Into Team Momentum.</h1>
-
-            <p class="sub-headline">When execution outpaces comprehension, you lose momentum. The Coherence Protocol helps leadership teams align narrative, pace, and trust—so you can move fast without leaving people behind.</p>
-
-            <div class="hero-ctas">
-                <button onclick="toggleModal()" class="btn">GET YOUR COHERENCE SCORE (5 MIN)</button>
-                <a href="#canvas" class="btn btn-outline">SEE THE 9-BLOCK FRAMEWORK</a>
-            </div>
-
-            <div class="roi-matrix">
-                <div>
-                    <span class="roi-val">21%</span>
-                    <span class="roi-label">Innovation Yield Recovery</span>
-                    <span class="roi-desc">Within 30 days of the protocol</span>
-                </div>
-                <div>
-                    <span class="roi-val">47%</span>
-                    <span class="roi-label">Decision-Making Velocity</span>
-                    <span class="roi-desc">2–3 weeks faster decisions</span>
-                </div>
-                <div>
-                    <span class="roi-val">35%</span>
-                    <span class="roi-label">Coherence Index Improvement</span>
-                    <span class="roi-desc">From reactive to intentional</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- ─── Wrong Variable ────────────────────────────────────────────────── -->
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Most Executive Teams Are Optimizing the Wrong Variable</h2>
-            <p class="sub-headline" style="max-width: 800px; margin: 1.5rem auto 0;">
-                You're measuring speed. Deals closed, features shipped, decisions made per week. That's industrial thinking applied to knowledge work.
-            </p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal);">
-                The executives who win the next decade aren't the fastest—they're the most coherent. They've learned that velocity without integration creates debt. Not financial debt. Narrative debt. Trust debt. Attention debt.
-            </p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal);">
-                The Coherence Protocol is built on a different assumption: sustainable performance isn't about moving faster. It's about moving at the speed your system can absorb change without fragmenting.
-            </p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal); font-style: italic;">
-                This isn't therapy. It's engineering for executive attention.
-            </p>
-        </div>
-    </section>
-
-    <!-- ─── Pain ──────────────────────────────────────────────────────────── -->
-    <section id="pain" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">What Velocity Strain Is Costing You Personally</h2>
-            <div class="pain-grid">
-                <div class="pain-card">
-                    <h3>Your Calendar Owns You</h3>
-                    <p class="problem">You're triple-booked. Every meeting bleeds into the next. You haven't had 30 uninterrupted minutes in three weeks. Your team sees a leader who's always "on" but never fully present. The cost? They're making decisions without you because waiting for clarity costs too much time.</p>
-                </div>
-                <div class="pain-card">
-                    <h3>Your Strategy Exists Only in Your Head</h3>
-                    <p class="problem">You know where the company is going. Your exec team thinks they know. The VP layer has three different interpretations. By the time it reaches frontline managers, your vision is unrecognizable. The cost? Your $2M investment in that initiative is executing against a story you never told.</p>
-                </div>
-                <div class="pain-card">
-                    <h3>You're Bleeding Your Best People</h3>
-                    <p class="problem">Your top performers don't quit because of comp. They quit because they can't make sense of the whiplash. Priorities change weekly. Strategic clarity lasts 72 hours. They're exhausted from re-orienting every Monday. The cost? Your next three exits will be people you can't afford to lose.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── Before You Hire ───────────────────────────────────────────────── -->
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Before You Hire Another VP or Implement Another Framework...</h2>
-            <p style="max-width: 800px; margin: 1.5rem auto 0; color: var(--charcoal);">You're probably thinking:</p>
-            <ul style="max-width: 800px; margin: 1rem auto; color: var(--charcoal); padding-left: 1.2rem;">
-                <li>"We need a better operating system" (Scaling frameworks, OKRs, V2MOM)</li>
-                <li>"We need better people" (Hire a COO, upgrade the leadership team)</li>
-                <li>"We need outside expertise" (McKinsey engagement, executive coach)</li>
-            </ul>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal);">Those are steps 5, 6, and 7. They might even be the right steps.</p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal);">But if you implement them before you diagnose your Coherence Index, you're adding structure to a fragmented system. The new framework becomes one more thing people don't understand. The new VP inherits the velocity strain. The consultants give you a report you can't execute because your team is already underwater.</p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal);">Step 1 is simpler: See the system clearly. Measure where attention, trust, and speed are misaligned. Then decide what to do.</p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal); font-weight: 600;">Everything else is expensive guessing.</p>
-        </div>
-    </section>
-
-    <!-- ─── Social Proof ──────────────────────────────────────────────────── -->
-    <section id="proof" class="section-padding social-proof-section">
-        <div class="container">
-            <h2 class="section-title">Trusted By Leading Executive Teams</h2>
-            <div class="logos-grid">
-                <div class="logo-placeholder">[Client Logo]</div>
-                <div class="logo-placeholder">[Client Logo]</div>
-                <div class="logo-placeholder">[Client Logo]</div>
-                <div class="logo-placeholder">[Client Logo]</div>
-                <div class="logo-placeholder">[Client Logo]</div>
-            </div>
-            <p style="text-align: center; color: var(--charcoal); margin: 2rem 0; font-size: 0.95rem;">
-                Used by 40+ leadership teams across Fortune 500, private equity, and scaling B2B organizations.
-            </p>
-            <h3 style="text-align: center; margin-top: 4rem; margin-bottom: 2rem; font-size: 1.8rem;">What They're Saying</h3>
-            <div class="testimonials-grid">
-                <div class="testimonial">
-                    <p class="testimonial-quote">"We went from reactive fire-fighting to intentional strategy. The Canvas gave us language to diagnose where we were losing coherence. That alone cut our decision-making time by 3 weeks."</p>
-                    <p class="testimonial-author">Chief Executive Officer</p>
-                    <p class="testimonial-role">Series B SaaS, $50M ARR</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-quote">"For the first time, everyone in the room understood 'why' before we debated 'what.' That shift changed how we move as a team and accelerated our ability to execute."</p>
-                    <p class="testimonial-author">Chief Operating Officer</p>
-                    <p class="testimonial-role">Private Equity Portfolio Company</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-quote">"The Coherence Index became our North Star. We stopped chasing vanity metrics and started measuring what actually moves the needle—alignment and durability."</p>
-                    <p class="testimonial-author">Vice President of Strategy</p>
-                    <p class="testimonial-role">Healthcare Technology</p>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-quote">"We thought we had a culture problem. It was really a coherence problem. The 30-second buffer protocol is now non-negotiable in our calendar."</p>
-                    <p class="testimonial-author">Chief People Officer</p>
-                    <p class="testimonial-role">Growth Stage Technology Company</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── Philosophy ────────────────────────────────────────────────────── -->
-    <section id="philosophy" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">The Slow Economy</h2>
-            <p class="core-thesis">"Regeneration begins where urgency ends."</p>
-            <div class="dim-grid">
-                <div class="dim-card">
-                    <h3>Economically</h3>
-                    <p>Prioritizing long-duration yield over raw throughput. We help you measure success by the half-life of value, ensuring durability in volatile markets.</p>
-                </div>
-                <div class="dim-card">
-                    <h3>Culturally</h3>
-                    <p>The maturation of desire. We teach organizations to pace institutional longing at the rhythm of actual human understanding.</p>
-                </div>
-                <div class="dim-card">
-                    <h3>Ethically</h3>
-                    <p>Grace as policy. Fulfilling corporate ambition without devouring the world. A collaboration where technology serves reflection, not noise.</p>
-                </div>
-                <div class="dim-card">
-                    <h3>Systemically</h3>
-                    <p>Awareness as intelligence. Perceiving interdependence as the true unit of value within your corporate ecosystem.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── Canvas ────────────────────────────────────────────────────────── -->
-    <section id="canvas" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">The Coherence Canvas</h2>
-            <p>A visual operating system for teams to map Narrative Debt and Coherence Capital.</p>
-
-            <div style="padding: 2rem 0; text-align: center; font-size: 1.2rem; color: var(--gold-deep); font-style: italic;">
-                Coherence Index = (Attention × Trust) ÷ Speed
-            </div>
-
-            <div class="canvas-grid">
-                <div class="canvas-block">
-                    <span class="num">01</span>
-                    <h4>Narrative Integrity</h4>
-                    <span class="diagnostic-q">"Is our shared story understood at the same rate it is being broadcasted?"</span>
-                    <p>Identifying the gap between broadcasted messaging and lived reality.</p>
-                </div>
-                <div class="canvas-block">
-                    <span class="num">02</span>
-                    <h4>Lived Reality</h4>
-                    <span class="diagnostic-q">"Where is our 'Narrative Debt' greatest?"</span>
-                    <p>Identifying actual operational states over optics.</p>
-                </div>
-                <div class="canvas-block">
-                    <span class="num">03</span>
-                    <h4>Temporal Buffers</h4>
-                    <span class="diagnostic-q">"Where can we insert 'Reflective Pauses' to mitigate fatigue?"</span>
-                    <p>Implementing the Decision Pacing Protocol into your calendar.</p>
-                </div>
-                <div class="canvas-block">
-                    <span class="num">04</span>
-                    <h4>Trust Infrastructure</h4>
-                    <span class="diagnostic-q">"Can the team stay in relationship while executing high-stakes goals?"</span>
-                    <p>Mapping Coherence Capital across your leadership stack.</p>
-                </div>
-                <div class="canvas-block" style="background: var(--gold-deep); color: #fff;">
-                    <span class="num" style="color: #fff;">05</span>
-                    <h4 style="color: #fff;">The Coherence Index</h4>
-                    <span class="diagnostic-q" style="color: #fff;">"How do we replace volume KPIs with durability?"</span>
-                    <p style="color: #fff; opacity: 1;">Master quantitative metric for organizational health.</p>
-                </div>
-                <div class="canvas-block">
-                    <span class="num">06</span>
-                    <h4>Hidden Costs</h4>
-                    <span class="diagnostic-q">"What systemic dependencies are shaping our nerves?"</span>
-                    <p>Identifying Semantic Debt and attention fragmentation.</p>
-                </div>
-                <div class="canvas-block">
-                    <span class="num">07</span>
-                    <h4>Inhale Rituals</h4>
-                    <span class="diagnostic-q">"Which practices are non-negotiable for our rhythm?"</span>
-                    <p>Presence, renewal, and the 30-second buffer.</p>
-                </div>
-                <div class="canvas-block">
-                    <span class="num">08</span>
-                    <h4>Performance / Play</h4>
-                    <span class="diagnostic-q">"How do we use competition to discharge stress?"</span>
-                    <p>Metabolic repair and Vero3 high-stakes simulation.</p>
-                </div>
-                <div class="canvas-block">
-                    <span class="num">09</span>
-                    <h4>Long-Duration Yield</h4>
-                    <span class="diagnostic-q">"What is the 10-year durability of our value?"</span>
-                    <p>Defining success beyond raw throughput metrics.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#download" class="btn btn-outline">GET THE 9-BLOCK SYSTEM</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── Intensive ─────────────────────────────────────────────────────── -->
-    <section id="intensive" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">The One-Day Coherence Intensive</h2>
-            <p class="hero-audience" style="margin-bottom: 1rem;">For executives and leaders seeking balance in their organizations</p>
-            <p class="intensive-intro">
-                A guided diagnostic experience where you'll map your organization's Coherence Index, identify your Narrative Debt, and build a 30-day protocol you can implement immediately.
-                <br><br>
-                <strong>This isn't a seminar. It's a working session.</strong>
-            </p>
-
-            <div style="max-width: 800px; margin: 2rem auto 3rem; color: var(--charcoal);">
-                <h3 style="font-size: 1.6rem; margin-bottom: 1rem;">The Typical Journey</h3>
-                <p style="margin-bottom: 1rem;">87% of organizations that complete the One-Day Intensive request ongoing stewardship within 60 days. Here's why:</p>
-                <p style="margin-bottom: 1rem;">The Intensive gives you the diagnostic and the 30-day protocol. That solves the immediate crisis. But Coherence isn't a project—it's a practice. Most executive teams realize they need:</p>
-                <ul style="margin-left: 1.2rem; margin-bottom: 1rem;">
-                    <li>Quarterly Coherence Audits to track drift and recalibrate</li>
-                    <li>Ongoing steward access for real-time guidance during high-stakes decisions</li>
-                    <li>Custom protocol design as the organization evolves</li>
-                </ul>
-                <p style="margin-bottom: 1rem;">We offer retainer-based stewardship for organizations committed to long-term coherence. Pricing starts at $15K/quarter for up to 20 leaders. Most clients stay engaged for 18–24 months as the practice embeds into culture.</p>
-                <p>You don't have to commit to this now. But 9 out of 10 do after seeing the results of the first 30 days.</p>
-            </div>
-
-            <div class="intensive-grid">
-                <div class="intensive-card">
-                    <h3>THE EXPERIENCE</h3>
-                    <h4>Morning: Diagnosis</h4>
-                    <ul>
-                        <li>Apply the Coherence Canvas to your actual organization in real-time</li>
-                        <li>Map where pace has outrun comprehension in your team</li>
-                        <li>Identify your three highest-leverage intervention points</li>
-                        <li>Measure your baseline Coherence Index</li>
-                    </ul>
-                    <h4>Afternoon: Design</h4>
-                    <ul>
-                        <li>Build your Decision Pacing Protocol</li>
-                        <li>Design Temporal Buffers that fit your calendar</li>
-                        <li>Create Trust Infrastructure checkpoints for your leadership team</li>
-                        <li>Draft your 30-day implementation roadmap</li>
-                    </ul>
-                </div>
-
-                <div class="intensive-card">
-                    <h3>THE OUTCOMES</h3>
-                    <h4>What You Leave With</h4>
-                    <ul>
-                        <li>Your completed Coherence Canvas with organization-specific diagnostics</li>
-                        <li>A 30-day implementation protocol ready to deploy Monday morning</li>
-                        <li>Membership in the Coherence Community with ongoing peer support</li>
-                        <li>Certification of Completion recognizing your commitment to temporal stewardship</li>
-                        <li>Quantified baseline of your Coherence Index to measure progress against</li>
-                    </ul>
-                    <h4>Throughout the Day</h4>
-                    <ul>
-                        <li>Work alongside a small group of peer executives facing similar challenges</li>
-                        <li>Catered lunch designed for conversation and reflection</li>
-                        <li>Guided facilitation by certified Coherence stewards</li>
-                        <li>Real-time feedback on your specific organizational dynamics</li>
-                    </ul>
-                </div>
-
-                <div class="intensive-card">
-                    <h3>WHO SHOULD ATTEND</h3>
-                    <ul>
-                        <li>C-suite executives moving faster than their teams can integrate</li>
-                        <li>Leaders who sense misalignment but can't name it</li>
-                        <li>Organizations scaling rapidly and losing momentum</li>
-                        <li>Teams caught between urgency and understanding</li>
-                    </ul>
-
-                    <h4 style="margin-top: 2rem;">Who This Isn't For</h4>
-                    <p style="font-size: 0.9rem; color: var(--charcoal); margin-bottom: 0.75rem;">If you're looking for a quick fix, this won't work. Coherence takes 30–90 days to embed. If you need results by next Tuesday, hire a consultant.</p>
-                    <p style="font-size: 0.9rem; color: var(--charcoal); margin-bottom: 0.75rem;">If your organization is under 20 people, you don't need this yet. Below that threshold, most issues are communication, not systemic coherence.</p>
-                    <p style="font-size: 0.9rem; color: var(--charcoal); margin-bottom: 0.75rem;">If you're not willing to change your calendar, don't come. The Decision Pacing Protocol requires non-negotiable buffers.</p>
-                    <p style="font-size: 0.9rem; color: var(--charcoal);">If you're looking for external validation, we're not therapists. We diagnose systems and build protocols.</p>
-
-                    <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--silver-border);">
-                        <p style="font-size: 0.85rem; font-style: italic; color: var(--charcoal);">
-                            Not ready to commit? <a href="javascript:void(0)" onclick="toggleModal()" style="color: var(--gold-deep); text-decoration: none; font-weight: 700;">Start with the 5-minute Coherence Assessment</a> to see your baseline score first.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div style="max-width: 900px; margin: 3rem auto; padding: 2.5rem; border: 1px solid var(--silver-border); border-radius: 12px; background: var(--card-white);">
-                <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Why This Is the Safest Decision You'll Make This Quarter</h2>
-
-                <h3 style="font-size: 1.2rem; margin-top: 1.5rem;">You Don't Pay Until You Know It's Right</h3>
-                <p style="color: var(--charcoal); margin-top: 0.75rem;">Start with the 5-minute Coherence Assessment. Free. No email required. You'll see your baseline score immediately. If it resonates, book a 15-minute call. If that call doesn't convince you, you've lost 20 minutes. That's the risk.</p>
-
-                <h3 style="font-size: 1.2rem; margin-top: 1.5rem;">The Intensive Comes with a No-Confusion Guarantee</h3>
-                <p style="color: var(--charcoal); margin-top: 0.75rem;">If you attend the full day and leave thinking "this didn't apply to my situation," we refund 100% of your investment. No questions, no hard feelings. We've never had to invoke this—but it's there because your time matters more than our revenue.</p>
-
-                <h3 style="font-size: 1.2rem; margin-top: 1.5rem;">Try It in Your Organization for 30 Days First</h3>
-                <p style="color: var(--charcoal); margin-top: 0.75rem;">Not ready for the full intensive? Pilot the Decision Pacing Protocol with your leadership team for 30 days. We'll give you the implementation guide, a baseline Coherence Index measurement, and a check-in call at day 15. $2,500. If it doesn't measurably improve decision velocity, we refund it and you keep the framework.</p>
-
-                <h3 style="font-size: 1.2rem; margin-top: 1.5rem;">Everything Stays Confidential—In Writing</h3>
-                <p style="color: var(--charcoal); margin-top: 0.75rem; margin-bottom: 0;">We sign NDAs. We never reference your company, your challenges, or your data. Ever. Not in case studies, not in testimonials, not in other client conversations. The only public record is that you worked with us—and only if you approve it.</p>
-            </div>
-
-            <div class="intensive-footer-box">
-                <div class="intensive-logistics-grid">
-                    <div class="logistics-col">
-                        <h5>Upcoming Schedule</h5>
-                        <div class="schedule-grid">
-                            <div class="schedule-item"><strong>Q1 2026</strong><br>Denver</div>
-                            <div class="schedule-item"><strong>Q2 2026</strong><br>Chicago</div>
-                            <div class="schedule-item"><strong>Q3 2026</strong><br>Austin</div>
-                            <div class="schedule-item"><strong>Q4 2026</strong><br>San Francisco</div>
-                        </div>
-                        <p><strong>Time:</strong> 9:00 AM – 4:30 PM (includes catered lunch and breaks)</p>
-                    </div>
-                    <div class="logistics-col">
-                        <h5>Investment &amp; Options</h5>
-                        <p><strong>Pricing:</strong> Varies by location | Group pricing available for leadership teams</p>
-                        <p><strong>On-Premise:</strong> Bring the Intensive to your organization. Custom pricing for teams of 8–20 leaders.</p>
-                        <div class="intensive-cta-group">
-                            <a href="#contact" class="btn">RESERVE YOUR SEAT</a>
-                            <a href="#contact" class="btn btn-outline" onclick="document.getElementById('interest').value='retreat'">REQUEST ON-PREMISE PRICING</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── FAQ ───────────────────────────────────────────────────────────── -->
-    <section id="faq" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Common Questions</h2>
-            <p style="margin-bottom: 3rem; color: var(--charcoal);">Most leaders ask these questions before deciding. We'll answer them head-on.</p>
-
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>What does "Coherence" actually mean? The vocabulary takes time to grok.</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Great question. Most executives say this first. Coherence is about alignment between what you say (broadcast) and what people actually experience (reality). Narrative Debt = the gap between those two. Temporal Stewardship = intentional pacing instead of reactive urgency.</p>
-                        <p style="margin-top: 1rem;">We developed a new vocabulary because standard management language was already failing. Our job is to teach it to your team until it becomes second nature. That typically takes 2–4 weeks of consistent use. It sticks because it solves a problem that existing vocabulary couldn't name.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>How is this different from executive coaching or leadership training?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Traditional executive coaching focuses on individual skill-building (presence, communication, decision-making). That's valuable. Leadership training is curriculum-based skill development. Also valuable.</p>
-                        <p style="margin-top: 1rem;">We do neither. The Coherence Protocol diagnoses where your <em>organization</em> is losing momentum, then operationalizes fixes into policy. It's systemic, not individual. Think: individual coaching makes one person better. The Coherence Protocol makes your <em>team</em> move faster together.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>How long until we see results?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p><strong>Immediate:</strong> The Coherence Assessment (5 minutes) shows your baseline. You'll see gaps the day you take it.</p>
-                        <p style="margin-top: 1rem;"><strong>Short-term (1–2 weeks):</strong> Decision velocity improves. Teams stop getting stuck in the same conversations.</p>
-                        <p style="margin-top: 1rem;"><strong>Medium-term (30 days):</strong> 21% innovation recovery, 47% decision speed improvement. Your Coherence Index measurably shifts.</p>
-                        <p style="margin-top: 1rem;"><strong>Long-term (90+ days):</strong> Culture change sticks. The protocols become how you operate, not a "thing you're doing."</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>What if we're not ready to commit to a full program?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Start small. Take the Coherence Assessment (5 minutes, free). If it resonates, book a 15-minute consultation with a steward to discuss your specific situation. Most leaders who see their baseline score opt into the 30-Day Pilot. No pressure—we move at your pace.</p>
-                        <p style="margin-top: 1rem;">The typical sales cycle is 1–3 weeks from first conversation to decision. Fast enough to move, slow enough to be thoughtful.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>Is everything we discuss confidential?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>100% confidential. Everything stays in the room. We never reference specific client situations, challenges, or data in any public context, case studies, or other engagements.</p>
-                        <p style="margin-top: 1rem;">The only thing public is that you've chosen to work with us—if you want that known. Otherwise, it's private.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── What To Do ────────────────────────────────────────────────────── -->
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Here's What You Should Do</h2>
-            <p style="max-width: 800px; margin: 1.5rem auto 0; color: var(--charcoal);">
-                <strong>If you're not sure this applies to you:</strong> Take the 5-minute Coherence Assessment. You'll know immediately if velocity strain is your problem. If your score is above 7.0, you're probably fine. Below 5.0? You need this.
-            </p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal);">
-                <strong>If you know you have the problem but aren't ready to commit:</strong> Download the Canvas PDF. Spend 30 minutes mapping your organization's Narrative Debt on your own. If you get stuck or want expert facilitation, book a call.
-            </p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal);">
-                <strong>If you're ready to fix this:</strong> Register for the next Intensive in your region. Bring your COO or your head of strategy. You'll implement changes the following Monday.
-            </p>
-            <p style="max-width: 800px; margin: 1rem auto 0; color: var(--charcoal);">
-                <strong>If you're not ready for any of this:</strong> Bookmark this page and come back when urgency becomes crisis. We'll still be here. But the gap will be wider.
-            </p>
-        </div>
-    </section>
-
-    <!-- ─── Download ──────────────────────────────────────────────────────── -->
-    <section id="download" class="section-padding" style="background: var(--card-white); border-bottom: 1px solid var(--silver-border);">
-        <div class="container download-container">
-            <h2 class="section-title">Your Canvas Baseline Has a Shelf Life</h2>
-            <p style="max-width: 700px; margin: 2rem auto 1.5rem; font-size: 1.1rem; color: var(--charcoal);">
-                The framework itself is evergreen. But your organization's Coherence Index? That's a snapshot. It's accurate for 90 days, maybe 120 if you're lucky.
-            </p>
-            <p style="max-width: 700px; margin: 0 auto 0.75rem; font-size: 1.05rem; color: var(--charcoal);">Then things shift:</p>
-            <ul class="tight-bullets" style="max-width: 700px; margin: 0 auto 1rem; color: var(--charcoal);">
-                <li>You scale faster than expected</li>
-                <li>A key leader leaves</li>
-                <li>Strategic priorities pivot</li>
-                <li>Market conditions change your tempo</li>
-            </ul>
-            <p style="max-width: 700px; margin: 0 auto 2.5rem; font-size: 1.05rem; color: var(--charcoal);">
-                Smart organizations re-measure quarterly. The Canvas shows you where you were. Your next assessment shows you where you are. The gap between them? That's where the work lives.
-            </p>
-
-            <div class="download-box">
-                <p style="margin-bottom: 2rem; color: var(--charcoal);">
-                    <strong>Enter your email to download the framework PDF</strong>
-                </p>
-                <form onsubmit="handleDownload(event)" class="download-form">
-                    <input type="email" placeholder="your@email.com" required>
-                    <button type="submit" class="btn">DOWNLOAD</button>
-                </form>
-                <p style="font-size: 0.8rem; color: var(--charcoal); opacity: 0.6;">No spam. Your framework arrives in seconds.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── Contact ───────────────────────────────────────────────────────── -->
-    <section id="contact" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Let's Talk</h2>
-            <p style="max-width: 600px; font-size: 1.2rem; opacity: 0.8; margin: 0 auto 3rem;">
-                Ready to diagnose your Coherence Index? Book a consultation with one of our stewards.
-            </p>
-
-            <form class="contact-form" name="inquiry" method="POST" action="/?success=true">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="E.g. Dr. Julian Sterling" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Work Email</label>
-                    <input type="email" id="email" name="email" placeholder="sterling@organization.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="interest">What are you interested in?</label>
-                    <select id="interest" name="interest" required>
-                        <option value="">Select an option *</option>
-                        <option value="canvas">Download the Canvas</option>
-                        <option value="retreat">One-Day Intensive</option>
-                        <option value="framework">Learn About the Framework</option>
-                        <option value="working-together">Working Together Directly</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Context</label>
-                    <textarea id="message" name="message" placeholder="Briefly describe the 'Narrative Debt' or 'Tempo Tension' you are experiencing..."></textarea>
-                </div>
-
-                <button type="submit" class="btn" style="width: 100%; padding: 1.2rem;">SUBMIT INQUIRY</button>
-            </form>
-
-            <div class="thank-you-message">
-                <h2>Thank You!</h2>
-                <p>We've received your inquiry and will be in touch soon.</p>
-                <p>We typically respond within 24–48 hours.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── JavaScript ────────────────────────────────────────────────────── -->
-    <script>
-        // ─── Quiz ────────────────────────────────────────────────────────────
-        class CoherenceQuiz {
-            constructor() {
-                this.currentQuestion = 0;
-                this.answers = {};
-                this.showResults = false;
-
-                this.questions = [
-                    {
-                        id: 1,
-                        title: "How Disengagement Is Interpreted",
-                        question: "When disengagement shows up in your organization, it is most often understood as:",
-                        options: [
-                            { value: 'A', text: "A people or performance problem", subtext: "Leaders focus on attitude or drive through coaching, performance plans, or incentives.", weight: 1 },
-                            { value: 'B', text: "A management or execution problem", subtext: "Leaders focus on improving messaging, manager capability, or engagement programs.", weight: 2.5 },
-                            { value: 'C', text: "A systems and conditions signal", subtext: "Leaders examine incentives, decision load, sequencing, and system coherence.", weight: 4 }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        title: "What You're Seeing on the Ground",
-                        question: "Which pattern feels most familiar right now?",
-                        options: [
-                            { value: 'A', text: "Overt resistance or visible disengagement", subtext: "People push back, resist change, or challenge decisions in visible ways.", weight: 1 },
-                            { value: 'B', text: "Polite execution with reduced energy", subtext: "Projects move forward, but energy is flat and enthusiasm feels performative.", weight: 2.5 },
-                            { value: 'C', text: "Quiet withdrawal beneath the surface", subtext: "Fewer real conversations; calm is being maintained rather than earned.", weight: 4 }
-                        ]
-                    },
-                    {
-                        id: 3,
-                        title: "Where Leaders Are Focusing Their Attention",
-                        question: "When engagement concerns arise, leadership attention typically goes to:",
-                        options: [
-                            { value: 'A', text: "Talent decisions", subtext: "Hiring stronger talent or managing out lower performers.", weight: 1 },
-                            { value: 'B', text: "Manager capability and programs", subtext: "Investments in manager training, engagement initiatives, or communication plans.", weight: 2.5 },
-                            { value: 'C', text: "System conditions and decision logic", subtext: "Leaders review how decisions, pace, and structure shape behavior.", weight: 4 }
-                        ]
-                    },
-                    {
-                        id: 4,
-                        title: "The Role of Metrics",
-                        question: "How do you primarily know when disengagement has become a problem?",
-                        options: [
-                            { value: 'A', text: "Through engagement data", subtext: "Engagement scores, survey results, or participation metrics signal concern.", weight: 1 },
-                            { value: 'B', text: "Through performance consequences", subtext: "Turnover rises, burnout increases, or performance metrics decline.", weight: 2.5 },
-                            { value: 'C', text: "Through early relational signals", subtext: "Trust thins and candor drops ahead of formal data points.", weight: 4 }
-                        ]
-                    },
-                    {
-                        id: 5,
-                        title: "Pace and Change",
-                        question: "How is pace treated in your system?",
-                        options: [
-                            { value: 'A', text: "Speed is assumed", subtext: "Slowing down is viewed as inefficiency; change stacks quickly.", weight: 1 },
-                            { value: 'B', text: "Pace is discussed but constrained", subtext: "Leaders talk about pacing, but commitments and pressure prevent adjustment.", weight: 2.5 },
-                            { value: 'C', text: "Pace is actively regulated", subtext: "Decisions are sequenced deliberately to protect judgment and integration.", weight: 4 }
-                        ]
-                    },
-                    {
-                        id: 6,
-                        title: "How Disengagement Is Explained",
-                        question: "Which statement best reflects how disengagement is explained internally?",
-                        options: [
-                            { value: 'A', text: "A people problem", subtext: "Narratives focus on fatigue, entitlement, resistance, or lack of resilience.", weight: 1 },
-                            { value: 'B', text: "A management problem", subtext: "Managers are expected to improve engagement through oversight.", weight: 2.5 },
-                            { value: 'C', text: "A systems response", subtext: "Recognized as adaptive behavior to structural conditions.", weight: 4 }
-                        ]
-                    },
-                    {
-                        id: 7,
-                        title: "Leadership Stance",
-                        question: "Which best describes your current leadership stance?",
-                        options: [
-                            { value: 'A', text: "Performance protection", subtext: "Focusing on minimizing disruption and preserving output under pressure.", weight: 1 },
-                            { value: 'B', text: "Conditional openness", subtext: "Open to rethinking approach, but timing or governance limits action.", weight: 2.5 },
-                            { value: 'C', text: "Systems stewardship", subtext: "Willing to shift conditions, starting with your own decisions and stance.", weight: 4 }
-                        ]
-                    }
-                ];
-
-                this.tierContent = {
-                    1: {
-                        title: "TIER 1: Engagement Fix Mode",
-                        subtitle: "Low Coherence Awareness",
-                        content: [
-                            "Your responses suggest that disengagement in your system is still being understood primarily as a people or performance issue.",
-                            "This is where many capable leaders begin. Engagement is seen as something to be improved through clearer expectations, stronger incentives, better managers, or refreshed talent.",
-                            "Nothing in your results indicates failure. It indicates that the current leadership logic still appears sufficient."
-                        ],
-                        nextStep: "Offer the full paper: The Cost of Disengagement."
-                    },
-                    2: {
-                        title: "TIER 2: System Strain Awareness",
-                        subtitle: "Emerging Coherence Sensitivity",
-                        content: [
-                            "Your responses indicate that something in your system no longer feels aligned.",
-                            "You may be sensing increased effort with diminishing influence and clean execution paired with thinner conversations.",
-                            "This is early signal literacy. At this stage, leaders often oscillate, trying one more engagement lever while quietly questioning whether the issue runs deeper."
-                        ],
-                        nextStep: "Invitation to Schedule a Threshold Diagnostic Conversation."
-                    },
-                    3: {
-                        title: "TIER 3: Coherence Readiness",
-                        subtitle: "Core Audience",
-                        content: [
-                            "Your responses show clear recognition: disengagement in your system is not a people problem. It is a systems signal.",
-                            "You are likely seeing pace outstripping integration and change stacking faster than it can be metabolized.",
-                            "At this stage, leaders stop asking how to motivate people and begin asking how conditions are shaping behavior."
-                        ],
-                        nextStep: "Invitation to the 1-Day Coherence Lab (Core Track)."
-                    },
-                    4: {
-                        title: "TIER 4: Threshold Leaders",
-                        subtitle: "High-Fidelity, Rare",
-                        content: [
-                            "Your responses indicate advanced systems awareness and a clear readiness to operate beyond the engagement paradigm.",
-                            "You understand that culture is the lived effect of leadership logic and coherence must be restored sustainably.",
-                            "This is not about improvement. It is about stewardship."
-                        ],
-                        nextStep: "Invitation to the 1-Day Coherence Lab (Peer Track)."
-                    }
-                };
-            }
-
-            calculateTier() {
-                const vals = Object.values(this.answers);
-                const avg = vals.reduce((a, b) => a + b, 0) / this.questions.length;
-                if (avg <= 1.75) return 1;
-                if (avg <= 2.75) return 2;
-                if (avg <= 3.5) return 3;
-                return 4;
-            }
-
-            selectAnswer(questionIndex, weight) {
-                this.answers[questionIndex] = weight;
-                this.render();
-            }
-
-            nextQuestion() {
-                if (this.currentQuestion < this.questions.length - 1) {
-                    this.currentQuestion++;
-                    this.render();
-                } else {
-                    this.showResults = true;
-                    this.render();
-                }
-            }
-
-            previousQuestion() {
-                if (this.currentQuestion > 0) {
-                    this.currentQuestion--;
-                    this.render();
-                }
-            }
-
-            restart() {
-                this.currentQuestion = 0;
-                this.answers = {};
-                this.showResults = false;
-                this.render();
-            }
-
-            renderResults() {
-                const tier = this.calculateTier();
-                const result = this.tierContent[tier];
-                return `
-                    <div class="quiz-results">
-                        <h2 class="quiz-result-title">${result.title}</h2>
-                        <p class="quiz-result-subtitle">${result.subtitle}</p>
-                        <div class="quiz-result-content">
-                            ${result.content.map(p => `<p>${p}</p>`).join('')}
-                        </div>
-                        <div class="quiz-next-step">
-                            <h4>Next Step</h4>
-                            <p>${result.nextStep}</p>
-                        </div>
-                        <button onclick="coherenceQuiz.restart()" class="btn" style="width: 100%; margin-top: 2rem;">
-                            Restart Diagnostic
-                        </button>
-                    </div>
-                `;
-            }
-
-            renderQuestion() {
-                const currentQ = this.questions[this.currentQuestion];
-                const isAnswered = this.answers[this.currentQuestion] !== undefined;
-                const progress = (this.currentQuestion + 1) / this.questions.length * 100;
-
-                return `
-                    <div class="quiz-container">
-                        <div class="quiz-progress-wrapper">
-                            <div class="quiz-progress-bar">
-                                <div class="quiz-progress-fill" style="width: ${progress}%"></div>
-                            </div>
-                            <div class="quiz-progress-text">
-                                <span>Diagnostic</span>
-                                <span>Question ${this.currentQuestion + 1} of ${this.questions.length}</span>
-                            </div>
-                        </div>
-                        <div class="quiz-question-card">
-                            <div class="quiz-question-header">
-                                <span class="quiz-question-category">${currentQ.title}</span>
-                                <h2 class="quiz-question-text">${currentQ.question}</h2>
-                            </div>
-                            <div class="quiz-options">
-                                ${currentQ.options.map(opt => `
-                                    <button
-                                        onclick="coherenceQuiz.selectAnswer(${this.currentQuestion}, ${opt.weight})"
-                                        class="quiz-option ${this.answers[this.currentQuestion] === opt.weight ? 'selected' : ''}"
-                                    >
-                                        <div class="quiz-option-content">
-                                            <span class="quiz-option-letter">${opt.value}</span>
-                                            <div class="quiz-option-text">
-                                                <div class="quiz-option-title">${opt.text}</div>
-                                                <div class="quiz-option-subtext">${opt.subtext}</div>
-                                            </div>
-                                        </div>
-                                    </button>
-                                `).join('')}
-                            </div>
-                            <div class="quiz-navigation">
-                                <button onclick="coherenceQuiz.previousQuestion()" ${this.currentQuestion === 0 ? 'disabled' : ''} class="btn btn-outline">
-                                    ← Previous
-                                </button>
-                                <button onclick="coherenceQuiz.nextQuestion()" ${!isAnswered ? 'disabled' : ''} class="btn">
-                                    ${this.currentQuestion === this.questions.length - 1 ? 'View Results' : 'Next'} →
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            render() {
-                const container = document.getElementById('quiz-app');
-                if (!container) return;
-                container.innerHTML = this.showResults ? this.renderResults() : this.renderQuestion();
-            }
-
-            init() { this.render(); }
-        }
-
-        // ─── Modal ───────────────────────────────────────────────────────────
-        let coherenceQuiz = null;
-
-        function initQuiz() {
-            coherenceQuiz = new CoherenceQuiz();
-            coherenceQuiz.init();
-        }
-
-        function toggleModal() {
-            const modal = document.getElementById('diagModal');
-            const isOpening = !modal.classList.contains('active');
-            modal.classList.toggle('active');
-            if (isOpening) initQuiz();
-        }
-
-        // ─── Helpers ─────────────────────────────────────────────────────────
-        function handleDownload(e) {
-            e.preventDefault();
-            window.location.href = 'https://your-cdn.com/canvas-framework.pdf';
-        }
-
-        function toggleFaq(element) {
-            const answer = element.nextElementSibling;
-            const toggle = element.querySelector('.faq-toggle');
-            answer.classList.toggle('active');
-            toggle.innerText = answer.classList.contains('active') ? '−' : '+';
-        }
-
-        // ─── Form success ─────────────────────────────────────────────────────
-        if (window.location.search.includes('success=true')) {
-            document.body.classList.add('form-success');
-            setTimeout(function () {
-                const msg = document.querySelector('.thank-you-message');
-                if (msg) msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
-        }
-
-        window.coherenceQuiz = coherenceQuiz;
-    </script>
-</main>
-</CoherenceLayout>
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get template',
+        href: 'https://github.com/arthelokyo/astrowind',
+        target: '_blank',
+        icon: 'tabler:download',
+      },
+      { text: 'Learn more', href: '#features' },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
+  >
+    <Fragment slot="title">
+      Free template for <span class="hidden xl:inline">creating websites with</span>
+      <span class="text-accent dark:text-white"> Astro 5.0</span> + Tailwind CSS
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline">
+        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 5.0
+        + Tailwind CSS.</span
+      >
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
+      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages &
+      Blogs.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="features"
+    tagline="Features"
+    title="What you get with AstroWind"
+    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023 and 2024."
+    items={[
+      {
+        title: 'Astro + Tailwind CSS Integration',
+        description:
+          'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
+        icon: 'tabler:brand-tailwind',
+      },
+      {
+        title: 'Ready-to-use Components',
+        description:
+          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
+        icon: 'tabler:components',
+      },
+      {
+        title: 'Best Practices',
+        description:
+          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
+        icon: 'tabler:list-check',
+      },
+      {
+        title: 'Excellent Page Speed',
+        description:
+          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Search Engine Optimization (SEO)',
+        description:
+          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
+        icon: 'tabler:arrows-right-left',
+      },
+      {
+        title: 'Open to new ideas and contributions',
+        description:
+          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
+        icon: 'tabler:bulb',
+      },
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    tagline="Inside template"
+    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    items={[
+      {
+        title: 'Built on top of Astro 5.0',
+        description:
+          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+      },
+      {
+        title: 'Styled using Tailwind CSS',
+        description:
+          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+      },
+      {
+        title: 'Cross-browser compatibility',
+        description:
+          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Colorful Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
+      Gain a competitive advantage by incorporating industry leading practices
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'High level of customization',
+        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
+      },
+      {
+        title: 'Multiple layout possibilities',
+        description:
+          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
+      },
+      {
+        title: 'Fully responsive design',
+        description:
+          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
+      },
+      {
+        title: 'Integration of media',
+        description:
+          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+      alt: 'Blueprint Image',
+    }}
+  >
+    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    isAfterContent
+    items={[
+      {
+        title: 'Enhanced user engagement',
+        description:
+          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+      },
+      {
+        title: 'Continuous improvement',
+        description:
+          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+      },
+      {
+        title: 'Time and resource efficiency',
+        description:
+          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
+      },
+      {
+        title: 'Community support',
+        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Astronauts Image',
+    }}
+  >
+    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="Get your dream website up and running in no time with AstroWind."
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Download</span>',
+        description:
+          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
+        icon: 'tabler:package',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Add content</span>',
+        description:
+          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
+        icon: 'tabler:letter-case',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Customize styles</span>',
+        description:
+          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
+        icon: 'tabler:paint',
+      },
+      {
+        title: 'Ready!',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: 'Steps image',
+    }}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Most used widgets"
+    subtitle="Provides frequently used components for building websites using Tailwind CSS"
+    tagline="Components"
+    items={[
+      {
+        title: 'Headers',
+        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
+        icon: 'flat-color-icons:template',
+      },
+      {
+        title: 'Heros',
+        description:
+          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
+        icon: 'flat-color-icons:gallery',
+      },
+      {
+        title: 'Features',
+        description:
+          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
+        icon: 'flat-color-icons:approval',
+      },
+      {
+        title: 'Content',
+        description:
+          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
+        icon: 'flat-color-icons:document',
+      },
+      {
+        title: 'Call-to-Action',
+        description:
+          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
+        icon: 'flat-color-icons:advertising',
+      },
+      {
+        title: 'Pricing',
+        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
+        icon: 'flat-color-icons:currency-exchange',
+      },
+      {
+        title: 'Testimonial',
+        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
+        icon: 'flat-color-icons:voice-presentation',
+      },
+      {
+        title: 'Contact',
+        description:
+          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
+        icon: 'flat-color-icons:business-contact',
+      },
+      {
+        title: 'Footers',
+        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
+        icon: 'flat-color-icons:database',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  <BlogLatestPosts
+    title="Find out more content in our Blog"
+    information={`The blog is used to display AstroWind documentation.
+                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
+                        Astro is a very interesting technology. Thanks.
+                `}
+  />
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Frequently Asked Questions"
+    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'Why AstroWind?',
+        description:
+          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+      },
+      {
+        title: 'What do I need to start?',
+        description:
+          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+      },
+      {
+        title: 'How to install the Astro + Tailwind CSS template?',
+        description:
+          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+      },
+      {
+        title: "What's something that you don't understand?",
+        description:
+          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+      },
+      {
+        title: 'What is something that you would like to try again?',
+        description:
+          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+      },
+      {
+        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        description:
+          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+      },
+    ]}
+  />
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: 'Downloads', amount: '132K' },
+      { title: 'Stars', amount: '24.8K' },
+      { title: 'Forks', amount: '10.3K' },
+      { title: 'Users', amount: '48.4K' },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get template',
+        href: 'https://github.com/arthelokyo/astrowind',
+        target: '_blank',
+        icon: 'tabler:download',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
+      waste more time! :P
+    </Fragment>
+  </CallToAction>
+</Layout>
