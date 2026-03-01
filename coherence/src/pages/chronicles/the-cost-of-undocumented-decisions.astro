@@ -1,0 +1,266 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'The Cost of Undocumented Decisions — Coherence Chronicles',
+  description: 'Verbal alignment is not governance. When major commitments live only in memory, the organization pays a structural tax on every subsequent decision that depends on them.',
+};
+
+const post = {
+  date: 'January 28, 2026',
+  category: 'Decision Governance',
+  readTime: '3 min read',
+  title: 'The Cost of Undocumented Decisions',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <article class="post-article">
+
+    <!-- ─── Header ───────────────────────────────────────────────────────── -->
+    <header class="post-header">
+      <div class="container">
+        <a href="/chronicles" class="back-link">← Coherence Chronicles</a>
+        <div class="post-meta">
+          <span class="post-category">{post.category}</span>
+          <span class="post-dot">·</span>
+          <span class="post-date">{post.date}</span>
+          <span class="post-dot">·</span>
+          <span class="post-read">{post.readTime}</span>
+        </div>
+        <h1 class="post-title">{post.title}</h1>
+      </div>
+    </header>
+
+    <!-- ─── Body ─────────────────────────────────────────────────────────── -->
+    <div class="post-body">
+      <div class="container">
+
+        <p class="post-lede">Verbal alignment is not governance. When major commitments live only in memory — and in three different versions of what was agreed — the organization pays a structural tax on every subsequent decision that depends on them.</p>
+
+        <p>It usually starts with a good meeting. The right people are in the room. The conversation is sharp. By the end, there is genuine alignment — or at least, something that feels like it. Someone says "great, we're all on the same page" and the room disperses.</p>
+
+        <p>Three weeks later, execution has forked. Not because people are careless. Because memory is reconstructive. Because the context that made a decision feel obvious in the room doesn't travel well across time and organizational layers.</p>
+
+        <h2>The Accumulation Problem</h2>
+
+        <p>Every undocumented decision creates a small liability. On its own, it is manageable. But undocumented decisions compound. Each new decision builds on the ones before it — and if the foundation is ambiguous, the structure above it is unstable in ways that aren't visible until significant weight is placed on it.</p>
+
+        <p>The tell is usually a conflict about what was decided rather than what should be decided next. When a team spends meeting time re-litigating past commitments, the problem is not disagreement. It is the absence of a reliable record that could close the question in ninety seconds.</p>
+
+        <blockquote>
+          The most expensive document in most organizations is the one that was never written.
+        </blockquote>
+
+        <h2>What Documentation Actually Does</h2>
+
+        <p>Documentation is not bureaucracy. In a coherent organization, it serves three structural functions:</p>
+
+        <p><strong>It surfaces assumptions.</strong> The act of writing a decision down forces the articulation of why. Assumptions that seemed obvious in conversation often look different in writing — which is exactly the point. The friction is productive.</p>
+
+        <p><strong>It preserves dissent.</strong> When a decision is documented, the objections raised in the room can be documented alongside it. This is not just procedural fairness. It is risk management. A recorded objection that later proves correct is an early warning system. An unrecorded one is invisible.</p>
+
+        <p><strong>It enables learning.</strong> Organizations that review their decisions — that return to what was committed, what was assumed, and what actually happened — develop a structural capacity to improve. Organizations that don't are condemned to repeat the same errors in slightly different costumes.</p>
+
+        <h2>Where to Start</h2>
+
+        <p>The goal is not a comprehensive documentation system built from scratch. It is a single discipline, applied consistently to the decisions that carry the most structural weight: What was decided? What assumptions underpin it? Who dissented, and on what grounds?</p>
+
+        <p>That is not a lot of words. It is the difference between a decision that compounds clarity and one that compounds debt.</p>
+
+        <div class="post-footer-rule"></div>
+
+        <div class="post-cta-block">
+          <span class="cta-label">Continue the exploration</span>
+          <p class="cta-text">The Decision Governance block of the Coherence Canvas maps how validation discipline holds — or softens — under organizational pressure.</p>
+          <a href="/coherence-canvas" class="cta-btn">Explore the Coherence Canvas →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Back ──────────────────────────────────────────────────────────── -->
+    <div class="post-back">
+      <div class="container">
+        <a href="/chronicles" class="back-link">← Back to Coherence Chronicles</a>
+      </div>
+    </div>
+
+  </article>
+
+</Layout>
+
+<style>
+  :root {
+    --navy:       #1b263b;
+    --navy-deep:  #0f1623;
+    --navy-mid:   #152033;
+    --navy-light: #1e2e45;
+    --gold:       #b59353;
+    --gold-light: #c9aa70;
+    --gold-dim:   rgba(181, 147, 83, 0.12);
+    --gold-border:rgba(181, 147, 83, 0.3);
+    --white:      #ffffff;
+    --slate:      #d0d4db;
+    --slate-dim:  rgba(208, 212, 219, 0.55);
+    --border:     rgba(255, 255, 255, 0.08);
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .post-header {
+    background: var(--navy-deep);
+    padding: 160px 0 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--gold); }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .post-category {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .post-dot { color: var(--slate-dim); font-size: 0.7rem; }
+
+  .post-date, .post-read {
+    font-size: 0.7rem;
+    color: var(--slate-dim);
+  }
+
+  .post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+  }
+
+  .post-body {
+    background: var(--navy-mid);
+    padding: 60px 0 80px;
+  }
+
+  .post-lede {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-body p {
+    font-size: 0.97rem;
+    color: var(--slate);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 2.5rem 0 1rem;
+  }
+
+  .post-body strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .post-body blockquote {
+    border-left: 2px solid var(--gold);
+    padding: 1.25rem 1.75rem;
+    background: var(--gold-dim);
+    margin: 2rem 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .post-footer-rule {
+    height: 1px;
+    background: var(--border);
+    margin: 3rem 0 2rem;
+  }
+
+  .post-cta-block {
+    background: var(--navy-deep);
+    border: 1px solid var(--gold-border);
+    padding: 2rem;
+  }
+
+  .cta-label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-text {
+    font-size: 0.88rem;
+    color: var(--slate-dim);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-btn {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .cta-btn:hover { color: var(--gold-light); }
+
+  .post-back {
+    background: var(--navy-deep);
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .post-header { padding: 140px 0 48px; }
+    .post-body { padding: 48px 0 64px; }
+  }
+</style>

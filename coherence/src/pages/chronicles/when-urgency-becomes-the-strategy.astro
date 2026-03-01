@@ -1,0 +1,270 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'When Urgency Becomes the Strategy — Coherence Chronicles',
+  description: 'Most organizations don\'t choose urgency. It accumulates. Here\'s what that costs — and how to recognize it before it compounds.',
+};
+
+const post = {
+  date: 'February 12, 2026',
+  category: 'Signal Clarity',
+  readTime: '4 min read',
+  title: 'When Urgency Becomes the Strategy',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <article class="post-article">
+
+    <!-- ─── Header ───────────────────────────────────────────────────────── -->
+    <header class="post-header">
+      <div class="container">
+        <a href="/chronicles" class="back-link">← Coherence Chronicles</a>
+        <div class="post-meta">
+          <span class="post-category">{post.category}</span>
+          <span class="post-dot">·</span>
+          <span class="post-date">{post.date}</span>
+          <span class="post-dot">·</span>
+          <span class="post-read">{post.readTime}</span>
+        </div>
+        <h1 class="post-title">{post.title}</h1>
+      </div>
+    </header>
+
+    <!-- ─── Body ─────────────────────────────────────────────────────────── -->
+    <div class="post-body">
+      <div class="container">
+
+        <p class="post-lede">Most organizations don't choose urgency. It accumulates. One compressed decision cycle leads to another. The sprint becomes the default. And eventually, the pace becomes the plan.</p>
+
+        <p>There is a structural moment — usually invisible when it happens — when urgency stops being a response to conditions and starts being a substitute for strategy. Leaders stop asking what should happen next and start asking what needs to happen now. The horizon shortens. The questions narrow. The system optimizes for throughput.</p>
+
+        <p>This is not a failure of leadership. It is a structural reflex. Under sustained pressure, organizations default to the fastest available decision loop. And the fastest loop is almost always reactive.</p>
+
+        <h2>What Gets Lost</h2>
+
+        <p>When urgency becomes the operating system, three things erode quietly before they become visible:</p>
+
+        <p><strong>Validation discipline.</strong> Decisions that once required documentation begin to close in conversation. Assumptions that would have been written down are instead agreed upon verbally — and remembered differently by everyone in the room. The gap between what was decided and what was understood widens with every compressed cycle.</p>
+
+        <p><strong>Dissent pathways.</strong> Urgency has a silencing effect. When the pace is high enough, raising a concern feels like obstruction. Teams learn to read the room and move with the current. The information that most needs to reach leadership is the information least likely to surface under load.</p>
+
+        <p><strong>Recovery capacity.</strong> Systems need white space to process what has happened. When urgency eliminates recovery time — when the next sprint begins before the last one has been examined — the organization loses its ability to learn from its own experience. Errors repeat. Patterns calcify.</p>
+
+        <h2>The Recognition Problem</h2>
+
+        <p>The difficulty with urgency as strategy is that it feels like high performance from the inside. Calendars are full. Decisions are being made. The team is moving. The metrics may even be holding — for now.</p>
+
+        <p>The costs are structural, not operational. They accumulate in the architecture of how decisions get made, how information travels, and how much of the organization's bandwidth is genuinely available for strategic thought versus reactive management.</p>
+
+        <blockquote>
+          The question is not whether your organization is moving fast. It is whether the speed is compounding clarity — or compounding debt.
+        </blockquote>
+
+        <h2>Where to Look</h2>
+
+        <p>If urgency has become structural in your organization, the signal is usually not in the output metrics. It is in the texture of how decisions get made. Ask: When was the last time a major commitment was documented before it was executed? When did dissent last change a decision? When did the team last review a completed cycle before beginning the next one?</p>
+
+        <p>Those questions tend to locate the problem faster than any dashboard.</p>
+
+        <div class="post-footer-rule"></div>
+
+        <div class="post-cta-block">
+          <span class="cta-label">Continue the exploration</span>
+          <p class="cta-text">The Signal Clarity block of the Coherence Canvas maps exactly this pattern — how urgency distorts or degrades clarity across decision cycles.</p>
+          <a href="/coherence-canvas" class="cta-btn">Explore the Coherence Canvas →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Back ──────────────────────────────────────────────────────────── -->
+    <div class="post-back">
+      <div class="container">
+        <a href="/chronicles" class="back-link">← Back to Coherence Chronicles</a>
+      </div>
+    </div>
+
+  </article>
+
+</Layout>
+
+<style>
+  :root {
+    --navy:       #1b263b;
+    --navy-deep:  #0f1623;
+    --navy-mid:   #152033;
+    --navy-light: #1e2e45;
+    --gold:       #b59353;
+    --gold-light: #c9aa70;
+    --gold-dim:   rgba(181, 147, 83, 0.12);
+    --gold-border:rgba(181, 147, 83, 0.3);
+    --white:      #ffffff;
+    --slate:      #d0d4db;
+    --slate-dim:  rgba(208, 212, 219, 0.55);
+    --border:     rgba(255, 255, 255, 0.08);
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ─── Header ────────────────────────────────────────────────────────────── */
+  .post-header {
+    background: var(--navy-deep);
+    padding: 160px 0 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--gold); }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .post-category {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .post-dot { color: var(--slate-dim); font-size: 0.7rem; }
+
+  .post-date, .post-read {
+    font-size: 0.7rem;
+    color: var(--slate-dim);
+  }
+
+  .post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+  }
+
+  /* ─── Body ──────────────────────────────────────────────────────────────── */
+  .post-body {
+    background: var(--navy-mid);
+    padding: 60px 0 80px;
+  }
+
+  .post-lede {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-body p {
+    font-size: 0.97rem;
+    color: var(--slate);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 2.5rem 0 1rem;
+  }
+
+  .post-body strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .post-body blockquote {
+    border-left: 2px solid var(--gold);
+    padding: 1.25rem 1.75rem;
+    background: var(--gold-dim);
+    margin: 2rem 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  /* ─── CTA Block ─────────────────────────────────────────────────────────── */
+  .post-footer-rule {
+    height: 1px;
+    background: var(--border);
+    margin: 3rem 0 2rem;
+  }
+
+  .post-cta-block {
+    background: var(--navy-deep);
+    border: 1px solid var(--gold-border);
+    padding: 2rem;
+  }
+
+  .cta-label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-text {
+    font-size: 0.88rem;
+    color: var(--slate-dim);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-btn {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .cta-btn:hover { color: var(--gold-light); }
+
+  /* ─── Back ──────────────────────────────────────────────────────────────── */
+  .post-back {
+    background: var(--navy-deep);
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .post-header { padding: 140px 0 48px; }
+    .post-body { padding: 48px 0 64px; }
+  }
+</style>
