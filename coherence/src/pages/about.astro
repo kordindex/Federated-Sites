@@ -1,228 +1,796 @@
 ---
-import Features2 from '~/components/widgets/Features2.astro';
-import Features3 from '~/components/widgets/Features3.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'About us',
+  title: 'About — The Coherence Co. | Organizational Coherence Architecture',
+  description: 'The Coherence Co. works with executive teams to diagnose and redesign the structural conditions that produce organizational incoherence — under pressure, at scale, and over time.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
 
-  <Hero
-    tagline="About us"
-    image={{
-      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Caos Image',
-    }}
-  >
-    <Fragment slot="title">
-      Elevate your online presence with our <br />
-      <span class="text-accent dark:text-white"> Beautiful Website Templates</span>
-    </Fragment>
+  <!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
+  <section class="about-hero">
+    <div class="container">
+      <span class="eyebrow">The Coherence Co.</span>
+      <h1 class="hero-headline">
+        We Study What Happens to<br class="br-desk"> Organizations Under Pressure.
+      </h1>
+      <p class="hero-sub">
+        Not what leaders intend. Not what strategies promise. What actually happens — structurally, behaviorally, and at the level of signal — when urgency increases and coherence is tested.
+      </p>
+    </div>
+  </section>
 
-    <Fragment slot="subtitle">
-      Donec efficitur, ipsum quis congue luctus, mauris magna convallis mauris, eu auctor nisi lectus non augue. Donec
-      quis lorem non massa vulputate efficitur ac at turpis. Sed tincidunt ex a nunc convallis, et lobortis nisi tempus.
-      Suspendisse vitae nisi eget tortor luctus maximus sed non lectus.
-    </Fragment>
-  </Hero>
+  <!-- ─── The Problem ───────────────────────────────────────────────────────── -->
+  <section class="section section-problem">
+    <div class="container container-narrow">
+      <div class="section-label">The Problem We Work On</div>
+      <h2 class="section-headline">Most organizational dysfunction is misdiagnosed.</h2>
+      <div class="prose-block">
+        <p>Leaders call it a people problem. Consultants call it a change management challenge. HR calls it a culture issue. Boards call it an execution gap.</p>
+        <p class="callout">We call it what it is: a coherence failure.</p>
+        <p>Coherence is not a soft concept. It is the measurable alignment between what an organization says, what it decides, and what it actually does — under load, over time, and across layers of authority. When coherence holds, organizations move fast without fragmenting. When it breaks, the costs accumulate before they're visible: in narrative debt, decision lag, talent attrition, and the quiet erosion of institutional trust.</p>
+        <p>The Coherence Co. was built to address that gap — structurally, not symptomatically.</p>
+      </div>
+    </div>
+  </section>
 
-  <!-- Stats Widget ****************** -->
+  <!-- ─── How We Work ───────────────────────────────────────────────────────── -->
+  <section class="section section-how">
+    <div class="container">
+      <div class="how-grid">
+        <div class="how-left">
+          <div class="section-label">How We Work</div>
+          <h2 class="section-headline">Diagnostic precision.<br>Not framework delivery.</h2>
+        </div>
+        <div class="how-right">
+          <p>We are not a consulting firm in the traditional sense. We do not arrive with frameworks to implement or workshops to deliver. We arrive with diagnostic precision and a specific methodology: the Coherence Architecture.</p>
+          <p>The Coherence Architecture maps nine structural domains — from leadership integrity and signal clarity to decision governance and acceleration stewardship — and identifies where an organization's coherence is holding, where it is under stress, and where it has already begun to fracture.</p>
+          <p>What follows is not a report. It is a calibration.</p>
+          <p>We work with executive teams to redesign the structural conditions that produce incoherence — not to fix individual leaders, but to change what the system asks of them. Because in our experience, most leadership problems are not personal failures. They are structural reflexes. And structural reflexes change when the structure changes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <Stats
-    title="Statistics about us"
-    stats={[
-      { title: 'Offices', amount: '4' },
-      { title: 'Employees', amount: '248' },
-      { title: 'Templates', amount: '12' },
-      { title: 'Awards', amount: '24' },
-    ]}
-  />
+  <!-- ─── What We Believe ───────────────────────────────────────────────────── -->
+  <section class="section section-beliefs">
+    <div class="container">
+      <div class="section-label centered">What We Believe</div>
+      <h2 class="section-headline centered">Four principles that shape every engagement.</h2>
+      <div class="beliefs-grid">
 
-  <!-- Features3 Widget ************** -->
+        <div class="belief-card">
+          <div class="belief-num">01</div>
+          <h3 class="belief-title">Pressure reveals architecture.</h3>
+          <p class="belief-body">Every organization looks coherent in calm conditions. The diagnostic value is in what happens when urgency rises, resources compress, and competing priorities collide. That is when structural design either holds or reveals its fault lines.</p>
+        </div>
 
-  <Features3
-    title="Our templates"
-    subtitle="Etiam scelerisque, enim eget vestibulum luctus, nibh mauris blandit nulla, nec vestibulum risus justo ut enim. Praesent lacinia diam et ante imperdiet euismod."
-    columns={3}
-    isBeforeContent={true}
-    items={[
-      {
-        title: 'Educational',
-        description:
-          'Morbi faucibus luctus quam, sit amet aliquet felis tempor id. Cras augue massa, ornare quis dignissim a, molestie vel nulla.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Interior Design',
-        description:
-          'Vivamus porttitor, tortor convallis aliquam pretium, turpis enim consectetur elit, vitae egestas purus erat ac nunc nulla.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Photography',
-        description:
-          'Duis sed lectus in nisl vehicula porttitor eget quis odio. Aliquam erat volutpat. Nulla eleifend nulla id sem fermentum.',
-        icon: 'tabler:template',
-      },
-    ]}
-  />
+        <div class="belief-card">
+          <div class="belief-num">02</div>
+          <h3 class="belief-title">Instability is not dysfunction. It is data.</h3>
+          <p class="belief-body">We do not pathologize organizational strain. We read it. Late-stage escalation signals, narrative fragmentation, capacity normalization beyond design — these are not failures of character. They are symptoms of structural misalignment. Naming them accurately is the first act of repair.</p>
+        </div>
 
-  <!-- Features3 Widget ************** -->
+        <div class="belief-card">
+          <div class="belief-num">03</div>
+          <h3 class="belief-title">Speed without coherence compounds debt.</h3>
+          <p class="belief-body">The organizations that perform sustainably are not the fastest. They are the most coherent at speed. Velocity without integration creates narrative debt, trust debt, and attention debt — costs that are invisible until they are catastrophic.</p>
+        </div>
 
-  <Features3
-    columns={3}
-    isAfterContent={true}
-    items={[
-      {
-        title: 'E-commerce',
-        description:
-          'Rutrum non odio at vehicula. Proin ipsum justo, dignissim in vehicula sit amet, dignissim id quam. Sed ac tincidunt sapien.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Blog',
-        description:
-          'Nullam efficitur volutpat sem sed fringilla. Suspendisse et enim eu orci volutpat laoreet ac vitae libero.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Business',
-        description:
-          'Morbi et elit finibus, facilisis justo ut, pharetra ipsum. Donec efficitur, ipsum quis congue luctus, mauris magna.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Branding',
-        description:
-          'Suspendisse vitae nisi eget tortor luctus maximus sed non lectus. Cras malesuada pretium placerat. Nullam venenatis dolor a ante rhoncus.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Medical',
-        description:
-          'Vestibulum malesuada lacus id nibh posuere feugiat. Nam volutpat nulla a felis ultrices, id suscipit mauris congue. In hac habitasse platea dictumst.',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Fashion Design',
-        description:
-          'Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus.',
-        icon: 'tabler:template',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-      alt: 'Colorful Image',
-    }}
-  />
+        <div class="belief-card">
+          <div class="belief-num">04</div>
+          <h3 class="belief-title">Diagnosis precedes prescription.</h3>
+          <p class="belief-body">We do not offer solutions before we understand the system. Our diagnostics and engagements are not products to be purchased. They are calibrated entry points into a structured process of organizational redesign.</p>
+        </div>
 
-  <!-- Steps2 Widget ****************** -->
+      </div>
+    </div>
+  </section>
 
-  <Steps2
-    title="Our values"
-    subtitle="Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus. Nulla facilisi. Vestibulum malesuada lacus."
-    items={[
-      {
-        title: 'Customer-centric approach',
-        description:
-          'Donec id nibh neque. Quisque et fermentum tortor. Fusce vitae dolor a mauris dignissim commodo. Ut eleifend luctus condimentum.',
-      },
-      {
-        title: 'Constant Improvement',
-        description:
-          'Phasellus laoreet fermentum venenatis. Vivamus dapibus pulvinar arcu eget mattis. Fusce eget mauris leo.',
-      },
-      {
-        title: 'Ethical Practices',
-        description:
-          'Vestibulum imperdiet libero et lectus molestie, et maximus augue porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-      },
-    ]}
-  />
+  <!-- ─── Who We Work With ──────────────────────────────────────────────────── -->
+  <section class="section section-who">
+    <div class="container">
+      <div class="who-grid">
+        <div class="who-left">
+          <div class="section-label">Who We Work With</div>
+          <h2 class="section-headline">Organizations at the intersection of high ambition and structural strain.</h2>
+          <p class="who-intro">Our engagements are with executive teams, not individuals. The unit of change is the system — the people who lead it, the structures that constrain them, and the signals that travel between them.</p>
+        </div>
+        <div class="who-right">
+          <div class="audience-list">
 
-  <!-- Steps2 Widget ****************** -->
+            <div class="audience-item">
+              <div class="audience-marker"></div>
+              <div class="audience-content">
+                <h4>C-Suite Leadership Teams</h4>
+                <p>Navigating growth velocity that is outpacing organizational coherence — and looking for structural solutions, not individual coaching.</p>
+              </div>
+            </div>
 
-  <Steps2
-    title="Achievements"
-    subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla."
-    isReversed={true}
-    callToAction={{
-      text: 'See more',
-      href: '/',
-    }}
-    items={[
-      {
-        title: 'Global reach',
-        description: 'Nam malesuada urna in enim imperdiet tincidunt. Phasellus non tincidunt nisi, at elementum mi.',
-        icon: 'tabler:globe',
-      },
-      {
-        title: 'Positive customer feedback and reviews',
-        description:
-          'Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.',
-        icon: 'tabler:message-star',
-      },
-      {
-        title: 'Awards and recognition as industry experts',
-        description:
-          'Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.',
-        icon: 'tabler:award',
-      },
-    ]}
-  />
+            <div class="audience-item">
+              <div class="audience-marker"></div>
+              <div class="audience-content">
+                <h4>Boards and Investors</h4>
+                <p>Concerned about execution reliability and leadership alignment below the surface metrics. Looking for diagnostic clarity before intervention.</p>
+              </div>
+            </div>
 
-  <!-- Features2 Widget ************** -->
+            <div class="audience-item">
+              <div class="audience-marker"></div>
+              <div class="audience-content">
+                <h4>HR and People Leaders</h4>
+                <p>Who recognize that the presenting problem is structural, not behavioral — and who need the language and framework to make that case internally.</p>
+              </div>
+            </div>
 
-  <Features2
-    title="Our locations"
-    tagline="Find us"
-    columns={4}
-    items={[
-      {
-        title: 'EE.UU',
-        description: '1234 Lorem Ipsum St, 12345, Miami',
-      },
-      {
-        title: 'Spain',
-        description: '5678 Lorem Ipsum St, 56789, Madrid',
-      },
-      {
-        title: 'Australia',
-        description: '9012 Lorem Ipsum St, 90123, Sydney',
-      },
-      {
-        title: 'Brazil',
-        description: '3456 Lorem Ipsum St, 34567, São Paulo',
-      },
-    ]}
-  />
+            <div class="audience-item">
+              <div class="audience-marker"></div>
+              <div class="audience-content">
+                <h4>Organizations in Transition</h4>
+                <p>Post-merger, post-restructure, or mid-scaling — where coherence has been disrupted and needs to be deliberately rebuilt, not managed around.</p>
+              </div>
+            </div>
 
-  <!-- Features2 Widget ************** -->
+          </div>
 
-  <Features2
-    title="Technical Support"
-    tagline="Contact us"
-    columns={2}
-    items={[
-      {
-        title: 'Chat with us',
-        description:
-          'Integer luctus laoreet libero, auctor varius purus rutrum sit amet. Ut nec molestie nisi, quis eleifend mi.',
-        icon: 'tabler:messages',
-      },
-      {
-        title: 'Call us',
-        description:
-          'Mauris faucibus finibus orci, in posuere elit viverra non. In hac habitasse platea dictumst. Cras lobortis metus a hendrerit congue.',
-        icon: 'tabler:headset',
-      },
-    ]}
-  />
+          <p class="who-caveat">We do not work with organizations looking for quick wins, external validation, or a framework to adopt without commitment to genuine structural examination. The work requires candor. It requires patience. And it requires leadership willing to interrogate the system they have built.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── The Ecosystem ─────────────────────────────────────────────────────── -->
+  <section class="section section-ecosystem">
+    <div class="container">
+      <div class="section-label centered">The Ecosystem</div>
+      <h2 class="section-headline centered">Three architectures. One integrated system.</h2>
+      <p class="ecosystem-intro">The Coherence Co. is one part of a three-architecture ecosystem designed to address organizational and human coherence at every level of engagement.</p>
+
+      <div class="ecosystem-grid">
+
+        <a href="https://coherence-company.vercel.app/" class="eco-card eco-card--coherence eco-card--active">
+          <div class="eco-tag">B2B / Organizations</div>
+          <h3 class="eco-title">The Coherence Co.</h3>
+          <p class="eco-body">Addresses organizational systems — the structural, narrative, and governance conditions that determine whether an executive team moves with clarity or against itself.</p>
+          <div class="eco-focus">Structural Redesign</div>
+        </a>
+
+        <a href="https://institute-unlearning.vercel.app/" class="eco-card eco-card--institute">
+          <div class="eco-tag">Master Brand</div>
+          <h3 class="eco-title">The Institute for UNLearning</h3>
+          <p class="eco-body">Addresses the deeper systemic and cultural substrate — the assumptions, inherited models, and collective patterns of thought that shape how organizations see their own conditions.</p>
+          <div class="eco-focus">Systemic & Cultural Work</div>
+        </a>
+
+        <a href="https://kahane-coaching.vercel.app/" class="eco-card eco-card--kahane">
+          <div class="eco-tag">B2C / Individuals</div>
+          <h3 class="eco-title">Kahane Coaching</h3>
+          <p class="eco-body">Addresses the individual leader — the behavioral, relational, and attentional dimensions of performance under pressure, calibrated through diagnostic instruments and sustained advisory engagement.</p>
+          <div class="eco-focus">Human Behavioral Integration</div>
+        </a>
+
+      </div>
+
+      <p class="ecosystem-close">Each is a distinct point of entry. All roads connect. The work is designed to reinforce itself across every level where coherence is built or lost.</p>
+    </div>
+  </section>
+
+  <!-- ─── Entry Points ──────────────────────────────────────────────────────── -->
+  <section class="section section-entry">
+    <div class="container">
+      <div class="section-label centered">Where to Begin</div>
+      <h2 class="section-headline centered">Wherever you are in the process, there is a structured place to start.</h2>
+
+      <div class="entry-grid">
+
+        <div class="entry-card">
+          <div class="entry-header">
+            <span class="entry-num">01</span>
+            <span class="entry-price">Free</span>
+          </div>
+          <h3 class="entry-title">The Coherence Canvas</h3>
+          <p class="entry-body">A public interactive tool for mapping how your system responds to pressure across nine structural domains. Built for orientation, not diagnosis.</p>
+          <a href="/coherence-canvas" class="entry-cta">Explore the Canvas →</a>
+        </div>
+
+        <div class="entry-card entry-card--featured">
+          <div class="entry-header">
+            <span class="entry-num">02</span>
+            <span class="entry-price">$395</span>
+          </div>
+          <h3 class="entry-title">Essential Coherence Diagnostic</h3>
+          <p class="entry-body">A structured 20-question diagnostic that produces a detailed escalation profile across all nine domains. Designed for individual executives beginning to name what they are seeing.</p>
+          <a href="/essential-diagnostic" class="entry-cta">Begin the Diagnostic →</a>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-header">
+            <span class="entry-num">03</span>
+            <span class="entry-price">$2,500</span>
+          </div>
+          <h3 class="entry-title">Executive Coherence Architecture</h3>
+          <p class="entry-body">An 80-question deep diagnostic followed by a structured executive debrief and 30/90-day recalibration engagement. For organizations ready to redesign structural conditions.</p>
+          <a href="/contact" class="entry-cta">Inquire About Architecture →</a>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-header">
+            <span class="entry-num">04</span>
+            <span class="entry-price">Proposal-based</span>
+          </div>
+          <h3 class="entry-title">Leadership Calibration Labs</h3>
+          <p class="entry-body">Workshop and advisory engagements designed to integrate behavioral and structural calibration at the team level. Communication under load, decision governance, signal clarity, and alignment.</p>
+          <a href="/contact" class="entry-cta">Learn About the Labs →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Closing CTA ───────────────────────────────────────────────────────── -->
+  <section class="section section-closing">
+    <div class="container container-narrow">
+      <div class="closing-rule"></div>
+      <p class="closing-statement">Coherence is not a destination. It is a discipline — practiced under pressure, maintained through structure, and rebuilt when disrupted.</p>
+      <p class="closing-sub">We are here for organizations willing to do that work.</p>
+      <div class="closing-actions">
+        <a href="/coherence-canvas" class="btn-primary-gold">Explore the Canvas</a>
+        <a href="/contact" class="btn-ghost-white">Start a Conversation</a>
+      </div>
+    </div>
+  </section>
+
 </Layout>
+
+<style>
+  /* ─── Variables ─────────────────────────────────────────────────────────── */
+  :root {
+    --navy:        #1b263b;
+    --navy-deep:   #0f1623;
+    --navy-mid:    #152033;
+    --navy-light:  #1e2e45;
+    --gold:        #b59353;
+    --gold-light:  #c9aa70;
+    --gold-dim:    rgba(181, 147, 83, 0.12);
+    --gold-border: rgba(181, 147, 83, 0.3);
+    --white:       #ffffff;
+    --slate:       #d0d4db;
+    --slate-mid:   #8892a0;
+    --slate-dim:   rgba(208, 212, 219, 0.55);
+    --border:      rgba(255, 255, 255, 0.08);
+  }
+
+  /* ─── Base ──────────────────────────────────────────────────────────────── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container-narrow {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section {
+    padding: 100px 0;
+  }
+
+  /* ─── Typography helpers ────────────────────────────────────────────────── */
+  .eyebrow,
+  .section-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .section-label.centered { text-align: center; }
+
+  .section-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-headline.centered { text-align: center; }
+
+  /* ─── Hero ──────────────────────────────────────────────────────────────── */
+  .about-hero {
+    background: var(--navy-deep);
+    padding: 160px 0 100px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--slate-dim);
+    max-width: 620px;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 768px) {
+    .about-hero { padding: 140px 0 72px; }
+    .br-desk { display: none; }
+  }
+
+  /* ─── Problem ───────────────────────────────────────────────────────────── */
+  .section-problem {
+    background: var(--navy-mid);
+  }
+
+  .prose-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .prose-block p {
+    font-size: 1rem;
+    color: var(--slate);
+    line-height: 1.8;
+  }
+
+  .prose-block .callout {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-style: italic;
+    color: var(--gold);
+    padding: 1.5rem 2rem;
+    border-left: 2px solid var(--gold);
+    background: var(--gold-dim);
+    line-height: 1.5;
+  }
+
+  /* ─── How We Work ───────────────────────────────────────────────────────── */
+  .section-how {
+    background: var(--navy-deep);
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .how-left {
+    position: sticky;
+    top: 170px;
+  }
+
+  .how-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .how-right p {
+    font-size: 1rem;
+    color: var(--slate);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 900px) {
+    .how-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .how-left { position: static; }
+  }
+
+  /* ─── Beliefs ───────────────────────────────────────────────────────────── */
+  .section-beliefs {
+    background: var(--navy-mid);
+  }
+
+  .beliefs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+
+  .belief-card {
+    background: var(--navy-deep);
+    padding: 2.5rem;
+    position: relative;
+    transition: background 0.25s ease;
+  }
+
+  .belief-card:hover {
+    background: var(--navy-light);
+  }
+
+  .belief-num {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .belief-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.35;
+    margin-bottom: 1rem;
+  }
+
+  .belief-body {
+    font-size: 0.9rem;
+    color: var(--slate-dim);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 680px) {
+    .beliefs-grid { grid-template-columns: 1fr; }
+    .belief-card { padding: 2rem; }
+  }
+
+  /* ─── Who We Work With ──────────────────────────────────────────────────── */
+  .section-who {
+    background: var(--navy-deep);
+  }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .who-left {
+    position: sticky;
+    top: 170px;
+  }
+
+  .who-intro {
+    font-size: 0.95rem;
+    color: var(--slate-dim);
+    line-height: 1.75;
+    margin-top: 1rem;
+  }
+
+  .audience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 2rem;
+  }
+
+  .audience-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .audience-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .audience-marker {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .audience-content h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+  }
+
+  .audience-content p {
+    font-size: 0.9rem;
+    color: var(--slate-dim);
+    line-height: 1.7;
+  }
+
+  .who-caveat {
+    font-size: 0.85rem;
+    color: var(--slate-mid);
+    line-height: 1.75;
+    font-style: italic;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 900px) {
+    .who-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .who-left { position: static; }
+  }
+
+  /* ─── Ecosystem ─────────────────────────────────────────────────────────── */
+  .section-ecosystem {
+    background: var(--navy-mid);
+  }
+
+  .ecosystem-intro {
+    font-size: 1rem;
+    color: var(--slate-dim);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    line-height: 1.75;
+  }
+
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .eco-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-decoration: none;
+    transition: background 0.25s ease;
+    position: relative;
+  }
+
+  .eco-card--coherence { background: var(--navy); }
+  .eco-card--institute { background: #111e1c; }
+  .eco-card--kahane    { background: #2a1f0e; }
+
+  .eco-card:hover { filter: brightness(1.15); }
+
+  .eco-card--active {
+    border-top: 3px solid var(--gold);
+  }
+
+  .eco-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .eco-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .eco-body {
+    font-size: 0.85rem;
+    color: var(--slate-dim);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .eco-focus {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .ecosystem-close {
+    font-size: 0.9rem;
+    color: var(--slate-mid);
+    text-align: center;
+    margin-top: 2.5rem;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .ecosystem-grid { grid-template-columns: 1fr; }
+    .eco-card { padding: 2rem; }
+  }
+
+  /* ─── Entry Points ──────────────────────────────────────────────────────── */
+  .section-entry {
+    background: var(--navy-deep);
+  }
+
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+
+  .entry-card {
+    background: var(--navy-mid);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: background 0.25s ease;
+  }
+
+  .entry-card:hover {
+    background: var(--navy-light);
+  }
+
+  .entry-card--featured {
+    background: var(--navy-light);
+    border-top: 2px solid var(--gold);
+  }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .entry-num {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .entry-price {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .entry-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .entry-body {
+    font-size: 0.82rem;
+    color: var(--slate-dim);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .entry-cta {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    transition: color 0.2s ease;
+    display: block;
+  }
+
+  .entry-cta:hover {
+    color: var(--gold-light);
+  }
+
+  @media (max-width: 1024px) {
+    .entry-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .entry-grid { grid-template-columns: 1fr; }
+    .entry-card { padding: 1.75rem; }
+  }
+
+  /* ─── Closing ───────────────────────────────────────────────────────────── */
+  .section-closing {
+    background: var(--navy-mid);
+    text-align: center;
+  }
+
+  .closing-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 2.5rem;
+  }
+
+  .closing-statement {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .closing-sub {
+    font-size: 0.95rem;
+    color: var(--slate-dim);
+    margin-bottom: 2.5rem;
+  }
+
+  .closing-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary-gold {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    background: var(--gold);
+    color: var(--navy-deep);
+    text-decoration: none;
+    transition: background 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn-primary-gold:hover {
+    background: var(--gold-light);
+  }
+
+  .btn-ghost-white {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn-ghost-white:hover {
+    border-color: var(--white);
+    color: var(--white);
+  }
+</style>
