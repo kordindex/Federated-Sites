@@ -1,0 +1,1029 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Coherence Canvas — The Coherence Co.',
+  description: 'Map your system\'s response to pressure across nine structural domains. Select a block to explore how pressure expresses inside your organization.',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <!-- ─── Page ─────────────────────────────────────────────────────────────── -->
+  <div class="page">
+
+    <div class="page-header">
+      <span class="page-label">The Coherence Co. — Interactive Canvas</span>
+      <h1 class="page-title">When urgency increases,<br>what changes first?</h1>
+      <p class="page-subtitle">Signal clarity? Belonging? Decision discipline? Map your system's response to pressure in minutes.</p>
+      <p class="page-instruction"><span>Select a block</span> to explore how pressure expresses inside your system.</p>
+    </div>
+
+    <div class="grid-wrapper">
+      <div class="row-labels">
+        <div class="row-label"><span>Sense</span></div>
+        <div class="row-label"><span>Decide</span></div>
+        <div class="row-label"><span>Act</span></div>
+      </div>
+      <div class="canvas-grid" id="canvasGrid">
+        <!-- Blocks rendered by JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── Modal ────────────────────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">×</button>
+      <div class="modal-header">
+        <span class="modal-label" id="modalLabel"></span>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-intro">Answer three short prompts to see how pressure expresses in this area.</p>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 33%"></div>
+        </div>
+        <div class="progress-text">
+          <span>Diagnostic</span>
+          <span id="progressText">Question 1 of 3</span>
+        </div>
+      </div>
+
+      <!-- Question View -->
+      <div id="questionView">
+        <div class="question-wrap">
+          <span class="question-category" id="questionCategory"></span>
+          <p class="question-text" id="questionText"></p>
+          <div class="options" id="optionsContainer"></div>
+        </div>
+        <div class="modal-nav">
+          <button class="btn btn-ghost" id="prevBtn" disabled>← Previous</button>
+          <button class="btn btn-primary" id="nextBtn" disabled>Next →</button>
+        </div>
+      </div>
+
+      <!-- Results View -->
+      <div id="resultsView" style="display:none;">
+        <div class="results-wrap">
+          <span class="results-eyebrow">Escalation Mirror</span>
+          <p class="results-framing">"You are not experiencing dysfunction. You are seeing how pressure is currently metabolized."</p>
+          <span class="cluster-label">Your signal cluster</span>
+          <h3 class="cluster-name" id="clusterName"></h3>
+          <p class="mirror-text" id="mirrorText"></p>
+          <div class="lever-wrap">
+            <span class="lever-label">Coherence Shift</span>
+            <p class="lever-intro">Coherence restores when…</p>
+            <p class="lever-text" id="leverText"></p>
+          </div>
+          <div class="cta-divider"></div>
+          <p class="cta-soft">Would you like a full structural calibration?</p>
+          <a class="btn-cta" href="/essential-diagnostic">Explore the Essential Coherence Diagnostic</a>
+          <button class="btn-restart" id="restartBtn">↩ Explore another block</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</Layout>
+
+<style>
+  /* ─── Force dark background ─────────────────────────────────────────────── */
+  :global(body) {
+    background-color: #0f1623 !important;
+  }
+
+  /* ─── Variables ─────────────────────────────────────────────────────────── */
+  :root {
+    --navy:        #1b263b;
+    --navy-deep:   #0f1623;
+    --navy-mid:    #152033;
+    --gold:        #b59353;
+    --gold-light:  #c9aa70;
+    --gold-dim:    rgba(181, 147, 83, 0.15);
+    --white:       #ffffff;
+    --slate:       #d0d4db;
+    --slate-dim:   rgba(208, 212, 219, 0.5);
+    --border:      rgba(255, 255, 255, 0.08);
+    --border-gold: rgba(181, 147, 83, 0.3);
+  }
+
+  /* ─── Page ──────────────────────────────────────────────────────────────── */
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 180px 2rem 120px; /* top padding clears BrandSwitcher + CoherenceNav */
+    color: var(--slate);
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ─── Header ────────────────────────────────────────────────────────────── */
+  .page-header { margin-bottom: 64px; }
+
+  .page-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.05rem;
+    color: var(--slate-dim);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .page-instruction {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--slate-dim);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .page-instruction span { color: var(--gold); }
+
+  /* ─── Row Labels ────────────────────────────────────────────────────────── */
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0 16px;
+  }
+
+  .row-labels {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row-label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .row-label span {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* ─── Grid ──────────────────────────────────────────────────────────────── */
+  .canvas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  /* ─── Block ─────────────────────────────────────────────────────────────── */
+  .block {
+    background: var(--navy-mid);
+    padding: 2rem;
+    min-height: 180px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at 0% 0%, rgba(181, 147, 83, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .block:hover { background: #1a2840; }
+  .block:hover .block-hover { opacity: 1; transform: translateY(0); }
+  .block:hover .block-meta { opacity: 0; }
+
+  .block-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .block-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .block-sub {
+    font-size: 0.72rem;
+    color: var(--slate-dim);
+    line-height: 1.5;
+  }
+
+  .block-meta { transition: opacity 0.25s ease; }
+
+  .block-hover {
+    position: absolute;
+    inset: 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1a2840 0%, #1b2f4a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    border: 1px solid var(--border-gold);
+  }
+
+  .block-hover-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .block-hover-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .block-hover-cta {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .block-hover-cta::after { content: '→'; transition: transform 0.2s; }
+  .block:hover .block-hover-cta::after { transform: translateX(4px); }
+
+  .block.completed::after {
+    content: '✓';
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  /* ─── Modal Overlay ─────────────────────────────────────────────────────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 15, 25, 0.92);
+    backdrop-filter: blur(12px);
+    z-index: 3000; /* above BrandSwitcher (2000) and CoherenceNav (1999) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* ─── Modal ─────────────────────────────────────────────────────────────── */
+  .modal {
+    background: var(--navy-mid);
+    border: 1px solid var(--border-gold);
+    width: 100%;
+    max-width: 640px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  .modal-header {
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+
+  .modal-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .modal-intro {
+    font-size: 0.85rem;
+    color: var(--slate-dim);
+    margin-top: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.25rem; right: 1.25rem;
+    background: none;
+    border: none;
+    color: var(--slate-dim);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    padding: 4px;
+  }
+
+  .modal-close:hover { color: var(--white); }
+
+  /* ─── Progress ──────────────────────────────────────────────────────────── */
+  .progress-wrap { padding: 0 2rem; margin-bottom: 2rem; }
+
+  .progress-bar {
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+  }
+
+  /* ─── Question ──────────────────────────────────────────────────────────── */
+  .question-wrap { padding: 0 2rem 2rem; }
+
+  .question-category {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 1.75rem;
+    font-weight: 400;
+  }
+
+  /* ─── Options ───────────────────────────────────────────────────────────── */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .option {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .option:hover { border-color: rgba(181, 147, 83, 0.4); background: rgba(181, 147, 83, 0.04); }
+  .option.selected { border-color: var(--gold); background: rgba(181, 147, 83, 0.08); }
+
+  .option-letter {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.5;
+    min-width: 1.25rem;
+    padding-top: 1px;
+    transition: opacity 0.2s;
+  }
+
+  .option.selected .option-letter { opacity: 1; }
+
+  .option-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .option-sub {
+    font-size: 0.78rem;
+    color: var(--slate-dim);
+    line-height: 1.5;
+  }
+
+  /* ─── Modal Nav ─────────────────────────────────────────────────────────── */
+  .modal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border);
+    gap: 1rem;
+  }
+
+  .btn {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-primary { background: var(--gold); color: var(--navy-deep); }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+  .btn-primary:disabled:hover { background: var(--gold); }
+
+  .btn-ghost { background: transparent; color: var(--slate-dim); border: 1px solid var(--border); }
+  .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+  .btn-ghost:disabled { opacity: 0.2; cursor: not-allowed; }
+
+  /* ─── Results ───────────────────────────────────────────────────────────── */
+  .results-wrap { padding: 0 2rem 2rem; }
+
+  .results-eyebrow {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .results-framing {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--slate);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cluster-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .cluster-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .mirror-text {
+    font-size: 0.9rem;
+    color: var(--slate);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .lever-wrap {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .lever-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .lever-intro { font-size: 0.8rem; color: var(--slate-dim); margin-bottom: 0.5rem; }
+
+  .lever-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--gold);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .cta-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--border-gold);
+    margin: 0 auto 1.5rem;
+  }
+
+  .cta-soft { font-size: 0.8rem; color: var(--slate-dim); text-align: center; margin-bottom: 1rem; }
+
+  .btn-cta {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .btn-cta:hover { background: var(--gold); color: var(--navy-deep); }
+
+  .btn-restart {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--slate-dim);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  .btn-restart:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+
+  /* ─── Responsive ────────────────────────────────────────────────────────── */
+  @media (max-width: 680px) {
+    .page { padding-top: 150px; }
+    .grid-wrapper { grid-template-columns: 1fr; }
+    .row-labels { display: none; }
+    .canvas-grid { grid-template-columns: 1fr; }
+    .block { min-height: 120px; }
+    .modal { max-height: 100vh; border-left: none; border-right: none; }
+    .modal-overlay { padding: 0; align-items: flex-end; }
+  }
+</style>
+
+<script>
+  const blocks = [
+    {
+      id: 1, title: "Leadership Integrity", sub: "How authority behaves under pressure.",
+      hover: "When pressure rises, does authority stabilize — or tighten?",
+      questions: [
+        { category: "When significant resistance appears", text: "When significant resistance appears:", options: [
+          { letter: "A", title: "Dialogue widens before decisions narrow", sub: "We pause to hear before we direct.", cluster: "early" },
+          { letter: "B", title: "Authority clarifies direction with limited consultation", sub: "We check in selectively before moving.", cluster: "mid" },
+          { letter: "C", title: "Authority consolidates quickly to prevent drift", sub: "We move decisively to hold the line.", cluster: "late" }
+        ]},
+        { category: "When performance dips", text: "When performance dips:", options: [
+          { letter: "A", title: "Root causes are explored systemically", sub: "We investigate structure before assigning accountability.", cluster: "early" },
+          { letter: "B", title: "Accountability conversations intensify", sub: "We apply pressure to individuals or teams.", cluster: "mid" },
+          { letter: "C", title: "Urgency increases and tone sharpens", sub: "We push harder and faster.", cluster: "late" }
+        ]},
+        { category: "Under sustained strain", text: "Under sustained strain:", options: [
+          { letter: "A", title: "Leaders regulate tone intentionally", sub: "We model steadiness even when pressure is high.", cluster: "early" },
+          { letter: "B", title: "Leaders push harder toward resolution", sub: "We increase effort and expect others to match it.", cluster: "mid" },
+          { letter: "C", title: "Leaders equate intensity with commitment", sub: "We read urgency as dedication.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Leadership pressure is being metabolized through increased vigilance. Dialogue remains open, but urgency is rising. The system is holding — and the holding is not accidental. It requires intention to maintain.", lever: "…pacing slows before authority narrows." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Authority is tightening under strain. Direction is clarifying, but consultation bandwidth is narrowing. This is not failure — it is structural reflex. The question is whether the tightening is intentional or automatic.", lever: "…clarity is separated from compression." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Intensity is substituting for containment. Pressure is beginning to define tone rather than strategy. When leaders equate urgency with commitment, the system loses its capacity to self-regulate.", lever: "…tone is regulated before outcome is directed." }
+      }
+    },
+    {
+      id: 2, title: "Signal Clarity", sub: "How clarity behaves under urgency.",
+      hover: "Does urgency increase clarity — or distort it?",
+      questions: [
+        { category: "When deadlines tighten", text: "When deadlines tighten:", options: [
+          { letter: "A", title: "Assumptions are revisited", sub: "We pause to clarify before accelerating.", cluster: "early" },
+          { letter: "B", title: "Execution accelerates with partial validation", sub: "We push forward while adjusting on the move.", cluster: "mid" },
+          { letter: "C", title: "Validation drops in favor of speed", sub: "We accelerate decisions without full validation.", cluster: "late" }
+        ]},
+        { category: "During high-stakes decisions", text: "During high-stakes decisions:", options: [
+          { letter: "A", title: "Documentation precedes commitment", sub: "Assumptions are written down before we move.", cluster: "early" },
+          { letter: "B", title: "Verbal alignment replaces formal review", sub: "We reach agreement in conversation, not documentation.", cluster: "mid" },
+          { letter: "C", title: "Decisions are finalized in compressed loops", sub: "We move fast and formalize afterward, if at all.", cluster: "late" }
+        ]},
+        { category: "After major calls", text: "After major calls:", options: [
+          { letter: "A", title: "Structured review follows", sub: "We intentionally examine what happened and why.", cluster: "early" },
+          { letter: "B", title: "Informal reflection occurs", sub: "We talk about it loosely but don't capture it.", cluster: "mid" },
+          { letter: "C", title: "The team moves immediately to next priority", sub: "There is no review — momentum continues.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Clarity is holding, but pressure is building around validation discipline. Your system is absorbing urgency without significant distortion — but the conditions for drift are present. The gap between pace and comprehension is narrow. It does not need to widen.", lever: "…assumptions are documented before mobilization." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Signal quality is fluctuating as pace increases. Your system is moving faster than it is confirming — decisions are being made with partial validation, and the gap between what is broadcast and what is understood is beginning to widen. This is not dysfunction. It is structural reflex under load.", lever: "…validation gates are reintroduced before the next commitment." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Velocity is beginning to outpace coherence. Your system has normalized acceleration to the point where validation has become an afterthought. The cost is not visible yet — but it is accumulating. Narrative debt compounds quietly. Trust thins before it breaks.", lever: "…acceleration pauses until assumptions are surfaced and shared." }
+      }
+    },
+    {
+      id: 3, title: "Relational Coherence", sub: "How belonging responds to dissent.",
+      hover: "When dissent appears, does belonging widen — or narrow?",
+      questions: [
+        { category: "When someone challenges strategy", text: "When someone challenges strategy:", options: [
+          { letter: "A", title: "Challenge is invited", sub: "Dissent is treated as data, not disruption.", cluster: "early" },
+          { letter: "B", title: "Challenge is tolerated", sub: "We hear it but don't always integrate it.", cluster: "mid" },
+          { letter: "C", title: "Challenge affects access or tone", sub: "Those who push back lose standing quietly.", cluster: "late" }
+        ]},
+        { category: "In conflict cycles", text: "In conflict cycles:", options: [
+          { letter: "A", title: "Direct dialogue is structured", sub: "We create space for the hard conversation.", cluster: "early" },
+          { letter: "B", title: "Conversations move into smaller groups", sub: "The real talk happens in private.", cluster: "mid" },
+          { letter: "C", title: "Alliances begin forming informally", sub: "People find their corners.", cluster: "late" }
+        ]},
+        { category: "After visible disagreement", text: "After visible disagreement:", options: [
+          { letter: "A", title: "Repair is intentional", sub: "We name the tension and close the loop.", cluster: "early" },
+          { letter: "B", title: "Tension is managed quietly", sub: "We smooth it over without naming it.", cluster: "mid" },
+          { letter: "C", title: "Distance increases subtly", sub: "The gap widens without acknowledgment.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Disagreement is still relationally contained. The system can hold tension without fracturing. This is a structural asset — it means your culture has enough psychological safety to surface what needs to be seen.", lever: "…dissent pathways are formalized before pressure removes them." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Belonging is becoming conditional under stress. Those who align are closer. Those who question are further away. This dynamic often operates beneath awareness — visible only when someone leaves, or stops speaking.", lever: "…belonging is decoupled from alignment." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Fragmentation is emerging beneath visible calm. The surface looks held. Beneath it, factions are forming, trust is siloing, and the information reaching leadership is increasingly curated. Structural repair requires naming what is unsaid.", lever: "…conflict is routed back to shared space." }
+      }
+    },
+    {
+      id: 4, title: "Strategic Sequencing", sub: "How priorities behave under strain.",
+      hover: "Are priorities sequenced — or layered?",
+      questions: [
+        { category: "When new initiatives arise", text: "When new initiatives arise:", options: [
+          { letter: "A", title: "Capacity is cleared first", sub: "We finish or pause something before starting something new.", cluster: "early" },
+          { letter: "B", title: "Adjustments are partial", sub: "We shift some things but keep most in motion.", cluster: "mid" },
+          { letter: "C", title: "Work is layered on existing load", sub: "New priorities are added without removing old ones.", cluster: "late" }
+        ]},
+        { category: "Mid-quarter shifts", text: "Mid-quarter shifts:", options: [
+          { letter: "A", title: "Re-sequencing occurs", sub: "We formally reprioritize when conditions change.", cluster: "early" },
+          { letter: "B", title: "Deadlines compress", sub: "We push harder to fit everything in.", cluster: "mid" },
+          { letter: "C", title: "New priorities override existing work", sub: "Previous commitments quietly deprioritize.", cluster: "late" }
+        ]},
+        { category: "Initiative completion rate", text: "Initiative completion rate:", options: [
+          { letter: "A", title: "Majority complete within scope", sub: "We finish what we start.", cluster: "early" },
+          { letter: "B", title: "Mixed outcomes", sub: "Some complete, some extend, some fade.", cluster: "mid" },
+          { letter: "C", title: "Frequent reversals or extensions", sub: "Initiatives start fast and stall.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Pressure is testing sequencing discipline. The system is managing load, but new demands are beginning to compete with existing commitments. The capacity to sequence is present — and worth protecting.", lever: "…concurrent strategic threads are capped before load increases." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Layering is increasing cognitive load. Your system is carrying more than it can cleanly execute — not because people lack capability, but because the initiative stack has outpaced the capacity to sequence. Completion rates drop before anyone says so.", lever: "…new launches pause until the backlog clears." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Oscillation is replacing sequencing. Your system starts fast and stalls — not from lack of effort, but from structural overload. The problem is not execution. It is architecture. Too much is in motion at once.", lever: "…initiative gating is re-established before further expansion." }
+      }
+    },
+    {
+      id: 5, title: "Capacity Discipline", sub: "How energy matches expectation.",
+      hover: "Is workload matched to energy — or normalized beyond it?",
+      questions: [
+        { category: "Executive calendars", text: "Executive calendars:", options: [
+          { letter: "A", title: "Include recovery blocks", sub: "White space is protected by design.", cluster: "early" },
+          { letter: "B", title: "Are tightly scheduled", sub: "Most time is committed; margin is slim.", cluster: "mid" },
+          { letter: "C", title: "Are fully reactive", sub: "Time is consumed by demand, not design.", cluster: "late" }
+        ]},
+        { category: "After intense cycles", text: "After intense cycles:", options: [
+          { letter: "A", title: "Recovery time is structured", sub: "We build in reset before the next push.", cluster: "early" },
+          { letter: "B", title: "Informal slowdown occurs", sub: "We decompress without naming it.", cluster: "mid" },
+          { letter: "C", title: "Work resumes at same intensity", sub: "The pace doesn't shift — it just continues.", cluster: "late" }
+        ]},
+        { category: "Busyness is perceived as", text: "Busyness is perceived as:", options: [
+          { letter: "A", title: "A risk indicator", sub: "High load is a signal to investigate, not celebrate.", cluster: "early" },
+          { letter: "B", title: "A commitment signal", sub: "Being busy means you're contributing.", cluster: "mid" },
+          { letter: "C", title: "A cultural expectation", sub: "Busyness is just how it is here.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Load is visible and monitored. Your system has not yet normalized overextension — which means you still have the structural capacity to intervene. The risk is not current. It is what normalizes if this moment passes without attention.", lever: "…energy is tracked alongside output." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Busyness is normalizing beyond design. Your system is absorbing demand without signaling distress — which means the distress is invisible until it surfaces in attrition, error, or disengagement. Load has become a background condition rather than a managed variable.", lever: "…recovery cadence is introduced before the next cycle." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Chronic strain is becoming structural. What began as a busy period has calcified into an operating norm. The cost is carried by individuals before it appears in metrics. By the time it shows in data, the structural damage is already underway.", lever: "…capacity assumptions are redesigned, not managed." }
+      }
+    },
+    {
+      id: 6, title: "Decision Governance", sub: "How choices are validated.",
+      hover: "Are major decisions validated — or accelerated?",
+      questions: [
+        { category: "Large commitments", text: "Large commitments are:", options: [
+          { letter: "A", title: "Logged and reviewed", sub: "We document decisions and revisit them intentionally.", cluster: "early" },
+          { letter: "B", title: "Socially reinforced", sub: "The right people are aligned before we move.", cluster: "mid" },
+          { letter: "C", title: "Informally finalized", sub: "Decisions happen in conversation and don't get revisited.", cluster: "late" }
+        ]},
+        { category: "Dissent in decision forums", text: "Dissent in decision forums:", options: [
+          { letter: "A", title: "Is documented", sub: "Disagreement is recorded, not just heard.", cluster: "early" },
+          { letter: "B", title: "Is heard but not tracked", sub: "We consider objections but don't formalize them.", cluster: "mid" },
+          { letter: "C", title: "Is discouraged implicitly", sub: "The room reads that pushback slows things down.", cluster: "late" }
+        ]},
+        { category: "Forecast variance", text: "Forecast variance is:", options: [
+          { letter: "A", title: "Analyzed structurally", sub: "We ask what the variance reveals about our assumptions.", cluster: "early" },
+          { letter: "B", title: "Adjusted tactically", sub: "We revise the forecast and move on.", cluster: "mid" },
+          { letter: "C", title: "Attributed externally", sub: "The variance is explained by market or circumstance.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Governance is present but pressure-sensitive. Your system is documenting and reviewing decisions — but the discipline is fragile under load. When speed increases, the review cycles are often the first thing that compress.", lever: "…post-decision review cycles are protected, not skipped." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Validation discipline is softening. Decisions are being made with social alignment rather than structural review. The risk is not that bad decisions are being made — it is that the signals of a bad decision are harder to detect without documentation.", lever: "…dissent is documented explicitly, not just discussed." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Acceleration is replacing governance. Decisions are moving faster than the structures designed to validate them. This is not laziness — it is momentum. And momentum, without governance, accrues structural debt that surfaces later as crisis.", lever: "…validation checkpoints are reinstated before the next major commitment." }
+      }
+    },
+    {
+      id: 7, title: "Cultural Signal Strength", sub: "What behavior is truly rewarded.",
+      hover: "What behavior is actually rewarded under pressure?",
+      questions: [
+        { category: "During strain, praise flows toward", text: "During strain, praise flows toward:", options: [
+          { letter: "A", title: "Stabilizers", sub: "Those who hold things steady get recognized.", cluster: "early" },
+          { letter: "B", title: "High-output performers", sub: "Those who produce the most get celebrated.", cluster: "mid" },
+          { letter: "C", title: "Those who absorb volatility", sub: "Those who never complain are quietly prized.", cluster: "late" }
+        ]},
+        { category: "When tension rises", text: "When tension rises:", options: [
+          { letter: "A", title: "Transparency increases", sub: "We say more, not less.", cluster: "early" },
+          { letter: "B", title: "Messaging tightens", sub: "Communication becomes more controlled.", cluster: "mid" },
+          { letter: "C", title: "Tone becomes sharper", sub: "Language gets clipped; warmth recedes.", cluster: "late" }
+        ]},
+        { category: "Risk-taking under pressure", text: "Risk-taking under pressure:", options: [
+          { letter: "A", title: "Is structured", sub: "We define the risk, bound it, and learn from it.", cluster: "early" },
+          { letter: "B", title: "Is tolerated", sub: "We accept it if outcomes are good.", cluster: "mid" },
+          { letter: "C", title: "Is quietly avoided", sub: "People read the room and play safe.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Cultural signals are mostly aligned. What is praised and what is valued appear to match. But cultural drift is subtle — it often begins in the gap between what leaders say they value and what they reward in high-pressure moments.", lever: "…stabilizing behavior is publicly recognized, not just quietly appreciated." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Performance may be eclipsing coherence. The culture is rewarding output over sustainability. High producers are celebrated; stabilizers are invisible. Over time, the invisible contributors either adapt to the culture or leave it.", lever: "…praise aligns with long-term coherence, not short-term output." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Intensity is being mistaken for strength. What gets rewarded is the capacity to absorb pressure without breaking. This produces a culture that cannot signal distress — which means distress accumulates invisibly until it erupts.", lever: "…incentives are re-anchored to clarity and stability, not intensity." }
+      }
+    },
+    {
+      id: 8, title: "Structural Alignment", sub: "Do incentives match stated strategy?",
+      hover: "Do incentives reinforce your stated strategy?",
+      questions: [
+        { category: "KPIs across functions", text: "KPIs across functions are:", options: [
+          { letter: "A", title: "Integrated", sub: "Metrics are designed to reinforce each other.", cluster: "early" },
+          { letter: "B", title: "Partially overlapping", sub: "Some alignment exists; some friction remains.", cluster: "mid" },
+          { letter: "C", title: "Contradictory", sub: "Teams are optimizing in directions that conflict.", cluster: "late" }
+        ]},
+        { category: "Incentive structures reward", text: "Incentive structures reward:", options: [
+          { letter: "A", title: "Cross-functional success", sub: "People are measured on outcomes that require collaboration.", cluster: "early" },
+          { letter: "B", title: "Department performance", sub: "Teams are primarily accountable to their own results.", cluster: "mid" },
+          { letter: "C", title: "Short-term metrics", sub: "Quarterly performance dominates over strategic outcomes.", cluster: "late" }
+        ]},
+        { category: "Strategy shifts", text: "Strategy shifts are:", options: [
+          { letter: "A", title: "Intentional", sub: "Changes in direction are explicit and structured.", cluster: "early" },
+          { letter: "B", title: "Reactive", sub: "We respond to conditions and adjust along the way.", cluster: "mid" },
+          { letter: "C", title: "Oscillatory", sub: "Direction changes frequently without clear signal.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Alignment is holding with minor friction. The structure is mostly coherent — but coherence requires maintenance. When strategy shifts without corresponding incentive adjustment, the misalignment compounds quietly.", lever: "…KPI consistency is audited quarterly." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Incentives are drifting from strategy. Your teams are executing against metrics that no longer fully reflect strategic priorities. This produces effort without traction — people working hard in directions that don't compound toward the stated goal.", lever: "…incentive contradictions are reconciled before the next planning cycle." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Misalignment is reinforcing volatility. The structure is working against the strategy. Not because people are failing — but because the incentive system is sending conflicting signals. Effort is real. Direction is fragmented.", lever: "…scaling pauses until structural alignment stabilizes." }
+      }
+    },
+    {
+      id: 9, title: "Acceleration Stewardship", sub: "Is speed governed — or compounding instability?",
+      hover: "Is speed compounding clarity — or compounding volatility?",
+      questions: [
+        { category: "AI adoption has", text: "AI adoption has:", options: [
+          { letter: "A", title: "Increased clarity proportionally", sub: "Speed and comprehension have grown together.", cluster: "early" },
+          { letter: "B", title: "Increased speed moderately", sub: "We're faster, with some oversight gaps.", cluster: "mid" },
+          { letter: "C", title: "Increased velocity beyond oversight", sub: "We're moving faster than we can govern.", cluster: "late" }
+        ]},
+        { category: "Decision pace", text: "Decision pace is:", options: [
+          { letter: "A", title: "Intentionally governed", sub: "We design the speed at which we decide.", cluster: "early" },
+          { letter: "B", title: "Responsive", sub: "We move at the speed the situation demands.", cluster: "mid" },
+          { letter: "C", title: "Reactive", sub: "We're always responding; we rarely design.", cluster: "late" }
+        ]},
+        { category: "Oversight documentation", text: "Oversight documentation is:", options: [
+          { letter: "A", title: "Formalized", sub: "Governance keeps pace with acceleration.", cluster: "early" },
+          { letter: "B", title: "Partial", sub: "Some decisions are documented; many are not.", cluster: "mid" },
+          { letter: "C", title: "Minimal", sub: "We move fast; documentation follows if at all.", cluster: "late" }
+        ]}
+      ],
+      results: {
+        early: { name: "Early-Stage Escalation Signals", mirror: "Acceleration is governed with awareness. Your system is moving faster and maintaining oversight. This is the structural goal — speed and coherence moving together. The discipline required to sustain this increases as acceleration continues.", lever: "…governance discipline is protected as velocity grows." },
+        mid: { name: "Mid-Stage Escalation Signals", mirror: "Speed is outpacing validation in places. The gap between how fast decisions are made and how thoroughly they are reviewed is widening. This is not failure — it is a structural pattern that requires attention before it normalizes.", lever: "…human validation gates are inserted before the next acceleration cycle." },
+        late: { name: "Late-Stage Escalation Signals", mirror: "Velocity is compounding volatility. Your system has normalized a pace that exceeds its governance capacity. The decisions being made are faster than the structures designed to review them. The risk is not visible yet — it is accumulating.", lever: "…acceleration slows until oversight stabilizes." }
+      }
+    }
+  ];
+
+  let currentBlock = null;
+  let currentQ = 0;
+  let answers = [];
+  let completedBlocks = new Set();
+
+  function renderGrid() {
+    const grid = document.getElementById('canvasGrid');
+    if (!grid) return;
+    grid.innerHTML = blocks.map(b => `
+      <div class="block${completedBlocks.has(b.id) ? ' completed' : ''}" data-block-id="${b.id}">
+        <span class="block-num">0${b.id}</span>
+        <div class="block-meta">
+          <h3 class="block-title">${b.title}</h3>
+          <p class="block-sub">${b.sub}</p>
+        </div>
+        <div class="block-hover">
+          <span class="block-hover-label">Explore this block</span>
+          <p class="block-hover-q">"${b.hover}"</p>
+          <span class="block-hover-cta">Begin micro-diagnostic</span>
+        </div>
+      </div>
+    `).join('');
+
+    grid.querySelectorAll('.block').forEach(el => {
+      el.addEventListener('click', () => openModal(parseInt(el.dataset.blockId)));
+    });
+  }
+
+  function openModal(blockId) {
+    currentBlock = blocks.find(b => b.id === blockId);
+    resetState();
+    document.getElementById('modalLabel').textContent = `${currentBlock.title} — Micro-Diagnostic`;
+    document.getElementById('modalTitle').textContent = currentBlock.title;
+    renderQuestion();
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function resetState() {
+    currentQ = 0;
+    answers = [];
+    document.getElementById('questionView').style.display = 'block';
+    document.getElementById('resultsView').style.display = 'none';
+  }
+
+  function renderQuestion() {
+    const q = currentBlock.questions[currentQ];
+    const progress = ((currentQ + 1) / 3) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+    document.getElementById('progressText').textContent = `Question ${currentQ + 1} of 3`;
+    document.getElementById('questionCategory').textContent = q.category;
+    document.getElementById('questionText').textContent = q.text;
+
+    const container = document.getElementById('optionsContainer');
+    container.innerHTML = '';
+    q.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'option' + (answers[currentQ] === opt.cluster ? ' selected' : '');
+      btn.innerHTML = `
+        <span class="option-letter">${opt.letter}</span>
+        <div class="option-body">
+          <div class="option-title">${opt.title}</div>
+          <div class="option-sub">${opt.sub}</div>
+        </div>
+      `;
+      btn.addEventListener('click', () => selectAnswer(opt.cluster, btn));
+      container.appendChild(btn);
+    });
+
+    document.getElementById('prevBtn').disabled = currentQ === 0;
+    document.getElementById('nextBtn').disabled = answers[currentQ] === undefined;
+    document.getElementById('nextBtn').textContent = currentQ === 2 ? 'View Results →' : 'Next →';
+  }
+
+  function selectAnswer(cluster, el) {
+    answers[currentQ] = cluster;
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('nextBtn').disabled = false;
+  }
+
+  function nextQuestion() {
+    if (currentQ < 2) { currentQ++; renderQuestion(); }
+    else { showResults(); }
+  }
+
+  function prevQuestion() {
+    if (currentQ > 0) { currentQ--; renderQuestion(); }
+  }
+
+  function showResults() {
+    const counts = { early: 0, mid: 0, late: 0 };
+    answers.forEach(a => { if (a) counts[a]++; });
+    const cluster = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+    const r = currentBlock.results[cluster];
+
+    document.getElementById('clusterName').textContent = r.name;
+    document.getElementById('mirrorText').textContent = r.mirror;
+    document.getElementById('leverText').textContent = r.lever;
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressText').textContent = 'Complete';
+    document.getElementById('questionView').style.display = 'none';
+    document.getElementById('resultsView').style.display = 'block';
+    document.getElementById('modal').scrollTop = 0;
+
+    completedBlocks.add(currentBlock.id);
+    renderGrid();
+  }
+
+  function init() {
+    renderGrid();
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    });
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('prevBtn').addEventListener('click', prevQuestion);
+    document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      resetState();
+      renderQuestion();
+      document.getElementById('modal').scrollTop = 0;
+    });
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  }
+
+  // Run on load and after Astro view transitions
+  init();
+  document.addEventListener('astro:after-swap', init);
+</script>
