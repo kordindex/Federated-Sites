@@ -1,7 +1,6 @@
 ---
-import Headline from '~/components/ui/Headline.astro';
-import ItemGrid from '~/components/ui/ItemGrid.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
 import type { Faqs as Props } from '~/types';
 
 const {
@@ -9,7 +8,6 @@ const {
   subtitle = '',
   tagline = '',
   items = [],
-  columns = 2,
 
   id,
   isDark = false,
@@ -18,16 +16,183 @@ const {
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-4xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
-  <ItemGrid
-    items={items}
-    columns={columns}
-    defaultIcon="tabler:chevron-right"
-    classes={{
-      container: `${columns === 1 ? 'max-w-4xl' : ''} gap-y-8 md:gap-y-12`,
-      panel: 'max-w-none',
-      icon: 'flex-shrink-0 mt-1 w-6 h-6 text-primary',
-    }}
-  />
+
+  <div class="faq-list" id="faq-list">
+    {items.map((item, index) => (
+      <div class="faq-item" data-index={index}>
+        <button
+          class="faq-trigger"
+          aria-expanded="false"
+          aria-controls={`faq-answer-${index}`}
+        >
+          <span class="faq-question">{item.title}</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div
+          class="faq-answer"
+          id={`faq-answer-${index}`}
+          role="region"
+          hidden
+        >
+          <p class="faq-answer-text">{item.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
 </WidgetWrapper>
+
+<style>
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    font-family: inherit;
+  }
+
+  .faq-trigger:focus-visible {
+    outline: 2px solid var(--aw-color-primary, #b59353);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: rgb(var(--aw-color-text-heading, 255 255 255));
+    transition: color 0.2s ease;
+  }
+
+  .faq-trigger:hover .faq-question,
+  .faq-trigger[aria-expanded="true"] .faq-question {
+    color: var(--aw-color-primary, #b59353);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--aw-color-primary, #b59353);
+    border: 1px solid rgba(181, 147, 83, 0.4);
+    transition: transform 0.3s ease, background 0.2s ease;
+  }
+
+  .faq-trigger[aria-expanded="true"] .faq-icon {
+    transform: rotate(45deg);
+    background: rgba(181, 147, 83, 0.1);
+  }
+
+  .faq-answer {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-answer:not([hidden]) {
+    max-height: 600px;
+  }
+
+  .faq-answer[hidden] {
+    display: block !important; /* override hidden so CSS transition works */
+    max-height: 0;
+    visibility: hidden;
+  }
+
+  .faq-answer-text {
+    padding: 0 0 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgb(var(--aw-color-text-muted, 180 180 180));
+    max-width: 720px;
+  }
+
+  @media (max-width: 640px) {
+    .faq-trigger {
+      padding: 1.25rem 0;
+    }
+
+    .faq-question {
+      font-size: 0.95rem;
+    }
+
+    .faq-answer-text {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  function initFAQs() {
+    const list = document.getElementById('faq-list');
+    if (!list) return;
+
+    const triggers = list.querySelectorAll<HTMLButtonElement>('.faq-trigger');
+
+    function closeAll() {
+      triggers.forEach(t => {
+        t.setAttribute('aria-expanded', 'false');
+        const answer = document.getElementById(t.getAttribute('aria-controls')!);
+        if (answer) answer.setAttribute('hidden', '');
+      });
+    }
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+        // Close all first
+        closeAll();
+
+        // If it wasn't open, open it
+        if (!isOpen) {
+          trigger.setAttribute('aria-expanded', 'true');
+          const answer = document.getElementById(trigger.getAttribute('aria-controls')!);
+          if (answer) answer.removeAttribute('hidden');
+        }
+      });
+    });
+
+    // Click anywhere outside to close
+    document.addEventListener('click', (e) => {
+      if (!list.contains(e.target as Node)) {
+        closeAll();
+      }
+    });
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAll();
+    });
+  }
+
+  // Run on load and after Astro view transitions
+  initFAQs();
+  document.addEventListener('astro:after-swap', initFAQs);
+</script>
