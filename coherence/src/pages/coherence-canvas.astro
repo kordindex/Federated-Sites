@@ -1,5 +1,5 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import Layout from '~/layouts/CanvasLayout.astro';
 
 const metadata = {
   title: 'Coherence Canvas — The Coherence Co.',
@@ -90,9 +90,23 @@ const metadata = {
 
 </Layout>
 
-<style>
+<style is:global>
+  /* ─── Canvas Tailwind reset overrides ──────────────────────────────────── */
+  .canvas-grid, .canvas-grid * { box-sizing: border-box; }
+  .block { display: flex !important; }
+  .block-hover { display: flex !important; }
+  .canvas-grid { display: grid !important; }
+  .grid-wrapper { display: grid !important; }
+  .options { display: flex !important; }
+  .option { display: flex !important; width: 100% !important; }
+  .modal-overlay { display: flex !important; }
+  .modal-nav { display: flex !important; }
+  .progress-text { display: flex !important; }
+  .results-wrap, .question-wrap, .modal-header { display: block !important; }
+  .btn, .btn-cta, .btn-restart, .modal-close { font-family: 'Inter', sans-serif !important; }
+
   /* ─── Force dark background ─────────────────────────────────────────────── */
-  :global(body) {
+  body {
     background-color: #0f1623 !important;
   }
 
