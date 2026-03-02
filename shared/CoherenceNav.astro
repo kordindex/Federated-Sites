@@ -14,8 +14,26 @@ const currentPath = Astro.url.pathname;
       <li><a href="/chronicles" class={currentPath.startsWith('/chronicles') ? 'active' : ''}>CHRONICLES</a></li>
     </ul>
     <a href="/contact" class="nav-cta">GET YOUR COHERENCE SCORE</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <div class="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="/about" class={currentPath.startsWith('/about') ? 'active' : ''}>ABOUT</a></li>
+      <li><a href="/coherence-canvas" class={currentPath.startsWith('/coherence-canvas') ? 'active' : ''}>CANVAS</a></li>
+      <li><a href="/intensive" class={currentPath.startsWith('/intensive') ? 'active' : ''}>INTENSIVE</a></li>
+      <li><a href="/chronicles" class={currentPath.startsWith('/chronicles') ? 'active' : ''}>CHRONICLES</a></li>
+    </ul>
+    <a href="/contact" class="mobile-cta">GET YOUR COHERENCE SCORE</a>
+  </div>
+</div>
+
 <style>
   .coherence-nav {
     position: fixed;
@@ -76,9 +94,7 @@ const currentPath = Astro.url.pathname;
     transition: color 0.2s;
   }
   .nav-links a:hover,
-  .nav-links a.active {
-    color: #fff;
-  }
+  .nav-links a.active { color: #fff; }
   .nav-cta {
     font-size: 0.7rem;
     font-weight: 700;
@@ -92,19 +108,149 @@ const currentPath = Astro.url.pathname;
     flex-shrink: 0;
     transition: background 0.2s, color 0.2s;
   }
-  .nav-cta:hover {
-    background: #fff;
-    color: #1b263b;
+  .nav-cta:hover { background: #fff; color: #1b263b; }
+
+  /* ─── Hamburger ──────────────────────────────────────────────────────────── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
   }
-  @media (max-width: 768px) {
-    .coherence-nav {
-      top: 65px;
-    }
-    .nav-inner {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .standard-badge { display: none; }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─── Mobile overlay ─────────────────────────────────────────────────────── */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 150px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 150px);
+    background: rgba(11, 17, 28, 0.97);
+    z-index: 1998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .mobile-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem;
+  }
+  .mobile-nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+  .mobile-nav-links li { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+  .mobile-nav-links li:first-child { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .mobile-nav-links a {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    padding: 1.25rem 0;
+    transition: color 0.2s;
+  }
+  .mobile-nav-links a:hover { color: #ffffff; }
+  .mobile-nav-links a.active { color: #b59353; }
+  .mobile-cta {
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1b263b;
+    background: #b59353;
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .mobile-cta:hover { background: #c9aa70; }
+
+  /* ─── Responsive ─────────────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .coherence-nav { top: 65px; }
+    .mobile-overlay { top: 125px; height: calc(100vh - 125px); }
+    .nav-links { display: none; }
     .nav-cta { display: none; }
+    .standard-badge { display: none; }
+    .hamburger { display: flex; }
+    .mobile-overlay { display: block; }
   }
 </style>
+
+<script>
+  function initNav() {
+    const hamburger = document.getElementById('hamburger');
+    const overlay = document.getElementById('mobileOverlay');
+    const menu = overlay?.querySelector('.mobile-menu');
+    if (!hamburger || !overlay || !menu) return;
+
+    function openMenu() {
+      hamburger.classList.add('open');
+      overlay.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      overlay.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      overlay.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    // Click outside menu closes
+    overlay.addEventListener('click', (e) => {
+      if (!menu.contains(e.target)) closeMenu();
+    });
+
+    // Nav links close menu
+    overlay.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Escape closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  initNav();
+  document.addEventListener('astro:after-swap', initNav);
+</script>
