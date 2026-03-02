@@ -216,6 +216,11 @@ const currentPath = Astro.url.pathname;
     const menu = overlay?.querySelector('.mobile-menu');
     if (!hamburger || !overlay || !menu) return;
 
+    // Abort any previous listeners before re-attaching
+    if (window._navController) window._navController.abort();
+    window._navController = new AbortController();
+    const signal = window._navController.signal;
+
     function openMenu() {
       hamburger.classList.add('open');
       overlay.classList.add('open');
@@ -233,22 +238,19 @@ const currentPath = Astro.url.pathname;
     hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
       overlay.classList.contains('open') ? closeMenu() : openMenu();
-    });
+    }, { signal });
 
-    // Click outside menu closes
     overlay.addEventListener('click', (e) => {
       if (!menu.contains(e.target)) closeMenu();
-    });
+    }, { signal });
 
-    // Nav links close menu
     overlay.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
+      link.addEventListener('click', closeMenu, { signal });
     });
 
-    // Escape closes
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMenu();
-    });
+    }, { signal });
   }
 
   initNav();
