@@ -28,9 +28,14 @@ const products = [
 
 <Layout metadata={metadata}>
 
-  <Fragment slot="head">
-    <script type="text/javascript" src="https://payhip.com/payhip.js"></script>
-  </Fragment>
+  <script is:inline>
+  (function() {
+    var script = document.createElement('script');
+    script.src = 'https://payhip.com/payhip.js';
+    script.type = 'text/javascript';
+    document.head.appendChild(script);
+  })();
+</script>
 
   <!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
   <section class="resources-hero">
