@@ -72,13 +72,9 @@ const products = [
             </ul>
             <div class="product-footer">
   
-    <a href={`https://payhip.com/b/${product.id}`}
-    class="payhip-buy-button product-cta"
-    data-theme="none"
-    data-product={product.id}
-  >
-    {product.cta}
-  </a>
+    <button onclick="Payhip.Checkout.open({product: 'g7HlY'})" class="product-cta">
+  Purchase the Diagnostic
+</button>
 </div> </div>
         ))}
 
