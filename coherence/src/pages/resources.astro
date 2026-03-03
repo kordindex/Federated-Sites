@@ -3,12 +3,12 @@ import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
   title: 'Resources — The Coherence Co.',
-  description: 'Diagnostic tools and structured engagements for executive teams.',
+  description: 'Diagnostic tools and structured engagements for executive teams navigating pressure, pace, and organizational coherence.',
 };
 
 const products = [
   {
-   id: 'g7HlY',
+    id: 'g7HlY',
     category: 'Diagnostic',
     title: 'Essential Coherence Diagnostic',
     price: '$395',
@@ -28,6 +28,11 @@ const products = [
 
 <Layout metadata={metadata}>
 
+  <Fragment slot="head">
+    <script type="text/javascript" src="https://payhip.com/payhip.js"></script>
+  </Fragment>
+
+  <!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
   <section class="resources-hero">
     <div class="container">
       <span class="eyebrow">The Coherence Co.</span>
@@ -36,6 +41,7 @@ const products = [
     </div>
   </section>
 
+  <!-- ─── Products ─────────────────────────────────────────────────────────── -->
   <section class="section">
     <div class="container">
       <div class="products-grid">
@@ -60,17 +66,19 @@ const products = [
               ))}
             </ul>
             <div class="product-footer">
-              <button
-                class="payhip-buy-btn product-cta"
+              
+                href={`https://payhip.com/b/${product.id}`}
+                class="payhip-buy-button product-cta"
                 data-theme="none"
-                data-product-key={product.id}
+                data-product={product.id}
               >
                 {product.cta}
-              </button>
+              </a>
             </div>
           </div>
         ))}
 
+        <!-- Coming soon card -->
         <div class="product-card product-card--coming">
           <div class="coming-inner">
             <span class="coming-label">Coming Soon</span>
@@ -91,8 +99,6 @@ const products = [
   </section>
 
 </Layout>
-
-<script src="https://payhip.com/payhip.js"></script>
 
 <style>
   :global(body) { background-color: #0f1623; }
@@ -236,6 +242,8 @@ const products = [
     cursor: pointer;
     transition: background 0.2s;
     text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
   }
 
   .product-cta:hover { background: var(--gold-light); }
@@ -294,5 +302,6 @@ const products = [
     .resources-hero { padding: 140px 0 60px; }
     .products-grid { grid-template-columns: 1fr; }
     .product-card { padding: 2rem; }
+    .product-card--coming { min-height: 260px; }
   }
 </style>
