@@ -1,0 +1,298 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Resources — The Coherence Co.',
+  description: 'Diagnostic tools and structured engagements for executive teams.',
+};
+
+const products = [
+  {
+    id: 'PLACEHOLDER_KEY',
+    category: 'Diagnostic',
+    title: 'Essential Coherence Diagnostic',
+    price: '$395',
+    priceNote: 'One-time',
+    description: 'A structured 20-question diagnostic that produces a detailed escalation profile across all nine domains of the Coherence Architecture. Designed for individual executives beginning to name what they are seeing.',
+    features: [
+      '20-question structured diagnostic',
+      'Escalation profile across all 9 domains',
+      'Detailed results report (PDF)',
+      'Coherence lever recommendations',
+      'Entry point to Executive Architecture',
+    ],
+    cta: 'Purchase the Diagnostic',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+
+  <section class="resources-hero">
+    <div class="container">
+      <span class="eyebrow">The Coherence Co.</span>
+      <h1 class="hero-headline">Resources</h1>
+      <p class="hero-sub">Diagnostic tools and structured engagements for executive teams. Each is a calibrated entry point — not a product to be purchased, but a structured process to begin.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="products-grid">
+
+        {products.map((product) => (
+          <div class="product-card product-card--featured">
+            <div class="product-header">
+              <span class="product-category">{product.category}</span>
+              <div class="product-price-wrap">
+                <span class="product-price">{product.price}</span>
+                <span class="product-price-note">{product.priceNote}</span>
+              </div>
+            </div>
+            <h2 class="product-title">{product.title}</h2>
+            <p class="product-description">{product.description}</p>
+            <ul class="product-features">
+              {product.features.map((f) => (
+                <li class="product-feature">
+                  <span class="feature-marker">—</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="product-footer">
+              <button
+                class="payhip-buy-btn product-cta"
+                data-theme="none"
+                data-product-key={product.id}
+              >
+                {product.cta}
+              </button>
+            </div>
+          </div>
+        ))}
+
+        <div class="product-card product-card--coming">
+          <div class="coming-inner">
+            <span class="coming-label">Coming Soon</span>
+            <h2 class="coming-title">Executive Coherence Architecture</h2>
+            <p class="coming-price">$2,500</p>
+            <p class="coming-desc">An 80-question deep diagnostic followed by a structured executive debrief and 30/90-day recalibration engagement.</p>
+            <a href="/contact" class="coming-cta">Inquire →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="resources-note">
+        <div class="note-rule"></div>
+        <p>Looking for the Leadership Calibration Labs or a bespoke engagement? <a href="/contact">Start a conversation →</a></p>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script src="https://payhip.com/payhip.js"></script>
+
+<style>
+  :global(body) { background-color: #0f1623; }
+
+  :root {
+    --navy: #1b263b;
+    --navy-deep: #0f1623;
+    --navy-mid: #152033;
+    --gold: #b59353;
+    --gold-light: #c9aa70;
+    --gold-border: rgba(181, 147, 83, 0.3);
+    --white: #ffffff;
+    --slate: #d0d4db;
+    --slate-dim: rgba(208, 212, 219, 0.55);
+    --border: rgba(255, 255, 255, 0.08);
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 80px 0 120px; }
+
+  .resources-hero {
+    background: var(--navy-deep);
+    padding: 160px 0 80px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--slate-dim);
+    max-width: 560px;
+    line-height: 1.75;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .product-card {
+    background: var(--navy-mid);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .product-card--featured { border-top: 2px solid var(--gold); }
+
+  .product-card--coming {
+    background: var(--navy-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+  }
+
+  .product-header { display: flex; justify-content: space-between; align-items: flex-start; }
+
+  .product-category {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .product-price-wrap { text-align: right; }
+
+  .product-price {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .product-price-note { font-size: 0.65rem; color: var(--slate-dim); }
+
+  .product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+  }
+
+  .product-description { font-size: 0.88rem; color: var(--slate-dim); line-height: 1.75; }
+
+  .product-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    flex: 1;
+  }
+
+  .product-feature { display: flex; gap: 0.75rem; font-size: 0.82rem; color: var(--slate); line-height: 1.5; }
+  .feature-marker { color: var(--gold); flex-shrink: 0; font-weight: 700; }
+
+  .product-footer { padding-top: 1rem; border-top: 1px solid var(--border); }
+
+  .product-cta {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy-deep);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: center;
+  }
+
+  .product-cta:hover { background: var(--gold-light); }
+
+  .coming-inner { text-align: center; max-width: 280px; }
+
+  .coming-label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+    margin-bottom: 1rem;
+  }
+
+  .coming-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    opacity: 0.6;
+  }
+
+  .coming-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+
+  .coming-desc { font-size: 0.8rem; color: var(--slate-dim); line-height: 1.7; margin-bottom: 1.5rem; opacity: 0.7; }
+
+  .coming-cta {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .coming-cta:hover { color: var(--gold-light); }
+
+  .resources-note { margin-top: 3rem; text-align: center; }
+  .note-rule { width: 40px; height: 1px; background: var(--gold-border); margin: 0 auto 1.5rem; }
+  .resources-note p { font-size: 0.85rem; color: var(--slate-dim); }
+  .resources-note a { color: var(--gold); text-decoration: none; }
+  .resources-note a:hover { color: var(--gold-light); }
+
+  @media (max-width: 768px) {
+    .resources-hero { padding: 140px 0 60px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card { padding: 2rem; }
+  }
+</style>
