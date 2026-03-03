@@ -27,7 +27,7 @@ const { language, textDirection } = I18N;
 
 <!doctype html>
 <html lang={language} dir={textDirection} class="2xl:text-[20px]">
-  <head>
+ <head>
     <CommonMeta />
     <Favicons />
     <CustomStyles />
@@ -35,11 +35,9 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
-
-    <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
+    <script type="text/javascript" src="https://payhip.com/payhip.js"></script>  <!-- ADD HERE -->
   </head>
-
   <body class="antialiased text-default bg-page tracking-tight">
     <slot />
 
