@@ -121,40 +121,38 @@ const metadata = {
   </section>
 
   <script is:inline>
-    const form = document.getElementById('contact-form');
-    const btn = document.getElementById('submit-btn');
-    const success = document.getElementById('form-success');
-    const error = document.getElementById('form-error');
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = document.getElementById('contact-form');
+    var btn = document.getElementById('submit-btn');
+    var success = document.getElementById('form-success');
+    var error = document.getElementById('form-error');
 
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
 
-      const data = new FormData(form);
-
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: data
-        });
-        const json = await res.json();
-
-        if (json.success) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          error.style.display = 'block';
-          btn.textContent = 'Send Your Inquiry';
-          btn.disabled = false;
-        }
-      } catch(err) {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(json) {
+      if (json.success) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
         error.style.display = 'block';
         btn.textContent = 'Send Your Inquiry';
         btn.disabled = false;
       }
+    })
+    .catch(function() {
+      error.style.display = 'block';
+      btn.textContent = 'Send Your Inquiry';
+      btn.disabled = false;
     });
-  </script>
+  });
+</script>
 
 
 </Layout>
