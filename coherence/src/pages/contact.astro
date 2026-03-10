@@ -56,7 +56,6 @@ const metadata = {
           >
             <input type="hidden" name="access_key" value="11cb0668-4dcd-473a-9784-3c2290917a75">
             <input type="hidden" name="subject" value="New Contact Inquiry — The Coherence Co.">
-            <input type="hidden" name="redirect" value="false">
             <input type="checkbox" name="botcheck" style="display:none">
 
             <div class="field-group">
@@ -119,44 +118,48 @@ const metadata = {
       </div>
     </div>
   </section>
+</div>
+  </section>
 
-</Layout>
+  <script is:inline>
+    const form = document.getElementById('contact-form');
+    const btn = document.getElementById('submit-btn');
+    const success = document.getElementById('form-success');
+    const error = document.getElementById('form-error');
 
-<script is:inline>
-  const form = document.getElementById('contact-form');
-  const btn = document.getElementById('submit-btn');
-  const success = document.getElementById('form-success');
-  const error = document.getElementById('form-error');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
 
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
+      const data = new FormData(form);
 
-    const data = new FormData(form);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data
+        });
+        const json = await res.json();
 
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: data
-      });
-      const json = await res.json();
-
-      if (json.success) {
-        form.style.display = 'none';
-        success.style.display = 'block';
-      } else {
+        if (json.success) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          error.style.display = 'block';
+          btn.textContent = 'Send Your Inquiry';
+          btn.disabled = false;
+        }
+      } catch(err) {
         error.style.display = 'block';
         btn.textContent = 'Send Your Inquiry';
         btn.disabled = false;
       }
-    } catch(err) {
-      error.style.display = 'block';
-      btn.textContent = 'Send Your Inquiry';
-      btn.disabled = false;
-    }
-  });
-</script>
+    });
+  </script>
+
+
+</Layout>
+
 
 <style>
   :global(body) { background-color: #0f1623; }
