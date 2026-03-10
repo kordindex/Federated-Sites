@@ -1,6 +1,6 @@
 ---
+import Layout from '~/layouts/PageLayout.astro';
 
-import Layout from '~/layouts/CanvasLayout.astro';
 const metadata = {
   title: 'Contact — The Coherence Co.',
   description: 'Start a conversation with The Coherence Co.',
@@ -160,9 +160,29 @@ const metadata = {
 
 </Layout>
 
+<style is:global>
+  /* Override Tailwind preflight for form elements */
+  .contact-form input,
+.contact-form select,
+.contact-form button,
+.contact-form textarea {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.9rem !important;
+    border-radius: 0 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    box-sizing: border-box !important;
+    color: #ffffff !important;
+    background-color: #0f1623 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    padding: 0.85rem 1rem !important;
+    width: 100% !important;
+  }
 
-<style>
-  :global(body) { background-color: #0f1623; }
+  .field-select option {
+    background: #152033;
+    color: #ffffff;
+  }
 
   :root {
     --navy:       #1b263b;
