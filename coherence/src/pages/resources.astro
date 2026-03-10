@@ -72,9 +72,25 @@ const products = [
             </ul>
             <div class="product-footer">
   
-    <button onclick="Payhip.Checkout.open({product: 'g7HlY'})" class="product-cta">
+   <button class="product-cta" id="payhip-btn">
   Purchase the Diagnostic
 </button>
+
+<script is:inline>
+  function loadPayhip(callback) {
+    if (window.Payhip) { callback(); return; }
+    const script = document.createElement('script');
+    script.src = 'https://payhip.com/payhip.js';
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
+
+  document.getElementById('payhip-btn').addEventListener('click', function() {
+    loadPayhip(function() {
+      Payhip.Checkout.open({ product: 'g7HlY' });
+    });
+  });
+</script>
 </div> </div>
         ))}
 
@@ -98,8 +114,7 @@ const products = [
    </div>
   </section>
 
-  <script is:inline src="https://payhip.com/payhip.js"></script>
-
+ 
 </Layout>
 
 <style>
