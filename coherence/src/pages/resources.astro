@@ -71,11 +71,15 @@ const products = [
               ))}
             </ul>
             <div class="product-footer">
-  
-   <button class="product-cta" id="payhip-btn">
+  <a 
+  href="https://payhip.com/b/g7HlY?direct=1" 
+  target="_blank"
+  class="product-cta"
+  style="display:block; text-align:center; text-decoration:none;"
+>
   Purchase the Diagnostic
-</button>
-
+</a>
+   
 
 </div> </div>
         ))}
@@ -102,21 +106,7 @@ const products = [
 
  
 </Layout>
-<script is:inline>
-  function loadPayhip(callback) {
-    if (window.Payhip) { callback(); return; }
-    const script = document.createElement('script');
-    script.src = 'https://payhip.com/payhip.js';
-    script.onload = callback;
-    document.head.appendChild(script);
-  }
 
-  document.getElementById('payhip-btn').addEventListener('click', function() {
-    loadPayhip(function() {
-      Payhip.Checkout.open({ product: 'g7HlY' });
-    });
-  });
-</script>
 <style>
   :global(body) { background-color: #0f1623; }
 
