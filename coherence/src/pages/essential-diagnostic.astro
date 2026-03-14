@@ -252,6 +252,10 @@ const questions = [
 
   <!-- ─── Question Screen ─────────────────────────────────────────────── -->
   <div class="screen screen--hidden" id="screen-question">
+    <div class="q-masthead">
+      <span class="q-masthead-text">Essential Coherence Diagnostic</span>
+    </div>
+
     <div class="q-body">
       <p class="q-text" id="q-text"></p>
       <div class="q-answers" id="q-answers"></div>
@@ -559,6 +563,19 @@ const questions = [
     padding-top: 0;
     padding-bottom: 0;
     max-width: 680px;
+  }
+
+  .q-masthead {
+    padding: 1.75rem 2rem 0;
+  }
+
+  .q-masthead-text {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.75;
   }
 
   .q-body {
