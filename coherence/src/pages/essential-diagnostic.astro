@@ -1,5 +1,5 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import CanvasLayout from '~/layouts/CanvasLayout.astro';
 
 const metadata = {
   title: 'Essential Coherence Diagnostic — The Coherence Co.',
@@ -233,7 +233,7 @@ const questions = [
 ];
 ---
 
-<Layout metadata={metadata}>
+<CanvasLayout metadata={metadata}>
 
 <div class="diagnostic-shell" id="diagnostic-shell">
 
@@ -252,16 +252,6 @@ const questions = [
 
   <!-- ─── Question Screen ─────────────────────────────────────────────── -->
   <div class="screen screen--hidden" id="screen-question">
-    <div class="q-header">
-      <div class="q-progress-wrap">
-        <div class="q-progress-bar" id="progress-bar"></div>
-      </div>
-      <div class="q-meta">
-        <span class="q-cluster" id="q-cluster"></span>
-        <span class="q-counter" id="q-counter"></span>
-      </div>
-    </div>
-
     <div class="q-body">
       <p class="q-text" id="q-text"></p>
       <div class="q-answers" id="q-answers"></div>
@@ -363,9 +353,6 @@ const questions = [
   var screenCap    = document.getElementById('screen-capture');
   var screenConf   = document.getElementById('screen-confirm');
 
-  var progressBar  = document.getElementById('progress-bar');
-  var qCluster     = document.getElementById('q-cluster');
-  var qCounter     = document.getElementById('q-counter');
   var qText        = document.getElementById('q-text');
   var qAnswers     = document.getElementById('q-answers');
   var btnPrev      = document.getElementById('btn-prev');
@@ -418,12 +405,6 @@ const questions = [
   function renderQuestion(idx) {
     var q = QUESTIONS[idx];
 
-    // Progress
-    var pct = ((idx + 1) / TOTAL) * 100;
-    progressBar.style.width = pct + '%';
-    qCluster.textContent = q.cluster;
-    qCounter.textContent = 'Question ' + (idx + 1) + ' of ' + TOTAL;
-
     // Question text
     qText.innerHTML = q.text + '<span class="q-inline-counter"> (Question ' + (idx + 1) + ' of ' + TOTAL + ')</span>';
 
@@ -471,7 +452,7 @@ const questions = [
   }
 </script>
 
-</Layout>
+</CanvasLayout>
 
 <style is:global>
   :root {
@@ -569,53 +550,6 @@ const questions = [
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-  }
-
-  .q-header {
-    padding: 2rem 2rem 0;
-    padding-top: calc(2rem + env(safe-area-inset-top));
-    position: sticky;
-    top: 0;
-    background: var(--navy-deep);
-    z-index: 10;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1.25rem;
-  }
-
-  .q-progress-wrap {
-    height: 2px;
-    background: var(--border);
-    margin-bottom: 1rem;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .q-progress-bar {
-    height: 100%;
-    background: var(--gold);
-    transition: width 0.4s ease;
-    border-radius: 2px;
-  }
-
-  .q-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .q-cluster {
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.8;
-  }
-
-  .q-counter {
-    font-size: 0.7rem;
-    color: var(--slate-dim);
-    letter-spacing: 0.05em;
   }
 
   .q-body {
