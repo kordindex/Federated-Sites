@@ -425,7 +425,7 @@ const questions = [
     qCounter.textContent = 'Question ' + (idx + 1) + ' of ' + TOTAL;
 
     // Question text
-    qText.textContent = q.text;
+    qText.innerHTML = q.text + '<span class="q-inline-counter"> (Question ' + (idx + 1) + ' of ' + TOTAL + ')</span>';
 
     // Answers
     qAnswers.innerHTML = '';
@@ -679,8 +679,15 @@ const questions = [
 
   .answer-btn--selected .answer-text { color: var(--slate); }
 
+  .q-inline-counter {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: rgba(208,212,219,0.38);
+    letter-spacing: 0.02em;
+  }
+
   .q-nav {
-    padding: 1.5rem 2rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
