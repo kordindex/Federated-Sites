@@ -454,8 +454,16 @@ const questions = [
 
 </Layout>
 
-<style>
-  .coherence-nav, nav[class*="coherence"] { display: none !important; }
+<style is:global>
+  body:has(.diagnostic-shell) .coherence-nav,
+  body:has(.diagnostic-shell) .fed-nav,
+  body:has(.diagnostic-shell) footer { 
+    display: none !important; 
+  }
+  body:has(.diagnostic-shell) main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
 </style>
 
 <style is:global>
