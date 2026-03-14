@@ -1,5 +1,5 @@
 ---
-import CanvasLayout from '~/layouts/CanvasLayout.astro';
+import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
   title: 'Essential Coherence Diagnostic — The Coherence Co.',
@@ -233,7 +233,7 @@ const questions = [
 ];
 ---
 
-<CanvasLayout metadata={metadata}>
+<Layout metadata={metadata}>
 
 <div class="diagnostic-shell" id="diagnostic-shell">
 
@@ -452,7 +452,11 @@ const questions = [
   }
 </script>
 
-</CanvasLayout>
+</Layout>
+
+<style>
+  .coherence-nav, nav[class*="coherence"] { display: none !important; }
+</style>
 
 <style is:global>
   :root {
