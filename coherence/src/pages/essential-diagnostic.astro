@@ -419,10 +419,10 @@ const questions = [
     var q = QUESTIONS[idx];
 
     // Progress
-    var pct = ((idx) / TOTAL) * 100;
+    var pct = ((idx + 1) / TOTAL) * 100;
     progressBar.style.width = pct + '%';
     qCluster.textContent = q.cluster;
-    qCounter.textContent = (idx + 1) + ' of ' + TOTAL;
+    qCounter.textContent = 'Question ' + (idx + 1) + ' of ' + TOTAL;
 
     // Question text
     qText.textContent = q.text;
