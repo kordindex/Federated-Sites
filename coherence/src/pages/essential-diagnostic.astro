@@ -1,0 +1,868 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Essential Coherence Diagnostic — The Coherence Co.',
+  description: 'A structural diagnostic that identifies how pressure moves through your leadership system.',
+};
+
+const questions = [
+  // System Load — Q1–7
+  {
+    id: 1,
+    cluster: 'System Load',
+    text: 'When conditions shift quickly, how consistently do leaders describe what is happening and what it means in the same way?',
+    answers: [
+      { label: 'A', text: 'Leaders describe the situation differently, and alignment takes time' },
+      { label: 'B', text: 'Leaders align eventually, but mixed signals appear in the meantime' },
+      { label: 'C', text: 'Leaders generally describe the situation in similar ways' },
+      { label: 'D', text: 'Leaders pause briefly to align interpretation before acting' },
+    ]
+  },
+  {
+    id: 2,
+    cluster: 'System Load',
+    text: 'When priorities shift, how clearly is the reasoning behind the change communicated among leaders?',
+    answers: [
+      { label: 'A', text: 'Different leaders explain the shift in noticeably different ways' },
+      { label: 'B', text: 'The explanation becomes clearer over time, but early communication varies' },
+      { label: 'C', text: 'Leaders generally communicate a shared explanation early' },
+      { label: 'D', text: 'Leaders align the rationale together before communicating the change' },
+    ]
+  },
+  {
+    id: 3,
+    cluster: 'System Load',
+    text: 'In leadership discussions, how often do leaders discover they are working from different assumptions?',
+    answers: [
+      { label: 'A', text: 'Frequently — differences surface late and slow alignment' },
+      { label: 'B', text: 'Occasionally — differences emerge during discussion and require clarification' },
+      { label: 'C', text: 'Rarely — assumptions are mostly shared from the start' },
+      { label: 'D', text: 'Leaders intentionally surface assumptions before decisions are made' },
+    ]
+  },
+  {
+    id: 4,
+    cluster: 'System Load',
+    text: 'After major decisions are made, how consistently do teams act on the same understanding?',
+    answers: [
+      { label: 'A', text: 'Teams move forward, but in noticeably different directions' },
+      { label: 'B', text: 'Alignment improves gradually as clarification happens' },
+      { label: 'C', text: 'Most teams act from a shared understanding' },
+      { label: 'D', text: 'Teams begin with a clear and consistent understanding' },
+    ]
+  },
+  {
+    id: 5,
+    cluster: 'System Load',
+    text: 'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of their implications?',
+    answers: [
+      { label: 'A', text: 'Leaders interpret the implications differently' },
+      { label: 'B', text: 'Shared understanding forms only after extended discussion' },
+      { label: 'C', text: 'Shared understanding usually forms fairly quickly' },
+      { label: 'D', text: 'Leaders intentionally align on implications before action begins' },
+    ]
+  },
+  {
+    id: 6,
+    cluster: 'System Load',
+    text: 'How often do leadership conversations end with surface agreement while ambiguity remains unresolved?',
+    answers: [
+      { label: 'A', text: 'Often' },
+      { label: 'B', text: 'Sometimes' },
+      { label: 'C', text: 'Rarely' },
+      { label: 'D', text: 'Leaders usually resolve ambiguity before closing discussion' },
+    ]
+  },
+  {
+    id: 7,
+    cluster: 'System Load',
+    text: 'When leaders communicate direction to the organization, how consistent are the messages people receive?',
+    answers: [
+      { label: 'A', text: 'Messages vary noticeably across leaders' },
+      { label: 'B', text: 'Messages are broadly similar, but emphasis differs' },
+      { label: 'C', text: 'Messages are mostly consistent across leaders' },
+      { label: 'D', text: 'Leaders intentionally coordinate messaging before it is communicated' },
+    ]
+  },
+  // Signal Clarity — Q8–14
+  {
+    id: 8,
+    cluster: 'Signal Clarity',
+    text: 'When new initiatives are introduced, what usually happens to existing priorities?',
+    answers: [
+      { label: 'A', text: 'Most existing work continues alongside the new initiative' },
+      { label: 'B', text: 'Some priorities shift, but many remain active' },
+      { label: 'C', text: 'Work is selectively resequenced to maintain focus' },
+      { label: 'D', text: 'Leaders pause to reassess priorities before introducing new work' },
+    ]
+  },
+  {
+    id: 9,
+    cluster: 'Signal Clarity',
+    text: 'How often are teams asked to absorb new direction while still executing earlier initiatives?',
+    answers: [
+      { label: 'A', text: 'Frequently — multiple priorities overlap at once' },
+      { label: 'B', text: 'Sometimes — new work arrives before earlier work is fully integrated' },
+      { label: 'C', text: 'Rarely — priorities are usually sequenced with care' },
+      { label: 'D', text: 'Leaders actively manage how much change enters the system at one time' },
+    ]
+  },
+  {
+    id: 10,
+    cluster: 'Signal Clarity',
+    text: 'How is the pace of change usually handled in your organization?',
+    answers: [
+      { label: 'A', text: 'Speed is assumed and momentum is prioritized' },
+      { label: 'B', text: 'Pace is discussed, but difficult to regulate in practice' },
+      { label: 'C', text: 'Pace is monitored and occasionally adjusted' },
+      { label: 'D', text: 'Pace is actively regulated relative to system capacity' },
+    ]
+  },
+  {
+    id: 11,
+    cluster: 'Signal Clarity',
+    text: 'When leadership decisions are made, how consistently do teams move in the same direction afterward?',
+    answers: [
+      { label: 'A', text: 'Teams often move in different directions before alignment stabilizes' },
+      { label: 'B', text: 'Teams usually move in the same direction but require clarification' },
+      { label: 'C', text: 'Teams generally move in the same direction with minimal clarification' },
+      { label: 'D', text: 'Teams move in the same direction with clear shared understanding' },
+    ]
+  },
+  {
+    id: 12,
+    cluster: 'Signal Clarity',
+    text: 'How often does the organization introduce new work to address issues created by earlier change?',
+    answers: [
+      { label: 'A', text: 'Often — new initiatives are layered onto unresolved ones' },
+      { label: 'B', text: 'Sometimes — additional work appears before earlier change settles' },
+      { label: 'C', text: 'Rarely — earlier initiatives are usually stabilized first' },
+      { label: 'D', text: 'Leaders typically stabilize earlier change before adding more' },
+    ]
+  },
+  {
+    id: 13,
+    cluster: 'Signal Clarity',
+    text: 'When priorities change, how much time do people usually have to absorb the new direction?',
+    answers: [
+      { label: 'A', text: 'Very little — expectations shift immediately' },
+      { label: 'B', text: 'Some time is available, but not always enough for full integration' },
+      { label: 'C', text: 'Teams usually have sufficient time to absorb the change' },
+      { label: 'D', text: 'Leaders intentionally create time for integration before expecting full execution' },
+    ]
+  },
+  {
+    id: 14,
+    cluster: 'Signal Clarity',
+    text: 'How often does leadership revisit earlier initiatives to see how effectively they have been integrated into ongoing work?',
+    answers: [
+      { label: 'A', text: 'Rarely — attention moves quickly to what\'s next' },
+      { label: 'B', text: 'Sometimes — integration is checked later, if issues appear' },
+      { label: 'C', text: 'Often — leaders review whether change has truly landed' },
+      { label: 'D', text: 'Integration checks are built into how initiatives are sequenced' },
+    ]
+  },
+  // Execution Alignment — Q15–20
+  {
+    id: 15,
+    cluster: 'Execution Alignment',
+    text: 'In leadership meetings, how often does substantive disagreement surface before decisions are finalized?',
+    answers: [
+      { label: 'A', text: 'Rarely — discussions converge quickly' },
+      { label: 'B', text: 'Sometimes — disagreement appears, but cautiously' },
+      { label: 'C', text: 'Frequently — disagreement helps clarify decisions' },
+      { label: 'D', text: 'Leaders actively invite substantive differences in view before decisions close' },
+    ]
+  },
+  {
+    id: 16,
+    cluster: 'Execution Alignment',
+    text: 'How do concerns about emerging issues usually surface in your organization?',
+    answers: [
+      { label: 'A', text: 'Mostly in private conversations or after the fact' },
+      { label: 'B', text: 'Cautiously, once concern is harder to ignore' },
+      { label: 'C', text: 'Openly, while there is still time to respond' },
+      { label: 'D', text: 'Leaders actively create conditions for concerns to surface early' },
+    ]
+  },
+  {
+    id: 17,
+    cluster: 'Execution Alignment',
+    text: 'When issues begin emerging in execution, how early do they usually become visible to leadership?',
+    answers: [
+      { label: 'A', text: 'Late — issues often appear suddenly' },
+      { label: 'B', text: 'After results begin to shift' },
+      { label: 'C', text: 'Early signals usually appear before formal indicators change' },
+      { label: 'D', text: 'Leaders intentionally look for early signs before formal indicators move' },
+    ]
+  },
+  {
+    id: 18,
+    cluster: 'Execution Alignment',
+    text: 'How often do teams continue executing even when concerns about the direction of work or priorities exist?',
+    answers: [
+      { label: 'A', text: 'Often — execution continues while concern stays mostly unspoken' },
+      { label: 'B', text: 'Sometimes — concern is present but only partly voiced' },
+      { label: 'C', text: 'Rarely — concerns are usually surfaced early' },
+      { label: 'D', text: 'Teams are expected to raise concerns as soon as they appear' },
+    ]
+  },
+  {
+    id: 19,
+    cluster: 'Execution Alignment',
+    text: 'When pressure is building in the organization, when do its effects usually become visible to leadership?',
+    answers: [
+      { label: 'A', text: 'Only after execution begins to break down' },
+      { label: 'B', text: 'When teams begin signaling coordination difficulties' },
+      { label: 'C', text: 'When leaders begin discussing emerging concerns' },
+      { label: 'D', text: 'Early, through questions, disagreement, and operational signals' },
+    ]
+  },
+  {
+    id: 20,
+    cluster: 'Execution Alignment',
+    text: 'When issues involve risk, tension, or competing priorities, how is candor usually handled?',
+    answers: [
+      { label: 'A', text: 'Harmony is usually protected over challenge' },
+      { label: 'B', text: 'Challenge appears, but cautiously' },
+      { label: 'C', text: 'Honest disagreement is generally acceptable' },
+      { label: 'D', text: 'Leaders actively make space for candid discussion' },
+    ]
+  },
+];
+---
+
+<Layout metadata={metadata}>
+
+<div class="diagnostic-shell" id="diagnostic-shell">
+
+  <!-- ─── Orientation Screen ──────────────────────────────────────────── -->
+  <div class="screen" id="screen-orient">
+    <div class="orient-inner">
+      <span class="eyebrow">The Coherence Co.</span>
+      <h1 class="orient-title">Essential Coherence<br>Diagnostic</h1>
+      <div class="orient-divider"></div>
+      <p class="orient-body">This diagnostic reads how pressure moves through your organization's leadership system.</p>
+      <p class="orient-body">You will be presented with <strong>20 questions</strong>. Each describes a set of recognizable organizational situations. Select the one that most closely matches how your organization typically operates right now.</p>
+      <p class="orient-body orient-note">There are no right or wrong answers. Honest responses produce useful results. Allow approximately <strong>15 minutes</strong>.</p>
+      <button class="btn-primary" id="btn-begin">Begin Diagnostic</button>
+    </div>
+  </div>
+
+  <!-- ─── Question Screen ─────────────────────────────────────────────── -->
+  <div class="screen screen--hidden" id="screen-question">
+    <div class="q-header">
+      <div class="q-progress-wrap">
+        <div class="q-progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="q-meta">
+        <span class="q-cluster" id="q-cluster"></span>
+        <span class="q-counter" id="q-counter"></span>
+      </div>
+    </div>
+
+    <div class="q-body">
+      <p class="q-text" id="q-text"></p>
+      <div class="q-answers" id="q-answers"></div>
+    </div>
+
+    <div class="q-nav">
+      <button class="btn-ghost" id="btn-prev">← Previous</button>
+      <button class="btn-primary btn--disabled" id="btn-next">Next →</button>
+    </div>
+  </div>
+
+  <!-- ─── Capture Screen ──────────────────────────────────────────────── -->
+  <div class="screen screen--hidden" id="screen-capture">
+    <div class="capture-inner">
+      <span class="eyebrow">Almost there</span>
+      <h2 class="capture-title">Your report is ready<br>to generate.</h2>
+      <p class="capture-body">Enter your name and email address. Your report will be sent to you immediately, and a copy will download to your device.</p>
+
+      <div class="capture-form" id="capture-form">
+        <div class="field-group">
+          <label class="field-label" for="user-name">Your Name</label>
+          <input class="field-input" type="text" id="user-name" placeholder="Full name" autocomplete="name">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="user-email">Email Address</label>
+          <input class="field-input" type="email" id="user-email" placeholder="you@organization.com" autocomplete="email">
+        </div>
+        <button class="btn-primary btn-generate" id="btn-generate">Generate My Report</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Confirmation Screen ─────────────────────────────────────────── -->
+  <div class="screen screen--hidden" id="screen-confirm">
+    <div class="confirm-inner">
+      <div class="confirm-mark">—</div>
+      <h2 class="confirm-title">Your report is ready.</h2>
+      <p class="confirm-body">Your diagnostic report has downloaded to your device. A copy has been sent to your email address.</p>
+
+      <div class="confirm-detail" id="confirm-detail">
+        <div class="confirm-row">
+          <span class="confirm-label">Report ID</span>
+          <span class="confirm-value" id="confirm-report-id"></span>
+        </div>
+        <div class="confirm-row">
+          <span class="confirm-label">Primary Pattern</span>
+          <span class="confirm-value" id="confirm-pattern"></span>
+        </div>
+        <div class="confirm-row">
+          <span class="confirm-label">Pressure Level</span>
+          <span class="confirm-value" id="confirm-pressure"></span>
+        </div>
+      </div>
+
+      <p class="confirm-next-label">Next step</p>
+      <p class="confirm-next">Review your report. When you're ready to explore what these patterns mean for your specific leadership system, book your 30-minute advisory conversation.</p>
+      <a href="/contact" class="btn-primary">Book Your Walkthrough</a>
+    </div>
+  </div>
+
+</div>
+
+<script is:inline>
+  // ── Data ──────────────────────────────────────────────────────────────
+  const QUESTIONS = [
+    { id:1,  cluster:'System Load',          text:'When conditions shift quickly, how consistently do leaders describe what is happening and what it means in the same way?', answers:['Leaders describe the situation differently, and alignment takes time','Leaders align eventually, but mixed signals appear in the meantime','Leaders generally describe the situation in similar ways','Leaders pause briefly to align interpretation before acting'] },
+    { id:2,  cluster:'System Load',          text:'When priorities shift, how clearly is the reasoning behind the change communicated among leaders?', answers:['Different leaders explain the shift in noticeably different ways','The explanation becomes clearer over time, but early communication varies','Leaders generally communicate a shared explanation early','Leaders align the rationale together before communicating the change'] },
+    { id:3,  cluster:'System Load',          text:'In leadership discussions, how often do leaders discover they are working from different assumptions?', answers:['Frequently — differences surface late and slow alignment','Occasionally — differences emerge during discussion and require clarification','Rarely — assumptions are mostly shared from the start','Leaders intentionally surface assumptions before decisions are made'] },
+    { id:4,  cluster:'System Load',          text:'After major decisions are made, how consistently do teams act on the same understanding?', answers:['Teams move forward, but in noticeably different directions','Alignment improves gradually as clarification happens','Most teams act from a shared understanding','Teams begin with a clear and consistent understanding'] },
+    { id:5,  cluster:'System Load',          text:'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of their implications?', answers:['Leaders interpret the implications differently','Shared understanding forms only after extended discussion','Shared understanding usually forms fairly quickly','Leaders intentionally align on implications before action begins'] },
+    { id:6,  cluster:'System Load',          text:'How often do leadership conversations end with surface agreement while ambiguity remains unresolved?', answers:['Often','Sometimes','Rarely','Leaders usually resolve ambiguity before closing discussion'] },
+    { id:7,  cluster:'System Load',          text:'When leaders communicate direction to the organization, how consistent are the messages people receive?', answers:['Messages vary noticeably across leaders','Messages are broadly similar, but emphasis differs','Messages are mostly consistent across leaders','Leaders intentionally coordinate messaging before it is communicated'] },
+    { id:8,  cluster:'Signal Clarity',       text:'When new initiatives are introduced, what usually happens to existing priorities?', answers:['Most existing work continues alongside the new initiative','Some priorities shift, but many remain active','Work is selectively resequenced to maintain focus','Leaders pause to reassess priorities before introducing new work'] },
+    { id:9,  cluster:'Signal Clarity',       text:'How often are teams asked to absorb new direction while still executing earlier initiatives?', answers:['Frequently — multiple priorities overlap at once','Sometimes — new work arrives before earlier work is fully integrated','Rarely — priorities are usually sequenced with care','Leaders actively manage how much change enters the system at one time'] },
+    { id:10, cluster:'Signal Clarity',       text:'How is the pace of change usually handled in your organization?', answers:['Speed is assumed and momentum is prioritized','Pace is discussed, but difficult to regulate in practice','Pace is monitored and occasionally adjusted','Pace is actively regulated relative to system capacity'] },
+    { id:11, cluster:'Signal Clarity',       text:'When leadership decisions are made, how consistently do teams move in the same direction afterward?', answers:['Teams often move in different directions before alignment stabilizes','Teams usually move in the same direction but require clarification','Teams generally move in the same direction with minimal clarification','Teams move in the same direction with clear shared understanding'] },
+    { id:12, cluster:'Signal Clarity',       text:'How often does the organization introduce new work to address issues created by earlier change?', answers:['Often — new initiatives are layered onto unresolved ones','Sometimes — additional work appears before earlier change settles','Rarely — earlier initiatives are usually stabilized first','Leaders typically stabilize earlier change before adding more'] },
+    { id:13, cluster:'Signal Clarity',       text:'When priorities change, how much time do people usually have to absorb the new direction?', answers:['Very little — expectations shift immediately','Some time is available, but not always enough for full integration','Teams usually have sufficient time to absorb the change','Leaders intentionally create time for integration before expecting full execution'] },
+    { id:14, cluster:'Signal Clarity',       text:'How often does leadership revisit earlier initiatives to see how effectively they have been integrated into ongoing work?', answers:["Rarely — attention moves quickly to what's next","Sometimes — integration is checked later, if issues appear","Often — leaders review whether change has truly landed","Integration checks are built into how initiatives are sequenced"] },
+    { id:15, cluster:'Execution Alignment',  text:'In leadership meetings, how often does substantive disagreement surface before decisions are finalized?', answers:['Rarely — discussions converge quickly','Sometimes — disagreement appears, but cautiously','Frequently — disagreement helps clarify decisions','Leaders actively invite substantive differences in view before decisions close'] },
+    { id:16, cluster:'Execution Alignment',  text:'How do concerns about emerging issues usually surface in your organization?', answers:['Mostly in private conversations or after the fact','Cautiously, once concern is harder to ignore','Openly, while there is still time to respond','Leaders actively create conditions for concerns to surface early'] },
+    { id:17, cluster:'Execution Alignment',  text:'When issues begin emerging in execution, how early do they usually become visible to leadership?', answers:['Late — issues often appear suddenly','After results begin to shift','Early signals usually appear before formal indicators change','Leaders intentionally look for early signs before formal indicators move'] },
+    { id:18, cluster:'Execution Alignment',  text:'How often do teams continue executing even when concerns about the direction of work or priorities exist?', answers:['Often — execution continues while concern stays mostly unspoken','Sometimes — concern is present but only partly voiced','Rarely — concerns are usually surfaced early','Teams are expected to raise concerns as soon as they appear'] },
+    { id:19, cluster:'Execution Alignment',  text:'When pressure is building in the organization, when do its effects usually become visible to leadership?', answers:['Only after execution begins to break down','When teams begin signaling coordination difficulties','When leaders begin discussing emerging concerns','Early, through questions, disagreement, and operational signals'] },
+    { id:20, cluster:'Execution Alignment',  text:'When issues involve risk, tension, or competing priorities, how is candor usually handled?', answers:['Harmony is usually protected over challenge','Challenge appears, but cautiously','Honest disagreement is generally acceptable','Leaders actively make space for candid discussion'] },
+  ];
+
+  const LABELS = ['A','B','C','D'];
+  const TOTAL = QUESTIONS.length;
+
+  // ── State ─────────────────────────────────────────────────────────────
+  var current = 0;
+  var answers = new Array(TOTAL).fill(null);
+
+  // ── Elements ──────────────────────────────────────────────────────────
+  var shell        = document.getElementById('diagnostic-shell');
+  var screenOrient = document.getElementById('screen-orient');
+  var screenQ      = document.getElementById('screen-question');
+  var screenCap    = document.getElementById('screen-capture');
+  var screenConf   = document.getElementById('screen-confirm');
+
+  var progressBar  = document.getElementById('progress-bar');
+  var qCluster     = document.getElementById('q-cluster');
+  var qCounter     = document.getElementById('q-counter');
+  var qText        = document.getElementById('q-text');
+  var qAnswers     = document.getElementById('q-answers');
+  var btnPrev      = document.getElementById('btn-prev');
+  var btnNext      = document.getElementById('btn-next');
+  var btnBegin     = document.getElementById('btn-begin');
+  var btnGenerate  = document.getElementById('btn-generate');
+
+  // ── Navigation ────────────────────────────────────────────────────────
+  function showScreen(screen) {
+    [screenOrient, screenQ, screenCap, screenConf].forEach(function(s) {
+      s.classList.add('screen--hidden');
+    });
+    screen.classList.remove('screen--hidden');
+    window.scrollTo(0, 0);
+  }
+
+  btnBegin.addEventListener('click', function() {
+    showScreen(screenQ);
+    renderQuestion(0);
+  });
+
+  btnPrev.addEventListener('click', function() {
+    if (current > 0) {
+      current--;
+      renderQuestion(current);
+    }
+  });
+
+  btnNext.addEventListener('click', function() {
+    if (answers[current] === null) return;
+    if (current < TOTAL - 1) {
+      current++;
+      renderQuestion(current);
+    } else {
+      showScreen(screenCap);
+    }
+  });
+
+  btnGenerate.addEventListener('click', function() {
+    var name  = document.getElementById('user-name').value.trim();
+    var email = document.getElementById('user-email').value.trim();
+    if (!name || !email) {
+      alert('Please enter your name and email address.');
+      return;
+    }
+    generateMockReport(name, email);
+  });
+
+  // ── Render Question ───────────────────────────────────────────────────
+  function renderQuestion(idx) {
+    var q = QUESTIONS[idx];
+
+    // Progress
+    var pct = ((idx) / TOTAL) * 100;
+    progressBar.style.width = pct + '%';
+    qCluster.textContent = q.cluster;
+    qCounter.textContent = (idx + 1) + ' of ' + TOTAL;
+
+    // Question text
+    qText.textContent = q.text;
+
+    // Answers
+    qAnswers.innerHTML = '';
+    q.answers.forEach(function(ansText, i) {
+      var btn = document.createElement('button');
+      btn.className = 'answer-btn' + (answers[idx] === i ? ' answer-btn--selected' : '');
+      btn.innerHTML = '<span class="answer-label">' + LABELS[i] + '</span><span class="answer-text">' + ansText + '</span>';
+      btn.addEventListener('click', function() {
+        answers[idx] = i;
+        renderQuestion(idx);
+      });
+      qAnswers.appendChild(btn);
+    });
+
+    // Nav buttons
+    btnPrev.style.visibility = idx === 0 ? 'hidden' : 'visible';
+    if (answers[idx] !== null) {
+      btnNext.classList.remove('btn--disabled');
+      btnNext.textContent = idx === TOTAL - 1 ? 'Continue →' : 'Next →';
+    } else {
+      btnNext.classList.add('btn--disabled');
+      btnNext.textContent = idx === TOTAL - 1 ? 'Continue →' : 'Next →';
+    }
+  }
+
+  // ── Mock Report Generation ────────────────────────────────────────────
+  function generateMockReport(name, email) {
+    btnGenerate.textContent = 'Generating...';
+    btnGenerate.disabled = true;
+
+    setTimeout(function() {
+      // Mock results — will be replaced by real scoring engine
+      var reportId = 'CD-' + Date.now().toString(36).toUpperCase();
+      var mockPattern  = 'Signal Clarity';
+      var mockPressure = 'Structural Pressure';
+
+      document.getElementById('confirm-report-id').textContent  = reportId;
+      document.getElementById('confirm-pattern').textContent    = mockPattern;
+      document.getElementById('confirm-pressure').textContent   = mockPressure;
+
+      showScreen(screenConf);
+    }, 1800);
+  }
+</script>
+
+</Layout>
+
+<style is:global>
+  :root {
+    --navy:       #1b263b;
+    --navy-deep:  #0f1623;
+    --navy-mid:   #152033;
+    --gold:       #b59353;
+    --gold-light: #c9aa70;
+    --gold-dim:   rgba(181,147,83,0.25);
+    --white:      #ffffff;
+    --slate:      #d0d4db;
+    --slate-dim:  rgba(208,212,219,0.55);
+    --border:     rgba(255,255,255,0.07);
+    --border-gold:rgba(181,147,83,0.2);
+  }
+
+  /* Shell */
+  .diagnostic-shell {
+    min-height: 100vh;
+    background: var(--navy-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .screen {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 2rem 100px;
+    animation: fadeUp 0.35s ease both;
+  }
+
+  .screen--hidden { display: none !important; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Eyebrow */
+  .eyebrow {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Orientation ── */
+  .orient-inner { max-width: 540px; }
+
+  .orient-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .orient-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0.5;
+  }
+
+  .orient-body {
+    font-size: 0.92rem;
+    color: var(--slate-dim);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  .orient-body strong { color: var(--slate); font-weight: 600; }
+
+  .orient-note {
+    font-size: 0.82rem;
+    border-left: 2px solid var(--gold-dim);
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Question Screen ── */
+  #screen-question {
+    padding-top: 0;
+    padding-bottom: 0;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .q-header {
+    padding: 2rem 2rem 0;
+    position: sticky;
+    top: 0;
+    background: var(--navy-deep);
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+  }
+
+  .q-progress-wrap {
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .q-progress-bar {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.4s ease;
+    border-radius: 2px;
+  }
+
+  .q-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .q-cluster {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  .q-counter {
+    font-size: 0.7rem;
+    color: var(--slate-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .q-body {
+    flex: 1;
+    padding: 2.5rem 2rem;
+  }
+
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .q-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .answer-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.15s, background 0.15s;
+    width: 100%;
+  }
+
+  .answer-btn:hover {
+    border-color: var(--border-gold);
+    background: rgba(181,147,83,0.05);
+  }
+
+  .answer-btn--selected {
+    border-color: var(--gold) !important;
+    background: rgba(181,147,83,0.08) !important;
+  }
+
+  .answer-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    opacity: 0.7;
+    min-width: 16px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .answer-btn--selected .answer-label { opacity: 1; }
+
+  .answer-text {
+    font-size: 0.88rem;
+    color: var(--slate-dim);
+    line-height: 1.6;
+  }
+
+  .answer-btn--selected .answer-text { color: var(--slate); }
+
+  .q-nav {
+    padding: 1.5rem 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    background: var(--navy-deep);
+  }
+
+  /* ── Capture Screen ── */
+  .capture-inner { max-width: 480px; }
+
+  .capture-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .capture-body {
+    font-size: 0.88rem;
+    color: var(--slate-dim);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .capture-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .field-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+  }
+
+  .field-input {
+    background: var(--navy-mid) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--white) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.9rem !important;
+    padding: 0.85rem 1rem !important;
+    outline: none !important;
+    transition: border-color 0.2s !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-radius: 0 !important;
+    -webkit-appearance: none !important;
+  }
+
+  .field-input::placeholder { color: var(--slate-dim) !important; }
+  .field-input:focus { border-color: rgba(181,147,83,0.5) !important; }
+
+  .btn-generate { margin-top: 0.5rem; }
+
+  /* ── Confirm Screen ── */
+  .confirm-inner { max-width: 480px; }
+
+  .confirm-mark {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .confirm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .confirm-body {
+    font-size: 0.88rem;
+    color: var(--slate-dim);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .confirm-detail {
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
+    background: var(--navy-mid);
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .confirm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .confirm-row:last-child { border-bottom: none; }
+
+  .confirm-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+  }
+
+  .confirm-value {
+    font-size: 0.85rem;
+    color: var(--white);
+  }
+
+  .confirm-next-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .confirm-next {
+    font-size: 0.88rem;
+    color: var(--slate-dim);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy-deep);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-primary.btn--disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .btn-ghost {
+    background: none;
+    border: none;
+    color: var(--slate-dim);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--slate); }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .screen { padding: 60px 1.25rem 80px; }
+    #screen-question { padding: 0; }
+    .q-header { padding: 1.25rem 1.25rem 1rem; }
+    .q-body { padding: 1.75rem 1.25rem; }
+    .q-nav { padding: 1.25rem 1.25rem 2rem; }
+  }
+</style>
