@@ -318,7 +318,12 @@ const questions = [
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script is:inline>
+  // ── EmailJS Init ──────────────────────────────────────────────────────
+  emailjs.init({ publicKey: 'ujm80X4aT-5K63oPd' });
+
   // ── Data ──────────────────────────────────────────────────────────────
   const QUESTIONS = [
     { id:1,  cluster:'Interpretation Drift',          text:'When conditions shift quickly, how consistent are leaders\' descriptions and explanations of what is happening and what it means for teams?', answers:['Leaders describe the situation differently, and alignment takes time','Leaders align eventually, but mixed signals appear in the meantime','Leaders generally describe the situation in similar ways','Leaders pause briefly to align interpretation before acting'] },
@@ -500,7 +505,7 @@ const questions = [
     };
   }
 
-  // ── Report Generation ─────────────────────────────────────────────────
+  // ── Report Generation + EmailJS ──────────────────────────────────────
   function generateMockReport(name, email) {
     btnGenerate.textContent = 'Generating...';
     btnGenerate.disabled = true;
@@ -511,14 +516,46 @@ const questions = [
     try {
       var result = scoreAnswers(answerLetters, name, email);
 
+      // ── Update confirmation screen ──
       document.getElementById('confirm-report-id').textContent  = result.report_id;
       document.getElementById('confirm-pattern').textContent    = result.patterns.primary;
       document.getElementById('confirm-pressure').textContent   = result.pressure.level;
 
-      // Store result for EmailJS in next session
+      // ── Store result globally ──
       window._diagnosticResult = result;
 
+      // ── Build shared email params ──
+      var emailParams = {
+        user_name:        name,
+        user_email:       email,
+        report_id:        result.report_id,
+        primary_pattern:  result.patterns.primary,
+        secondary_pattern: result.patterns.secondary,
+        pressure_level:   result.pressure.level,
+        d_count:          result.validity.d_count,
+        likely_gamed:     result.validity.likely_gamed ? 'YES — review before debrief' : 'No',
+        raw_answers:      result.raw_answers.join(', '),
+        date:             result.date_display,
+      };
+
+      // ── Fire both emails simultaneously ──
+      var SERVICE_ID   = 'service_9dfgwpk';
+      var USER_TMPL    = 'template_fwseyak';
+      var NOTIFY_TMPL  = 'template_vib2asp';
+
+      Promise.all([
+        emailjs.send(SERVICE_ID, USER_TMPL,   emailParams),
+        emailjs.send(SERVICE_ID, NOTIFY_TMPL, emailParams),
+      ]).then(function() {
+        console.log('Both emails sent successfully.');
+      }).catch(function(err) {
+        console.error('EmailJS error:', err);
+        // Don't block the user — report still shows even if email fails
+      });
+
+      // ── Show confirmation screen immediately (don't wait for emails) ──
       showScreen(screenConf);
+
     } catch(err) {
       alert('Something went wrong generating your report. Please try again.');
       btnGenerate.textContent = 'Generate My Report';
