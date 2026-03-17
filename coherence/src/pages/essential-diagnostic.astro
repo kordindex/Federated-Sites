@@ -318,11 +318,15 @@ const questions = [
 
 </div>
 
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" crossorigin="anonymous"></script>
 
 <script is:inline>
-  // ── EmailJS Init ──────────────────────────────────────────────────────
-  emailjs.init({ publicKey: 'ujm80X4aT-5K63oPd' });
+  // ── EmailJS Init (deferred until script loads) ────────────────────────
+  window.addEventListener('load', function() {
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: 'ujm80X4aT-5K63oPd' });
+    }
+  });
 
   // ── Data ──────────────────────────────────────────────────────────────
   const QUESTIONS = [
