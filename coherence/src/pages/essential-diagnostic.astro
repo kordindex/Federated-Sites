@@ -10,8 +10,8 @@ const questions = [
   // System Load — Q1–7
   {
     id: 1,
-    cluster: 'System Load',
-    text: 'When conditions shift quickly, how consistently do leaders describe what is happening and what it means in the same way?',
+    cluster: 'Interpretation Drift',
+    text: 'When conditions shift quickly, how consistent are leaders' descriptions and explanations of what is happening and what it means for teams?',
     answers: [
       { label: 'A', text: 'Leaders describe the situation differently, and alignment takes time' },
       { label: 'B', text: 'Leaders align eventually, but mixed signals appear in the meantime' },
@@ -21,7 +21,7 @@ const questions = [
   },
   {
     id: 2,
-    cluster: 'System Load',
+    cluster: 'Interpretation Drift',
     text: 'When priorities shift, how clearly is the reasoning behind the change communicated among leaders?',
     answers: [
       { label: 'A', text: 'Different leaders explain the shift in noticeably different ways' },
@@ -32,30 +32,30 @@ const questions = [
   },
   {
     id: 3,
-    cluster: 'System Load',
+    cluster: 'Interpretation Drift',
     text: 'In leadership discussions, how often do leaders discover they are working from different assumptions?',
     answers: [
-      { label: 'A', text: 'Frequently — differences surface late and slow alignment' },
+      { label: 'A', text: 'Frequently — differences surface late in the discussion process which slows alignment' },
       { label: 'B', text: 'Occasionally — differences emerge during discussion and require clarification' },
-      { label: 'C', text: 'Rarely — assumptions are mostly shared from the start' },
-      { label: 'D', text: 'Leaders intentionally surface assumptions before decisions are made' },
+      { label: 'C', text: 'Rarely — assumptions are mostly shared from the outset of discussion' },
+      { label: 'D', text: 'Leaders intentionally surface assumptions early in the discussion before decisions are made' },
     ]
   },
   {
     id: 4,
-    cluster: 'System Load',
-    text: 'After major decisions are made, how consistently do teams act on the same understanding?',
+    cluster: 'Interpretation Drift',
+    text: 'After major decisions are made, how consistently do teams take action from the same understanding?',
     answers: [
       { label: 'A', text: 'Teams move forward, but in noticeably different directions' },
-      { label: 'B', text: 'Alignment improves gradually as clarification happens' },
+      { label: 'B', text: 'Alignment improves gradually as teams gain clarification' },
       { label: 'C', text: 'Most teams act from a shared understanding' },
       { label: 'D', text: 'Teams begin with a clear and consistent understanding' },
     ]
   },
   {
     id: 5,
-    cluster: 'System Load',
-    text: 'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of their implications?',
+    cluster: 'Interpretation Drift',
+    text: 'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of implications and impact?',
     answers: [
       { label: 'A', text: 'Leaders interpret the implications differently' },
       { label: 'B', text: 'Shared understanding forms only after extended discussion' },
@@ -65,7 +65,7 @@ const questions = [
   },
   {
     id: 6,
-    cluster: 'System Load',
+    cluster: 'Interpretation Drift',
     text: 'How often do leadership conversations end with surface agreement while ambiguity remains unresolved?',
     answers: [
       { label: 'A', text: 'Often' },
@@ -76,19 +76,19 @@ const questions = [
   },
   {
     id: 7,
-    cluster: 'System Load',
+    cluster: 'Interpretation Drift',
     text: 'When leaders communicate direction to the organization, how consistent are the messages people receive?',
     answers: [
       { label: 'A', text: 'Messages vary noticeably across leaders' },
       { label: 'B', text: 'Messages are broadly similar, but emphasis differs' },
-      { label: 'C', text: 'Messages are mostly consistent across leaders' },
+      { label: 'C', text: 'Messages are mostly consistent among leadership' },
       { label: 'D', text: 'Leaders intentionally coordinate messaging before it is communicated' },
     ]
   },
   // Signal Clarity — Q8–14
   {
     id: 8,
-    cluster: 'Signal Clarity',
+    cluster: 'Velocity Strain',
     text: 'When new initiatives are introduced, what usually happens to existing priorities?',
     answers: [
       { label: 'A', text: 'Most existing work continues alongside the new initiative' },
@@ -99,7 +99,7 @@ const questions = [
   },
   {
     id: 9,
-    cluster: 'Signal Clarity',
+    cluster: 'Velocity Strain',
     text: 'How often are teams asked to absorb new direction while still executing earlier initiatives?',
     answers: [
       { label: 'A', text: 'Frequently — multiple priorities overlap at once' },
@@ -110,7 +110,7 @@ const questions = [
   },
   {
     id: 10,
-    cluster: 'Signal Clarity',
+    cluster: 'Velocity Strain',
     text: 'How is the pace of change usually handled in your organization?',
     answers: [
       { label: 'A', text: 'Speed is assumed and momentum is prioritized' },
@@ -121,7 +121,7 @@ const questions = [
   },
   {
     id: 11,
-    cluster: 'Signal Clarity',
+    cluster: 'Velocity Strain',
     text: 'When leadership decisions are made, how consistently do teams move in the same direction afterward?',
     answers: [
       { label: 'A', text: 'Teams often move in different directions before alignment stabilizes' },
@@ -132,8 +132,8 @@ const questions = [
   },
   {
     id: 12,
-    cluster: 'Signal Clarity',
-    text: 'How often does the organization introduce new work to address issues created by earlier change?',
+    cluster: 'Velocity Strain',
+    text: 'How often does the organization introduce new work to address issues created by earlier changes?',
     answers: [
       { label: 'A', text: 'Often — new initiatives are layered onto unresolved ones' },
       { label: 'B', text: 'Sometimes — additional work appears before earlier change settles' },
@@ -143,7 +143,7 @@ const questions = [
   },
   {
     id: 13,
-    cluster: 'Signal Clarity',
+    cluster: 'Velocity Strain',
     text: 'When priorities change, how much time do people usually have to absorb the new direction?',
     answers: [
       { label: 'A', text: 'Very little — expectations shift immediately' },
@@ -154,7 +154,7 @@ const questions = [
   },
   {
     id: 14,
-    cluster: 'Signal Clarity',
+    cluster: 'Velocity Strain',
     text: 'How often does leadership revisit earlier initiatives to see how effectively they have been integrated into ongoing work?',
     answers: [
       { label: 'A', text: 'Rarely — attention moves quickly to what\'s next' },
@@ -166,7 +166,7 @@ const questions = [
   // Execution Alignment — Q15–20
   {
     id: 15,
-    cluster: 'Execution Alignment',
+    cluster: 'Signal Suppression',
     text: 'In leadership meetings, how often does substantive disagreement surface before decisions are finalized?',
     answers: [
       { label: 'A', text: 'Rarely — discussions converge quickly' },
@@ -177,7 +177,7 @@ const questions = [
   },
   {
     id: 16,
-    cluster: 'Execution Alignment',
+    cluster: 'Signal Suppression',
     text: 'How do concerns about emerging issues usually surface in your organization?',
     answers: [
       { label: 'A', text: 'Mostly in private conversations or after the fact' },
@@ -188,29 +188,29 @@ const questions = [
   },
   {
     id: 17,
-    cluster: 'Execution Alignment',
+    cluster: 'Signal Suppression',
     text: 'When issues begin emerging in execution, how early do they usually become visible to leadership?',
     answers: [
       { label: 'A', text: 'Late — issues often appear suddenly' },
-      { label: 'B', text: 'After results begin to shift' },
+      { label: 'B', text: 'Only after results begin to shift, either positively or negatively' },
       { label: 'C', text: 'Early signals usually appear before formal indicators change' },
       { label: 'D', text: 'Leaders intentionally look for early signs before formal indicators move' },
     ]
   },
   {
     id: 18,
-    cluster: 'Execution Alignment',
-    text: 'How often do teams continue executing even when concerns about the direction of work or priorities exist?',
+    cluster: 'Signal Suppression',
+    text: 'How often do teams continue executing even when concerns about the direction of work or priorities surface?',
     answers: [
-      { label: 'A', text: 'Often — execution continues while concern stays mostly unspoken' },
-      { label: 'B', text: 'Sometimes — concern is present but only partly voiced' },
+      { label: 'A', text: 'Often — execution continues while concerns stay mostly unspoken' },
+      { label: 'B', text: 'Sometimes — concerns are present but only partly voiced' },
       { label: 'C', text: 'Rarely — concerns are usually surfaced early' },
       { label: 'D', text: 'Teams are expected to raise concerns as soon as they appear' },
     ]
   },
   {
     id: 19,
-    cluster: 'Execution Alignment',
+    cluster: 'Signal Suppression',
     text: 'When pressure is building in the organization, when do its effects usually become visible to leadership?',
     answers: [
       { label: 'A', text: 'Only after execution begins to break down' },
@@ -221,10 +221,10 @@ const questions = [
   },
   {
     id: 20,
-    cluster: 'Execution Alignment',
+    cluster: 'Signal Suppression',
     text: 'When issues involve risk, tension, or competing priorities, how is candor usually handled?',
     answers: [
-      { label: 'A', text: 'Harmony is usually protected over challenge' },
+      { label: 'A', text: 'Harmony or the appearance of harmony is usually protected over challenge to the status quo' },
       { label: 'B', text: 'Challenge appears, but cautiously' },
       { label: 'C', text: 'Honest disagreement is generally acceptable' },
       { label: 'D', text: 'Leaders actively make space for candid discussion' },
@@ -321,26 +321,26 @@ const questions = [
 <script is:inline>
   // ── Data ──────────────────────────────────────────────────────────────
   const QUESTIONS = [
-    { id:1,  cluster:'System Load',          text:'When conditions shift quickly, how consistently do leaders describe what is happening and what it means in the same way?', answers:['Leaders describe the situation differently, and alignment takes time','Leaders align eventually, but mixed signals appear in the meantime','Leaders generally describe the situation in similar ways','Leaders pause briefly to align interpretation before acting'] },
-    { id:2,  cluster:'System Load',          text:'When priorities shift, how clearly is the reasoning behind the change communicated among leaders?', answers:['Different leaders explain the shift in noticeably different ways','The explanation becomes clearer over time, but early communication varies','Leaders generally communicate a shared explanation early','Leaders align the rationale together before communicating the change'] },
-    { id:3,  cluster:'System Load',          text:'In leadership discussions, how often do leaders discover they are working from different assumptions?', answers:['Frequently — differences surface late and slow alignment','Occasionally — differences emerge during discussion and require clarification','Rarely — assumptions are mostly shared from the start','Leaders intentionally surface assumptions before decisions are made'] },
-    { id:4,  cluster:'System Load',          text:'After major decisions are made, how consistently do teams act on the same understanding?', answers:['Teams move forward, but in noticeably different directions','Alignment improves gradually as clarification happens','Most teams act from a shared understanding','Teams begin with a clear and consistent understanding'] },
-    { id:5,  cluster:'System Load',          text:'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of their implications?', answers:['Leaders interpret the implications differently','Shared understanding forms only after extended discussion','Shared understanding usually forms fairly quickly','Leaders intentionally align on implications before action begins'] },
-    { id:6,  cluster:'System Load',          text:'How often do leadership conversations end with surface agreement while ambiguity remains unresolved?', answers:['Often','Sometimes','Rarely','Leaders usually resolve ambiguity before closing discussion'] },
-    { id:7,  cluster:'System Load',          text:'When leaders communicate direction to the organization, how consistent are the messages people receive?', answers:['Messages vary noticeably across leaders','Messages are broadly similar, but emphasis differs','Messages are mostly consistent across leaders','Leaders intentionally coordinate messaging before it is communicated'] },
-    { id:8,  cluster:'Signal Clarity',       text:'When new initiatives are introduced, what usually happens to existing priorities?', answers:['Most existing work continues alongside the new initiative','Some priorities shift, but many remain active','Work is selectively resequenced to maintain focus','Leaders pause to reassess priorities before introducing new work'] },
-    { id:9,  cluster:'Signal Clarity',       text:'How often are teams asked to absorb new direction while still executing earlier initiatives?', answers:['Frequently — multiple priorities overlap at once','Sometimes — new work arrives before earlier work is fully integrated','Rarely — priorities are usually sequenced with care','Leaders actively manage how much change enters the system at one time'] },
-    { id:10, cluster:'Signal Clarity',       text:'How is the pace of change usually handled in your organization?', answers:['Speed is assumed and momentum is prioritized','Pace is discussed, but difficult to regulate in practice','Pace is monitored and occasionally adjusted','Pace is actively regulated relative to system capacity'] },
-    { id:11, cluster:'Signal Clarity',       text:'When leadership decisions are made, how consistently do teams move in the same direction afterward?', answers:['Teams often move in different directions before alignment stabilizes','Teams usually move in the same direction but require clarification','Teams generally move in the same direction with minimal clarification','Teams move in the same direction with clear shared understanding'] },
-    { id:12, cluster:'Signal Clarity',       text:'How often does the organization introduce new work to address issues created by earlier change?', answers:['Often — new initiatives are layered onto unresolved ones','Sometimes — additional work appears before earlier change settles','Rarely — earlier initiatives are usually stabilized first','Leaders typically stabilize earlier change before adding more'] },
-    { id:13, cluster:'Signal Clarity',       text:'When priorities change, how much time do people usually have to absorb the new direction?', answers:['Very little — expectations shift immediately','Some time is available, but not always enough for full integration','Teams usually have sufficient time to absorb the change','Leaders intentionally create time for integration before expecting full execution'] },
-    { id:14, cluster:'Signal Clarity',       text:'How often does leadership revisit earlier initiatives to see how effectively they have been integrated into ongoing work?', answers:["Rarely — attention moves quickly to what's next","Sometimes — integration is checked later, if issues appear","Often — leaders review whether change has truly landed","Integration checks are built into how initiatives are sequenced"] },
-    { id:15, cluster:'Execution Alignment',  text:'In leadership meetings, how often does substantive disagreement surface before decisions are finalized?', answers:['Rarely — discussions converge quickly','Sometimes — disagreement appears, but cautiously','Frequently — disagreement helps clarify decisions','Leaders actively invite substantive differences in view before decisions close'] },
-    { id:16, cluster:'Execution Alignment',  text:'How do concerns about emerging issues usually surface in your organization?', answers:['Mostly in private conversations or after the fact','Cautiously, once concern is harder to ignore','Openly, while there is still time to respond','Leaders actively create conditions for concerns to surface early'] },
-    { id:17, cluster:'Execution Alignment',  text:'When issues begin emerging in execution, how early do they usually become visible to leadership?', answers:['Late — issues often appear suddenly','After results begin to shift','Early signals usually appear before formal indicators change','Leaders intentionally look for early signs before formal indicators move'] },
-    { id:18, cluster:'Execution Alignment',  text:'How often do teams continue executing even when concerns about the direction of work or priorities exist?', answers:['Often — execution continues while concern stays mostly unspoken','Sometimes — concern is present but only partly voiced','Rarely — concerns are usually surfaced early','Teams are expected to raise concerns as soon as they appear'] },
-    { id:19, cluster:'Execution Alignment',  text:'When pressure is building in the organization, when do its effects usually become visible to leadership?', answers:['Only after execution begins to break down','When teams begin signaling coordination difficulties','When leaders begin discussing emerging concerns','Early, through questions, disagreement, and operational signals'] },
-    { id:20, cluster:'Execution Alignment',  text:'When issues involve risk, tension, or competing priorities, how is candor usually handled?', answers:['Harmony is usually protected over challenge','Challenge appears, but cautiously','Honest disagreement is generally acceptable','Leaders actively make space for candid discussion'] },
+    { id:1,  cluster:'Interpretation Drift',          text:'When conditions shift quickly, how consistent are leaders\' descriptions and explanations of what is happening and what it means for teams?', answers:['Leaders describe the situation differently, and alignment takes time','Leaders align eventually, but mixed signals appear in the meantime','Leaders generally describe the situation in similar ways','Leaders pause briefly to align interpretation before acting'] },
+    { id:2,  cluster:'Interpretation Drift',          text:'When priorities shift, how clearly is the reasoning behind the change communicated among leaders?', answers:['Different leaders explain the shift in noticeably different ways','The explanation becomes clearer over time, but early communication varies','Leaders generally communicate a shared explanation early','Leaders align the rationale together before communicating the change'] },
+    { id:3,  cluster:'Interpretation Drift',          text:'In leadership discussions, how often do leaders discover they are working from different assumptions?', answers:['Frequently — differences surface late in the discussion process which slows alignment','Occasionally — differences emerge during discussion and require clarification','Rarely — assumptions are mostly shared from the outset of discussion','Leaders intentionally surface assumptions early in the discussion before decisions are made'] },
+    { id:4,  cluster:'Interpretation Drift',          text:'After major decisions are made, how consistently do teams take action from the same understanding?', answers:['Teams move forward, but in noticeably different directions','Alignment improves gradually as teams gain clarification','Most teams act from a shared understanding','Teams begin with a clear and consistent understanding'] },
+    { id:5,  cluster:'Interpretation Drift',          text:'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of implications and impact?', answers:['Leaders interpret the implications differently','Shared understanding forms only after extended discussion','Shared understanding usually forms fairly quickly','Leaders intentionally align on implications before action begins'] },
+    { id:6,  cluster:'Interpretation Drift',          text:'How often do leadership conversations end with surface agreement while ambiguity remains unresolved?', answers:['Often','Sometimes','Rarely','Leaders usually resolve ambiguity before closing discussion'] },
+    { id:7,  cluster:'Interpretation Drift',          text:'When leaders communicate direction to the organization, how consistent are the messages people receive?', answers:['Messages vary noticeably across leaders','Messages are broadly similar, but emphasis differs','Messages are mostly consistent among leadership','Leaders intentionally coordinate messaging before it is communicated'] },
+    { id:8,  cluster:'Velocity Strain',       text:'When new initiatives are introduced, what usually happens to existing priorities?', answers:['Most existing work continues alongside the new initiative','Some priorities shift, but many remain active','Work is selectively resequenced to maintain focus','Leaders pause to reassess priorities before introducing new work'] },
+    { id:9,  cluster:'Velocity Strain',       text:'How often are teams asked to absorb new direction while still executing earlier initiatives?', answers:['Frequently — multiple priorities overlap at once','Sometimes — new work arrives before earlier work is fully integrated','Rarely — priorities are usually sequenced with care','Leaders actively manage how much change enters the system at one time'] },
+    { id:10, cluster:'Velocity Strain',       text:'How is the pace of change usually handled in your organization?', answers:['Speed is assumed and momentum is prioritized','Pace is discussed, but difficult to regulate in practice','Pace is monitored and occasionally adjusted','Pace is actively regulated relative to system capacity'] },
+    { id:11, cluster:'Velocity Strain',       text:'When leadership decisions are made, how consistently do teams move in the same direction afterward?', answers:['Teams often move in different directions before alignment stabilizes','Teams usually move in the same direction but require clarification','Teams generally move in the same direction with minimal clarification','Teams move in the same direction with clear shared understanding'] },
+    { id:12, cluster:'Velocity Strain',       text:'How often does the organization introduce new work to address issues created by earlier changes?', answers:['Often — new initiatives are layered onto unresolved ones','Sometimes — additional work appears before earlier change settles','Rarely — earlier initiatives are usually stabilized first','Leaders typically stabilize earlier change before adding more'] },
+    { id:13, cluster:'Velocity Strain',       text:'When priorities change, how much time do people usually have to absorb the new direction?', answers:['Very little — expectations shift immediately','Some time is available, but not always enough for full integration','Teams usually have sufficient time to absorb the change','Leaders intentionally create time for integration before expecting full execution'] },
+    { id:14, cluster:'Velocity Strain',       text:'How often does leadership revisit earlier initiatives to see how effectively they have been integrated into ongoing work?', answers:["Rarely — attention moves quickly to what's next","Sometimes — integration is checked later, if issues appear","Often — leaders review whether change has truly landed","Integration checks are built into how initiatives are sequenced"] },
+    { id:15, cluster:'Signal Suppression',  text:'In leadership meetings, how often does substantive disagreement surface before decisions are finalized?', answers:['Rarely — discussions converge quickly','Sometimes — disagreement appears, but cautiously','Frequently — disagreement helps clarify decisions','Leaders actively invite substantive differences in view before decisions close'] },
+    { id:16, cluster:'Signal Suppression',  text:'How do concerns about emerging issues usually surface in your organization?', answers:['Mostly in private conversations or after the fact','Cautiously, once concern is harder to ignore','Openly, while there is still time to respond','Leaders actively create conditions for concerns to surface early'] },
+    { id:17, cluster:'Signal Suppression',  text:'When issues begin emerging in execution, how early do they usually become visible to leadership?', answers:['Late — issues often appear suddenly','Only after results begin to shift, either positively or negatively','Early signals usually appear before formal indicators change','Leaders intentionally look for early signs before formal indicators move'] },
+    { id:18, cluster:'Signal Suppression',  text:'How often do teams continue executing even when concerns about the direction of work or priorities surface?', answers:['Often — execution continues while concerns stay mostly unspoken','Sometimes — concerns are present but only partly voiced','Rarely — concerns are usually surfaced early','Teams are expected to raise concerns as soon as they appear'] },
+    { id:19, cluster:'Signal Suppression',  text:'When pressure is building in the organization, when do its effects usually become visible to leadership?', answers:['Only after execution begins to break down','When teams begin signaling coordination difficulties','When leaders begin discussing emerging concerns','Early, through questions, disagreement, and operational signals'] },
+    { id:20, cluster:'Signal Suppression',  text:'When issues involve risk, tension, or competing priorities, how is candor usually handled?', answers:['Harmony or the appearance of harmony is usually protected over challenge to the status quo','Challenge appears, but cautiously','Honest disagreement is generally acceptable','Leaders actively make space for candid discussion'] },
   ];
 
   const LABELS = ['A','B','C','D'];
@@ -436,23 +436,95 @@ const questions = [
     }
   }
 
-  // ── Mock Report Generation ────────────────────────────────────────────
+  // ── Scoring Engine ───────────────────────────────────────────────────
+  var SCORE_MAP = { A: 2, B: 1, C: 0, D: -1 };
+
+  var CLUSTERS = {
+    'Interpretation Drift': { start: 0, end: 6 },
+    'Velocity Strain':      { start: 7, end: 13 },
+    'Signal Suppression':   { start: 14, end: 19 },
+  };
+
+  var PRESSURE_LEVELS = [
+    { label: 'Systemic Strain',     min: 13 },
+    { label: 'Structural Pressure', min: 7  },
+    { label: 'Early Signals',       min: 0  },
+  ];
+
+  var TIE_PRIORITY = ['Velocity Strain', 'Interpretation Drift', 'Signal Suppression'];
+  var VALIDITY_THRESHOLD = 14;
+
+  function generateReportId(primary) {
+    var prefix = { 'Interpretation Drift': 'ID', 'Velocity Strain': 'VS', 'Signal Suppression': 'SS' }[primary] || 'CD';
+    return 'CD-' + prefix + '-' + Date.now().toString(36).toUpperCase();
+  }
+
+  function scoreAnswers(answerArray, name, email) {
+    var scored = answerArray.map(function(a) { return SCORE_MAP[a]; });
+
+    var patternScores = {};
+    Object.keys(CLUSTERS).forEach(function(pattern) {
+      var c = CLUSTERS[pattern];
+      var total = 0;
+      for (var i = c.start; i <= c.end; i++) { total += scored[i]; }
+      patternScores[pattern] = total;
+    });
+
+    var sortedPatterns = Object.keys(patternScores).sort(function(a, b) {
+      if (patternScores[b] !== patternScores[a]) return patternScores[b] - patternScores[a];
+      return TIE_PRIORITY.indexOf(a) - TIE_PRIORITY.indexOf(b);
+    });
+
+    var positiveTotal = scored.reduce(function(s, v) { return s + (v > 0 ? v : 0); }, 0);
+    var pressureLevel = PRESSURE_LEVELS.find(function(p) { return positiveTotal >= p.min; }).label;
+    var dCount = answerArray.filter(function(a) { return a === 'D'; }).length;
+
+    return {
+      report_id:       generateReportId(sortedPatterns[0]),
+      participant:     { name: name, email: email },
+      patterns: {
+        primary:       sortedPatterns[0],
+        secondary:     sortedPatterns[1],
+        scores:        patternScores,
+      },
+      pressure: {
+        level:         pressureLevel,
+        positive_total: positiveTotal,
+      },
+      validity: {
+        d_count:       dCount,
+        likely_gamed:  dCount >= VALIDITY_THRESHOLD,
+      },
+      raw_answers:     answerArray,
+      date_display:    new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    };
+  }
+
+  // ── Report Generation ─────────────────────────────────────────────────
   function generateMockReport(name, email) {
     btnGenerate.textContent = 'Generating...';
     btnGenerate.disabled = true;
 
-    setTimeout(function() {
-      // Mock results — will be replaced by real scoring engine
-      var reportId = 'CD-' + Date.now().toString(36).toUpperCase();
-      var mockPattern  = 'Signal Clarity';
-      var mockPressure = 'Structural Pressure';
+    // Convert answer indices (0-3) to letters (A-D)
+    var answerLetters = answers.map(function(i) { return ['A','B','C','D'][i]; });
 
-      document.getElementById('confirm-report-id').textContent  = reportId;
-      document.getElementById('confirm-pattern').textContent    = mockPattern;
-      document.getElementById('confirm-pressure').textContent   = mockPressure;
+    try {
+      var result = scoreAnswers(answerLetters, name, email);
+
+      document.getElementById('confirm-report-id').textContent  = result.report_id;
+      document.getElementById('confirm-pattern').textContent    = result.patterns.primary;
+      document.getElementById('confirm-pressure').textContent   = result.pressure.level;
+
+      // Store result for EmailJS in next session
+      window._diagnosticResult = result;
 
       showScreen(screenConf);
-    }, 1800);
+    } catch(err) {
+      alert('Something went wrong generating your report. Please try again.');
+      btnGenerate.textContent = 'Generate My Report';
+      btnGenerate.disabled = false;
+      console.error('Scoring error:', err);
+    }
   }
 </script>
 
