@@ -27,7 +27,7 @@ const { language, textDirection } = I18N;
 
 <!doctype html>
 <html lang={language} dir={textDirection} class="2xl:text-[20px]">
- <head>
+  <head>
     <CommonMeta />
     <Favicons />
     <CustomStyles />
@@ -35,9 +35,23 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+
+    <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
-    <script type="text/javascript" src="https://payhip.com/payhip.js"></script>  <!-- ADD HERE -->
+
+    <script type="text/javascript" src="https://payhip.com/payhip.js"></script>
+
+    <!-- Default Statcounter code for CK Coherence -->
+    <script type="text/javascript">
+      var sc_project=13206432;
+      var sc_invisible=1;
+      var sc_security="f8829670";
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    <noscript><div class="statcounter"><a title="Web Analytics Made Easy - Statcounter" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13206432/0/f8829670/1/" alt="Web Analytics Made Easy - Statcounter" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+    <!-- End of Statcounter Code -->
   </head>
+
   <body class="antialiased text-default bg-page tracking-tight">
     <slot />
 
