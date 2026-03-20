@@ -47,7 +47,7 @@ const metadata = {
         </div>
 
         <!-- Right — Form -->
-        <div class="contact-form-wrap">
+        <div class="contact-form-wrap" id="contact-form-wrap">
           <form
             action="https://api.web3forms.com/submit"
             method="POST"
@@ -102,18 +102,19 @@ const metadata = {
               Send Your Inquiry
             </button>
 
-            <!-- Success / Error states -->
-            <div class="form-success" id="form-success">
-              <span class="success-mark">—</span>
-              <p class="success-title">Received.</p>
-              <p class="success-body">Christine will be in touch within one business day.</p>
-            </div>
-
-            <div class="form-error" id="form-error">
-              <p>Something went wrong. Please try again or email directly.</p>
-            </div>
-
           </form>
+
+          <!-- Success / Error states — outside the form so they survive form.hide() -->
+          <div class="form-success" id="form-success">
+            <span class="success-mark">—</span>
+            <p class="success-title">Received.</p>
+            <p class="success-body">Christine will be in touch within one business day.</p>
+          </div>
+
+          <div class="form-error" id="form-error">
+            <p>Something went wrong. Please try again or email directly.</p>
+          </div>
+
         </div>
 
       </div>
@@ -152,8 +153,7 @@ const metadata = {
       btn.disabled = false;
     });
   });
-</script>
-
+  </script>
 
 </Layout>
 
