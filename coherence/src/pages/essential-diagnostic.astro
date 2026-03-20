@@ -240,12 +240,16 @@ const questions = [
   <!-- ─── Orientation Screen ──────────────────────────────────────────── -->
   <div class="screen" id="screen-orient">
     <div class="orient-inner">
-      <span class="eyebrow">The Coherence Co.</span>
+      <span class="eyebrow">The Coherence Company</span>
       <h1 class="orient-title">Essential Coherence<br>Diagnostic</h1>
       <div class="orient-divider"></div>
-      <p class="orient-body">This diagnostic reads how pressure moves through your organization's leadership system.</p>
-      <p class="orient-body">You will be presented with <strong>20 questions</strong>. Each describes a set of recognizable organizational situations. Select the one that most closely matches how your organization typically operates right now.</p>
-      <p class="orient-body orient-note">There are no right or wrong answers. Honest responses produce useful results. Allow approximately <strong>15 minutes</strong>.</p>
+      <p class="orient-body">This Diagnostic reads how pressure is currently moving through your organization.</p>
+      <p class="orient-body">You will be asked to respond to <strong>20 multiple-choice questions</strong>. Each describes a set of recognizable organizational situations. Please, select the one that most closely matches how your organization typically operates right now.</p>
+      <p class="orient-body">There are no right or wrong answers. The diagnostic identifies structural patterns, not personal qualities or skill sets. Your honest responses produce the most useful results.</p>
+      <div class="orient-what-label">What you'll receive:</div>
+      <p class="orient-body">Once you submit, the system generates a four-page report identifying your primary structural pattern, your pressure level, and recommendations on how you can shift current conditions. It will be delivered immediately to your device and inbox.</p>
+      <p class="orient-body">Your report also includes a next step: a 30-minute Leadership Coherence Debrief with Christine Kahane, NBC-HWC, MCWC, TIPF, to walk through what the results mean for your organization.</p>
+      <p class="orient-body orient-note">Allow approximately <strong>15 minutes</strong> of uninterrupted time to take the Diagnostic. When you're ready, begin.</p>
       <button class="btn-primary" id="btn-begin">Begin Diagnostic</button>
     </div>
   </div>
@@ -293,7 +297,7 @@ const questions = [
     <div class="confirm-inner">
       <div class="confirm-mark">—</div>
       <h2 class="confirm-title">Your report is ready.</h2>
-      <p class="confirm-body">Your diagnostic report has downloaded to your device. A copy has been sent to your email address.</p>
+      <p class="confirm-body">Your four-page Essential Coherence Diagnostic report has downloaded to your device. A copy has been sent to your email address. Please, check your inbox now to confirm it has arrived.</p>
 
       <div class="confirm-detail" id="confirm-detail">
         <div class="confirm-row">
@@ -310,9 +314,20 @@ const questions = [
         </div>
       </div>
 
-      <p class="confirm-next-label">Next step</p>
-      <p class="confirm-next">Review your report. When you're ready to explore what these patterns mean for your specific leadership system, book your 30-minute advisory conversation.</p>
-      <a href="/contact" class="btn-primary">Book Your Walkthrough</a>
+      <p class="confirm-next-label">What your report contains</p>
+      <p class="confirm-next">Your report opens with the structural pattern currently shaping how your leadership system processes signals, decisions, and pressure. It explains why this pattern forms, how it typically appears in everyday leadership moments, and where recalibration has the highest impact.</p>
+      <p class="confirm-next confirm-emphasis">Read Page 1 first. Most leaders recognize their organization immediately.</p>
+
+      <p class="confirm-next-label">Your next step</p>
+      <p class="confirm-next">The report is the beginning, not the conclusion. A 30-minute Leadership Coherence Debrief with Christine Kahane takes the diagnostic findings and translates them into the specific conditions shaping your organization — and where leadership attention will move the needle fastest.</p>
+      <p class="confirm-next confirm-emphasis">This is not a sales conversation. It is a structured debrief of your results.</p>
+
+      <a href="[CALENDLY_LINK]" class="btn-primary">Book Your Debrief</a>
+
+      <p class="confirm-confidentiality-label">A note on confidentiality</p>
+      <p class="confirm-confidentiality">Everything discussed in your debrief stays in the room and, under NBHWC ethical standards, is completely confidential. The Coherence Company never references specific client situations, challenges, or data in any public context.</p>
+
+      <p class="confirm-contact">Questions? Reply to your confirmation email or reach us at <a href="mailto:info@coherencecompany.com">info@coherencecompany.com</a>.</p>
     </div>
   </div>
 
@@ -899,7 +914,55 @@ const questions = [
     font-size: 0.88rem;
     color: var(--slate-dim);
     line-height: 1.8;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .confirm-emphasis {
+    font-size: 0.88rem;
+    color: var(--slate);
+    font-style: italic;
+    margin-bottom: 1.75rem;
+  }
+
+  .confirm-confidentiality-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .confirm-confidentiality {
+    font-size: 0.82rem;
+    color: var(--slate-dim);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .confirm-contact {
+    font-size: 0.82rem;
+    color: var(--slate-dim);
+    line-height: 1.8;
+    margin-top: 1rem;
+  }
+
+  .confirm-contact a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .confirm-contact a:hover { color: var(--gold-light); }
+
+  .orient-what-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   /* ── Buttons ── */
