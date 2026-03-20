@@ -1,6 +1,4 @@
----
-// Mockup only — not for production
----<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -551,6 +549,47 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--white);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .fed-nav span { display: none; }
+    .fed-nav h4 { font-size: 0.72rem; }
+    .fed-nav a { padding: 0.75rem 1rem; }
+
+    .nav-links { display: none; }
+    .site-nav-inner { padding: 0 1.5rem; }
+
+    .hero { padding: 80px 0 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem; }
+    .hero-body { max-width: 100%; }
+
+    .pain-grid { grid-template-columns: 1fr; }
+    .pain-card { border-right: none; border-bottom: 1px solid var(--divider); }
+    .pain-card:last-child { border-bottom: none; }
+
+    .content-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .content-left { position: static; }
+
+    .faqs-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .faqs-left { position: static; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    .section-pain, .section-content, .section-faqs { padding: 60px 0; }
+    .footer { padding: 48px 0 32px; }
+    .container, .container-narrow { padding: 0 1.5rem; }
+  }
+
+  @media (max-width: 560px) {
+    .fed-nav a { padding: 0.6rem 0.75rem; }
+    .fed-nav h4 { font-size: 0.65rem; }
+    .nav-cta { font-size: 0.55rem; padding: 0.55rem 0.85rem; letter-spacing: 0.06em; }
+    .standard-badge { display: none; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .credential-num { font-size: 1.6rem; min-width: 60px; }
+    .pain-card { padding: 1.75rem 1.25rem; }
+    .pullquote { padding: 0.75rem 1rem; font-size: 1rem; }
   }
 </style>
 </head>
