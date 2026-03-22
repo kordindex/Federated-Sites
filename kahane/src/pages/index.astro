@@ -1,149 +1,619 @@
 ---
-import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
-import GlobalFooter from '../../../shared/GlobalFooter.astro';
+// Design mockup only — not for production
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kahane Coaching | Unlearn. Lead with Genius.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-mist: #EAEAEA;
-            --gold-accent: #b59353;    /* PMS 1245/131 */
-            --silver-gray: #b1b3b3;    /* PMS 443 */
-            --ink-dark: #111e1c;       /* PMS 627 */
-            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --nav-height-t1: 90px;
-            --nav-height-t2: 70px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kahane Coaching — Design Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: #fff; 
-            color: var(--ink-dark); 
-            overflow-x: hidden; 
-        }
-        
-        .serif { font-family: 'Playfair Display', serif; }
-        .sans { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+  :root {
+    /* Shared federated palette */
+    --gold:         #C4922A;
+    --gold-light:   #D4A84B;
+    --silver:       #8C9490;
+    --limestone:    #F0EDE8;
+    --warm-white:   #FAF8F5;
+    --warm-white-2: #F5F2EC;
+    --white:        #FFFFFF;
+    --body:         #2C3A4A;
+    --muted:        #6B7A8D;
+    --divider:      rgba(19, 41, 75, 0.1);
 
-        /* --- TIER 2: COACHING NAV --- */
-        .site-header {
-            position: fixed; 
-            top: var(--nav-height-t1); 
-            width: 100%; 
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--silver-gray); 
-            height: var(--nav-height-t2);
-            display: flex; 
-            align-items: center; 
-            transition: var(--transition);
-        }
-        .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; }
-        .site-nav-links a { text-decoration: none; color: inherit; transition: 0.3s; }
+    /* Kahane Coaching — forest green */
+    --green:        #18332F;
+    --green-mid:    #1f4038;
 
-        /* --- CONTENT --- */
-        .hero { 
-            padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; 
-            min-height: 80vh; 
-        }
-        .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
-        
-        h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 1.1; margin-bottom: 2rem; font-family: 'Playfair Display', serif; }
-        .subhead { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 1.5rem; line-height: 1.4; }
-        .subtitle { font-family: 'Inter', sans-serif; color: var(--gold-accent); font-weight: 400; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; display: block; margin-bottom: 1rem; }
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans:  'DM Sans', system-ui, sans-serif;
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .card { padding: 3rem; border: 1px solid var(--silver-gray); border-top: 8px solid var(--gold-accent); }
-        .card h3 { font-size: 1.6rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+    --nav-height-t1: 44px;
+    --nav-height-t2: 64px;
+  }
 
-        /* --- RESPONSIVE REFACTOR --- */
-        @media (max-width: 768px) {
-            :root {
-                --nav-height-t1: 65px;
-                --nav-height-t2: 55px;
-            }
-            
-            .site-header {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                justify-content: flex-start;
-                padding: 0 1rem;
-            }
-            .site-header .container { justify-content: flex-start !important; gap: 2rem; }
-            .site-nav-links { gap: 1.5rem; padding-right: 2rem; }
-            .site-nav-links li { white-space: nowrap; }
-            .site-header span.serif { display: none; } 
-            
-            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
-            .hero { padding-top: 140px; text-align: center; }
-            h1 { font-size: 2.8rem; }
-            .subhead { font-size: 1.3rem; }
-        }
-    </style>
+  html { font-size: 16px; }
+  body { font-family: var(--sans); background: var(--warm-white); color: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+  /* ── Design note ────────────────────────────────────────────── */
+  .design-note {
+    background: var(--green);
+    padding: 0.75rem 2.5rem;
+    text-align: center;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  /* ── Federated Nav (Tier 1) ─────────────────────────────────── */
+  .fed-nav {
+    display: flex;
+    border-bottom: 1px solid var(--divider);
+    background: var(--white);
+    height: var(--nav-height-t1);
+  }
+  .fed-nav a {
+    flex: 1;
+    padding: 0.5rem 1.5rem;
+    text-decoration: none;
+    border-right: 1px solid var(--divider);
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .fed-nav a:last-child { border-right: none; }
+  .fed-nav a:hover { background: var(--limestone); }
+  .fed-nav a.active { background: var(--limestone); }
+  .fed-nav span {
+    display: block;
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 0.15rem;
+  }
+  .fed-nav h4 {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--body);
+  }
+  .fed-nav a.active h4 { color: var(--green); }
+
+  /* ── Site Nav (Tier 2) ──────────────────────────────────────── */
+  .site-header {
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-height-t2);
+    display: flex;
+    align-items: center;
+  }
+  .site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .site-logo {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--green);
+    text-decoration: none;
+  }
+  .site-logo span { color: var(--gold); }
+  .site-nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .site-nav-links a {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .site-nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--green);
+    padding: 0.65rem 1.25rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--green-mid); }
+
+  /* ── Layout helpers ─────────────────────────────────────────── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+  .eyebrow {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+  .section-rule { width: 40px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+
+  /* ── Hero ───────────────────────────────────────────────────── */
+  .hero {
+    background: var(--limestone);
+    padding: 100px 0 90px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .hero-subtitle {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  /* Existing brand copy — Playfair, green, large */
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .hero-subhead {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--green-mid);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
+
+  .hero-body {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--green);
+    padding: 0.9rem 1.75rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-mid); }
+  .btn-ghost {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px solid var(--green);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* Christine card — right side of hero */
+  .christine-card {
+    background: var(--white);
+    border: 0.5px solid var(--divider);
+    border-top: 8px solid var(--gold);
+    padding: 2.5rem;
+  }
+  .christine-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.3rem;
+  }
+  .christine-credentials {
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+  .christine-bio {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    opacity: 0.9;
+  }
+  .christine-divider { height: 1px; background: var(--divider); margin: 1.25rem 0; }
+  .focus-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .focus-item {
+    font-size: 0.82rem;
+    color: var(--body);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--divider);
+    line-height: 1.5;
+  }
+  .focus-item:last-child { border-bottom: none; }
+
+  /* ── Approach Section ───────────────────────────────────────── */
+  .section-approach {
+    background: var(--warm-white);
+    padding: 100px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .approach-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start; }
+  .approach-left { position: sticky; top: 80px; }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+  .section-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.8; }
+
+  .approach-item { padding: 1.75rem 0; border-bottom: 1px solid var(--divider); }
+  .approach-item:first-child { border-top: 1px solid var(--divider); }
+  .approach-num {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .approach-title {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--green);
+    margin-bottom: 0.6rem;
+    line-height: 1.35;
+  }
+  .approach-body { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
+
+  /* ── Pullquote ──────────────────────────────────────────────── */
+  .section-quote {
+    background: var(--warm-white-2);
+    padding: 80px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .pullquote-inner { max-width: 700px; margin: 0 auto; padding: 0 2.5rem; text-align: center; }
+  .pullquote-mark {
+    font-family: var(--serif);
+    font-size: 5rem;
+    color: var(--green);
+    opacity: 0.12;
+    line-height: 1;
+    margin-bottom: -1.5rem;
+  }
+  .pullquote-text {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-style: italic;
+    color: var(--green);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .pullquote-attr {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── Entry Points ───────────────────────────────────────────── */
+  .section-entry {
+    background: var(--warm-white);
+    padding: 100px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 0.5px solid var(--divider);
+    margin-top: 3rem;
+  }
+  .entry-card {
+    padding: 2.25rem;
+    border-right: 0.5px solid var(--divider);
+    background: var(--white);
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .entry-card:last-child { border-right: none; }
+  .entry-card:hover { background: var(--limestone); }
+  .entry-card--featured { border-top: 2px solid var(--green); }
+  .entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+  .entry-num { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold); }
+  .entry-price { font-size: 0.72rem; font-weight: 700; color: var(--green); }
+  .entry-title { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--green); line-height: 1.3; margin-bottom: 0.75rem; }
+  .entry-body { font-size: 0.82rem; color: var(--muted); line-height: 1.75; flex: 1; margin-bottom: 1.25rem; }
+  .entry-cta {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    text-decoration: none;
+    border-top: 0.5px solid var(--divider);
+    padding-top: 1rem;
+    transition: color 0.2s;
+    display: block;
+  }
+  .entry-cta:hover { color: var(--gold); }
+
+  /* ── Footer ─────────────────────────────────────────────────── */
+  .footer { background: var(--green); padding: 60px 0 40px; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand-mark { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem; }
+  .footer-brand-body { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 280px; }
+  .footer-col h4 { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+  .footer-col a { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+
+  /* ── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .fed-nav span { display: none; }
+    .site-nav-links { display: none; }
+    .site-header .container { padding: 0 1.5rem; }
+    .hero { padding: 60px 0 50px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .approach-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .approach-left { position: static; }
+    .entry-grid { grid-template-columns: 1fr; }
+    .entry-card { border-right: none; border-bottom: 0.5px solid var(--divider); }
+    .entry-card:last-child { border-bottom: none; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .container { padding: 0 1.5rem; }
+    .section-approach, .section-entry, .section-quote { padding: 60px 0; }
+  }
+
+  @media (max-width: 560px) {
+    .nav-cta { font-size: 0.55rem; padding: 0.55rem 0.85rem; letter-spacing: 0.06em; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .pullquote-inner { padding: 0 1.25rem; }
+  }
+</style>
 </head>
 <body>
 
-    <BrandSwitcher activeBrand="coaching" />
+<div class="design-note">Design Mockup — Kahane Coaching — Green Headline Test — For Christine Review</div>
 
-    <header class="site-header">
-        <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
-            <span class="serif" style="font-weight:900; font-size: 1.3rem;">Kahane <span style="color:var(--gold-accent)">Coaching</span></span>
-            <ul class="site-nav-links sans">
-                <li><a href="#">About Christine</a></li>
-                <li><a href="#">Coaching</a></li>
-                <li><a href="#">Community</a></li>
-            </ul>
+<!-- Federated Nav (Tier 1) — matches existing BrandSwitcher output -->
+<nav class="fed-nav">
+  <a href="https://institute-unlearning.vercel.app/" class="pillar-inst">
+    <span>The Master Brand</span>
+    <h4>The Institute</h4>
+  </a>
+  <a href="https://coherence-company.vercel.app/" class="pillar-cohe">
+    <span>B2B / Organizations</span>
+    <h4>The Coherence Co.</h4>
+  </a>
+  <a href="https://kahane-coaching.vercel.app/" class="pillar-coac active">
+    <span>B2C / Individuals</span>
+    <h4>Kahane Coaching</h4>
+  </a>
+</nav>
+
+<!-- Site Header (Tier 2) — matches existing site-header structure -->
+<header class="site-header">
+  <div class="container">
+    <a href="#" class="site-logo">Kahane <span>Coaching</span></a>
+    <ul class="site-nav-links">
+      <li><a href="#">About Christine</a></li>
+      <li><a href="#">Coaching</a></li>
+      <li><a href="#">Community</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Start a Conversation</a>
+  </div>
+</header>
+
+<!-- Hero — existing copy preserved, design updated -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <span class="hero-subtitle">Community of Practice</span>
+        <h1 class="hero-title">Unlearn.<br><em>Lead with Genius.</em></h1>
+        <p class="hero-subhead">A space where individual leaders discover their innate brilliance through science-backed facilitation.</p>
+        <p class="hero-body">Most leadership development focuses on what you do. Kahane Coaching focuses on how you are — under load, under scrutiny, and in the moments that matter most. The work is precise, confidential, and grounded in the same structural framework that underlies the Coherence ecosystem.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn-primary">Start a Conversation</a>
+          <a href="#" class="btn-ghost">Explore the Approach →</a>
         </div>
-    </header>
-
-    <main class="hero">
-        <div class="container">
-            <div class="grid-2">
-                <div>
-                    <span class="subtitle">Community of Practice</span>
-                    <h1 class="serif">Unlearn. <br><span style="font-style:italic">Lead with Genius.</span></h1>
-                    <p class="subhead">A space where individual leaders discover their innate brilliance through science-backed facilitation.</p>
-                </div>
-                <div class="card">
-                    <h3 class="serif">Christine Kahane, NBC-HWC</h3>
-                    <p style="opacity: 0.7; line-height: 1.6;">25+ years of experience in communication science and emotional intelligence.</p>
-                </div>
-            </div>
+      </div>
+      <div class="hero-right">
+        <!-- Matches existing .card structure, updated styling -->
+        <div class="christine-card">
+          <div class="christine-name">Christine Kahane, NBC-HWC</div>
+          <span class="christine-credentials">NBC-HWC &nbsp;·&nbsp; MCWC &nbsp;·&nbsp; TIPF</span>
+          <p class="christine-bio">25+ years of experience in communication science and emotional intelligence. Christine works with individual leaders navigating the intersection of performance, identity, and organizational pressure.</p>
+          <div class="christine-divider"></div>
+          <span class="focus-label">Areas of focus</span>
+          <div class="focus-item">Leadership presence under pressure</div>
+          <div class="focus-item">Behavioral and attentional recalibration</div>
+          <div class="focus-item">Executive identity and transition</div>
+          <div class="focus-item">Somatic regulation for high-performance</div>
         </div>
-    </main>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <GlobalFooter />
+<!-- Approach -->
+<section class="section-approach">
+  <div class="container">
+    <div class="approach-grid">
+      <div class="approach-left">
+        <span class="eyebrow">How the Work Happens</span>
+        <div class="section-rule"></div>
+        <h2 class="section-title">Not skill-building. Pattern recognition.</h2>
+        <p class="section-sub" style="margin-top: 1rem;">The behaviors that limit leaders under pressure are structural — not personal failures. Naming the pattern is the first act of change.</p>
+      </div>
+      <div class="approach-right">
+        <div class="approach-item">
+          <span class="approach-num">01</span>
+          <h3 class="approach-title">Diagnostic Entry</h3>
+          <p class="approach-body">Every engagement begins with the Essential Coherence Diagnostic — a structured instrument that identifies the patterns shaping how you process signals, decisions, and pressure. The results inform everything that follows.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">02</span>
+          <h3 class="approach-title">Leadership Coherence Debrief</h3>
+          <p class="approach-body">A 30-minute structured debrief with Christine translates your diagnostic results into the specific conditions shaping your leadership. This is not a sales conversation. It is a calibrated reading of your results in context.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">03</span>
+          <h3 class="approach-title">Sustained Coaching Engagement</h3>
+          <p class="approach-body">For leaders ready to go deeper — a sustained engagement working across behavioral, relational, and attentional dimensions. Calibrated to your diagnostic results and the specific demands of your leadership context.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">04</span>
+          <h3 class="approach-title">Confidentiality</h3>
+          <p class="approach-body">Everything stays in the room. Under NBHWC ethical standards, all coaching conversations are completely confidential. Christine never references specific client situations, challenges, or data in any public context.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- Default Statcounter code for CK Coaching
-https://kahane-coaching.vercel.app/ -->
-<script type="text/javascript">
-var sc_project=13206433; 
-var sc_invisible=1; 
-var sc_security="4bd7ecb9"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js"
-async></script>
-<noscript><div class="statcounter"><a title="Web Analytics"
-href="https://statcounter.com/" target="_blank"><img
-class="statcounter"
-src="https://c.statcounter.com/13206433/0/4bd7ecb9/1/"
-alt="Web Analytics"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
+<!-- Pullquote -->
+<section class="section-quote">
+  <div class="pullquote-inner">
+    <div class="pullquote-mark">"</div>
+    <p class="pullquote-text">Most leadership problems are not personal failures. They are structural reflexes. And structural reflexes change when the structure changes.</p>
+    <span class="pullquote-attr">Christine Kahane &nbsp;·&nbsp; Founder, Kahane Coaching</span>
+  </div>
+</section>
 
+<!-- Entry Points -->
+<section class="section-entry">
+  <div class="container">
+    <span class="eyebrow">Where to Begin</span>
+    <div class="section-rule"></div>
+    <h2 class="section-title">There is a structured place to start, wherever you are in the process.</h2>
+    <div class="entry-grid">
+      <div class="entry-card">
+        <div class="entry-header">
+          <span class="entry-num">01</span>
+          <span class="entry-price">$395</span>
+        </div>
+        <h3 class="entry-title">Essential Coherence Diagnostic</h3>
+        <p class="entry-body">A structured 20-question diagnostic that identifies how pressure is moving through your leadership system. Produces a four-page report and includes a 30-minute debrief with Christine.</p>
+        <a href="#" class="entry-cta">Begin the Diagnostic →</a>
+      </div>
+      <div class="entry-card entry-card--featured">
+        <div class="entry-header">
+          <span class="entry-num">02</span>
+          <span class="entry-price">Proposal-based</span>
+        </div>
+        <h3 class="entry-title">Individual Coaching Engagement</h3>
+        <p class="entry-body">Sustained coaching across behavioral, relational, and attentional dimensions. Calibrated to your diagnostic results and the specific demands of your leadership context.</p>
+        <a href="#" class="entry-cta">Start a Conversation →</a>
+      </div>
+      <div class="entry-card">
+        <div class="entry-header">
+          <span class="entry-num">03</span>
+          <span class="entry-price">Free</span>
+        </div>
+        <h3 class="entry-title">The Coherence Canvas</h3>
+        <p class="entry-body">A public interactive tool for mapping how your system responds to pressure. Built for orientation — a starting point before the diagnostic or a way to explore the framework on your own terms.</p>
+        <a href="#" class="entry-cta">Explore the Canvas →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-
+<!-- Footer — matches GlobalFooter structure -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-mark">UNL</div>
+        <p class="footer-brand-body">The Institute for UNLearning is the foundational IP holder for Coherence and Coaching methodologies.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <a href="https://institute-unlearning.vercel.app/">The Institute</a>
+        <a href="https://coherence-company.vercel.app/">Coherence Co.</a>
+        <a href="https://kahane-coaching.vercel.app/">Kahane Coaching</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">LinkedIn</a>
+        <a href="#">Newsletter</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 The Institute for UNLearning. All Rights Reserved. | <a href="#" style="color:rgba(255,255,255,0.25); text-decoration:none;">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
 
 </body>
-
-
 </html>
