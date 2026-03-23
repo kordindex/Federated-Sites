@@ -1,48 +1,34 @@
----
-import '@fontsource-variable/inter';
-import '@fontsource/playfair-display/700.css';
-import '@fontsource/playfair-display/900.css';
----
 <style is:inline>
   :root {
     --aw-font-sans: 'Inter Variable';
     --aw-font-serif: 'Playfair Display';
     --aw-font-heading: 'Playfair Display';
 
-    --aw-color-primary:          rgb(19 41 75);     /* PMS 2767 navy */
-    --aw-color-secondary:        rgb(196 146 42);   /* PMS 1245 gold */
-    --aw-color-accent:           rgb(196 146 42);   /* gold */
+    /* JUST the numbers, no rgb() */
+    --aw-color-primary: 19 41 75;     /* PMS 2767 navy */
+    --aw-color-secondary: 196 146 42; /* PMS 1245 gold */
+    --aw-color-accent: 196 146 42;    /* gold */
 
-    --aw-color-text-heading:     rgb(19 41 75);     /* navy headlines */
-    --aw-color-text-default:     rgb(44 58 74);     /* dark body copy */
-    --aw-color-text-muted:       rgb(107 122 141);  /* secondary text */
+    --aw-color-text-heading: 19 41 75;
+    --aw-color-text-default: 44 58 74;
+    --aw-color-text-muted: 107 122 141;
 
-    --aw-color-bg-page:          rgb(250 248 245);  /* warm white */
-    --aw-color-bg-page-dark:     rgb(250 248 245);  /* same — no dark inversion */
+    --aw-color-bg-page: 250 248 245;
+    --aw-color-bg-page-dark: 250 248 245;
 
     ::selection {
-      background-color: rgb(196 146 42);
+      background-color: rgb(196 146 42); /* rgb() is fine here in raw CSS */
       color: white;
     }
   }
+  
+  /* Do the same for the .dark block below */
   .dark {
-    --aw-font-sans: 'Inter Variable';
-    --aw-font-serif: 'Playfair Display';
-    --aw-font-heading: 'Playfair Display';
-
-    --aw-color-primary:          rgb(19 41 75);
-    --aw-color-secondary:        rgb(196 146 42);
-    --aw-color-accent:           rgb(196 146 42);
-
-    --aw-color-text-heading:     rgb(19 41 75);
-    --aw-color-text-default:     rgb(44 58 74);
-    --aw-color-text-muted:       rgb(107 122 141);
-
-    --aw-color-bg-page:          rgb(250 248 245);
-
-    ::selection {
-      background-color: rgb(196 146 42);
-      color: white;
-    }
+    --aw-color-primary: 19 41 75;
+    --aw-color-secondary: 196 146 42;
+    --aw-color-accent: 196 146 42;
+    --aw-color-text-heading: 19 41 75;
+    --aw-color-text-default: 44 58 74;
+    --aw-color-bg-page: 250 248 245;
   }
 </style>
