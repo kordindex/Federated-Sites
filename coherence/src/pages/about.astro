@@ -569,9 +569,9 @@ const metadata = {
     position: relative;
   }
 
-  .eco-card--coherence { background: var(--navy); }
-  .eco-card--institute { background: #111e1c; }
-  .eco-card--kahane    { background: #2a1f0e; }
+  .eco-card--coherence { background: #F0EDE8; }
+.eco-card--institute { background: #F4F7F6; border-top: 2px solid #18332F; }
+.eco-card--kahane    { background: #FAF8F5; border-top: 2px solid #C4922A; }
 
   .eco-card:hover { filter: brightness(1.15); }
 
@@ -591,7 +591,7 @@ const metadata = {
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--navy);
     line-height: 1.3;
   }
 
@@ -765,24 +765,37 @@ const metadata = {
     text-transform: uppercase;
     padding: 0.9rem 2rem;
     background: var(--gold);
-    color: var(--navy-deep);
+    color: #ffffff;
     text-decoration: none;
     transition: background 0.2s ease;
     display: inline-block;
   }
-
   .btn-primary-gold:hover {
     background: var(--gold-light);
   }
 
-  .btn-ghost-white {
+ .btn-ghost-white {
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 0.9rem 2rem;
     background: transparent;
-    color: var(--white);
+    color: var(--navy);
+    border: 1px solid rgba(19, 41, 75, 0.3);
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn-ghost-white:hover {
+    border-color: var(--navy);
+    color: var(--navy);
+  }
+.btn-ghost-white:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
     border: 1px solid rgba(255,255,255,0.3);
     text-decoration: none;
     transition: border-color 0.2s ease, color 0.2s ease;
