@@ -1,3 +1,4 @@
+---
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
@@ -45,19 +46,19 @@ const metadata = {
             class="contact-form"
             id="contact-form"
           >
-            <input type="hidden" name="access_key" value="11cb0668-4dcd-473a-9784-3c2290917a75" />
-            <input type="hidden" name="subject" value="New Contact Inquiry — The Coherence Co." />
-            <input type="hidden" name="redirect" value="false" />
-            <input type="checkbox" name="botcheck" style="display:none" />
+            <input type="hidden" name="access_key" value="11cb0668-4dcd-473a-9784-3c2290917a75">
+            <input type="hidden" name="subject" value="New Contact Inquiry — The Coherence Co.">
+            <input type="hidden" name="redirect" value="false">
+            <input type="checkbox" name="botcheck" style="display:none">
 
             <div class="field-group">
               <label class="field-label" for="name">Your Name</label>
-              <input class="field-input" type="text" id="name" name="name" placeholder="Full name" required />
+              <input class="field-input" type="text" id="name" name="name" placeholder="Full name" required>
             </div>
 
             <div class="field-group">
               <label class="field-label" for="email">Email Address</label>
-              <input class="field-input" type="email" id="email" name="email" placeholder="you@organization.com" required />
+              <input class="field-input" type="email" id="email" name="email" placeholder="you@organization.com" required>
             </div>
 
             <div class="field-group">
@@ -75,14 +76,10 @@ const metadata = {
               </div>
             </div>
 
-            <div class="field-group">
-              <label class="field-label" for="message">Message</label>
-              <input class="field-input" type="text" id="message" name="message" placeholder="How can we help?" style="height: 100px;" required />
-            </div>
-
             <button type="submit" class="submit-btn" id="submit-btn">
               Send Your Inquiry
             </button>
+
           </form>
 
           <div class="form-success" id="form-success">
