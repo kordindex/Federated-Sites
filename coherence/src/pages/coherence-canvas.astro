@@ -9,7 +9,6 @@ const metadata = {
 
 <Layout metadata={metadata}>
 
-  <!-- ─── Page ─────────────────────────────────────────────────────────────── -->
   <div class="page">
 
     <div class="page-header">
@@ -25,14 +24,11 @@ const metadata = {
         <div class="row-label"><span>Decide</span></div>
         <div class="row-label"><span>Act</span></div>
       </div>
-      <div class="canvas-grid" id="canvasGrid">
-        <!-- Blocks rendered by JS -->
-      </div>
+      <div class="canvas-grid" id="canvasGrid"></div>
     </div>
 
   </div>
 
-  <!-- ─── Modal ────────────────────────────────────────────────────────────── -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal" id="modal">
       <button class="modal-close" id="modalClose">×</button>
@@ -52,7 +48,6 @@ const metadata = {
         </div>
       </div>
 
-      <!-- Question View -->
       <div id="questionView">
         <div class="question-wrap">
           <span class="question-category" id="questionCategory"></span>
@@ -65,7 +60,6 @@ const metadata = {
         </div>
       </div>
 
-      <!-- Results View -->
       <div id="resultsView" style="display:none;">
         <div class="results-wrap">
           <span class="results-eyebrow">Escalation Mirror</span>
@@ -105,31 +99,38 @@ const metadata = {
   .results-wrap, .question-wrap, .modal-header { display: block !important; }
   .btn, .btn-cta, .btn-restart, .modal-close { font-family: 'Inter', sans-serif !important; }
 
-  /* ─── Force dark background ─────────────────────────────────────────────── */
-  body {
-    background-color: #0f1623 !important;
-  }
-
   /* ─── Variables ─────────────────────────────────────────────────────────── */
   :root {
-    --navy:        #1b263b;
-    --navy-deep:   #0f1623;
-    --navy-mid:    #152033;
-    --gold:        #b59353;
-    --gold-light:  #c9aa70;
-    --gold-dim:    rgba(181, 147, 83, 0.15);
-    --white:       #ffffff;
-    --slate:       #d0d4db;
-    --slate-dim:   rgba(208, 212, 219, 0.5);
-    --border:      rgba(255, 255, 255, 0.08);
-    --border-gold: rgba(181, 147, 83, 0.3);
+    --navy:        #13294B;
+    --navy-deep:   #F0EDE8;
+    --navy-mid:    #FAF8F5;
+    --navy-light:  #F5F2EC;
+    --gold:        #C4922A;
+    --gold-light:  #D4A84B;
+    --gold-dim:    rgba(196, 146, 42, 0.08);
+    --white:       #13294B;
+    --slate:       #2C3A4A;
+    --slate-dim:   rgba(44, 58, 74, 0.65);
+    --border:      rgba(19, 41, 75, 0.12);
+    --border-gold: rgba(196, 146, 42, 0.3);
+
+    /* Modal keeps dark for contrast and readability */
+    --modal-bg:        #152033;
+    --modal-bg-deep:   #0f1623;
+    --modal-white:     #ffffff;
+    --modal-slate:     #d0d4db;
+    --modal-slate-dim: rgba(208, 212, 219, 0.55);
+    --modal-border:    rgba(255, 255, 255, 0.08);
   }
+
+  /* ─── Page background — light ───────────────────────────────────────────── */
+  body { background-color: #FAF8F5 !important; }
 
   /* ─── Page ──────────────────────────────────────────────────────────────── */
   .page {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 180px 2rem 120px; /* top padding clears BrandSwitcher + CoherenceNav */
+    padding: 180px 2rem 120px;
     color: var(--slate);
     font-family: 'Inter', sans-serif;
   }
@@ -151,7 +152,7 @@ const metadata = {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
-    color: var(--white);
+    color: var(--navy);
     line-height: 1.1;
     margin-bottom: 1.25rem;
   }
@@ -213,9 +214,9 @@ const metadata = {
     border: 1px solid var(--border);
   }
 
-  /* ─── Block ─────────────────────────────────────────────────────────────── */
+  /* ─── Block — light palette ─────────────────────────────────────────────── */
   .block {
-    background: var(--navy-mid);
+    background: #ffffff;
     padding: 2rem;
     min-height: 180px;
     position: relative;
@@ -226,16 +227,7 @@ const metadata = {
     cursor: pointer;
   }
 
-  .block::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: radial-gradient(circle at 0% 0%, rgba(181, 147, 83, 0.04) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .block:hover { background: #1a2840; }
+  .block:hover { background: var(--navy-deep); }
   .block:hover .block-hover { opacity: 1; transform: translateY(0); }
   .block:hover .block-meta { opacity: 0; }
 
@@ -252,7 +244,7 @@ const metadata = {
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--navy);
     line-height: 1.3;
     margin-bottom: 0.5rem;
   }
@@ -269,7 +261,7 @@ const metadata = {
     position: absolute;
     inset: 0;
     padding: 2rem;
-    background: linear-gradient(135deg, #1a2840 0%, #1b2f4a 100%);
+    background: var(--navy);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -292,7 +284,7 @@ const metadata = {
     font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
     font-style: italic;
-    color: var(--white);
+    color: #ffffff;
     line-height: 1.5;
     margin-bottom: 1.25rem;
   }
@@ -321,13 +313,13 @@ const metadata = {
     opacity: 0.6;
   }
 
-  /* ─── Modal Overlay ─────────────────────────────────────────────────────── */
+  /* ─── Modal — stays dark for readability ────────────────────────────────── */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 15, 25, 0.92);
+    background: rgba(10, 15, 25, 0.88);
     backdrop-filter: blur(12px);
-    z-index: 3000; /* above BrandSwitcher (2000) and CoherenceNav (1999) */
+    z-index: 3000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -339,9 +331,8 @@ const metadata = {
 
   .modal-overlay.open { opacity: 1; pointer-events: all; }
 
-  /* ─── Modal ─────────────────────────────────────────────────────────────── */
   .modal {
-    background: var(--navy-mid);
+    background: var(--modal-bg);
     border: 1px solid var(--border-gold);
     width: 100%;
     max-width: 640px;
@@ -356,7 +347,7 @@ const metadata = {
 
   .modal-header {
     padding: 2rem 2rem 1.5rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--modal-border);
     margin-bottom: 2rem;
   }
 
@@ -373,13 +364,13 @@ const metadata = {
   .modal-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
-    color: var(--white);
+    color: var(--modal-white);
     font-weight: 700;
   }
 
   .modal-intro {
     font-size: 0.85rem;
-    color: var(--slate-dim);
+    color: var(--modal-slate-dim);
     margin-top: 0.75rem;
     line-height: 1.6;
   }
@@ -389,7 +380,7 @@ const metadata = {
     top: 1.25rem; right: 1.25rem;
     background: none;
     border: none;
-    color: var(--slate-dim);
+    color: var(--modal-slate-dim);
     font-size: 1.5rem;
     cursor: pointer;
     line-height: 1;
@@ -397,14 +388,13 @@ const metadata = {
     padding: 4px;
   }
 
-  .modal-close:hover { color: var(--white); }
+  .modal-close:hover { color: var(--modal-white); }
 
-  /* ─── Progress ──────────────────────────────────────────────────────────── */
   .progress-wrap { padding: 0 2rem; margin-bottom: 2rem; }
 
   .progress-bar {
     height: 2px;
-    background: var(--border);
+    background: var(--modal-border);
     border-radius: 2px;
     overflow: hidden;
     margin-bottom: 0.6rem;
@@ -423,10 +413,9 @@ const metadata = {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--slate-dim);
+    color: var(--modal-slate-dim);
   }
 
-  /* ─── Question ──────────────────────────────────────────────────────────── */
   .question-wrap { padding: 0 2rem 2rem; }
 
   .question-category {
@@ -442,13 +431,12 @@ const metadata = {
   .question-text {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
-    color: var(--white);
+    color: var(--modal-white);
     line-height: 1.4;
     margin-bottom: 1.75rem;
     font-weight: 400;
   }
 
-  /* ─── Options ───────────────────────────────────────────────────────────── */
   .options {
     display: flex;
     flex-direction: column;
@@ -458,7 +446,7 @@ const metadata = {
 
   .option {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
+    border: 1px solid var(--modal-border);
     padding: 1.25rem 1.5rem;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -470,8 +458,8 @@ const metadata = {
     font-family: 'Inter', sans-serif;
   }
 
-  .option:hover { border-color: rgba(181, 147, 83, 0.4); background: rgba(181, 147, 83, 0.04); }
-  .option.selected { border-color: var(--gold); background: rgba(181, 147, 83, 0.08); }
+  .option:hover { border-color: rgba(196, 146, 42, 0.4); background: rgba(196, 146, 42, 0.04); }
+  .option.selected { border-color: var(--gold); background: rgba(196, 146, 42, 0.08); }
 
   .option-letter {
     font-size: 0.75rem;
@@ -488,23 +476,22 @@ const metadata = {
   .option-title {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--white);
+    color: var(--modal-white);
     margin-bottom: 0.3rem;
   }
 
   .option-sub {
     font-size: 0.78rem;
-    color: var(--slate-dim);
+    color: var(--modal-slate-dim);
     line-height: 1.5;
   }
 
-  /* ─── Modal Nav ─────────────────────────────────────────────────────────── */
   .modal-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 2rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--modal-border);
     gap: 1rem;
   }
 
@@ -520,16 +507,15 @@ const metadata = {
     font-family: 'Inter', sans-serif;
   }
 
-  .btn-primary { background: var(--gold); color: var(--navy-deep); }
+  .btn-primary { background: var(--gold); color: #ffffff; }
   .btn-primary:hover { background: var(--gold-light); }
   .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
   .btn-primary:disabled:hover { background: var(--gold); }
 
-  .btn-ghost { background: transparent; color: var(--slate-dim); border: 1px solid var(--border); }
-  .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+  .btn-ghost { background: transparent; color: var(--modal-slate-dim); border: 1px solid var(--modal-border); }
+  .btn-ghost:hover { color: var(--modal-white); border-color: rgba(255,255,255,0.2); }
   .btn-ghost:disabled { opacity: 0.2; cursor: not-allowed; }
 
-  /* ─── Results ───────────────────────────────────────────────────────────── */
   .results-wrap { padding: 0 2rem 2rem; }
 
   .results-eyebrow {
@@ -546,11 +532,11 @@ const metadata = {
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
     font-style: italic;
-    color: var(--slate);
+    color: var(--modal-slate);
     line-height: 1.6;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--modal-border);
   }
 
   .cluster-label {
@@ -566,24 +552,24 @@ const metadata = {
   .cluster-name {
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem;
-    color: var(--white);
+    color: var(--modal-white);
     font-weight: 700;
     margin-bottom: 1rem;
   }
 
   .mirror-text {
     font-size: 0.9rem;
-    color: var(--slate);
+    color: var(--modal-slate);
     line-height: 1.75;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--modal-border);
   }
 
   .lever-wrap {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--modal-border);
   }
 
   .lever-label {
@@ -591,12 +577,12 @@ const metadata = {
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--slate-dim);
+    color: var(--modal-slate-dim);
     margin-bottom: 0.5rem;
     display: block;
   }
 
-  .lever-intro { font-size: 0.8rem; color: var(--slate-dim); margin-bottom: 0.5rem; }
+  .lever-intro { font-size: 0.8rem; color: var(--modal-slate-dim); margin-bottom: 0.5rem; }
 
   .lever-text {
     font-family: 'Playfair Display', serif;
@@ -613,7 +599,7 @@ const metadata = {
     margin: 0 auto 1.5rem;
   }
 
-  .cta-soft { font-size: 0.8rem; color: var(--slate-dim); text-align: center; margin-bottom: 1rem; }
+  .cta-soft { font-size: 0.8rem; color: var(--modal-slate-dim); text-align: center; margin-bottom: 1rem; }
 
   .btn-cta {
     display: block;
@@ -633,14 +619,14 @@ const metadata = {
     text-decoration: none;
   }
 
-  .btn-cta:hover { background: var(--gold); color: var(--navy-deep); }
+  .btn-cta:hover { background: var(--gold); color: #ffffff; }
 
   .btn-restart {
     display: block;
     width: 100%;
     background: transparent;
-    border: 1px solid var(--border);
-    color: var(--slate-dim);
+    border: 1px solid var(--modal-border);
+    color: var(--modal-slate-dim);
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -653,9 +639,8 @@ const metadata = {
     text-align: center;
   }
 
-  .btn-restart:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+  .btn-restart:hover { color: var(--modal-white); border-color: rgba(255,255,255,0.2); }
 
-  /* ─── Responsive ────────────────────────────────────────────────────────── */
   @media (max-width: 680px) {
     .page { padding-top: 150px; }
     .grid-wrapper { grid-template-columns: 1fr; }
@@ -1037,7 +1022,6 @@ const metadata = {
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   }
 
-  // Run on load and after Astro view transitions
   init();
   document.addEventListener('astro:after-swap', init);
 </script>
