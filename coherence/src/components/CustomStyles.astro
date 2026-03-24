@@ -5,40 +5,67 @@ import '@fontsource/playfair-display/900.css';
 ---
 <style is:inline>
   :root {
+    /* ── AstroWind system tokens ────────────────────────────────── */
     --aw-font-sans: 'Inter Variable';
     --aw-font-serif: 'Playfair Display';
     --aw-font-heading: 'Playfair Display';
+    --aw-color-primary:          rgb(19 41 75);
+    --aw-color-secondary:        rgb(196 146 42);
+    --aw-color-accent:           rgb(196 146 42);
+    --aw-color-text-heading:     rgb(19 41 75);
+    --aw-color-text-default:     rgb(44 58 74);
+    --aw-color-text-muted:       rgb(107 122 141);
+    --aw-color-bg-page:          rgb(250 248 245);
+    --aw-color-bg-page-dark:     rgb(250 248 245);
 
-    --aw-color-primary:          rgb(19 41 75);     /* PMS 2767 navy */
-    --aw-color-secondary:        rgb(196 146 42);   /* PMS 1245 gold */
-    --aw-color-accent:           rgb(196 146 42);   /* gold */
-
-    --aw-color-text-heading:     rgb(19 41 75);     /* navy headlines */
-    --aw-color-text-default:     rgb(44 58 74);     /* dark body copy */
-    --aw-color-text-muted:       rgb(107 122 141);  /* secondary text */
-
-    --aw-color-bg-page:          rgb(250 248 245);  /* warm white */
-    --aw-color-bg-page-dark:     rgb(250 248 245);  /* same — no dark inversion */
+    /* ── Coherence color tokens ─────────────────────────────────── */
+    --navy:          #13294B;
+    --navy-mid:      #1d3a5c;
+    --gold:          #C4922A;
+    --gold-light:    #D4A84B;
+    --gold-dim:      rgba(196, 146, 42, 0.08);
+    --silver:        #8C9490;
+    --limestone:     #F0EDE8;
+    --warm-white:    #FAF8F5;
+    --warm-white-2:  #F5F2EC;
+    --white:         #FFFFFF;
+    --body:          #2C3A4A;
+    --muted:         #6B7A8D;
+    --divider:       rgba(19, 41, 75, 0.12);
+    --border:        rgba(19, 41, 75, 0.12);
 
     ::selection {
       background-color: rgb(196 146 42);
       color: white;
     }
   }
+
   .dark {
     --aw-font-sans: 'Inter Variable';
     --aw-font-serif: 'Playfair Display';
     --aw-font-heading: 'Playfair Display';
-
     --aw-color-primary:          rgb(19 41 75);
     --aw-color-secondary:        rgb(196 146 42);
     --aw-color-accent:           rgb(196 146 42);
-
     --aw-color-text-heading:     rgb(19 41 75);
     --aw-color-text-default:     rgb(44 58 74);
     --aw-color-text-muted:       rgb(107 122 141);
-
     --aw-color-bg-page:          rgb(250 248 245);
+
+    --navy:          #13294B;
+    --navy-mid:      #1d3a5c;
+    --gold:          #C4922A;
+    --gold-light:    #D4A84B;
+    --gold-dim:      rgba(196, 146, 42, 0.08);
+    --silver:        #8C9490;
+    --limestone:     #F0EDE8;
+    --warm-white:    #FAF8F5;
+    --warm-white-2:  #F5F2EC;
+    --white:         #FFFFFF;
+    --body:          #2C3A4A;
+    --muted:         #6B7A8D;
+    --divider:       rgba(19, 41, 75, 0.12);
+    --border:        rgba(19, 41, 75, 0.12);
 
     ::selection {
       background-color: rgb(196 146 42);

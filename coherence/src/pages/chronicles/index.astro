@@ -28,7 +28,6 @@ const posts = [
 
 <Layout metadata={metadata}>
 
-  <!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
   <section class="chronicles-hero">
     <div class="container">
       <span class="eyebrow">The Coherence Co.</span>
@@ -44,7 +43,6 @@ const posts = [
     </div>
   </section>
 
-  <!-- ─── Posts ────────────────────────────────────────────────────────────── -->
   <section class="section">
     <div class="container">
       <div class="posts-grid">
@@ -75,29 +73,23 @@ const posts = [
 
 <style>
   :root {
-    --navy:       #1b263b;
-    --navy-deep:  #0f1623;
-    --navy-mid:   #152033;
-    --navy-light: #1e2e45;
-    --gold:       #b59353;
-    --gold-light: #c9aa70;
-    --gold-dim:   rgba(181, 147, 83, 0.12);
-    --gold-border:rgba(181, 147, 83, 0.3);
-    --white:      #ffffff;
-    --slate:      #d0d4db;
-    --slate-dim:  rgba(208, 212, 219, 0.55);
-    --border:     rgba(255, 255, 255, 0.08);
+    --navy:        #13294B;
+    --navy-deep:   #F0EDE8;
+    --navy-mid:    #FAF8F5;
+    --navy-light:  #F5F2EC;
+    --gold:        #C4922A;
+    --gold-light:  #D4A84B;
+    --gold-dim:    rgba(196, 146, 42, 0.08);
+    --gold-border: rgba(196, 146, 42, 0.3);
+    --white:       #13294B;
+    --slate:       #2C3A4A;
+    --slate-dim:   rgba(44, 58, 74, 0.7);
+    --border:      rgba(19, 41, 75, 0.12);
   }
 
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
+  .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
   .section { padding: 80px 0 120px; }
 
-  /* ─── Hero ──────────────────────────────────────────────────────────────── */
   .chronicles-hero {
     background: var(--navy-deep);
     padding: 160px 0 80px;
@@ -131,7 +123,6 @@ const posts = [
     margin-bottom: 2.5rem;
   }
 
-  /* ─── Newsletter strip ──────────────────────────────────────────────────── */
   .newsletter-strip {
     display: flex;
     align-items: center;
@@ -160,10 +151,10 @@ const posts = [
 
   .newsletter-input {
     flex: 1;
-    background: rgba(255,255,255,0.05);
+    background: #ffffff;
     border: 1px solid var(--border);
     border-right: none;
-    color: var(--white);
+    color: #13294B;
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     padding: 0.65rem 1rem;
@@ -176,7 +167,7 @@ const posts = [
 
   .newsletter-btn {
     background: var(--gold);
-    color: var(--navy-deep);
+    color: #ffffff;
     border: none;
     font-family: 'Inter', sans-serif;
     font-size: 0.65rem;
@@ -191,7 +182,6 @@ const posts = [
 
   .newsletter-btn:hover { background: var(--gold-light); }
 
-  /* ─── Posts ─────────────────────────────────────────────────────────────── */
   .posts-grid {
     display: flex;
     flex-direction: column;
@@ -227,16 +217,8 @@ const posts = [
     color: var(--gold);
   }
 
-  .post-dot {
-    color: var(--slate-dim);
-    font-size: 0.7rem;
-  }
-
-  .post-date, .post-read {
-    font-size: 0.7rem;
-    color: var(--slate-dim);
-    letter-spacing: 0.03em;
-  }
+  .post-dot { color: var(--slate-dim); font-size: 0.7rem; }
+  .post-date, .post-read { font-size: 0.7rem; color: var(--slate-dim); letter-spacing: 0.03em; }
 
   .post-title {
     font-family: 'Playfair Display', serif;
@@ -262,11 +244,7 @@ const posts = [
     margin-top: 0.25rem;
   }
 
-  /* ─── Coming soon ───────────────────────────────────────────────────────── */
-  .coming-soon {
-    margin-top: 3rem;
-    text-align: center;
-  }
+  .coming-soon { margin-top: 3rem; text-align: center; }
 
   .coming-rule {
     width: 40px;
@@ -275,16 +253,8 @@ const posts = [
     margin: 0 auto 1.5rem;
   }
 
-  .coming-text {
-    font-size: 0.85rem;
-    color: var(--slate-dim);
-  }
-
-  .coming-link {
-    color: var(--gold);
-    text-decoration: none;
-  }
-
+  .coming-text { font-size: 0.85rem; color: var(--slate-dim); }
+  .coming-link { color: var(--gold); text-decoration: none; }
   .coming-link:hover { color: var(--gold-light); }
 
   @media (max-width: 640px) {
@@ -293,8 +263,4 @@ const posts = [
     .newsletter-strip { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .newsletter-form { max-width: 100%; width: 100%; }
   }
-  :global(body) {
-    background-color: #0f1623 !important;
-  }
-
 </style>
