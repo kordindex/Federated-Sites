@@ -9,7 +9,6 @@ const metadata = {
 
 <Layout metadata={metadata}>
 
-  <!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
   <section class="contact-hero">
     <div class="container">
       <span class="eyebrow">The Coherence Co.</span>
@@ -18,35 +17,28 @@ const metadata = {
     </div>
   </section>
 
-  <!-- ─── Form + Info ───────────────────────────────────────────────────────── -->
   <section class="section">
     <div class="container">
       <div class="contact-grid">
 
-        <!-- Left — Info -->
         <div class="contact-info">
           <div class="info-block">
             <span class="info-label">What happens next</span>
             <p class="info-body">Every inquiry is reviewed by Christine personally. You'll hear back within one business day. If your situation calls for a structured engagement, she'll say so clearly. If it doesn't, she'll say that too.</p>
           </div>
-
           <div class="info-divider"></div>
-
           <div class="info-block">
             <span class="info-label">Not ready to reach out?</span>
             <p class="info-body">Start with the Essential Coherence Diagnostic. $395. Fifteen minutes. A four-page report that names what you're already seeing.</p>
             <a href="/resources" class="info-link">View the Diagnostic →</a>
           </div>
-
           <div class="info-divider"></div>
-
           <div class="info-block">
             <span class="info-label">Confidentiality</span>
             <p class="info-body">Everything stays in the room. We never reference specific client situations, challenges, or data in any public context.</p>
           </div>
         </div>
 
-        <!-- Right — Form -->
         <div class="contact-form-wrap" id="contact-form-wrap">
           <form
             action="https://api.web3forms.com/submit"
@@ -61,26 +53,12 @@ const metadata = {
 
             <div class="field-group">
               <label class="field-label" for="name">Your Name</label>
-              <input
-                class="field-input"
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Full name"
-                required
-              >
+              <input class="field-input" type="text" id="name" name="name" placeholder="Full name" required>
             </div>
 
             <div class="field-group">
               <label class="field-label" for="email">Email Address</label>
-              <input
-                class="field-input"
-                type="email"
-                id="email"
-                name="email"
-                placeholder="you@organization.com"
-                required
-              >
+              <input class="field-input" type="email" id="email" name="email" placeholder="you@organization.com" required>
             </div>
 
             <div class="field-group">
@@ -104,7 +82,6 @@ const metadata = {
 
           </form>
 
-          <!-- Success / Error states — outside the form so they survive form.hide() -->
           <div class="form-success" id="form-success">
             <span class="success-mark">—</span>
             <p class="success-title">Received.</p>
@@ -114,7 +91,6 @@ const metadata = {
           <div class="form-error" id="form-error">
             <p>Something went wrong. Please try again or email directly.</p>
           </div>
-
         </div>
 
       </div>
@@ -160,49 +136,43 @@ const metadata = {
 <style is:global>
   /* Override Tailwind preflight for form elements */
   .contact-form input,
-.contact-form select,
-.contact-form button,
-.contact-form textarea {
+  .contact-form select,
+  .contact-form button,
+  .contact-form textarea {
     font-family: 'Inter', sans-serif !important;
     font-size: 0.9rem !important;
     border-radius: 0 !important;
     -webkit-appearance: none !important;
     appearance: none !important;
     box-sizing: border-box !important;
-    color: #ffffff !important;
-    background-color: #0f1623 !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
+    color: #13294B !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(19, 41, 75, 0.15) !important;
     padding: 0.85rem 1rem !important;
     width: 100% !important;
   }
 
   .field-select option {
-    background: #152033;
-    color: #ffffff;
+    background: #ffffff;
+    color: #13294B;
   }
 
   :root {
-    --navy:       #1b263b;
-    --navy-deep:  #0f1623;
-    --navy-mid:   #152033;
-    --gold:       #b59353;
-    --gold-light: #c9aa70;
-    --gold-border:rgba(181,147,83,0.3);
-    --white:      #ffffff;
-    --slate:      #d0d4db;
-    --slate-dim:  rgba(208,212,219,0.55);
-    --border:     rgba(255,255,255,0.08);
+    --navy:        #13294B;
+    --navy-deep:   #F0EDE8;
+    --navy-mid:    #FAF8F5;
+    --gold:        #C4922A;
+    --gold-light:  #D4A84B;
+    --gold-border: rgba(196, 146, 42, 0.3);
+    --white:       #13294B;
+    --slate:       #2C3A4A;
+    --slate-dim:   rgba(44, 58, 74, 0.7);
+    --border:      rgba(19, 41, 75, 0.12);
   }
 
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
   .section { padding: 80px 0 120px; }
 
-  /* ─── Hero ──────────────────────────────────────────────────────────────── */
   .contact-hero {
     background: var(--navy-deep);
     padding: 160px 0 80px;
@@ -234,7 +204,6 @@ const metadata = {
     line-height: 1.75;
   }
 
-  /* ─── Grid ───────────────────────────────────────────────────────────────── */
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
@@ -242,7 +211,6 @@ const metadata = {
     align-items: start;
   }
 
-  /* ─── Info ───────────────────────────────────────────────────────────────── */
   .info-block { margin-bottom: 0; }
 
   .info-label {
@@ -280,9 +248,8 @@ const metadata = {
     margin: 2rem 0;
   }
 
-  /* ─── Form ───────────────────────────────────────────────────────────────── */
   .contact-form-wrap {
-    background: var(--navy-mid);
+    background: #ffffff;
     border: 1px solid var(--border);
     border-top: 2px solid var(--gold);
     padding: 2.5rem;
@@ -309,9 +276,9 @@ const metadata = {
   }
 
   .field-input {
-    background: var(--navy-deep);
+    background: #ffffff;
     border: 1px solid var(--border);
-    color: var(--white);
+    color: #13294B;
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
     padding: 0.85rem 1rem;
@@ -320,18 +287,16 @@ const metadata = {
     width: 100%;
   }
 
-  .field-input::placeholder { color: var(--slate-dim); }
+  .field-input::placeholder { color: rgba(44, 58, 74, 0.4); }
   .field-input:focus { border-color: var(--gold-border); }
 
-  .select-wrap {
-    position: relative;
-  }
+  .select-wrap { position: relative; }
 
   .field-select {
     appearance: none;
-    background: var(--navy-deep);
+    background: #ffffff;
     border: 1px solid var(--border);
-    color: var(--white);
+    color: #13294B;
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
     padding: 0.85rem 2.5rem 0.85rem 1rem;
@@ -344,8 +309,8 @@ const metadata = {
   .field-select:focus { border-color: var(--gold-border); }
 
   .field-select option {
-    background: var(--navy-mid);
-    color: var(--white);
+    background: #ffffff;
+    color: #13294B;
   }
 
   .select-arrow {
@@ -359,8 +324,8 @@ const metadata = {
   }
 
   .submit-btn {
-    background: var(--gold);
-    color: var(--navy-deep);
+    background: var(--navy);
+    color: #ffffff;
     border: none;
     font-family: 'Inter', sans-serif;
     font-size: 0.72rem;
@@ -373,10 +338,9 @@ const metadata = {
     margin-top: 0.5rem;
   }
 
-  .submit-btn:hover:not(:disabled) { background: var(--gold-light); }
+  .submit-btn:hover:not(:disabled) { background: var(--navy-mid); }
   .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-  /* ─── Success / Error ────────────────────────────────────────────────────── */
   .form-success {
     display: none;
     text-align: center;
@@ -405,14 +369,13 @@ const metadata = {
   .form-error {
     display: none;
     font-size: 0.8rem;
-    color: #e07070;
+    color: #c0392b;
     text-align: center;
     padding: 0.75rem;
-    border: 1px solid rgba(224,112,112,0.3);
-    background: rgba(224,112,112,0.06);
+    border: 1px solid rgba(192, 57, 43, 0.3);
+    background: rgba(192, 57, 43, 0.06);
   }
 
-  /* ─── Responsive ─────────────────────────────────────────────────────────── */
   @media (max-width: 768px) {
     .contact-hero { padding: 140px 0 60px; }
     .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
