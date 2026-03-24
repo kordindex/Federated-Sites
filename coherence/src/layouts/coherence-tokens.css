@@ -1,0 +1,20 @@
+:root {
+    /* Backgrounds */
+    --bg-primary:    #FAF8F5;
+    --bg-secondary:  #F5F2EC;
+    --bg-hero:       #F0EDE8;
+    --bg-footer:     #13294B;
+    --bg-card:       #FFFFFF;
+  
+    /* Type */
+    --text-heading:  #13294B;
+    --text-body:     #2C3A4A;
+    --text-muted:    #6B7A8D;
+    --text-inverse:  #FFFFFF;
+  
+    /* Accents */
+    --gold:          #C4922A;
+    --gold-light:    #D4A84B;
+    --gold-dim:      rgba(196, 146, 42, 0.08);
+    --divider:       rgba(19, 41, 75, 0.12);
+  }
