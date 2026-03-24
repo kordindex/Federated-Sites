@@ -76,6 +76,17 @@ const metadata = {
               </div>
             </div>
 
+            <div class="field-group">
+              <label class="field-label" for="message">How can we help?</label>
+              <textarea
+                class="field-input field-textarea"
+                id="message"
+                name="message"
+                placeholder="Tell us what you're seeing..."
+                rows="5"
+              ></textarea>
+            </div>
+
             <button type="submit" class="submit-btn" id="submit-btn">
               Send Your Inquiry
             </button>
@@ -288,6 +299,7 @@ const metadata = {
   }
 
   .field-input::placeholder { color: rgba(44, 58, 74, 0.4); }
+  .field-textarea { resize: vertical; min-height: 120px; line-height: 1.7; }
   .field-input:focus { border-color: var(--gold-border); }
 
   .select-wrap { position: relative; }
