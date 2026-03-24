@@ -1,4 +1,3 @@
-Applied 36 replacements
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
@@ -8,10 +7,8 @@ const metadata = {
 };
 
 const questions = [
-  // System Load — Q1–7
   {
-    id: 1,
-    cluster: 'Interpretation Drift',
+    id: 1, cluster: 'Interpretation Drift',
     text: "When conditions shift quickly, how consistent are leaders' descriptions and explanations of what is happening and what it means for teams?",
     answers: [
       { label: 'A', text: 'Leaders describe the situation differently, and alignment takes time' },
@@ -21,8 +18,7 @@ const questions = [
     ]
   },
   {
-    id: 2,
-    cluster: 'Interpretation Drift',
+    id: 2, cluster: 'Interpretation Drift',
     text: 'When priorities shift, how clearly is the reasoning behind the change communicated among leaders?',
     answers: [
       { label: 'A', text: 'Different leaders explain the shift in noticeably different ways' },
@@ -32,8 +28,7 @@ const questions = [
     ]
   },
   {
-    id: 3,
-    cluster: 'Interpretation Drift',
+    id: 3, cluster: 'Interpretation Drift',
     text: 'In leadership discussions, how often do leaders discover they are working from different assumptions?',
     answers: [
       { label: 'A', text: 'Frequently: differences surface late in the discussion process which slows alignment' },
@@ -43,8 +38,7 @@ const questions = [
     ]
   },
   {
-    id: 4,
-    cluster: 'Interpretation Drift',
+    id: 4, cluster: 'Interpretation Drift',
     text: 'After major decisions are made, how consistently do teams take action from the same understanding?',
     answers: [
       { label: 'A', text: 'Teams move forward, but in noticeably different directions' },
@@ -54,8 +48,7 @@ const questions = [
     ]
   },
   {
-    id: 5,
-    cluster: 'Interpretation Drift',
+    id: 5, cluster: 'Interpretation Drift',
     text: 'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of implications and impact?',
     answers: [
       { label: 'A', text: 'Leaders interpret the implications differently' },
@@ -65,8 +58,7 @@ const questions = [
     ]
   },
   {
-    id: 6,
-    cluster: 'Interpretation Drift',
+    id: 6, cluster: 'Interpretation Drift',
     text: 'How often do leadership conversations end with surface agreement while ambiguity remains unresolved?',
     answers: [
       { label: 'A', text: 'Often' },
@@ -76,8 +68,7 @@ const questions = [
     ]
   },
   {
-    id: 7,
-    cluster: 'Interpretation Drift',
+    id: 7, cluster: 'Interpretation Drift',
     text: 'When leaders communicate direction to the organization, how consistent are the messages people receive?',
     answers: [
       { label: 'A', text: 'Messages vary noticeably across leaders' },
@@ -86,10 +77,8 @@ const questions = [
       { label: 'D', text: 'Leaders intentionally coordinate messaging before it is communicated' },
     ]
   },
-  // Signal Clarity — Q8–14
   {
-    id: 8,
-    cluster: 'Velocity Strain',
+    id: 8, cluster: 'Velocity Strain',
     text: 'When new initiatives are introduced, what usually happens to existing priorities?',
     answers: [
       { label: 'A', text: 'Most existing work continues alongside the new initiative' },
@@ -99,8 +88,7 @@ const questions = [
     ]
   },
   {
-    id: 9,
-    cluster: 'Velocity Strain',
+    id: 9, cluster: 'Velocity Strain',
     text: 'How often are teams asked to absorb new direction while still executing earlier initiatives?',
     answers: [
       { label: 'A', text: 'Frequently: multiple priorities overlap at once' },
@@ -110,8 +98,7 @@ const questions = [
     ]
   },
   {
-    id: 10,
-    cluster: 'Velocity Strain',
+    id: 10, cluster: 'Velocity Strain',
     text: 'How is the pace of change usually handled in your organization?',
     answers: [
       { label: 'A', text: 'Speed is assumed and momentum is prioritized' },
@@ -121,8 +108,7 @@ const questions = [
     ]
   },
   {
-    id: 11,
-    cluster: 'Velocity Strain',
+    id: 11, cluster: 'Velocity Strain',
     text: 'When leadership decisions are made, how consistently do teams move in the same direction afterward?',
     answers: [
       { label: 'A', text: 'Teams often move in different directions before alignment stabilizes' },
@@ -132,8 +118,7 @@ const questions = [
     ]
   },
   {
-    id: 12,
-    cluster: 'Velocity Strain',
+    id: 12, cluster: 'Velocity Strain',
     text: 'How often does the organization introduce new work to address issues created by earlier changes?',
     answers: [
       { label: 'A', text: 'Often: new initiatives are layered onto unresolved ones' },
@@ -143,8 +128,7 @@ const questions = [
     ]
   },
   {
-    id: 13,
-    cluster: 'Velocity Strain',
+    id: 13, cluster: 'Velocity Strain',
     text: 'When priorities change, how much time do people usually have to absorb the new direction?',
     answers: [
       { label: 'A', text: 'Very little: expectations shift immediately' },
@@ -154,8 +138,7 @@ const questions = [
     ]
   },
   {
-    id: 14,
-    cluster: 'Velocity Strain',
+    id: 14, cluster: 'Velocity Strain',
     text: 'How often does leadership revisit earlier initiatives to see how effectively they have been integrated into ongoing work?',
     answers: [
       { label: 'A', text: "Rarely: attention moves quickly to what's next" },
@@ -164,10 +147,8 @@ const questions = [
       { label: 'D', text: 'Integration checks are built into how initiatives are sequenced' },
     ]
   },
-  // Execution Alignment — Q15–20
   {
-    id: 15,
-    cluster: 'Signal Suppression',
+    id: 15, cluster: 'Signal Suppression',
     text: 'In leadership meetings, how often does substantive disagreement surface before decisions are finalized?',
     answers: [
       { label: 'A', text: 'Rarely: discussions converge quickly' },
@@ -177,8 +158,7 @@ const questions = [
     ]
   },
   {
-    id: 16,
-    cluster: 'Signal Suppression',
+    id: 16, cluster: 'Signal Suppression',
     text: 'How do concerns about emerging issues usually surface in your organization?',
     answers: [
       { label: 'A', text: 'Mostly in private conversations or after the fact' },
@@ -188,8 +168,7 @@ const questions = [
     ]
   },
   {
-    id: 17,
-    cluster: 'Signal Suppression',
+    id: 17, cluster: 'Signal Suppression',
     text: 'When issues begin emerging in execution, how early do they usually become visible to leadership?',
     answers: [
       { label: 'A', text: 'Late: issues often appear suddenly' },
@@ -199,8 +178,7 @@ const questions = [
     ]
   },
   {
-    id: 18,
-    cluster: 'Signal Suppression',
+    id: 18, cluster: 'Signal Suppression',
     text: 'How often do teams continue executing even when concerns about the direction of work or priorities surface?',
     answers: [
       { label: 'A', text: 'Often: execution continues while concerns stay mostly unspoken' },
@@ -210,8 +188,7 @@ const questions = [
     ]
   },
   {
-    id: 19,
-    cluster: 'Signal Suppression',
+    id: 19, cluster: 'Signal Suppression',
     text: 'When pressure is building in the organization, when do its effects usually become visible to leadership?',
     answers: [
       { label: 'A', text: 'Only after execution begins to break down' },
@@ -221,8 +198,7 @@ const questions = [
     ]
   },
   {
-    id: 20,
-    cluster: 'Signal Suppression',
+    id: 20, cluster: 'Signal Suppression',
     text: 'When issues involve risk, tension, or competing priorities, how is candor usually handled?',
     answers: [
       { label: 'A', text: 'Harmony or the appearance of harmony is usually protected over challenge to the status quo' },
@@ -238,7 +214,6 @@ const questions = [
 
 <div class="diagnostic-shell" id="diagnostic-shell">
 
-  <!-- ─── Orientation Screen ──────────────────────────────────────────── -->
   <div class="screen" id="screen-orient">
     <div class="orient-inner">
       <span class="eyebrow">The Coherence Company</span>
@@ -255,30 +230,25 @@ const questions = [
     </div>
   </div>
 
-  <!-- ─── Question Screen ─────────────────────────────────────────────── -->
   <div class="screen screen--hidden" id="screen-question">
     <div class="q-masthead">
       <span class="q-masthead-text">Essential Coherence Diagnostic</span>
     </div>
-
     <div class="q-body">
       <p class="q-text" id="q-text"></p>
       <div class="q-answers" id="q-answers"></div>
     </div>
-
     <div class="q-nav">
       <button class="btn-ghost" id="btn-prev">← Previous</button>
       <button class="btn-primary btn--disabled" id="btn-next">Next →</button>
     </div>
   </div>
 
-  <!-- ─── Capture Screen ──────────────────────────────────────────────── -->
   <div class="screen screen--hidden" id="screen-capture">
     <div class="capture-inner">
       <span class="eyebrow">Almost there</span>
       <h2 class="capture-title">Your report is ready<br>to generate.</h2>
       <p class="capture-body">Enter your name and email address. Your report will be sent to you immediately, and a copy will download to your device.</p>
-
       <div class="capture-form" id="capture-form">
         <div class="field-group">
           <label class="field-label" for="user-name">Your Name</label>
@@ -293,13 +263,11 @@ const questions = [
     </div>
   </div>
 
-  <!-- ─── Confirmation Screen ─────────────────────────────────────────── -->
   <div class="screen screen--hidden" id="screen-confirm">
     <div class="confirm-inner">
       <div class="confirm-mark">—</div>
       <h2 class="confirm-title">Your report is ready.</h2>
-      <p class="confirm-body">Your four-page Essential Coherence Diagnostic report has downloaded to your device. A copy has been sent to your email address. Please, check your inbox now to confirm it has arrived.</p>
-
+      <p class="confirm-body">Your four-page Essential Coherence Diagnostic report has downloaded to your device. A copy has been sent to your email address. Please check your inbox now to confirm it has arrived.</p>
       <div class="confirm-detail" id="confirm-detail">
         <div class="confirm-row">
           <span class="confirm-label">Report ID</span>
@@ -314,20 +282,15 @@ const questions = [
           <span class="confirm-value" id="confirm-pressure"></span>
         </div>
       </div>
-
       <p class="confirm-next-label">What your report contains</p>
       <p class="confirm-next">Your report opens with the structural pattern currently shaping how your leadership system processes signals, decisions, and pressure. It explains why this pattern forms, how it typically appears in everyday leadership moments, and where recalibration has the highest impact.</p>
       <p class="confirm-next confirm-emphasis">Read Page 1 first. Most leaders recognize their organization immediately.</p>
-
       <p class="confirm-next-label">Your next step</p>
       <p class="confirm-next">The report is the beginning, not the conclusion. A 30-minute Leadership Coherence Debrief with Christine Kahane takes the diagnostic findings and translates them into the specific conditions shaping your organization — and where leadership attention will move the needle fastest.</p>
       <p class="confirm-next confirm-emphasis">This is not a sales conversation. It is a structured debrief of your results.</p>
-
-      <a href="[CALENDLY_LINK]" class="btn-primary">Book Your Debrief</a>
-
+      <a href="https://calendly.com/coherencecompany" class="btn-primary">Book Your Debrief</a>
       <p class="confirm-confidentiality-label">A note on confidentiality</p>
       <p class="confirm-confidentiality">Everything discussed in your debrief stays in the room and, under NBHWC ethical standards, is completely confidential. The Coherence Company never references specific client situations, challenges, or data in any public context.</p>
-
       <p class="confirm-contact">Questions? Reply to your confirmation email or reach us at <a href="mailto:info@coherencecompany.com">info@coherencecompany.com</a>.</p>
     </div>
   </div>
@@ -335,53 +298,144 @@ const questions = [
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
 <script is:inline>
-  // ── EmailJS Init (deferred until script loads) ────────────────────────
   window.addEventListener('load', function() {
     if (typeof emailjs !== 'undefined') {
       emailjs.init({ publicKey: 'ujm80X4aT-5K63oPd' });
     }
   });
 
+  // ── Report Content Library ─────────────────────────────────────────────
+  var REPORT_CONTENT = {
+    'Velocity Strain': {
+      pattern_identifier: 'Your leadership system is operating faster than it can reliably integrate change.',
+      symptoms: [
+        'Decisions are made quickly but require frequent course correction',
+        'Important information arrives late or partially filtered',
+        'Teams feel pressure to respond before interpretation stabilizes'
+      ],
+      how_it_forms: 'Velocity Strain appears when the pace of decisions and initiatives begins to exceed the organization\'s ability to integrate change. Speed itself is not the issue — many organizations operate successfully at high velocity. Strain emerges when decisions accelerate faster than shared understanding and integration capacity can keep up. When this occurs, leaders often experience strong momentum alongside increasing coordination effort. Teams continue executing, but the narrative behind priorities becomes harder to sustain across the organization.',
+      scenes: [
+        {
+          title: 'Scene 1 — The Initiative That Never Fully Lands',
+          body: 'A new strategic priority is introduced with clarity and momentum. Leaders align in the room. Within two weeks, a second initiative follows — equally urgent, equally clear. Teams begin absorbing both simultaneously. The first initiative continues moving forward, but the integration work it required is quietly set aside. Over time, execution remains active while the understanding behind it becomes uneven across the organization.'
+        },
+        {
+          title: 'Scene 2 — The Decision That Moves Too Quickly',
+          body: 'A leadership meeting surfaces an emerging challenge. Before the implications are fully examined, a decision is reached — the pace of the meeting, the pressure of competing priorities, and the discomfort of sustained uncertainty all push the conversation toward resolution. The decision is sound on its surface. But three weeks later, leaders discover that different teams have interpreted it differently. Clarification cycles begin.'
+        },
+        {
+          title: 'Scene 3 — The Coordination Cost No One Tracks',
+          body: 'Performance indicators remain strong. Output continues. But leaders begin noticing that an increasing share of their time is spent in alignment conversations — clarifying direction, resolving interpretive differences, reconnecting execution to intent. The work itself has not changed. The effort required to keep it coherent has.'
+        }
+      ],
+      recalibration_focus: 'Organizations experiencing Velocity Strain often regain coherence by recalibrating the relationship between pace and integration. Leaders frequently begin by resequencing active initiatives so teams can fully integrate direction already introduced into the system. This allows clarity and coordination to stabilize without sacrificing momentum. When pace and integration move together again, alignment becomes easier to maintain.',
+      first_move: 'Map active strategic initiatives currently inside the system. Identify where concurrency is highest — where teams are absorbing the most simultaneous direction. For 30 days, introduce a simple sequencing discipline: no new strategic thread enters the system until one existing thread has fully landed. This is not a slowdown. It is a recalibration of the relationship between velocity and integration — the structural condition most directly driving the pattern identified in your diagnostic.',
+      pressure: {
+        'Early Signals': 'Your responses indicate that pressure signals are beginning to appear at the edges of the leadership system. Organizations at this stage often continue executing effectively, but early markers of velocity strain are present. The window to recalibrate is open — and widest now, before strain compounds.',
+        'Structural Pressure': 'Your responses indicate that pressure signals may be appearing across multiple areas of the leadership system. Organizations at this stage often continue executing effectively, but maintaining alignment requires increasing effort. Leaders may notice more clarification cycles, more coordination work, and greater attention required to keep priorities moving in the same direction.',
+        'Systemic Strain': 'Your responses indicate significant pressure across the leadership system. Organizations at this stage often experience execution continuing alongside visible coordination difficulty. Alignment conversations are consuming increasing leadership bandwidth, and the effort required to sustain coherence is becoming structural rather than situational.'
+      }
+    },
+    'Interpretation Drift': {
+      pattern_identifier: 'Your leadership system is generating inconsistent interpretations of shared information.',
+      symptoms: [
+        'Leaders describe the same situation in noticeably different ways',
+        'Teams receive mixed signals when direction changes',
+        'Assumptions that seemed shared surface as divergent during execution'
+      ],
+      how_it_forms: 'Interpretation Drift appears when leaders consistently move from information to action without first verifying that their interpretations of that information are shared. In fast-moving environments, this gap is easy to miss — leaders align on outcomes while holding different assumptions about what those outcomes require. Over time, execution diverges not because of disagreement, but because the shared understanding was never fully established.',
+      scenes: [
+        {
+          title: 'Scene 1 — The Meeting That Ended in Agreement',
+          body: 'A leadership discussion reaches apparent consensus. Everyone in the room nods. A decision is made. Over the following week, each leader communicates the decision to their teams — and each communication carries a slightly different emphasis. By the time the decision reaches execution, three versions of it are in motion. No one intended this. The drift began the moment the room moved to resolution before ensuring the interpretation was shared.'
+        },
+        {
+          title: 'Scene 2 — The Priority That Landed Differently',
+          body: 'A strategic shift is announced with clarity and urgency. Leaders leave the meeting aligned on the what. They carry different assumptions about the why — and about what it means for existing work. Two weeks later, some teams have resequenced their priorities. Others have added the new priority alongside existing work. The difference traces back to a moment of assumed alignment that was never verified.'
+        },
+        {
+          title: 'Scene 3 — The Assumption No One Named',
+          body: 'A significant decision is made. It rests on several assumptions — about the market, about team capacity, about timeline. None of these assumptions are articulated during the decision conversation. They are held individually, felt as obvious, and never surfaced. When execution reveals the assumptions were different across the leadership team, the conversation that should have happened before the decision begins happening after it.'
+        }
+      ],
+      recalibration_focus: 'Organizations experiencing Interpretation Drift often recalibrate by introducing explicit assumption alignment before major decisions move to execution. This does not require lengthy process — it requires a brief, deliberate pause before commitment to surface what each leader believes the decision means, what assumptions underpin it, and what it requires from the organization. When interpretations are verified rather than assumed, alignment becomes durable rather than provisional.',
+      first_move: 'Before the next significant decision your leadership team makes, introduce a single alignment question: "What does each of us believe this decision requires from the organization in the next 30 days?" Record the answers. Where they differ, clarify before proceeding. This is not additional process — it is the minimum structural step that converts assumed alignment into verified alignment. Do this consistently for 30 days and measure how often clarification cycles downstream diminish.',
+      pressure: {
+        'Early Signals': 'Your responses indicate early markers of interpretation drift inside the leadership system. The pattern is not yet compounding, but the conditions for drift are present. The most effective intervention happens before assumptions accumulate — when the cost of alignment is still low.',
+        'Structural Pressure': 'Your responses indicate that interpretation gaps are beginning to affect execution across the organization. Teams are likely experiencing mixed signals, and leaders may be investing increasing effort in clarification conversations that could have been prevented upstream.',
+        'Systemic Strain': 'Your responses indicate significant interpretation divergence across the leadership system. Teams are likely operating from meaningfully different understandings of strategic direction, and the organizational effort required to maintain coordination is increasing. Recalibration at this stage requires deliberate structural intervention, not incremental adjustment.'
+      }
+    },
+    'Signal Suppression': {
+      pattern_identifier: 'Your leadership system is not surfacing the information it needs to navigate pressure effectively.',
+      symptoms: [
+        'Concerns surface after the fact rather than while there is still time to act',
+        'Leadership discussions converge quickly without substantive disagreement',
+        'Teams continue executing even when they hold reservations about direction'
+      ],
+      how_it_forms: 'Signal Suppression appears when the organizational conditions for candor begin to erode. This rarely happens through explicit instruction. It happens through accumulated signals — the concern that was raised and set aside, the meeting that moved quickly past disagreement, the leader whose pushback was received as obstruction. Over time, teams learn to calibrate what is safe to surface. Information begins arriving at leadership filtered, delayed, or absent.',
+      scenes: [
+        {
+          title: 'Scene 1 — The Concern That Stayed Private',
+          body: 'A team member identifies a meaningful risk in an active initiative. They consider raising it. They read the urgency in the room — the pressure to execute, the investment already made, the implicit signal that the direction is set. The concern is not raised in the meeting. It surfaces in a private conversation afterward, or in a retrospective weeks later, after the risk has materialized. The information existed. It did not reach the leaders who needed it.'
+        },
+        {
+          title: 'Scene 2 — The Meeting That Moved Too Smoothly',
+          body: 'A leadership discussion produces rapid consensus. No significant objections are raised. The decision is made efficiently. Later, several participants acknowledge privately that they held reservations they chose not to voice. The meeting felt productive. The decision moved forward missing information that was present in the room but never surfaced. The cost of that silence appears in execution.'
+        },
+        {
+          title: 'Scene 3 — The Signal That Arrived Too Late',
+          body: 'An emerging execution problem becomes visible to frontline teams before it appears in leadership metrics. Teams observe the early signs. They wait to see if the situation resolves. When it does not, the signal begins moving upward — slowly, carefully, with increasing qualification. By the time it reaches leadership, the window for low-cost intervention has passed. The delay was not intentional. It was structural.'
+        }
+      ],
+      recalibration_focus: 'Organizations experiencing Signal Suppression often recalibrate by deliberately redesigning the conditions under which concerns surface — not by asking people to speak more freely, but by creating structured moments where dissent and concern are formally invited before decisions close. When the organizational signal is that candor is welcomed and acted upon, information begins moving more reliably through the system.',
+      first_move: 'In your next three leadership meetings, introduce a structured dissent moment before any significant decision closes: "Before we move forward, I want to hear specifically what concerns or reservations anyone holds about this direction." Record what surfaces. Act on at least one concern visibly. Repeat. The goal is not to slow decisions — it is to demonstrate that candor has a reliable pathway and a visible consequence. When that signal is established, information quality improves upstream.',
+      pressure: {
+        'Early Signals': 'Your responses indicate early signs of signal suppression in the leadership system. The pattern is not yet entrenched, but the conditions for information filtering are present. The most effective intervention happens early — before teams have fully calibrated what is safe to surface.',
+        'Structural Pressure': 'Your responses indicate that signal flow is being affected across the organization. Leaders are likely receiving information that has been partially filtered before it reaches them. The gap between what teams observe and what leadership hears may be widening in ways that are not yet fully visible.',
+        'Systemic Strain': 'Your responses indicate significant signal suppression across the leadership system. Information is likely reaching leadership delayed, filtered, or absent. Teams have calibrated their communication to the perceived preferences and pressures of the environment. Recalibration requires deliberate and sustained structural change — signals about candor must be sent consistently and visibly over time.'
+      }
+    }
+  };
+
   // ── Data ──────────────────────────────────────────────────────────────
   const QUESTIONS = [
-    { id:1,  cluster:'Interpretation Drift',          text:'When conditions shift quickly, how consistent are leaders\' descriptions and explanations of what is happening and what it means for teams?', answers:['Leaders describe the situation differently, and alignment takes time','Leaders align eventually, but mixed signals appear in the meantime','Leaders generally describe the situation in similar ways','Leaders pause briefly to align interpretation before acting'] },
-    { id:2,  cluster:'Interpretation Drift',          text:'When priorities shift, how clearly is the reasoning behind the change communicated among leaders?', answers:['Different leaders explain the shift in noticeably different ways','The explanation becomes clearer over time, but early communication varies','Leaders generally communicate a shared explanation early','Leaders align the rationale together before communicating the change'] },
-    { id:3,  cluster:'Interpretation Drift',          text:'In leadership discussions, how often do leaders discover they are working from different assumptions?', answers:['Frequently: differences surface late in the discussion process which slows alignment','Occasionally: differences emerge during discussion and require clarification','Rarely: assumptions are mostly shared from the outset of discussion','Leaders intentionally surface assumptions early in the discussion before decisions are made'] },
-    { id:4,  cluster:'Interpretation Drift',          text:'After major decisions are made, how consistently do teams take action from the same understanding?', answers:['Teams move forward, but in noticeably different directions','Alignment improves gradually as teams gain clarification','Most teams act from a shared understanding','Teams begin with a clear and consistent understanding'] },
-    { id:5,  cluster:'Interpretation Drift',          text:'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of implications and impact?', answers:['Leaders interpret the implications differently','Shared understanding forms only after extended discussion','Shared understanding usually forms fairly quickly','Leaders intentionally align on implications before action begins'] },
-    { id:6,  cluster:'Interpretation Drift',          text:'How often do leadership conversations end with surface agreement while ambiguity remains unresolved?', answers:['Often','Sometimes','Rarely','Leaders usually resolve ambiguity before coming to agreement'] },
-    { id:7,  cluster:'Interpretation Drift',          text:'When leaders communicate direction to the organization, how consistent are the messages people receive?', answers:['Messages vary noticeably across leaders','Messages are broadly similar, but emphasis differs','Messages are mostly consistent among leadership','Leaders intentionally coordinate messaging before it is communicated'] },
-    { id:8,  cluster:'Velocity Strain',       text:'When new initiatives are introduced, what usually happens to existing priorities?', answers:['Most existing work continues alongside the new initiative','Some priorities shift, but many remain active','Work is selectively resequenced to maintain focus','Leaders pause to reassess priorities before introducing new work'] },
-    { id:9,  cluster:'Velocity Strain',       text:'How often are teams asked to absorb new direction while still executing earlier initiatives?', answers:['Frequently: multiple priorities overlap at once','Sometimes: new work arrives before earlier work is fully integrated','Rarely: priorities are usually sequenced with care','Leaders actively manage how much change enters the system at one time'] },
-    { id:10, cluster:'Velocity Strain',       text:'How is the pace of change usually handled in your organization?', answers:['Speed is assumed and momentum is prioritized','Pace is discussed, but difficult to regulate in practice','Pace is monitored and occasionally adjusted','Pace is actively regulated relative to system capacity'] },
-    { id:11, cluster:'Velocity Strain',       text:'When leadership decisions are made, how consistently do teams move in the same direction afterward?', answers:['Teams often move in different directions before alignment stabilizes','Teams usually move in the same direction but require clarification','Teams generally move in the same direction with minimal clarification','Teams move in the same direction with clear shared understanding'] },
-    { id:12, cluster:'Velocity Strain',       text:'How often does the organization introduce new work to address issues created by earlier changes?', answers:['Often: new initiatives are layered onto unresolved ones','Sometimes: additional work appears before earlier change settles','Rarely: earlier initiatives are usually stabilized first','Leaders typically stabilize earlier change before adding more'] },
-    { id:13, cluster:'Velocity Strain',       text:'When priorities change, how much time do people usually have to absorb the new direction?', answers:['Very little: expectations shift immediately','Some time is available, but not always enough for full integration','Teams usually have sufficient time to absorb the change','Leaders intentionally create time for integration before expecting full execution'] },
-    { id:14, cluster:'Velocity Strain',       text:'How often does leadership revisit earlier initiatives to see how effectively they have been integrated into ongoing work?', answers:["Rarely: attention moves quickly to what's next","Sometimes: integration is checked later, if issues appear","Often: leaders review whether change has truly landed","Integration checks are built into how initiatives are sequenced"] },
-    { id:15, cluster:'Signal Suppression',  text:'In leadership meetings, how often does substantive disagreement surface before decisions are finalized?', answers:['Rarely: discussions converge quickly','Sometimes: disagreement appears, but cautiously','Frequently: disagreement helps clarify decisions','Leaders actively invite substantive differences in view before coming to agreement'] },
-    { id:16, cluster:'Signal Suppression',  text:'How do concerns about emerging issues usually surface in your organization?', answers:['Mostly in private conversations or after the fact','Cautiously, once concern is harder to ignore','Openly, while there is still time to respond','Leaders actively create conditions for concerns to surface early'] },
-    { id:17, cluster:'Signal Suppression',  text:'When issues begin emerging in execution, how early do they usually become visible to leadership?', answers:['Late: issues often appear suddenly','Only after results begin to shift, either positively or negatively','Early signals usually appear before formal indicators change','Leaders intentionally look for early signs before formal indicators move'] },
-    { id:18, cluster:'Signal Suppression',  text:'How often do teams continue executing even when concerns about the direction of work or priorities surface?', answers:['Often: execution continues while concerns stay mostly unspoken','Sometimes: concerns are present but only partly voiced','Rarely: concerns are usually surfaced early','Teams are expected to raise concerns as soon as they appear'] },
-    { id:19, cluster:'Signal Suppression',  text:'When pressure is building in the organization, when do its effects usually become visible to leadership?', answers:['Only after execution begins to break down','When teams begin signaling coordination difficulties','When leaders begin discussing emerging concerns','Early, through questions, disagreement, and operational signals'] },
-    { id:20, cluster:'Signal Suppression',  text:'When issues involve risk, tension, or competing priorities, how is candor usually handled?', answers:['Harmony or the appearance of harmony is usually protected over challenge to the status quo','Challenge appears, but cautiously','Honest disagreement is generally acceptable','Leaders actively make space for candid discussion'] },
+    { id:1,  cluster:'Interpretation Drift', text:'When conditions shift quickly, how consistent are leaders\' descriptions and explanations of what is happening and what it means for teams?', answers:['Leaders describe the situation differently, and alignment takes time','Leaders align eventually, but mixed signals appear in the meantime','Leaders generally describe the situation in similar ways','Leaders pause briefly to align interpretation before acting'] },
+    { id:2,  cluster:'Interpretation Drift', text:'When priorities shift, how clearly is the reasoning behind the change communicated among leaders?', answers:['Different leaders explain the shift in noticeably different ways','The explanation becomes clearer over time, but early communication varies','Leaders generally communicate a shared explanation early','Leaders align the rationale together before communicating the change'] },
+    { id:3,  cluster:'Interpretation Drift', text:'In leadership discussions, how often do leaders discover they are working from different assumptions?', answers:['Frequently: differences surface late in the discussion process which slows alignment','Occasionally: differences emerge during discussion and require clarification','Rarely: assumptions are mostly shared from the outset of discussion','Leaders intentionally surface assumptions early in the discussion before decisions are made'] },
+    { id:4,  cluster:'Interpretation Drift', text:'After major decisions are made, how consistently do teams take action from the same understanding?', answers:['Teams move forward, but in noticeably different directions','Alignment improves gradually as teams gain clarification','Most teams act from a shared understanding','Teams begin with a clear and consistent understanding'] },
+    { id:5,  cluster:'Interpretation Drift', text:'When new external pressures appear (market shifts, regulation, technology), how quickly do leaders reach a shared understanding of implications and impact?', answers:['Leaders interpret the implications differently','Shared understanding forms only after extended discussion','Shared understanding usually forms fairly quickly','Leaders intentionally align on implications before action begins'] },
+    { id:6,  cluster:'Interpretation Drift', text:'How often do leadership conversations end with surface agreement while ambiguity remains unresolved?', answers:['Often','Sometimes','Rarely','Leaders usually resolve ambiguity before coming to agreement'] },
+    { id:7,  cluster:'Interpretation Drift', text:'When leaders communicate direction to the organization, how consistent are the messages people receive?', answers:['Messages vary noticeably across leaders','Messages are broadly similar, but emphasis differs','Messages are mostly consistent among leadership','Leaders intentionally coordinate messaging before it is communicated'] },
+    { id:8,  cluster:'Velocity Strain', text:'When new initiatives are introduced, what usually happens to existing priorities?', answers:['Most existing work continues alongside the new initiative','Some priorities shift, but many remain active','Work is selectively resequenced to maintain focus','Leaders pause to reassess priorities before introducing new work'] },
+    { id:9,  cluster:'Velocity Strain', text:'How often are teams asked to absorb new direction while still executing earlier initiatives?', answers:['Frequently: multiple priorities overlap at once','Sometimes: new work arrives before earlier work is fully integrated','Rarely: priorities are usually sequenced with care','Leaders actively manage how much change enters the system at one time'] },
+    { id:10, cluster:'Velocity Strain', text:'How is the pace of change usually handled in your organization?', answers:['Speed is assumed and momentum is prioritized','Pace is discussed, but difficult to regulate in practice','Pace is monitored and occasionally adjusted','Pace is actively regulated relative to system capacity'] },
+    { id:11, cluster:'Velocity Strain', text:'When leadership decisions are made, how consistently do teams move in the same direction afterward?', answers:['Teams often move in different directions before alignment stabilizes','Teams usually move in the same direction but require clarification','Teams generally move in the same direction with minimal clarification','Teams move in the same direction with clear shared understanding'] },
+    { id:12, cluster:'Velocity Strain', text:'How often does the organization introduce new work to address issues created by earlier changes?', answers:['Often: new initiatives are layered onto unresolved ones','Sometimes: additional work appears before earlier change settles','Rarely: earlier initiatives are usually stabilized first','Leaders typically stabilize earlier change before adding more'] },
+    { id:13, cluster:'Velocity Strain', text:'When priorities change, how much time do people usually have to absorb the new direction?', answers:['Very little: expectations shift immediately','Some time is available, but not always enough for full integration','Teams usually have sufficient time to absorb the change','Leaders intentionally create time for integration before expecting full execution'] },
+    { id:14, cluster:'Velocity Strain', text:'How often does leadership revisit earlier initiatives to see how effectively they have been integrated into ongoing work?', answers:["Rarely: attention moves quickly to what's next","Sometimes: integration is checked later, if issues appear","Often: leaders review whether change has truly landed","Integration checks are built into how initiatives are sequenced"] },
+    { id:15, cluster:'Signal Suppression', text:'In leadership meetings, how often does substantive disagreement surface before decisions are finalized?', answers:['Rarely: discussions converge quickly','Sometimes: disagreement appears, but cautiously','Frequently: disagreement helps clarify decisions','Leaders actively invite substantive differences in view before coming to agreement'] },
+    { id:16, cluster:'Signal Suppression', text:'How do concerns about emerging issues usually surface in your organization?', answers:['Mostly in private conversations or after the fact','Cautiously, once concern is harder to ignore','Openly, while there is still time to respond','Leaders actively create conditions for concerns to surface early'] },
+    { id:17, cluster:'Signal Suppression', text:'When issues begin emerging in execution, how early do they usually become visible to leadership?', answers:['Late: issues often appear suddenly','Only after results begin to shift, either positively or negatively','Early signals usually appear before formal indicators change','Leaders intentionally look for early signs before formal indicators move'] },
+    { id:18, cluster:'Signal Suppression', text:'How often do teams continue executing even when concerns about the direction of work or priorities surface?', answers:['Often: execution continues while concerns stay mostly unspoken','Sometimes: concerns are present but only partly voiced','Rarely: concerns are usually surfaced early','Teams are expected to raise concerns as soon as they appear'] },
+    { id:19, cluster:'Signal Suppression', text:'When pressure is building in the organization, when do its effects usually become visible to leadership?', answers:['Only after execution begins to break down','When teams begin signaling coordination difficulties','When leaders begin discussing emerging concerns','Early, through questions, disagreement, and operational signals'] },
+    { id:20, cluster:'Signal Suppression', text:'When issues involve risk, tension, or competing priorities, how is candor usually handled?', answers:['Harmony or the appearance of harmony is usually protected over challenge to the status quo','Challenge appears, but cautiously','Honest disagreement is generally acceptable','Leaders actively make space for candid discussion'] },
   ];
 
   const LABELS = ['A','B','C','D'];
   const TOTAL = QUESTIONS.length;
 
-  // ── State ─────────────────────────────────────────────────────────────
   var current = 0;
   var answers = new Array(TOTAL).fill(null);
 
-  // ── Elements ──────────────────────────────────────────────────────────
   var shell        = document.getElementById('diagnostic-shell');
   var screenOrient = document.getElementById('screen-orient');
   var screenQ      = document.getElementById('screen-question');
   var screenCap    = document.getElementById('screen-capture');
   var screenConf   = document.getElementById('screen-confirm');
-
   var qText        = document.getElementById('q-text');
   var qAnswers     = document.getElementById('q-answers');
   var btnPrev      = document.getElementById('btn-prev');
@@ -389,7 +443,6 @@ const questions = [
   var btnBegin     = document.getElementById('btn-begin');
   var btnGenerate  = document.getElementById('btn-generate');
 
-  // ── Navigation ────────────────────────────────────────────────────────
   function showScreen(screen) {
     [screenOrient, screenQ, screenCap, screenConf].forEach(function(s) {
       s.classList.add('screen--hidden');
@@ -404,53 +457,33 @@ const questions = [
   });
 
   btnPrev.addEventListener('click', function() {
-    if (current > 0) {
-      current--;
-      renderQuestion(current);
-    }
+    if (current > 0) { current--; renderQuestion(current); }
   });
 
   btnNext.addEventListener('click', function() {
     if (answers[current] === null) return;
-    if (current < TOTAL - 1) {
-      current++;
-      renderQuestion(current);
-    } else {
-      showScreen(screenCap);
-    }
+    if (current < TOTAL - 1) { current++; renderQuestion(current); }
+    else { showScreen(screenCap); }
   });
 
   btnGenerate.addEventListener('click', function() {
     var name  = document.getElementById('user-name').value.trim();
     var email = document.getElementById('user-email').value.trim();
-    if (!name || !email) {
-      alert('Please enter your name and email address.');
-      return;
-    }
-    generateMockReport(name, email);
+    if (!name || !email) { alert('Please enter your name and email address.'); return; }
+    generateReport(name, email);
   });
 
-  // ── Render Question ───────────────────────────────────────────────────
   function renderQuestion(idx) {
     var q = QUESTIONS[idx];
-
-    // Question text
     qText.innerHTML = q.text + '<span class="q-inline-counter"> (Question ' + (idx + 1) + ' of ' + TOTAL + ')</span>';
-
-    // Answers
     qAnswers.innerHTML = '';
     q.answers.forEach(function(ansText, i) {
       var btn = document.createElement('button');
       btn.className = 'answer-btn' + (answers[idx] === i ? ' answer-btn--selected' : '');
       btn.innerHTML = '<span class="answer-label">' + LABELS[i] + '</span><span class="answer-text">' + ansText + '</span>';
-      btn.addEventListener('click', function() {
-        answers[idx] = i;
-        renderQuestion(idx);
-      });
+      btn.addEventListener('click', function() { answers[idx] = i; renderQuestion(idx); });
       qAnswers.appendChild(btn);
     });
-
-    // Nav buttons
     btnPrev.style.visibility = idx === 0 ? 'hidden' : 'visible';
     if (answers[idx] !== null) {
       btnNext.classList.remove('btn--disabled');
@@ -461,21 +494,18 @@ const questions = [
     }
   }
 
-  // ── Scoring Engine ───────────────────────────────────────────────────
+  // ── Scoring ───────────────────────────────────────────────────────────
   var SCORE_MAP = { A: 2, B: 1, C: 0, D: -1 };
-
   var CLUSTERS = {
     'Interpretation Drift': { start: 0, end: 6 },
     'Velocity Strain':      { start: 7, end: 13 },
     'Signal Suppression':   { start: 14, end: 19 },
   };
-
   var PRESSURE_LEVELS = [
     { label: 'Systemic Strain',     min: 13 },
     { label: 'Structural Pressure', min: 7  },
     { label: 'Early Signals',       min: 0  },
   ];
-
   var TIE_PRIORITY = ['Velocity Strain', 'Interpretation Drift', 'Signal Suppression'];
   var VALIDITY_THRESHOLD = 14;
 
@@ -486,7 +516,6 @@ const questions = [
 
   function scoreAnswers(answerArray, name, email) {
     var scored = answerArray.map(function(a) { return SCORE_MAP[a]; });
-
     var patternScores = {};
     Object.keys(CLUSTERS).forEach(function(pattern) {
       var c = CLUSTERS[pattern];
@@ -494,74 +523,422 @@ const questions = [
       for (var i = c.start; i <= c.end; i++) { total += scored[i]; }
       patternScores[pattern] = total;
     });
-
     var sortedPatterns = Object.keys(patternScores).sort(function(a, b) {
       if (patternScores[b] !== patternScores[a]) return patternScores[b] - patternScores[a];
       return TIE_PRIORITY.indexOf(a) - TIE_PRIORITY.indexOf(b);
     });
-
     var positiveTotal = scored.reduce(function(s, v) { return s + (v > 0 ? v : 0); }, 0);
     var pressureLevel = PRESSURE_LEVELS.find(function(p) { return positiveTotal >= p.min; }).label;
     var dCount = answerArray.filter(function(a) { return a === 'D'; }).length;
-
     return {
-      report_id:       generateReportId(sortedPatterns[0]),
-      participant:     { name: name, email: email },
+      report_id:   generateReportId(sortedPatterns[0]),
+      participant: { name: name, email: email },
       patterns: {
-        primary:       sortedPatterns[0],
-        secondary:     sortedPatterns[1],
-        scores:        patternScores,
+        primary:   sortedPatterns[0],
+        secondary: sortedPatterns[1],
+        scores:    patternScores,
       },
-      pressure: {
-        level:         pressureLevel,
-        positive_total: positiveTotal,
-      },
-      validity: {
-        d_count:       dCount,
-        likely_gamed:  dCount >= VALIDITY_THRESHOLD,
-      },
-      raw_answers:     answerArray,
-      date_display:    new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+      pressure: { level: pressureLevel, positive_total: positiveTotal },
+      validity: { d_count: dCount, likely_gamed: dCount >= VALIDITY_THRESHOLD },
+      raw_answers:  answerArray,
+      date_display: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     };
   }
 
-  // ── Report Generation + EmailJS ──────────────────────────────────────
-  function generateMockReport(name, email) {
+  // ── PDF Generation ────────────────────────────────────────────────────
+  function generatePDF(result) {
+    var jsPDF = window.jspdf.jsPDF;
+    var doc = new jsPDF({ unit: 'pt', format: 'letter' });
+
+    var name       = result.participant.name;
+    var primary    = result.patterns.primary;
+    var pressure   = result.pressure.level;
+    var date       = result.date_display;
+    var reportId   = result.report_id;
+    var content    = REPORT_CONTENT[primary];
+    var pressureText = content.pressure[pressure];
+
+    // ── Colors ──
+    var NAVY  = [27, 38, 59];
+    var GOLD  = [181, 147, 83];
+    var SLATE = [74, 85, 104];
+    var SLATE_MID = [107, 114, 128];
+    var SLATE_LIGHT = [156, 163, 175];
+    var DIVIDER = [226, 228, 232];
+    var WHITE = [255, 255, 255];
+    var BG_BLOCK = [250, 249, 247];
+
+    // ── Dimensions ──
+    var PW = 612; // letter width pts
+    var PH = 792; // letter height pts
+    var ML = 90;  // left margin
+    var MR = 90;  // right margin
+    var CW = PW - ML - MR; // content width
+    var TOP = 86; // content start y
+    var BOTTOM = PH - 72; // footer start
+
+    // ── Helper: set font ──
+    function setFont(size, weight, color) {
+      doc.setFontSize(size);
+      doc.setTextColor.apply(doc, color || SLATE);
+      if (weight === 'bold') doc.setFont('helvetica', 'bold');
+      else if (weight === 'italic') doc.setFont('helvetica', 'italic');
+      else doc.setFont('helvetica', 'normal');
+    }
+
+    // ── Helper: wrapped text, returns new y ──
+    function text(str, x, y, opts) {
+      var maxW = opts && opts.maxW ? opts.maxW : CW;
+      var lines = doc.splitTextToSize(str, maxW);
+      doc.text(lines, x, y);
+      var lh = opts && opts.lineHeight ? opts.lineHeight : 1.6;
+      return y + lines.length * (doc.getFontSize() * lh);
+    }
+
+    // ── Helper: divider line ──
+    function divider(y) {
+      doc.setDrawColor.apply(doc, DIVIDER);
+      doc.setLineWidth(0.5);
+      doc.line(ML, y, ML + CW, y);
+      return y + 14;
+    }
+
+    // ── Helper: section label (gold caps) ──
+    function sectionLabel(str, y) {
+      setFont(7, 'bold', GOLD);
+      doc.text(str.toUpperCase(), ML, y);
+      return y + 12;
+    }
+
+    // ── Helper: draw page header ──
+    function pageHeader(pageNum) {
+      setFont(7, 'normal', SLATE_LIGHT);
+      doc.text('Coherence Company', ML, 44);
+      var centerText = 'Prepared for ' + name;
+      var cw2 = doc.getTextWidth(centerText);
+      doc.text(centerText, (PW - cw2) / 2, 44);
+      doc.text('Confidential Leadership Advisory', ML + CW - doc.getTextWidth('Confidential Leadership Advisory'), 44);
+      doc.setDrawColor.apply(doc, DIVIDER);
+      doc.setLineWidth(0.5);
+      doc.line(ML, 50, ML + CW, 50);
+    }
+
+    // ── Helper: draw page footer ──
+    function pageFooter() {
+      doc.setDrawColor.apply(doc, DIVIDER);
+      doc.setLineWidth(0.5);
+      doc.line(ML, BOTTOM, ML + CW, BOTTOM);
+      setFont(7, 'normal', SLATE_LIGHT);
+      var f1 = 'Confidential Leadership Advisory  ·  Generated by the Coherence Diagnostic System';
+      var f2 = 'Coherence Company  ·  System Alignment Advisory';
+      var f3 = 'coherencecompany.com  ·  info@coherencecompany.com';
+      doc.text(f1, PW / 2 - doc.getTextWidth(f1) / 2, BOTTOM + 12);
+      doc.text(f2, PW / 2 - doc.getTextWidth(f2) / 2, BOTTOM + 22);
+      doc.text(f3, PW / 2 - doc.getTextWidth(f3) / 2, BOTTOM + 32);
+    }
+
+    // ════════════════════════════════════════════
+    // PAGE 1 — STRUCTURAL PATTERN RECOGNITION
+    // ════════════════════════════════════════════
+    pageHeader(1);
+    pageFooter();
+
+    var y = TOP;
+
+    // Section tag
+    setFont(7, 'bold', SLATE_LIGHT);
+    doc.text('SECTION I', ML, y);
+    y += 14;
+
+    // Report title
+    setFont(18, 'bold', NAVY);
+    doc.text('Coherence Essential Edition', ML, y);
+    y += 22;
+    doc.text('System Diagnostic Report', ML, y);
+    y += 20;
+
+    // Meta row
+    var metaY = y;
+    setFont(7, 'bold', SLATE_LIGHT);
+    doc.text('DIAGNOSTIC COMPLETED', ML, metaY);
+    doc.text('PRIMARY STRUCTURAL PATTERN', ML + 130, metaY);
+    doc.text('PRESSURE LEVEL', ML + 310, metaY);
+    metaY += 10;
+    setFont(9, 'normal', SLATE_MID);
+    doc.text(date, ML, metaY);
+    doc.text(primary, ML + 130, metaY);
+    doc.text(pressure, ML + 310, metaY);
+    y = metaY + 18;
+
+    y = divider(y);
+
+    // Intro paragraphs
+    setFont(10, 'normal', SLATE_MID);
+    y = text('Leadership systems rarely fail because leaders lack intelligence or commitment. They struggle when signals, interpretation, and decision velocity drift out of alignment under pressure.', ML, y, { lineHeight: 1.75 });
+    y += 10;
+
+    setFont(10, 'normal', SLATE);
+    y = text('This diagnostic analyzes the structural signals inside your leadership environment and identifies the pattern most likely shaping decision flow, communication, and organizational response.', ML, y, { lineHeight: 1.75 });
+    y += 10;
+
+    y = text('The report is organized using the same sequence through which executives typically process insight and act on it:', ML, y, { lineHeight: 1.75 });
+    y += 8;
+
+    setFont(10, 'italic', NAVY);
+    y = text('Recognition  →  Explanation  →  Behavior  →  Recalibration', ML, y);
+    y += 16;
+
+    y = divider(y);
+
+    // Section header
+    y = sectionLabel('Structural Pattern Recognition', y);
+    setFont(12, 'bold', NAVY);
+    y = text('Structural Pattern Recognition', ML, y);
+    y += 4;
+    setFont(10, 'normal', SLATE_MID);
+    y = text('Leadership systems generate recognizable behavioral patterns when signal flow, interpretation, and decision speed fall out of alignment.', ML, y, { lineHeight: 1.75 });
+    y += 8;
+
+    setFont(10, 'normal', SLATE);
+    y = text('Your responses were analyzed across three system forces: Interpretation Drift, Velocity Strain, and Signal Suppression. From these signals, the diagnostic identifies the dominant structural pattern currently shaping your leadership environment.', ML, y, { lineHeight: 1.75 });
+    y += 12;
+
+    // Pattern block
+    doc.setFillColor.apply(doc, BG_BLOCK);
+    doc.setDrawColor.apply(doc, GOLD);
+    doc.setLineWidth(2);
+    var blockH = 70;
+    doc.rect(ML, y, CW, blockH, 'F');
+    doc.line(ML, y, ML, y + blockH);
+    setFont(7, 'bold', GOLD);
+    doc.text('PRIMARY STRUCTURAL PATTERN DETECTED', ML + 14, y + 14);
+    setFont(14, 'bold', NAVY);
+    doc.text(primary, ML + 14, y + 30);
+    setFont(10, 'normal', SLATE);
+    var idLines = doc.splitTextToSize(content.pattern_identifier, CW - 28);
+    doc.text(idLines, ML + 14, y + 46);
+    y += blockH + 14;
+
+    // Symptoms
+    setFont(10, 'bold', NAVY);
+    doc.text('Supporting Symptoms', ML, y);
+    y += 4;
+    setFont(10, 'normal', SLATE);
+    y = text('The observations below highlight the most common markers associated with the pattern identified in your diagnostic.', ML, y, { lineHeight: 1.75 });
+    y += 6;
+    content.symptoms.forEach(function(s) {
+      setFont(10, 'normal', GOLD);
+      doc.text('•', ML, y);
+      setFont(10, 'normal', SLATE);
+      var lines = doc.splitTextToSize(s, CW - 14);
+      doc.text(lines, ML + 12, y);
+      y += lines.length * 16 + 3;
+    });
+    y += 6;
+
+    setFont(9, 'italic', SLATE_MID);
+    y = text('The following pages explain why this pattern forms and how it behaves under pressure inside leadership systems.', ML, y, { lineHeight: 1.75 });
+
+    // ════════════════════════════════════════════
+    // PAGE 2 — PATTERN EXPLANATION
+    // ════════════════════════════════════════════
+    doc.addPage();
+    pageHeader(2);
+    pageFooter();
+    y = TOP;
+
+    setFont(7, 'bold', SLATE_LIGHT);
+    doc.text('SECTION II', ML, y);
+    y += 14;
+
+    setFont(12, 'bold', NAVY);
+    y = text('Pattern Explanation + Pressure Dynamics', ML, y);
+    y += 4;
+    setFont(10, 'normal', SLATE_MID);
+    y = text('Understanding the Pattern', ML, y, { lineHeight: 1.75 });
+    y += 10;
+
+    setFont(10, 'normal', SLATE);
+    y = text('Every leadership system produces predictable behavior when pressure interacts with decision flow. As information moves through an organization, signals are interpreted, filtered, accelerated, or delayed. When pressure increases, small distortions in that signal flow can compound, gradually shaping how leaders interpret reality and respond to challenges.', ML, y, { lineHeight: 1.8 });
+    y += 10;
+    y = text('Understanding how this process unfolds allows leaders to address the structural conditions behind the behavior, rather than reacting only to surface symptoms.', ML, y, { lineHeight: 1.8 });
+    y += 14;
+
+    y = divider(y);
+
+    y = sectionLabel('How the Pattern Forms', y);
+    setFont(12, 'bold', NAVY);
+    y = text('How This Pattern Forms', ML, y);
+    y += 8;
+    setFont(10, 'normal', SLATE);
+    y = text(content.how_it_forms, ML, y, { lineHeight: 1.8 });
+    y += 16;
+
+    y = divider(y);
+
+    y = sectionLabel('Pressure Amplification', y);
+    setFont(12, 'bold', NAVY);
+    y = text('How Pressure Amplifies the Pattern', ML, y);
+    y += 8;
+    setFont(10, 'normal', SLATE);
+    y = text(pressureText, ML, y, { lineHeight: 1.8 });
+    y += 16;
+
+    y = divider(y);
+
+    setFont(10, 'italic', SLATE_MID);
+    y = text('Explanation helps leaders understand why a pattern forms. But leadership systems are rarely recognized through theory. They are recognized through recurring moments inside everyday work — meetings that stall, decisions that move too quickly, information that arrives incomplete or too late to influence action.', ML, y, { lineHeight: 1.8 });
+    y += 10;
+    y = text('The next section describes how this pattern typically appears in real leadership environments.', ML, y, { lineHeight: 1.8 });
+
+    // ════════════════════════════════════════════
+    // PAGE 3 — SYSTEM BEHAVIOR (SCENES)
+    // ════════════════════════════════════════════
+    doc.addPage();
+    pageHeader(3);
+    pageFooter();
+    y = TOP;
+
+    setFont(7, 'bold', SLATE_LIGHT);
+    doc.text('SECTION III', ML, y);
+    y += 14;
+
+    setFont(12, 'bold', NAVY);
+    y = text('How the Pattern Shows Up Inside Leadership Systems', ML, y);
+    y += 4;
+    setFont(10, 'normal', SLATE_MID);
+    y = text('Structural patterns rarely appear as large failures. They appear as small recurring moments leaders learn to normalize.', ML, y, { lineHeight: 1.75 });
+    y += 10;
+
+    setFont(10, 'normal', SLATE);
+    y = text('Leaders often sense when something in the system is misaligned before they can fully articulate the cause. The scenarios below illustrate how the pattern identified in your diagnostic typically appears in everyday leadership interactions, decisions, and communication flows.', ML, y, { lineHeight: 1.8 });
+    y += 14;
+
+    content.scenes.forEach(function(scene, i) {
+      y = divider(y);
+      setFont(10, 'bold', NAVY);
+      y = text(scene.title, ML, y);
+      y += 6;
+      setFont(10, 'normal', SLATE);
+      y = text(scene.body, ML, y, { lineHeight: 1.8 });
+      y += 10;
+    });
+
+    y = divider(y);
+    setFont(10, 'italic', SLATE_MID);
+    y = text('Once leaders recognize the pattern, the most important question becomes: where should leadership attention focus to restore signal clarity and decision alignment? Structural patterns do not shift through effort alone. They recalibrate when leaders adjust how signals move, how interpretations stabilize, and how decisions are paced under pressure.', ML, y, { lineHeight: 1.8 });
+
+    // ════════════════════════════════════════════
+    // PAGE 4 — LEADERSHIP RECALIBRATION
+    // ════════════════════════════════════════════
+    doc.addPage();
+    pageHeader(4);
+    pageFooter();
+    y = TOP;
+
+    setFont(7, 'bold', SLATE_LIGHT);
+    doc.text('SECTION IV', ML, y);
+    y += 14;
+
+    setFont(12, 'bold', NAVY);
+    y = text('Leadership Recalibration', ML, y);
+    y += 4;
+    setFont(10, 'normal', SLATE_MID);
+    y = text('Once structural patterns are visible, leaders can begin restoring signal clarity, decision alignment, and organizational coherence.', ML, y, { lineHeight: 1.75 });
+    y += 10;
+
+    setFont(10, 'normal', SLATE);
+    y = text('Leadership recalibration begins when structural patterns become visible. When leaders understand how signals, interpretation, and decision velocity interact inside their organization, they can begin restoring the conditions that allow leadership systems to operate with greater clarity and coherence.', ML, y, { lineHeight: 1.8 });
+    y += 14;
+
+    y = divider(y);
+
+    y = sectionLabel('Where Attention Matters Most', y);
+    setFont(12, 'bold', NAVY);
+    y = text('Where Leadership Attention Matters Most', ML, y);
+    y += 8;
+    setFont(10, 'normal', SLATE);
+    y = text(content.recalibration_focus, ML, y, { lineHeight: 1.8 });
+    y += 14;
+
+    y = divider(y);
+
+    y = sectionLabel('First Move', y);
+    setFont(12, 'bold', NAVY);
+    y = text('The First Recalibration Move', ML, y);
+    y += 8;
+    setFont(10, 'normal', SLATE);
+    y = text(content.first_move, ML, y, { lineHeight: 1.8 });
+    y += 14;
+
+    y = divider(y);
+
+    y = sectionLabel('Next Step', y);
+    setFont(12, 'bold', NAVY);
+    y = text('Leadership Coherence Debrief', ML, y);
+    y += 8;
+    setFont(10, 'normal', SLATE);
+    y = text('Clarity is the first step toward alignment. When leaders can see how their system behaves under pressure, they gain the ability to recalibrate it.', ML, y, { lineHeight: 1.8 });
+    y += 10;
+    y = text('Organizations that choose to continue the analysis often schedule a Leadership Coherence Debrief, where the diagnostic findings are reviewed in detail and translated into practical leadership adjustments.', ML, y, { lineHeight: 1.8 });
+    y += 14;
+
+    // CTA block
+    doc.setDrawColor.apply(doc, DIVIDER);
+    doc.setLineWidth(0.5);
+    doc.rect(ML, y, CW, 90);
+    doc.setDrawColor.apply(doc, GOLD);
+    doc.setLineWidth(2);
+    doc.line(ML, y, ML + CW, y);
+    setFont(11, 'bold', NAVY);
+    doc.text('Christine Kahane', ML + 14, y + 18);
+    setFont(8, 'normal', SLATE_MID);
+    doc.text('NBC-HWC  ·  MCWC  ·  TIPF  ·  Founder, Coherence Company', ML + 14, y + 30);
+    setFont(9, 'normal', SLATE);
+    var ctaLines = doc.splitTextToSize('You may schedule a 1:1 Leadership Coherence Debrief with Christine to walk through the diagnostic findings, interpret the structural signals inside your organization, and identify potential next steps for strengthening system coherence.', CW - 28);
+    doc.text(ctaLines, ML + 14, y + 46);
+
+    // Save
+    var filename = 'Coherence-Diagnostic-' + name.replace(/\s+/g, '-') + '.pdf';
+    doc.save(filename);
+  }
+
+  // ── Main generate function ────────────────────────────────────────────
+  function generateReport(name, email) {
     btnGenerate.textContent = 'Generating...';
     btnGenerate.disabled = true;
 
-    // Convert answer indices (0-3) to letters (A-D)
     var answerLetters = answers.map(function(i) { return ['A','B','C','D'][i]; });
 
     try {
       var result = scoreAnswers(answerLetters, name, email);
 
-      // ── Update confirmation screen ──
-      document.getElementById('confirm-report-id').textContent  = result.report_id;
-      document.getElementById('confirm-pattern').textContent    = result.patterns.primary;
-      document.getElementById('confirm-pressure').textContent   = result.pressure.level;
+      document.getElementById('confirm-report-id').textContent = result.report_id;
+      document.getElementById('confirm-pattern').textContent   = result.patterns.primary;
+      document.getElementById('confirm-pressure').textContent  = result.pressure.level;
 
-      // ── Store result globally ──
       window._diagnosticResult = result;
 
-      // ── Build shared email params ──
+      // Generate and download PDF
+      generatePDF(result);
+
+      // Fire emails
       var emailParams = {
-        user_name:        name,
-        user_email:       email,
-        report_id:        result.report_id,
-        primary_pattern:  result.patterns.primary,
+        user_name:         name,
+        user_email:        email,
+        report_id:         result.report_id,
+        primary_pattern:   result.patterns.primary,
         secondary_pattern: result.patterns.secondary,
-        pressure_level:   result.pressure.level,
-        d_count:          result.validity.d_count,
-        likely_gamed:     result.validity.likely_gamed ? 'YES — review before debrief' : 'No',
-        raw_answers:      result.raw_answers.join(', '),
-        date:             result.date_display,
+        pressure_level:    result.pressure.level,
+        d_count:           result.validity.d_count,
+        likely_gamed:      result.validity.likely_gamed ? 'YES — review before debrief' : 'No',
+        raw_answers:       result.raw_answers.join(', '),
+        date:              result.date_display,
       };
 
-      // ── Fire both emails simultaneously ──
-      var SERVICE_ID   = 'service_9dfgwpk';
-      var USER_TMPL    = 'template_fwseyak';
-      var NOTIFY_TMPL  = 'template_vib2asp';
+      var SERVICE_ID  = 'service_9dfgwpk';
+      var USER_TMPL   = 'template_fwseyak';
+      var NOTIFY_TMPL = 'template_vib2asp';
 
       Promise.all([
         emailjs.send(SERVICE_ID, USER_TMPL,   emailParams),
@@ -570,17 +947,15 @@ const questions = [
         console.log('Both emails sent successfully.');
       }).catch(function(err) {
         console.error('EmailJS error:', err);
-        // Don't block the user — report still shows even if email fails
       });
 
-      // ── Show confirmation screen immediately (don't wait for emails) ──
       showScreen(screenConf);
 
     } catch(err) {
       alert('Something went wrong generating your report. Please try again.');
       btnGenerate.textContent = 'Generate My Report';
       btnGenerate.disabled = false;
-      console.error('Scoring error:', err);
+      console.error('Report error:', err);
     }
   }
 </script>
@@ -590,8 +965,8 @@ const questions = [
 <style is:global>
   body:has(.diagnostic-shell) .coherence-nav,
   body:has(.diagnostic-shell) .fed-nav,
-  body:has(.diagnostic-shell) footer { 
-    display: none !important; 
+  body:has(.diagnostic-shell) footer {
+    display: none !important;
   }
   body:has(.diagnostic-shell) main {
     padding: 0 !important;
@@ -614,7 +989,6 @@ const questions = [
     --border-gold:rgba(181,147,83,0.2);
   }
 
-  /* Shell */
   .diagnostic-shell {
     min-height: 100vh;
     background: var(--navy-deep);
@@ -639,7 +1013,6 @@ const questions = [
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Eyebrow */
   .eyebrow {
     display: block;
     font-size: 0.6rem;
@@ -650,7 +1023,6 @@ const questions = [
     margin-bottom: 1.5rem;
   }
 
-  /* ── Orientation ── */
   .orient-inner { max-width: 540px; }
 
   .orient-title {
@@ -687,16 +1059,13 @@ const questions = [
     margin-bottom: 2.5rem;
   }
 
-  /* ── Question Screen ── */
   #screen-question {
     padding-top: 0;
     padding-bottom: 0;
     max-width: 680px;
   }
 
-  .q-masthead {
-    padding: 1.75rem 2rem 0;
-  }
+  .q-masthead { padding: 1.75rem 2rem 0; }
 
   .q-masthead-text {
     font-size: 0.6rem;
@@ -707,9 +1076,7 @@ const questions = [
     opacity: 0.75;
   }
 
-  .q-body {
-    padding: 1.25rem 2rem;
-  }
+  .q-body { padding: 1.25rem 2rem; }
 
   .q-text {
     font-family: 'Playfair Display', serif;
@@ -739,15 +1106,8 @@ const questions = [
     width: 100%;
   }
 
-  .answer-btn:hover {
-    border-color: var(--border-gold);
-    background: rgba(181,147,83,0.05);
-  }
-
-  .answer-btn--selected {
-    border-color: var(--gold) !important;
-    background: rgba(181,147,83,0.08) !important;
-  }
+  .answer-btn:hover { border-color: var(--border-gold); background: rgba(181,147,83,0.05); }
+  .answer-btn--selected { border-color: var(--gold) !important; background: rgba(181,147,83,0.08) !important; }
 
   .answer-label {
     font-size: 0.65rem;
@@ -787,7 +1147,6 @@ const questions = [
     padding: 1.25rem 2rem 1.75rem;
   }
 
-  /* ── Capture Screen ── */
   .capture-inner { max-width: 480px; }
 
   .capture-title {
@@ -806,17 +1165,9 @@ const questions = [
     margin-bottom: 2.5rem;
   }
 
-  .capture-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
+  .capture-form { display: flex; flex-direction: column; gap: 1.25rem; }
 
-  .field-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .field-group { display: flex; flex-direction: column; gap: 0.5rem; }
 
   .field-label {
     font-size: 0.6rem;
@@ -846,14 +1197,9 @@ const questions = [
 
   .btn-generate { margin-top: 0.5rem; }
 
-  /* ── Confirm Screen ── */
   .confirm-inner { max-width: 480px; }
 
-  .confirm-mark {
-    font-size: 1.5rem;
-    color: var(--gold);
-    margin-bottom: 1.25rem;
-  }
+  .confirm-mark { font-size: 1.5rem; color: var(--gold); margin-bottom: 1.25rem; }
 
   .confirm-title {
     font-family: 'Playfair Display', serif;
@@ -897,10 +1243,7 @@ const questions = [
     color: var(--slate-dim);
   }
 
-  .confirm-value {
-    font-size: 0.85rem;
-    color: var(--white);
-  }
+  .confirm-value { font-size: 0.85rem; color: var(--white); }
 
   .confirm-next-label {
     font-size: 0.6rem;
@@ -911,19 +1254,9 @@ const questions = [
     margin-bottom: 0.5rem;
   }
 
-  .confirm-next {
-    font-size: 0.88rem;
-    color: var(--slate-dim);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
+  .confirm-next { font-size: 0.88rem; color: var(--slate-dim); line-height: 1.8; margin-bottom: 1rem; }
 
-  .confirm-emphasis {
-    font-size: 0.88rem;
-    color: var(--slate);
-    font-style: italic;
-    margin-bottom: 1.75rem;
-  }
+  .confirm-emphasis { font-size: 0.88rem; color: var(--slate); font-style: italic; margin-bottom: 1.75rem; }
 
   .confirm-confidentiality-label {
     font-size: 0.6rem;
@@ -935,25 +1268,10 @@ const questions = [
     margin-bottom: 0.5rem;
   }
 
-  .confirm-confidentiality {
-    font-size: 0.82rem;
-    color: var(--slate-dim);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
+  .confirm-confidentiality { font-size: 0.82rem; color: var(--slate-dim); line-height: 1.8; margin-bottom: 1rem; }
 
-  .confirm-contact {
-    font-size: 0.82rem;
-    color: var(--slate-dim);
-    line-height: 1.8;
-    margin-top: 1rem;
-  }
-
-  .confirm-contact a {
-    color: var(--gold);
-    text-decoration: none;
-  }
-
+  .confirm-contact { font-size: 0.82rem; color: var(--slate-dim); line-height: 1.8; margin-top: 1rem; }
+  .confirm-contact a { color: var(--gold); text-decoration: none; }
   .confirm-contact a:hover { color: var(--gold-light); }
 
   .orient-what-label {
@@ -966,7 +1284,6 @@ const questions = [
     margin-bottom: 0.75rem;
   }
 
-  /* ── Buttons ── */
   .btn-primary {
     display: inline-block;
     background: var(--gold);
@@ -1004,13 +1321,10 @@ const questions = [
 
   .btn-ghost:hover { color: var(--slate); }
 
-  /* ── Responsive ── */
   @media (max-width: 600px) {
     .screen { padding: 60px 1.25rem 80px; }
     #screen-question { padding: 0; }
-    .q-header { padding: 1.25rem 1.25rem 1rem; }
     .q-body { padding: 1.75rem 1.25rem; }
     .q-nav { padding: 1.25rem 1.25rem 2rem; }
   }
 </style>
-
