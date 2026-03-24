@@ -1,4 +1,3 @@
----
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
@@ -74,6 +73,11 @@ const metadata = {
                 </select>
                 <span class="select-arrow">↓</span>
               </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="message">Message</label>
+              <textarea class="field-input" id="message" name="message" rows="4" placeholder="How can we help?" required></textarea>
             </div>
 
             <button type="submit" class="submit-btn" id="submit-btn">
