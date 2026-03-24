@@ -545,7 +545,7 @@ const questions = [
     };
   }
 
-  // ── PDF Generation ────────────────────────────────────────────────────
+// ── PDF Generation ────────────────────────────────────────────────────
   function generatePDF(result) {
     var jsPDF = window.jspdf.jsPDF;
     var doc = new jsPDF({ unit: 'pt', format: 'letter' });
@@ -577,9 +577,9 @@ const questions = [
     var SAFE_BOTTOM = BOTTOM - 20;   // 700
 
     // ── Spacing constants ──
-    var GAP_PARA    = 7;   // between body paragraphs
-    var GAP_SECTION = 10;  // before next divider
-    var GAP_HEADING = 6;   // heading to body
+    var GAP_PARA    = 5;   // between body paragraphs
+    var GAP_SECTION = 6;   // before next divider
+    var GAP_HEADING = 5;   // heading to body
 
     // ── Page number registry ──
     var totalPages = 1;
@@ -605,7 +605,7 @@ const questions = [
       doc.setDrawColor.apply(doc, DIVIDER);
       doc.setLineWidth(0.5);
       doc.line(ML, y, ML + CW, y);
-      return y + 14;
+      return y + 10;
     }
 
     function sectionLabel(str, y) {
@@ -682,13 +682,13 @@ const questions = [
     y = divider(y);
 
     setFont(10, 'normal', SLATE_MID);
-    y = text('Leadership systems rarely fail because leaders lack intelligence or commitment. They struggle when signals, interpretation, and decision velocity drift out of alignment under pressure.', ML, y, { lineHeight: 1.7 });
+    y = text('Leadership systems rarely fail because leaders lack intelligence or commitment. They struggle when signals, interpretation, and decision velocity drift out of alignment under pressure.', ML, y, { lineHeight: 1.6 });
     y += GAP_PARA;
 
     setFont(10, 'normal', SLATE);
-    y = text('This diagnostic analyzes the structural signals inside your leadership environment and identifies the pattern most likely shaping decision flow, communication, and organizational response.', ML, y, { lineHeight: 1.7 });
+    y = text('This diagnostic analyzes the structural signals inside your leadership environment and identifies the pattern most likely shaping decision flow, communication, and organizational response.', ML, y, { lineHeight: 1.6 });
     y += GAP_PARA;
-    y = text('The report is organized using the same sequence through which executives typically process insight and act on it:', ML, y, { lineHeight: 1.7 });
+    y = text('The report is organized using the same sequence through which executives typically process insight and act on it:', ML, y, { lineHeight: 1.6 });
     y += 6;
 
     setFont(10, 'italic', NAVY);
@@ -702,11 +702,11 @@ const questions = [
     y = text('Structural Pattern Recognition', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE_MID);
-    y = text('Leadership systems generate recognizable behavioral patterns when signal flow, interpretation, and decision speed fall out of alignment.', ML, y, { lineHeight: 1.7 });
+    y = text('Leadership systems generate recognizable behavioral patterns when signal flow, interpretation, and decision speed fall out of alignment.', ML, y, { lineHeight: 1.6 });
     y += GAP_PARA;
 
     setFont(10, 'normal', SLATE);
-    y = text('Your responses were analyzed across three system forces: Interpretation Drift, Velocity Strain, and Signal Suppression. From these signals, the diagnostic identifies the dominant structural pattern currently shaping your leadership environment.', ML, y, { lineHeight: 1.7 });
+    y = text('Your responses were analyzed across three system forces: Interpretation Drift, Velocity Strain, and Signal Suppression. From these signals, the diagnostic identifies the dominant structural pattern currently shaping your leadership environment.', ML, y, { lineHeight: 1.6 });
     y += 10;
 
     // Pattern block — dynamic height
@@ -735,7 +735,7 @@ const questions = [
     doc.text('Supporting Symptoms', ML, y);
     y += 12;
     setFont(10, 'normal', SLATE);
-    y = text('The observations below highlight the most common markers associated with the pattern identified in your diagnostic.', ML, y, { lineHeight: 1.7 });
+    y = text('The observations below highlight the most common markers associated with the pattern identified in your diagnostic.', ML, y, { lineHeight: 1.6 });
     y += 6;
     content.symptoms.forEach(function(s) {
       setFont(10, 'normal', GOLD);
@@ -748,7 +748,7 @@ const questions = [
     y += 4;
 
     setFont(9, 'italic', SLATE_MID);
-    y = text('The following pages explain why this pattern forms and how it behaves under pressure inside leadership systems.', ML, y, { lineHeight: 1.7 });
+    y = text('The following pages explain why this pattern forms and how it behaves under pressure inside leadership systems.', ML, y, { lineHeight: 1.6 });
 
     // ════════════════════════════════════════════
     // PAGE 2 — PATTERN EXPLANATION
@@ -763,13 +763,13 @@ const questions = [
     y = text('Pattern Explanation + Pressure Dynamics', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE_MID);
-    y = text('Understanding the Pattern', ML, y, { lineHeight: 1.7 });
+    y = text('Understanding the Pattern', ML, y, { lineHeight: 1.6 });
     y += GAP_PARA;
 
     setFont(10, 'normal', SLATE);
-    y = text('Every leadership system produces predictable behavior when pressure interacts with decision flow. As information moves through an organization, signals are interpreted, filtered, accelerated, or delayed. When pressure increases, small distortions in that signal flow can compound, gradually shaping how leaders interpret reality and respond to challenges.', ML, y, { lineHeight: 1.75 });
+    y = text('Every leadership system produces predictable behavior when pressure interacts with decision flow. As information moves through an organization, signals are interpreted, filtered, accelerated, or delayed. When pressure increases, small distortions in that signal flow can compound, gradually shaping how leaders interpret reality and respond to challenges.', ML, y, { lineHeight: 1.6 });
     y += GAP_PARA;
-    y = text('Understanding how this process unfolds allows leaders to address the structural conditions behind the behavior, rather than reacting only to surface symptoms.', ML, y, { lineHeight: 1.75 });
+    y = text('Understanding how this process unfolds allows leaders to address the structural conditions behind the behavior, rather than reacting only to surface symptoms.', ML, y, { lineHeight: 1.6 });
     y += GAP_SECTION;
 
     y = divider(y);
@@ -778,7 +778,7 @@ const questions = [
     y = text('How This Pattern Forms', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE);
-    y = text(content.how_it_forms, ML, y, { lineHeight: 1.75 });
+    y = text(content.how_it_forms, ML, y, { lineHeight: 1.6 });
     y += GAP_SECTION;
 
     y = divider(y);
@@ -787,14 +787,14 @@ const questions = [
     y = text('How Pressure Amplifies the Pattern', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE);
-    y = text(pressureText, ML, y, { lineHeight: 1.75 });
+    y = text(pressureText, ML, y, { lineHeight: 1.6 });
     y += GAP_SECTION;
 
     y = divider(y);
     setFont(10, 'italic', SLATE_MID);
-    y = text('Explanation helps leaders understand why a pattern forms. But leadership systems are rarely recognized through theory. They are recognized through recurring moments inside everyday work — meetings that stall, decisions that move too quickly, information that arrives incomplete or too late to influence action.', ML, y, { lineHeight: 1.75 });
+    y = text('Explanation helps leaders understand why a pattern forms. But leadership systems are rarely recognized through theory. They are recognized through recurring moments inside everyday work — meetings that stall, decisions that move too quickly, information that arrives incomplete or too late to influence action.', ML, y, { lineHeight: 1.6 });
     y += GAP_PARA;
-    y = text('The next section describes how this pattern typically appears in real leadership environments.', ML, y, { lineHeight: 1.75 });
+    y = text('The next section describes how this pattern typically appears in real leadership environments.', ML, y, { lineHeight: 1.6 });
 
     // ════════════════════════════════════════════
     // PAGE 3 — SYSTEM BEHAVIOR (SCENES)
@@ -809,11 +809,11 @@ const questions = [
     y = text('How the Pattern Shows Up Inside Leadership Systems', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE_MID);
-    y = text('Structural patterns rarely appear as large failures. They appear as small recurring moments leaders learn to normalize.', ML, y, { lineHeight: 1.7 });
+    y = text('Structural patterns rarely appear as large failures. They appear as small recurring moments leaders learn to normalize.', ML, y, { lineHeight: 1.6 });
     y += GAP_PARA;
 
     setFont(10, 'normal', SLATE);
-    y = text('Leaders often sense when something in the system is misaligned before they can fully articulate the cause. The scenarios below illustrate how the pattern identified in your diagnostic typically appears in everyday leadership interactions, decisions, and communication flows.', ML, y, { lineHeight: 1.75 });
+    y = text('Leaders often sense when something in the system is misaligned before they can fully articulate the cause. The scenarios below illustrate how the pattern identified in your diagnostic typically appears in everyday leadership interactions, decisions, and communication flows.', ML, y, { lineHeight: 1.6 });
     y += GAP_SECTION;
 
     content.scenes.forEach(function(scene) {
@@ -821,7 +821,7 @@ const questions = [
       var titleLines = doc.splitTextToSize(scene.title, CW);
       setFont(10, 'normal', SLATE);
       var bodyLines  = doc.splitTextToSize(scene.body, CW);
-      var sceneH = 14 + titleLines.length * 16 + GAP_HEADING + bodyLines.length * (10 * 1.75) + GAP_PARA;
+      var sceneH = 10 + titleLines.length * 16 + GAP_HEADING + bodyLines.length * (10 * 1.65) + GAP_PARA;
       if (y + sceneH > SAFE_BOTTOM) { y = newPage(); }
 
       y = divider(y);
@@ -829,13 +829,13 @@ const questions = [
       y = text(scene.title, ML, y);
       y += GAP_HEADING;
       setFont(10, 'normal', SLATE);
-      y = text(scene.body, ML, y, { lineHeight: 1.75 });
+      y = text(scene.body, ML, y, { lineHeight: 1.6 });
       y += GAP_PARA;
     });
 
     y = divider(y);
     setFont(10, 'italic', SLATE_MID);
-    y = text('Once leaders recognize the pattern, the most important question becomes: where should leadership attention focus to restore signal clarity and decision alignment? Structural patterns do not shift through effort alone. They recalibrate when leaders adjust how signals move, how interpretations stabilize, and how decisions are paced under pressure.', ML, y, { lineHeight: 1.75 });
+    y = text('Once leaders recognize the pattern, the most important question becomes: where should leadership attention focus to restore signal clarity and decision alignment? Structural patterns do not shift through effort alone. They recalibrate when leaders adjust how signals move, how interpretations stabilize, and how decisions are paced under pressure.', ML, y, { lineHeight: 1.6 });
 
     // ════════════════════════════════════════════
     // PAGE 4 — LEADERSHIP RECALIBRATION
@@ -850,11 +850,7 @@ const questions = [
     y = text('Leadership Recalibration', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE_MID);
-    y = text('Once structural patterns are visible, leaders can begin restoring signal clarity, decision alignment, and organizational coherence.', ML, y, { lineHeight: 1.7 });
-    y += GAP_PARA;
-
-    setFont(10, 'normal', SLATE);
-    y = text('Leadership recalibration begins when structural patterns become visible. When leaders understand how signals, interpretation, and decision velocity interact inside their organization, they can begin restoring the conditions that allow leadership systems to operate with greater clarity and coherence.', ML, y, { lineHeight: 1.75 });
+    y = text('Once structural patterns are visible, leaders can begin restoring signal clarity, decision alignment, and organizational coherence.', ML, y, { lineHeight: 1.6 });
     y += GAP_SECTION;
 
     y = divider(y);
@@ -863,7 +859,7 @@ const questions = [
     y = text('Where Leadership Attention Matters Most', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE);
-    y = text(content.recalibration_focus, ML, y, { lineHeight: 1.75 });
+    y = text(content.recalibration_focus, ML, y, { lineHeight: 1.6 });
     y += GAP_SECTION;
 
     y = divider(y);
@@ -872,7 +868,7 @@ const questions = [
     y = text('The First Recalibration Move', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE);
-    y = text(content.first_move, ML, y, { lineHeight: 1.75 });
+    y = text(content.first_move, ML, y, { lineHeight: 1.6 });
     y += GAP_SECTION;
 
     y = divider(y);
@@ -881,19 +877,19 @@ const questions = [
     y = text('Leadership Coherence Debrief', ML, y);
     y += GAP_HEADING;
     setFont(10, 'normal', SLATE);
-    y = text('Clarity is the first step toward alignment. When leaders can see how their system behaves under pressure, they gain the ability to recalibrate it.', ML, y, { lineHeight: 1.75 });
-    y += GAP_PARA;
-    y = text('Organizations that choose to continue the analysis often schedule a Leadership Coherence Debrief, where the diagnostic findings are reviewed in detail and translated into practical leadership adjustments.', ML, y, { lineHeight: 1.75 });
+    y = text('Clarity is the first step toward alignment. When leaders can see how their system behaves under pressure, they gain the ability to recalibrate it.', ML, y, { lineHeight: 1.6 });
     y += GAP_SECTION;
 
     // CTA block — dynamic height, overflow guard
-    setFont(9, 'normal', SLATE);
+    // Body text is the only CTA copy; the redundant "Organizations that choose..." paragraph
+    // above already sets context, so we keep the box lean: name + creds + one focused sentence.
+    setFont(10, 'normal', SLATE);
     var ctaBodyText = 'You may schedule a 1:1 Leadership Coherence Debrief with Christine to walk through the diagnostic findings, interpret the structural signals inside your organization, and identify potential next steps for strengthening system coherence.';
     var ctaLines    = doc.splitTextToSize(ctaBodyText, CW - 28);
-    var ctaBodyH    = ctaLines.length * (9 * 1.6);
-    // inner: pad 13 + name 14 + creds 14 + gap 6 + body + pad 13
-    var ctaH        = 13 + 14 + 14 + 6 + ctaBodyH + 13;
-    if (ctaH < 85) ctaH = 85;
+    var ctaBodyH    = ctaLines.length * (10 * 1.55);
+    // inner: pad 10 + name 13 + creds 12 + gap 5 + body + pad 10
+    var ctaH        = 10 + 13 + 12 + 5 + ctaBodyH + 10;
+    if (ctaH < 75) ctaH = 75;
 
     if (y + ctaH > SAFE_BOTTOM) { y = newPage(); }
 
@@ -905,11 +901,11 @@ const questions = [
     doc.line(ML, y, ML + CW, y);
 
     setFont(11, 'bold', NAVY);
-    doc.text('Christine Kahane', ML + 14, y + 13 + 12);
+    doc.text('Christine Kahane', ML + 14, y + 10 + 11);
     setFont(8, 'normal', SLATE_MID);
-    doc.text('NBC-HWC  -  MCWC  -  TIPF  -  Founder, Coherence Company', ML + 14, y + 13 + 12 + 14);
-    setFont(9, 'normal', SLATE);
-    doc.text(ctaLines, ML + 14, y + 13 + 12 + 14 + 6 + 9);
+    doc.text('NBC-HWC  -  MCWC  -  TIPF  -  Founder, Coherence Company', ML + 14, y + 10 + 11 + 12);
+    setFont(10, 'normal', SLATE);
+    doc.text(ctaLines, ML + 14, y + 10 + 11 + 12 + 5 + 10);
 
     // ════════════════════════════════════════════
     // STAMP PAGE NUMBERS — right-aligned, just above footer line
@@ -926,7 +922,6 @@ const questions = [
     var filename = 'Coherence-Diagnostic-' + name.replace(/\s+/g, '-') + '.pdf';
     doc.save(filename);
   }
-
 
   // ── Main generate function ────────────────────────────────────────────
   function generateReport(name, email) {
