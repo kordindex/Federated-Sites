@@ -1,157 +1,201 @@
 ---
-// Design mockup only — not for production
+import Layout from '../layouts/layout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kahane Coaching — Design Mockup</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<Layout title="Kahane Coaching" description="Christine Kahane, NBC-HWC — Executive, Health & Wellness, and Divorce Coaching grounded in 25 years of communication science and emotional intelligence.">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left: copy -->
+        <div class="hero-left">
+          <span class="eyebrow">Community of Practice</span>
+          <h1 class="hero-title">Unlearn.<br><em>Lead with Genius.</em></h1>
+          <p class="hero-subhead">A space where individual leaders discover their innate brilliance through science-backed facilitation.</p>
+          <p class="hero-body">Most leadership development focuses on what you do. Kahane Coaching focuses on how you are — under load, under scrutiny, and in the moments that matter most. The work is precise, confidential, and grounded in the same structural framework that underlies the Coherence ecosystem.</p>
+          <div class="hero-actions">
+            <a href="/contact" class="btn-primary">Start a Conversation</a>
+            <a href="#approach" class="btn-ghost">Explore the Approach →</a>
+          </div>
+        </div>
+
+        <!-- Right: Christine card -->
+        <div class="hero-right">
+          <div class="christine-card">
+            <div class="christine-name">Christine Kahane, NBC-HWC</div>
+            <span class="christine-credentials">NBC-HWC &nbsp;·&nbsp; MCWC &nbsp;·&nbsp; TIPF</span>
+            <p class="christine-bio">25+ years of experience in communication science and emotional intelligence. Christine works with individual leaders navigating the intersection of performance, identity, and organizational pressure.</p>
+            <div class="christine-divider"></div>
+            <span class="focus-label">Areas of focus</span>
+            <div class="focus-item">Leadership presence under pressure</div>
+            <div class="focus-item">Behavioral and attentional recalibration</div>
+            <div class="focus-item">Executive identity and transition</div>
+            <div class="focus-item">Somatic regulation for high-performance</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       APPROACH
+       ============================================================ -->
+  <section class="section-approach" id="approach">
+    <div class="container">
+      <div class="approach-grid">
+
+        <div class="approach-left">
+          <span class="eyebrow">How the Work Happens</span>
+          <div class="section-rule"></div>
+          <h2 class="section-title">Not skill-building.<br>Pattern recognition.</h2>
+          <p class="section-sub">The behaviors that limit leaders under pressure are structural — not personal failures. Naming the pattern is the first act of change.</p>
+        </div>
+
+        <div class="approach-right">
+          <div class="approach-item fade-up">
+            <span class="approach-num">01</span>
+            <h3 class="approach-title">Diagnostic Entry</h3>
+            <p class="approach-body">Every engagement begins with the Essential Coherence Diagnostic — a structured instrument that identifies the patterns shaping how you process signals, decisions, and pressure. The results inform everything that follows.</p>
+          </div>
+          <div class="approach-item fade-up">
+            <span class="approach-num">02</span>
+            <h3 class="approach-title">Leadership Coherence Debrief</h3>
+            <p class="approach-body">A 30-minute structured debrief with Christine translates your diagnostic results into the specific conditions shaping your leadership. This is not a sales conversation. It is a calibrated reading of your results in context.</p>
+          </div>
+          <div class="approach-item fade-up">
+            <span class="approach-num">03</span>
+            <h3 class="approach-title">Sustained Coaching Engagement</h3>
+            <p class="approach-body">For leaders ready to go deeper — a sustained engagement working across behavioral, relational, and attentional dimensions. Calibrated to your diagnostic results and the specific demands of your leadership context.</p>
+          </div>
+          <div class="approach-item fade-up">
+            <span class="approach-num">04</span>
+            <h3 class="approach-title">Confidentiality</h3>
+            <p class="approach-body">Everything stays in the room. Under NBHWC ethical standards, all coaching conversations are completely confidential. Christine never references specific client situations, challenges, or data in any public context.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PULLQUOTE
+       ============================================================ -->
+  <section class="section-quote">
+    <div class="pullquote-inner">
+      <div class="pullquote-mark">"</div>
+      <p class="pullquote-text">Most leadership problems are not personal failures. They are structural reflexes. And structural reflexes change when the structure changes.</p>
+      <span class="pullquote-attr">Christine Kahane &nbsp;·&nbsp; Founder, Kahane Coaching</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ENTRY POINTS
+       ============================================================ -->
+  <section class="section-entry">
+    <div class="container">
+      <span class="eyebrow">Where to Begin</span>
+      <div class="section-rule"></div>
+      <h2 class="section-title">There is a structured place to start,<br>wherever you are in the process.</h2>
+      <div class="entry-grid">
+
+        <div class="entry-card fade-up">
+          <div class="entry-header">
+            <span class="entry-num">01</span>
+            <span class="entry-price">$395</span>
+          </div>
+          <h3 class="entry-title">Essential Coherence Diagnostic</h3>
+          <p class="entry-body">A structured 20-question diagnostic that identifies how pressure is moving through your leadership system. Produces a four-page report and includes a 30-minute debrief with Christine.</p>
+          <a href="/diagnostic" class="entry-cta">Begin the Diagnostic →</a>
+        </div>
+
+        <div class="entry-card entry-card--featured fade-up">
+          <div class="entry-header">
+            <span class="entry-num">02</span>
+            <span class="entry-price">Proposal-based</span>
+          </div>
+          <h3 class="entry-title">Individual Coaching Engagement</h3>
+          <p class="entry-body">Sustained coaching across behavioral, relational, and attentional dimensions. Calibrated to your diagnostic results and the specific demands of your leadership context.</p>
+          <a href="/contact" class="entry-cta">Start a Conversation →</a>
+        </div>
+
+        <div class="entry-card fade-up">
+          <div class="entry-header">
+            <span class="entry-num">03</span>
+            <span class="entry-price">Free</span>
+          </div>
+          <h3 class="entry-title">The Coherence Canvas</h3>
+          <p class="entry-body">A public interactive tool for mapping how your system responds to pressure. Built for orientation — a starting point before the diagnostic or a way to explore the framework on your own terms.</p>
+          <a href="https://coherence-company.vercel.app/coherence-canvas" class="entry-cta">Explore the Canvas →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+  /* ============================================================
+     TOKEN ALIASES — local shorthand matching the mockup's vars
+     ============================================================ */
   :root {
-    /* Shared federated palette */
-    --gold:         #C4922A;
-    --gold-light:   #D4A84B;
-    --silver:       #8C9490;
+    --gold:       #C4922A;
+    --gold-light: #D4A84B;
+    --silver:     #8C9490;
 
-    /* Kahane Coaching backgrounds — translucent green tint */
-    --limestone:    #EEF2F1;   /* hero — green-tinted limestone */
-    --warm-white:   #F4F7F6;   /* sections — very faint green white */
-    --warm-white-2: #EFF3F2;   /* alternating — slightly deeper tint */
-    --white:        #FFFFFF;
+    /* page backgrounds */
+    --limestone:    #EEF2F1;
+    --warm-white:   #F4F7F6;
+    --warm-white-2: #EFF3F2;
 
-    --body:         #2C3A4A;
-    --muted:        #5C7068;   /* muted with slight green warmth */
-    --divider:      rgba(24, 51, 47, 0.1);
+    --body-color:  #2C3A4A;
+    --muted:       #5C7068;
+    --divider:     rgba(24, 51, 47, 0.1);
 
-    /* Kahane Coaching — forest green */
-    --green:        #18332F;
-    --green-mid:    #1f4038;
-
-    --serif: 'Playfair Display', Georgia, serif;
-    --sans:  'DM Sans', system-ui, sans-serif;
-
-    --nav-height-t1: 44px;
-    --nav-height-t2: 64px;
+    /* Kahane green */
+    --green:     #18332F;
+    --green-mid: #1f4038;
   }
 
-  html { font-size: 16px; }
-  body { font-family: var(--serif); background: var(--warm-white); color: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  /* ============================================================
+     TYPOGRAPHY OVERRIDES
+     Body copy: Playfair (from Layout global)
+     Structural/UI elements: DM Sans
+     ============================================================ */
 
-  .eyebrow, .section-rule, .fed-nav, .fed-nav h4, .site-header, .site-logo,
-  .site-nav-links, .nav-cta, .hero-subtitle, .hero-tagline, .approach-num,
-  .entry-num, .entry-price, .entry-cta, .focus-label, .christine-credentials,
-  .pullquote-attr, .footer-col h4, .footer-bottom, .design-note, .mobile-menu a,
-  .btn-primary, .btn-ghost, .hamburger {
-    font-family: var(--sans);
-  }
-  .design-note {
-    background: var(--green);
-    padding: 0.75rem 2.5rem;
-    text-align: center;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white);
+  /* Elements that should be DM Sans (UI / labels / nav) */
+  .eyebrow,
+  .section-rule,
+  .approach-num,
+  .entry-num,
+  .entry-price,
+  .entry-cta,
+  .focus-label,
+  .christine-credentials,
+  .pullquote-attr,
+  .btn-primary,
+  .btn-ghost {
+    font-family: 'DM Sans', system-ui, sans-serif;
   }
 
-  /* ── Federated Nav (Tier 1) ─────────────────────────────────── */
-  .fed-nav {
-    display: flex;
-    border-bottom: 1px solid var(--divider);
-    background: var(--white);
-    height: var(--nav-height-t1);
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
   }
-  .fed-nav a {
-    flex: 1;
-    padding: 0.5rem 1.5rem;
-    text-decoration: none;
-    border-right: 1px solid var(--divider);
-    transition: background 0.2s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .fed-nav a:last-child { border-right: none; }
-  .fed-nav a:hover { background: var(--limestone); }
-  .fed-nav a.active { background: var(--limestone); }
-  .fed-nav span {
-    display: block;
-    font-size: 0.52rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--silver);
-    margin-bottom: 0.15rem;
-  }
-  .fed-nav h4 {
-    font-family: var(--sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--body);
-  }
-  .fed-nav a.active h4 { color: var(--green); }
 
-  /* ── Site Nav (Tier 2) ──────────────────────────────────────── */
-  .site-header {
-    background: rgba(255,255,255,0.97);
-    border-bottom: 1px solid var(--divider);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    height: var(--nav-height-t2);
-    display: flex;
-    align-items: center;
-  }
-  .site-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  .site-logo {
-    font-family: var(--serif);
-    font-weight: 900;
-    font-size: 1.2rem;
-    color: var(--green);
-    text-decoration: none;
-  }
-  .site-logo span { color: var(--gold); }
-  .site-nav-links {
-    display: flex;
-    gap: 1.25rem;
-    list-style: none;
-  }
-  .site-nav-links a {
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-    white-space: nowrap;
-  }
-  .site-nav-links a:hover { color: var(--green); }
-  .nav-cta {
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white);
-    background: var(--green);
-    padding: 0.65rem 1.25rem;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--green-mid); }
-
-  /* ── Layout helpers ─────────────────────────────────────────── */
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+  /* ============================================================
+     SHARED COMPONENTS
+     ============================================================ */
   .eyebrow {
     display: block;
     font-size: 0.6rem;
@@ -161,79 +205,28 @@
     color: var(--gold);
     margin-bottom: 1.25rem;
   }
-  .section-rule { width: 40px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
 
-  /* ── Hero ───────────────────────────────────────────────────── */
-  .hero {
-    background: var(--limestone);
-    padding: 100px 0 90px;
-    border-bottom: 1px solid var(--divider);
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-
-  .hero-subtitle {
-    font-family: var(--sans);
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    display: block;
-  }
-
-  /* Existing brand copy — Playfair, green, large */
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(2.6rem, 5vw, 4.2rem);
-    font-weight: 900;
-    color: var(--green);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-  }
-  .hero-title em {
-    font-style: italic;
-    font-weight: 700;
-  }
-
-  .hero-subhead {
-    font-family: var(--serif);
-    font-size: clamp(1rem, 1.8vw, 1.3rem);
-    font-weight: 400;
-    font-style: italic;
-    color: var(--green-mid);
-    line-height: 1.6;
+  .section-rule {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
     margin-bottom: 2rem;
-    opacity: 0.85;
   }
-
-  .hero-body {
-    font-size: 0.97rem;
-    color: var(--muted);
-    line-height: 1.9;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 
   .btn-primary {
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--white);
+    color: #fff;
     background: var(--green);
     padding: 0.9rem 1.75rem;
     text-decoration: none;
     transition: background 0.2s;
     display: inline-block;
   }
-  .btn-primary:hover { background: var(--green-mid); }
+  .btn-primary:hover { background: var(--green-mid); color: #fff; }
+
   .btn-ghost {
     font-size: 0.65rem;
     font-weight: 600;
@@ -247,20 +240,82 @@
   }
   .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
 
-  /* Christine card — right side of hero */
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    background: var(--limestone);
+    padding: 100px 0 90px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  /* Eyebrow repurposed as subtitle */
+  .hero .eyebrow {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .hero-subhead {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--green-mid);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
+
+  .hero-body {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.97rem;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* Christine card */
   .christine-card {
-    background: var(--white);
+    background: #fff;
     border: 0.5px solid var(--divider);
     border-top: 8px solid var(--gold);
     padding: 2.5rem;
   }
+
   .christine-name {
-    font-family: var(--serif);
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--green);
     margin-bottom: 0.3rem;
   }
+
   .christine-credentials {
     font-size: 0.68rem;
     color: var(--gold);
@@ -269,13 +324,21 @@
     margin-bottom: 1.25rem;
     display: block;
   }
+
   .christine-bio {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 0.9rem;
     color: var(--muted);
     line-height: 1.9;
     margin-bottom: 1.25rem;
   }
-  .christine-divider { height: 1px; background: var(--divider); margin: 1.25rem 0; }
+
+  .christine-divider {
+    height: 1px;
+    background: var(--divider);
+    margin: 1.25rem 0;
+  }
+
   .focus-label {
     font-size: 0.55rem;
     font-weight: 700;
@@ -285,36 +348,61 @@
     margin-bottom: 0.6rem;
     display: block;
   }
+
   .focus-item {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 0.82rem;
-    color: var(--body);
+    color: var(--body-color);
     padding: 0.4rem 0;
     border-bottom: 1px solid var(--divider);
     line-height: 1.5;
   }
   .focus-item:last-child { border-bottom: none; }
 
-  /* ── Approach Section ───────────────────────────────────────── */
+  /* ============================================================
+     APPROACH
+     ============================================================ */
   .section-approach {
     background: var(--warm-white);
     padding: 100px 0;
     border-bottom: 1px solid var(--divider);
   }
-  .approach-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start; }
-  .approach-left { position: sticky; top: 80px; }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .approach-left {
+    position: sticky;
+    top: 80px;
+  }
 
   .section-title {
-    font-family: var(--serif);
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(1.5rem, 2.8vw, 2.1rem);
     font-weight: 700;
     color: var(--green);
     line-height: 1.25;
     margin-bottom: 1rem;
   }
-  .section-sub { font-size: 0.95rem; color: var(--muted); line-height: 1.9; }
 
-  .approach-item { padding: 1.75rem 0; border-bottom: 1px solid var(--divider); }
+  .section-sub {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-top: 1rem;
+  }
+
+  .approach-item {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--divider);
+  }
   .approach-item:first-child { border-top: 1px solid var(--divider); }
+
   .approach-num {
     font-size: 0.55rem;
     font-weight: 700;
@@ -324,39 +412,57 @@
     margin-bottom: 0.5rem;
     display: block;
   }
+
   .approach-title {
-    font-family: var(--serif);
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--green);
     margin-bottom: 0.6rem;
     line-height: 1.35;
   }
-  .approach-body { font-size: 0.9rem; color: var(--muted); line-height: 1.9; }
 
-  /* ── Pullquote ──────────────────────────────────────────────── */
+  .approach-body {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  /* ============================================================
+     PULLQUOTE
+     ============================================================ */
   .section-quote {
     background: var(--warm-white-2);
     padding: 80px 0;
     border-bottom: 1px solid var(--divider);
   }
-  .pullquote-inner { max-width: 700px; margin: 0 auto; padding: 0 2.5rem; text-align: center; }
+
+  .pullquote-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    text-align: center;
+  }
+
   .pullquote-mark {
-    font-family: var(--serif);
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 5rem;
     color: var(--green);
     opacity: 0.12;
     line-height: 1;
     margin-bottom: -1.5rem;
   }
+
   .pullquote-text {
-    font-family: var(--serif);
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(1.2rem, 2.5vw, 1.7rem);
     font-style: italic;
     color: var(--green);
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
+
   .pullquote-attr {
     font-size: 0.68rem;
     font-weight: 600;
@@ -365,12 +471,19 @@
     color: var(--gold);
   }
 
-  /* ── Entry Points ───────────────────────────────────────────── */
+  /* ============================================================
+     ENTRY POINTS
+     ============================================================ */
   .section-entry {
     background: var(--warm-white);
     padding: 100px 0;
     border-bottom: 1px solid var(--divider);
   }
+
+  .section-entry .section-title {
+    margin-bottom: 0;
+  }
+
   .entry-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -378,10 +491,11 @@
     border: 0.5px solid var(--divider);
     margin-top: 3rem;
   }
+
   .entry-card {
     padding: 2.25rem;
     border-right: 0.5px solid var(--divider);
-    background: var(--white);
+    background: #fff;
     transition: background 0.2s;
     display: flex;
     flex-direction: column;
@@ -389,11 +503,45 @@
   .entry-card:last-child { border-right: none; }
   .entry-card:hover { background: var(--limestone); }
   .entry-card--featured { border-top: 2px solid var(--green); }
-  .entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-  .entry-num { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold); }
-  .entry-price { font-size: 0.72rem; font-weight: 700; color: var(--green); }
-  .entry-title { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--green); line-height: 1.3; margin-bottom: 0.75rem; }
-  .entry-body { font-size: 0.84rem; color: var(--muted); line-height: 1.85; flex: 1; margin-bottom: 1.25rem; }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .entry-num {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--gold);
+  }
+
+  .entry-price {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  .entry-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  .entry-body {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.85;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+
   .entry-cta {
     font-size: 0.62rem;
     font-weight: 700;
@@ -408,107 +556,10 @@
   }
   .entry-cta:hover { color: var(--gold); }
 
-  /* ── Footer ─────────────────────────────────────────────────── */
-  .footer { background: var(--green); padding: 60px 0 40px; }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  .footer-brand-mark { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem; }
-  .footer-brand-body { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 280px; }
-  .footer-col h4 { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
-  .footer-col a { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
-  .footer-col a:hover { color: var(--white); }
-  .footer-bottom { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
-
-  /* ── Hamburger ──────────────────────────────────────────────── */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    width: 32px;
-    height: 32px;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--green);
-    transition: all 0.25s ease;
-    transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-  /* ── Mobile overlay ─────────────────────────────────────────── */
-  .mobile-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(24, 51, 47, 0.6);
-    z-index: 99;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-  .mobile-overlay.open {
-    display: block;
-    opacity: 1;
-  }
-  .mobile-menu {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 280px;
-    height: 100%;
-    background: var(--white);
-    padding: 5rem 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border-left: 2px solid var(--green);
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  }
-  .mobile-overlay.open .mobile-menu {
-    transform: translateX(0);
-  }
-  .mobile-menu a {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--green);
-    text-decoration: none;
-    padding: 1rem 0;
-    border-bottom: 0.5px solid var(--divider);
-    transition: color 0.2s;
-  }
-  .mobile-menu a:hover { color: var(--gold); }
-  .mobile-menu .mobile-cta {
-    margin-top: 2rem;
-    background: var(--green);
-    color: var(--white);
-    text-align: center;
-    padding: 0.9rem;
-    border-bottom: none;
-  }
-  .mobile-menu .mobile-cta:hover { background: var(--green-mid); color: var(--white); }
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
   @media (max-width: 900px) {
-    .fed-nav span { display: none; }
-    .site-nav-links { display: none; }
-    .nav-cta { display: none; }
-    .hamburger { display: flex; }
-    .site-header .container { padding: 0 1.5rem; }
     .hero { padding: 60px 0 50px; }
     .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
     .approach-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -516,235 +567,14 @@
     .entry-grid { grid-template-columns: 1fr; }
     .entry-card { border-right: none; border-bottom: 0.5px solid var(--divider); }
     .entry-card:last-child { border-bottom: none; }
-    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .section-approach,
+    .section-entry,
+    .section-quote { padding: 60px 0; }
     .container { padding: 0 1.5rem; }
-    .section-approach, .section-entry, .section-quote { padding: 60px 0; }
   }
 
   @media (max-width: 560px) {
-    .nav-cta { font-size: 0.55rem; padding: 0.55rem 0.85rem; letter-spacing: 0.06em; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
     .pullquote-inner { padding: 0 1.25rem; }
   }
 </style>
-</head>
-<body>
-
-<div class="design-note">Design Mockup — Kahane Coaching — Green Headline Test — For Christine Review</div>
-
-<!-- Federated Nav (Tier 1) — matches existing BrandSwitcher output -->
-<nav class="fed-nav">
-  <a href="https://institute-unlearning.vercel.app/" class="pillar-inst">
-    <span>The Master Brand</span>
-    <h4>The Institute</h4>
-  </a>
-  <a href="https://coherence-company.vercel.app/" class="pillar-cohe">
-    <span>B2B / Organizations</span>
-    <h4>The Coherence Co.</h4>
-  </a>
-  <a href="https://kahane-coaching.vercel.app/" class="pillar-coac active">
-    <span>B2C / Individuals</span>
-    <h4>Kahane Coaching</h4>
-  </a>
-</nav>
-
-<!-- Site Header (Tier 2) — matches existing site-header structure -->
-<header class="site-header">
-  <div class="container">
-    <a href="#" class="site-logo">Kahane <span>Coaching</span></a>
-    <ul class="site-nav-links">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Coaching</a></li>
-      <li><a href="#">Relationships</a></li>
-      <li><a href="#">Community</a></li>
-      <li><a href="#">Events</a></li>
-      <li><a href="#">Writing</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <a href="#" class="nav-cta">Start a Conversation</a>
-    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<!-- Hero — existing copy preserved, design updated -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-left">
-        <span class="hero-subtitle">Community of Practice</span>
-        <h1 class="hero-title">Unlearn.<br><em>Lead with Genius.</em></h1>
-        <p class="hero-subhead">A space where individual leaders discover their innate brilliance through science-backed facilitation.</p>
-        <p class="hero-body">Most leadership development focuses on what you do. Kahane Coaching focuses on how you are — under load, under scrutiny, and in the moments that matter most. The work is precise, confidential, and grounded in the same structural framework that underlies the Coherence ecosystem.</p>
-        <div class="hero-actions">
-          <a href="#" class="btn-primary">Start a Conversation</a>
-          <a href="#" class="btn-ghost">Explore the Approach →</a>
-        </div>
-      </div>
-      <div class="hero-right">
-        <!-- Matches existing .card structure, updated styling -->
-        <div class="christine-card">
-          <div class="christine-name">Christine Kahane, NBC-HWC</div>
-          <span class="christine-credentials">NBC-HWC &nbsp;·&nbsp; MCWC &nbsp;·&nbsp; TIPF</span>
-          <p class="christine-bio">25+ years of experience in communication science and emotional intelligence. Christine works with individual leaders navigating the intersection of performance, identity, and organizational pressure.</p>
-          <div class="christine-divider"></div>
-          <span class="focus-label">Areas of focus</span>
-          <div class="focus-item">Leadership presence under pressure</div>
-          <div class="focus-item">Behavioral and attentional recalibration</div>
-          <div class="focus-item">Executive identity and transition</div>
-          <div class="focus-item">Somatic regulation for high-performance</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Approach -->
-<section class="section-approach">
-  <div class="container">
-    <div class="approach-grid">
-      <div class="approach-left">
-        <span class="eyebrow">How the Work Happens</span>
-        <div class="section-rule"></div>
-        <h2 class="section-title">Not skill-building. Pattern recognition.</h2>
-        <p class="section-sub" style="margin-top: 1rem;">The behaviors that limit leaders under pressure are structural — not personal failures. Naming the pattern is the first act of change.</p>
-      </div>
-      <div class="approach-right">
-        <div class="approach-item">
-          <span class="approach-num">01</span>
-          <h3 class="approach-title">Diagnostic Entry</h3>
-          <p class="approach-body">Every engagement begins with the Essential Coherence Diagnostic — a structured instrument that identifies the patterns shaping how you process signals, decisions, and pressure. The results inform everything that follows.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">02</span>
-          <h3 class="approach-title">Leadership Coherence Debrief</h3>
-          <p class="approach-body">A 30-minute structured debrief with Christine translates your diagnostic results into the specific conditions shaping your leadership. This is not a sales conversation. It is a calibrated reading of your results in context.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">03</span>
-          <h3 class="approach-title">Sustained Coaching Engagement</h3>
-          <p class="approach-body">For leaders ready to go deeper — a sustained engagement working across behavioral, relational, and attentional dimensions. Calibrated to your diagnostic results and the specific demands of your leadership context.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">04</span>
-          <h3 class="approach-title">Confidentiality</h3>
-          <p class="approach-body">Everything stays in the room. Under NBHWC ethical standards, all coaching conversations are completely confidential. Christine never references specific client situations, challenges, or data in any public context.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Pullquote -->
-<section class="section-quote">
-  <div class="pullquote-inner">
-    <div class="pullquote-mark">"</div>
-    <p class="pullquote-text">Most leadership problems are not personal failures. They are structural reflexes. And structural reflexes change when the structure changes.</p>
-    <span class="pullquote-attr">Christine Kahane &nbsp;·&nbsp; Founder, Kahane Coaching</span>
-  </div>
-</section>
-
-<!-- Entry Points -->
-<section class="section-entry">
-  <div class="container">
-    <span class="eyebrow">Where to Begin</span>
-    <div class="section-rule"></div>
-    <h2 class="section-title">There is a structured place to start, wherever you are in the process.</h2>
-    <div class="entry-grid">
-      <div class="entry-card">
-        <div class="entry-header">
-          <span class="entry-num">01</span>
-          <span class="entry-price">$395</span>
-        </div>
-        <h3 class="entry-title">Essential Coherence Diagnostic</h3>
-        <p class="entry-body">A structured 20-question diagnostic that identifies how pressure is moving through your leadership system. Produces a four-page report and includes a 30-minute debrief with Christine.</p>
-        <a href="#" class="entry-cta">Begin the Diagnostic →</a>
-      </div>
-      <div class="entry-card entry-card--featured">
-        <div class="entry-header">
-          <span class="entry-num">02</span>
-          <span class="entry-price">Proposal-based</span>
-        </div>
-        <h3 class="entry-title">Individual Coaching Engagement</h3>
-        <p class="entry-body">Sustained coaching across behavioral, relational, and attentional dimensions. Calibrated to your diagnostic results and the specific demands of your leadership context.</p>
-        <a href="#" class="entry-cta">Start a Conversation →</a>
-      </div>
-      <div class="entry-card">
-        <div class="entry-header">
-          <span class="entry-num">03</span>
-          <span class="entry-price">Free</span>
-        </div>
-        <h3 class="entry-title">The Coherence Canvas</h3>
-        <p class="entry-body">A public interactive tool for mapping how your system responds to pressure. Built for orientation — a starting point before the diagnostic or a way to explore the framework on your own terms.</p>
-        <a href="#" class="entry-cta">Explore the Canvas →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer — matches GlobalFooter structure -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-mark">UNL</div>
-        <p class="footer-brand-body">The Institute for UNLearning is the foundational IP holder for Coherence and Coaching methodologies.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Ecosystem</h4>
-        <a href="https://institute-unlearning.vercel.app/">The Institute</a>
-        <a href="https://coherence-company.vercel.app/">Coherence Co.</a>
-        <a href="https://kahane-coaching.vercel.app/">Kahane Coaching</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a href="#">LinkedIn</a>
-        <a href="#">Newsletter</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      © 2026 The Institute for UNLearning. All Rights Reserved. | <a href="#" style="color:rgba(255,255,255,0.25); text-decoration:none;">Privacy Policy</a>
-    </div>
-  </div>
-</footer>
-
-<!-- Mobile overlay -->
-<div class="mobile-overlay" id="mobileOverlay">
-  <div class="mobile-menu">
-    <a href="#">About</a>
-    <a href="#">Coaching</a>
-    <a href="#">Relationships</a>
-    <a href="#">Community</a>
-    <a href="#">Events</a>
-    <a href="#">Writing</a>
-    <a href="#">Contact</a>
-    <a href="#" class="mobile-cta">Start a Conversation</a>
-  </div>
-</div>
-
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const overlay = document.getElementById('mobileOverlay');
-
-  hamburger.addEventListener('click', function() {
-    const isOpen = overlay.classList.contains('open');
-    overlay.classList.toggle('open', !isOpen);
-    hamburger.classList.toggle('open', !isOpen);
-    hamburger.setAttribute('aria-expanded', !isOpen);
-    document.body.style.overflow = isOpen ? '' : 'hidden';
-  });
-
-  overlay.addEventListener('click', function(e) {
-    if (!e.target.closest('.mobile-menu')) {
-      overlay.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-  });
-</script>
-
-</body>
-</html>
