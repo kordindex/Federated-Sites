@@ -1,7 +1,7 @@
 ---
 // shared/components/FederatedNav.astro
 // Federated ecosystem switcher — consistent across all three sites
-// Style: white background, dividers, active = limestone tint
+// Style: white background, dividers, active = limestone tint, full width
 
 const { activePillar } = Astro.props;
 ---
@@ -33,6 +33,7 @@ const { activePillar } = Astro.props;
 <style>
   .fed-nav {
     display: flex;
+    width: 100%;
     background: #fff;
     border-bottom: 1px solid rgba(24, 51, 47, 0.1);
     overflow-x: auto;
