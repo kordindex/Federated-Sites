@@ -11,45 +11,304 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-mist: #EAEAEA;
-            --ink-institute: #111e1c; 
-            --gold-accent: #b59353;    
-            --silver-gray: #b1b3b3;    
-            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --nav-height-t1: 90px;
-            --nav-height-t2: 70px;
+            --bg-mist:        #EAEAEA;
+            --ink-institute:  #111e1c;
+            --gold-accent:    #b59353;
+            --silver-gray:    #b1b3b3;
+            --card-bg:        #ffffff;
+            --transition:     0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --nav-height-t1:  90px;
+            --nav-height-t2:  70px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--bg-mist); 
-            color: var(--ink-institute); 
-            overflow-x: hidden; 
-        }
-        
-        .serif { font-family: 'Playfair Display', serif; }
-        .sans { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-mist);
+            color: var(--ink-institute);
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+        .sans  { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ── Nav ── */
         .site-header {
             position: fixed; top: var(--nav-height-t1); width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--silver-gray); height: var(--nav-height-t2);
             display: flex; align-items: center; transition: var(--transition);
         }
         .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; }
         .site-nav-links a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .site-nav-links a:hover { color: var(--gold-accent); }
 
-        .hero { padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px; min-height: 80vh; }
+        /* ── Layout ── */
         .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
-        
-        h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 1.1; margin-bottom: 2rem; font-family: 'Playfair Display', serif; font-weight: 900; }
-        p.lead { font-size: 1.5rem; max-width: 850px; margin-bottom: 3rem; font-family: 'Playfair Display', serif; }
 
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 60px 0; }
-        .card { padding: 3rem; border: 1px solid var(--silver-gray); background: #fff; }
-        .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--gold-accent); font-family: 'Playfair Display', serif; font-weight: 700; }
+        /* ── Hero ── */
+        .hero {
+            padding: calc(var(--nav-height-t1) + var(--nav-height-t2) + 60px) 0 80px;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p.lead {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            max-width: 750px;
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+        }
+
+        .eyebrow {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold-accent);
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── Library intro ── */
+        .library-intro {
+            padding: 0 0 48px;
+        }
+
+        .library-intro-text {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--silver-gray);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .library-intro-text::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--silver-gray);
+        }
+
+        /* ── Legend ── */
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+            align-items: center;
+        }
+
+        .legend-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--silver-gray);
+            margin-right: 4px;
+        }
+
+        .badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 2px;
+        }
+
+        .badge-dest { background: #e8eef5; color: #1e4270; }
+        .badge-self { background: #e8f2ec; color: #1a4d2e; }
+        .badge-tbd  { background: #f5f0e6; color: #7a6a40; }
+
+        /* ── Library grid ── */
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            padding-bottom: 80px;
+        }
+
+        .lib-card {
+            background: var(--card-bg);
+            border: 1px solid var(--silver-gray);
+            padding: 2rem 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            cursor: default;
+        }
+
+        .lib-card:hover {
+            border-color: var(--gold-accent);
+            box-shadow: 0 4px 20px rgba(181,147,83,0.10);
+        }
+
+        .lib-card.span-full { grid-column: 1 / -1; }
+        .lib-card.span-two  { grid-column: span 2; }
+
+        .card-num {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--ink-institute);
+            margin-bottom: 0.65rem;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #555f5e;
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--bg-mist);
+            gap: 8px;
+        }
+
+        .card-destination {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--silver-gray);
+            font-style: italic;
+        }
+
+        /* ── Benefits / challenges ── */
+        .two-col-section {
+            display: grid;
+            grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+            gap: 16px;
+            padding-bottom: 60px;
+        }
+
+        .panel {
+            background: var(--card-bg);
+            border: 1px solid var(--silver-gray);
+            padding: 2rem;
+        }
+
+        .panel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--ink-institute);
+            margin-bottom: 1.25rem;
+        }
+
+        .item-list { list-style: none; }
+
+        .item-list li {
+            font-size: 0.85rem;
+            color: #555f5e;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--bg-mist);
+            line-height: 1.6;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .item-list li:last-child { border-bottom: none; }
+
+        .icon-b { color: #2a7a45; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+        .icon-c { color: var(--gold-accent); font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+
+        /* ── Next steps ── */
+        .next-steps-block {
+            background: var(--ink-institute);
+            color: #e8e4dc;
+            padding: 3rem;
+            margin-bottom: 80px;
+        }
+
+        .next-steps-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .next-steps-block ol {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .next-steps-block ol li {
+            counter-increment: steps;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .next-steps-block ol li:last-child { border-bottom: none; }
+
+        .next-steps-block ol li::before {
+            content: counter(steps);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--gold-accent);
+            flex-shrink: 0;
+            min-width: 20px;
+            line-height: 1.6;
+        }
+
+        .next-steps-block strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .library-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+            .lib-card.span-two { grid-column: span 2; }
+            .lib-card.span-full { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 640px) {
+            .library-grid { grid-template-columns: 1fr; }
+            .lib-card.span-two,
+            .lib-card.span-full { grid-column: 1; }
+            .two-col-section { grid-template-columns: 1fr; }
+            .next-steps-block { padding: 2rem; }
+        }
 
         @media (max-width: 768px) {
             :root { --nav-height-t1: 65px; --nav-height-t2: 55px; }
@@ -57,11 +316,11 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
             .site-header .container { justify-content: flex-start !important; gap: 2rem; }
             .site-nav-links { gap: 1.5rem; padding-right: 2rem; }
             .site-nav-links li { white-space: nowrap; }
-            .site-header span.serif { display: none; } 
-            .hero { padding-top: 140px; text-align: center; }
-            h1 { font-size: 2.8rem; }
-            p.lead { font-size: 1.25rem; }
-            .card { padding: 2rem; }
+            .site-header span.serif { display: none; }
+            .hero { text-align: center; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p.lead { font-size: 1.1rem; }
+            .legend { justify-content: center; }
         }
     </style>
 </head>
@@ -70,8 +329,10 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
     <BrandSwitcher activeBrand="institute" />
 
     <header class="site-header">
-        <div class="container" style="display:flex; justify-content: space-between; width: 100%;">
-            <span class="serif" style="font-weight:900; font-size: 1.2rem;">Institute <span style="color:var(--gold-accent)">UNLearning</span></span>
+        <div class="container" style="display:flex; justify-content:space-between; width:100%;">
+            <span class="serif" style="font-weight:900; font-size:1.2rem;">
+                Institute <span style="color:var(--gold-accent)">UNLearning</span>
+            </span>
             <ul class="site-nav-links sans">
                 <li><a href="#">Methodology</a></li>
                 <li><a href="#">Research</a></li>
@@ -80,42 +341,256 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
         </div>
     </header>
 
-    <main class="hero">
-        <div class="container">
-            <span class="sans" style="color:var(--gold-accent); font-size:0.8rem; font-weight:800; display:block; margin-bottom:1.5rem;">IP Anchor & Thought Leadership</span>
-            <h1 class="serif">Workplace Culture That <br><span style="font-style:italic;">Grows Itself.</span></h1>
-            <p class="lead serif">Serving as the credibility anchor and IP holder for the world's most critical organizations.</p>
-            
-            <div class="grid-3">
-                <div class="card">
-                    <h3>Thought Leadership Hub</h3>
-                    <p>State of Workplace Culture Reports and Academic White Papers.</p>
-                </div>
-                <div class="card">
-                    <h3>IP Library</h3>
-                    <p>Foundational Frameworks and Certification Programs.</p>
-                </div>
+    <main>
+
+        <!-- ── Hero ── -->
+        <section class="hero">
+            <div class="container">
+                <span class="eyebrow">IP Anchor &amp; Thought Leadership</span>
+                <h1 class="serif">
+                    Workplace Culture That<br>
+                    <span style="font-style:italic;">Grows Itself.</span>
+                </h1>
+                <p class="lead serif">
+                    Serving as the credibility anchor and IP holder for the world's most critical organizations.
+                </p>
             </div>
-        </div>
+        </section>
+
+        <!-- ── Library ── -->
+        <section class="library-intro">
+            <div class="container">
+
+                <div class="library-intro-text">The Institute — a library of work</div>
+
+                <div class="legend">
+                    <span class="legend-label">Key:</span>
+                    <span class="badge badge-dest">Destination</span>
+                    <span style="font-size:0.75rem; color:#555f5e;">links to a full page</span>
+                    <span class="badge badge-self">Self-contained</span>
+                    <span style="font-size:0.75rem; color:#555f5e;">content lives in the block</span>
+                    <span class="badge badge-tbd">TBD</span>
+                    <span style="font-size:0.75rem; color:#555f5e;">decide with Christine</span>
+                </div>
+
+                <div class="library-grid">
+
+                    <!-- 01 Hero -->
+                    <div class="lib-card span-full">
+                        <div class="card-num">01 · Hero</div>
+                        <div class="card-title">Empowered Workplace Culture — That Grows Itself by UNLearning</div>
+                        <div class="card-desc">Tagline, primary CTA (Book Your Free Discovery Call), and the site's entry point. Sets the tone for everything below.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">No destination needed</span>
+                            <span class="badge badge-self">Self-contained</span>
+                        </div>
+                    </div>
+
+                    <!-- 02 Services -->
+                    <div class="lib-card span-two">
+                        <div class="card-num">02 · Our Services</div>
+                        <div class="card-title">Programs, advising, peer groups — and the books behind them</div>
+                        <div class="card-desc">Overview with book callouts (UNLearning, The Missing Piece, Enlightened Leadership). Gateway to the full services section.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">→ Services page</span>
+                            <span class="badge badge-dest">Destination</span>
+                        </div>
+                    </div>
+
+                    <!-- 03 JHU -->
+                    <div class="lib-card">
+                        <div class="card-num">03 · Credential</div>
+                        <div class="card-title">Johns Hopkins Global Leadership Advisory Council</div>
+                        <div class="card-desc">Member of the advisory body for the MS in Organizational Leadership at Krieger School. Institutional trust signal.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">→ Research page</span>
+                            <span class="badge badge-dest">Destination</span>
+                        </div>
+                    </div>
+
+                    <!-- 04 Vision -->
+                    <div class="lib-card">
+                        <div class="card-num">04 · Vision</div>
+                        <div class="card-title">A force for good — a world where every living thing thrives</div>
+                        <div class="card-desc">Mission statement and the UNLearning Movement framing. Where the work comes from, not just what it does.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">→ About / Methodology</span>
+                            <span class="badge badge-dest">Destination</span>
+                        </div>
+                    </div>
+
+                    <!-- 05 Peer Group -->
+                    <div class="lib-card">
+                        <div class="card-num">05 · Peer Group</div>
+                        <div class="card-title">Leadership Resilience Peer Group — Corporate Law cohort</div>
+                        <div class="card-desc">Specific program for senior legal leaders. May expand to other cohorts over time.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">→ Services / Peer Groups</span>
+                            <span class="badge badge-dest">Destination</span>
+                        </div>
+                    </div>
+
+                    <!-- 06 Pain Points -->
+                    <div class="lib-card span-two">
+                        <div class="card-num">06 · Pain Points</div>
+                        <div class="card-title">"As a leader in your company, chances are you know this only too well…"</div>
+                        <div class="card-desc">The resonance section. Emotional entry point — the moment a visitor recognizes themselves. Leads naturally into the transformation promise.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">Leads to CTA</span>
+                            <span class="badge badge-self">Self-contained</span>
+                        </div>
+                    </div>
+
+                    <!-- 07 Transformation -->
+                    <div class="lib-card">
+                        <div class="card-num">07 · Transformation Promise</div>
+                        <div class="card-title">Resistant to resilient. Conflicted to connected. High-maintenance to high-performance.</div>
+                        <div class="card-desc">The outcome statement. Follows the pain points and points toward methodology.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">→ Methodology page</span>
+                            <span class="badge badge-dest">Destination</span>
+                        </div>
+                    </div>
+
+                    <!-- 08 Books -->
+                    <div class="lib-card">
+                        <div class="card-num">08 · Books</div>
+                        <div class="card-title">UNLearning · The Missing Piece in Leadership · Enlightened Leadership</div>
+                        <div class="card-desc">Book covers, reviews, purchase links. Dedicated page or direct links to Amazon — decision needed.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">→ Books page or external</span>
+                            <span class="badge badge-tbd">TBD</span>
+                        </div>
+                    </div>
+
+                    <!-- 09 Engagement Data -->
+                    <div class="lib-card">
+                        <div class="card-num">09 · Engagement Data</div>
+                        <div class="card-title">Employee engagement drivers and disengagement stats</div>
+                        <div class="card-desc">Data and context for why this work matters. Visual stats block — self-contained or pointing to Research page.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">→ Research or self</span>
+                            <span class="badge badge-tbd">TBD</span>
+                        </div>
+                    </div>
+
+                    <!-- 10 Values -->
+                    <div class="lib-card">
+                        <div class="card-num">10 · Values</div>
+                        <div class="card-title">Institute for UNLearning values</div>
+                        <div class="card-desc">Visual values display. The block is the content — no destination needed. Original image assets from Wix needed or replacement artwork.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">No destination needed</span>
+                            <span class="badge badge-self">Self-contained</span>
+                        </div>
+                    </div>
+
+                    <!-- 11 Clients -->
+                    <div class="lib-card span-two">
+                        <div class="card-num">11 · Clients</div>
+                        <div class="card-title">FBI · NASA · GM · Boeing · CIA · Johns Hopkins · Library of Congress · US Mint · HHS · NSA · Smithsonian · Coast Guard · General Electric · and more</div>
+                        <div class="card-desc">Logo grid. One of the most powerful trust signals on the site. Self-contained — the logos speak for themselves.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">No destination needed</span>
+                            <span class="badge badge-self">Self-contained</span>
+                        </div>
+                    </div>
+
+                    <!-- 12 Testimonials -->
+                    <div class="lib-card">
+                        <div class="card-num">12 · Testimonials</div>
+                        <div class="card-title">Sandy Markwood · Jennifer Smith · Richard Garcia · Ann Mladinov</div>
+                        <div class="card-desc">Four strong named testimonials with titles and organizations. Self-contained — no destination needed.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">No destination needed</span>
+                            <span class="badge badge-self">Self-contained</span>
+                        </div>
+                    </div>
+
+                    <!-- 13 Media -->
+                    <div class="lib-card">
+                        <div class="card-num">13 · Media</div>
+                        <div class="card-title">Christine on Colorado's Daily Blast Live</div>
+                        <div class="card-desc">Video embed or link. May grow into a full Media page as speaking and press appearances accumulate.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">→ Media page (future)</span>
+                            <span class="badge badge-tbd">TBD</span>
+                        </div>
+                    </div>
+
+                    <!-- 14 Contact -->
+                    <div class="lib-card span-full">
+                        <div class="card-num">14 · Contact / Footer</div>
+                        <div class="card-title">Christine Kahane · 303.589.5456 · christinekahane@forunlearning.com · contact form · LinkedIn</div>
+                        <div class="card-desc">Footer doubles as the contact section. The form and contact details live here.</div>
+                        <div class="card-footer">
+                            <span class="card-destination">No destination needed</span>
+                            <span class="badge badge-self">Self-contained</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ── Benefits / Challenges ── -->
+                <div class="library-intro-text" style="margin-bottom: 1.25rem;">Benefits and challenges</div>
+
+                <div class="two-col-section">
+                    <div class="panel">
+                        <h3>Benefits</h3>
+                        <ul class="item-list">
+                            <li><span class="icon-b">+</span>Every piece of work is visible from the front door — nothing buried two clicks deep</li>
+                            <li><span class="icon-b">+</span>Matches the Institute's identity as a body of work, not just a service offering</li>
+                            <li><span class="icon-b">+</span>Major trust signals surface immediately — clients, JHU, testimonials all above the fold</li>
+                            <li><span class="icon-b">+</span>Flexible — blocks can evolve from self-contained to full destination pages as content matures</li>
+                            <li><span class="icon-b">+</span>Works alongside the nav for visitors who know where they're going</li>
+                        </ul>
+                    </div>
+                    <div class="panel">
+                        <h3>Challenges</h3>
+                        <ul class="item-list">
+                            <li><span class="icon-c">!</span>14 blocks is a substantial homepage — each needs its own visual treatment to avoid monotony</li>
+                            <li><span class="icon-c">!</span>Destination pages (Methodology, Services, Research) still need to be built — doorways only work if the rooms exist</li>
+                            <li><span class="icon-c">!</span>Books block needs a decision: dedicated page or direct links to Amazon?</li>
+                            <li><span class="icon-c">!</span>Engagement data block needs real stats — a placeholder won't hold in this context</li>
+                            <li><span class="icon-c">!</span>Values block needs the original Wix image assets or replacement artwork</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ── Next Steps ── -->
+                <div class="library-intro-text" style="margin-bottom: 1.25rem;">Suggested next steps</div>
+
+                <div class="next-steps-block">
+                    <h3>To move forward</h3>
+                    <ol>
+                        <li><strong>Review the 14 blocks</strong> and mark each one: keep as-is, modify, or cut.</li>
+                        <li><strong>Resolve the three TBD blocks</strong> — Books (08), Engagement Data (09), and Media (13) — before the build starts. Each has a different dependency.</li>
+                        <li><strong>Confirm which destination pages are needed for launch.</strong> Methodology and Services are critical. Research and Media can come later without breaking the homepage.</li>
+                        <li><strong>Start the build with self-contained blocks</strong> — Hero, Pain Points, Client Logos, Testimonials, and Contact have the highest impact and the fewest dependencies.</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
     <GlobalFooter />
-<!-- Default Statcounter code for CK Institute
-https://institute-unlearning.vercel.app/ -->
-<script type="text/javascript">
-var sc_project=13206431; 
-var sc_invisible=1; 
-var sc_security="0deddaa5"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js"
-async></script>
-<noscript><div class="statcounter"><a title="hit counter"
-href="https://statcounter.com/" target="_blank"><img
-class="statcounter"
-src="https://c.statcounter.com/13206431/0/0deddaa5/1/"
-alt="hit counter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
+
+    <!-- Statcounter -->
+    <script type="text/javascript">
+        var sc_project=13206431;
+        var sc_invisible=1;
+        var sc_security="0deddaa5";
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    <noscript>
+        <div class="statcounter">
+            <a title="hit counter" href="https://statcounter.com/" target="_blank">
+                <img class="statcounter" src="https://c.statcounter.com/13206431/0/0deddaa5/1/" alt="hit counter" referrerpolicy="no-referrer-when-downgrade" />
+            </a>
+        </div>
+    </noscript>
+
 </body>
 </html>
