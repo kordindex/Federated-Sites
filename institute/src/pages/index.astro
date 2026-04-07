@@ -33,16 +33,13 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
         .serif { font-family: 'Playfair Display', serif; }
         .sans  { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* ── Nav ── */
+        /* ── Nav: wordmark only, no links until destination pages exist ── */
         .site-header {
             position: fixed; top: var(--nav-height-t1); width: 100%; z-index: 1000;
             background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--silver-gray); height: var(--nav-height-t2);
             display: flex; align-items: center; transition: var(--transition);
         }
-        .site-nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.7rem; font-weight: 700; }
-        .site-nav-links a { text-decoration: none; color: inherit; transition: 0.3s; }
-        .site-nav-links a:hover { color: var(--gold-accent); }
 
         /* ── Layout ── */
         .container { max-width: 1250px; margin: 0 auto; padding: 0 2rem; }
@@ -83,9 +80,7 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
         }
 
         /* ── Library intro ── */
-        .library-intro {
-            padding: 0 0 48px;
-        }
+        .library-intro { padding: 0 0 48px; }
 
         .library-intro-text {
             font-size: 0.75rem;
@@ -137,7 +132,7 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
         .badge-self { background: #e8f2ec; color: #1a4d2e; }
         .badge-tbd  { background: #f5f0e6; color: #7a6a40; }
 
-        /* ── Library grid ── */
+        /* ── Library grid — desktop: 3 col ── */
         .library-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -290,37 +285,44 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
             line-height: 1.6;
         }
 
-        .next-steps-block strong {
-            color: #fff;
-            font-weight: 700;
-        }
+        .next-steps-block strong { color: #fff; font-weight: 700; }
 
         /* ── Responsive ── */
+
+        /* Tablet: 2-col, span-two still works */
         @media (max-width: 900px) {
             .library-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-            .lib-card.span-two { grid-column: span 2; }
+            .lib-card.span-two  { grid-column: span 2; }
             .lib-card.span-full { grid-column: 1 / -1; }
         }
 
-        @media (max-width: 640px) {
-            .library-grid { grid-template-columns: 1fr; }
-            .lib-card.span-two,
-            .lib-card.span-full { grid-column: 1; }
+        /* Mobile: 2-col grid, span cards go full width */
+        @media (max-width: 600px) {
+            :root { --nav-height-t1: 65px; --nav-height-t2: 55px; }
+
+            .library-grid {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+                gap: 8px;
+            }
+
+            /* span cards go full width on mobile — 2 cols is too narrow for them */
+            .lib-card.span-full,
+            .lib-card.span-two { grid-column: 1 / -1; }
+
+            .lib-card { padding: 1.25rem 1.25rem 1rem; }
+            .card-title { font-size: 0.9rem; }
+            .card-desc  { font-size: 0.78rem; }
+
             .two-col-section { grid-template-columns: 1fr; }
-            .next-steps-block { padding: 2rem; }
+            .next-steps-block { padding: 1.75rem; }
+
+            .hero h1 { font-size: 2.4rem; }
+            .hero p.lead { font-size: 1.05rem; }
+            .legend { gap: 10px; }
         }
 
         @media (max-width: 768px) {
-            :root { --nav-height-t1: 65px; --nav-height-t2: 55px; }
-            .site-header { overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; padding: 0 1rem; }
-            .site-header .container { justify-content: flex-start !important; gap: 2rem; }
-            .site-nav-links { gap: 1.5rem; padding-right: 2rem; }
-            .site-nav-links li { white-space: nowrap; }
-            .site-header span.serif { display: none; }
-            .hero { text-align: center; }
-            .hero h1 { font-size: 2.8rem; }
-            .hero p.lead { font-size: 1.1rem; }
-            .legend { justify-content: center; }
+            .site-header { padding: 0 1rem; }
         }
     </style>
 </head>
@@ -329,15 +331,10 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
     <BrandSwitcher activeBrand="institute" />
 
     <header class="site-header">
-        <div class="container" style="display:flex; justify-content:space-between; width:100%;">
+        <div class="container" style="display:flex; align-items:center; width:100%;">
             <span class="serif" style="font-weight:900; font-size:1.2rem;">
                 Institute <span style="color:var(--gold-accent)">UNLearning</span>
             </span>
-            <ul class="site-nav-links sans">
-                <li><a href="#">Methodology</a></li>
-                <li><a href="#">Research</a></li>
-                <li><a href="#">Media</a></li>
-            </ul>
         </div>
     </header>
 
