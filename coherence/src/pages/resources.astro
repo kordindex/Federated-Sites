@@ -6,36 +6,38 @@ const metadata = {
   description: 'Diagnostic tools and structured engagements for executive teams navigating pressure, pace, and organizational coherence.',
 };
 
-const products = [
-  {
-    id: 'g7HlY',
-    category: 'Diagnostic',
-    title: 'Essential Coherence Diagnostic',
-    price: '$395',
-    priceNote: 'One-time',
-    description: 'A structured 20-question diagnostic that produces a detailed escalation profile across all nine domains of the Coherence Architecture. Designed for individual executives beginning to name what they are seeing.',
-    features: [
-      '20-question structured diagnostic',
-      'Escalation profile across all 9 domains',
-      'Detailed results report (PDF)',
-      'Coherence lever recommendations',
-      '1:1 debrief with our Coherence leadership',
-    ],
-    cta: 'Purchase the Diagnostic',
-  },
-];
+// PHASE 2: Restore products array and map when diagnostic goes live
+// const products = [
+//   {
+//     id: 'g7HlY',
+//     category: 'Diagnostic',
+//     title: 'Essential Coherence Diagnostic',
+//     price: '$395',
+//     priceNote: 'One-time',
+//     description: 'A structured 20-question diagnostic that produces a detailed escalation profile across all nine domains of the Coherence Architecture. Designed for individual executives beginning to name what they are seeing.',
+//     features: [
+//       '20-question structured diagnostic',
+//       'Escalation profile across all 9 domains',
+//       'Detailed results report (PDF)',
+//       'Coherence lever recommendations',
+//       '1:1 debrief with our Coherence leadership',
+//     ],
+//     cta: 'Purchase the Diagnostic',
+//   },
+// ];
 ---
 
 <Layout metadata={metadata}>
 
-  <script is:inline>
+  <!-- PHASE 2: Restore Payhip script when diagnostic goes live -->
+  <!-- <script is:inline>
   (function() {
     var script = document.createElement('script');
     script.src = 'https://payhip.com/payhip.js';
     script.type = 'text/javascript';
     document.head.appendChild(script);
   })();
-</script>
+  </script> -->
 
   <section class="resources-hero">
     <div class="container">
@@ -49,7 +51,8 @@ const products = [
     <div class="container">
       <div class="products-grid">
 
-        {products.map((product) => (
+        <!-- PHASE 2: Replace this coming-soon card with products.map block when diagnostic goes live -->
+        <!-- {products.map((product) => (
           <div class="product-card product-card--featured">
             <div class="product-header">
               <span class="product-category">{product.category}</span>
@@ -74,7 +77,17 @@ const products = [
               </a>
             </div>
           </div>
-        ))}
+        ))} -->
+
+        <div class="product-card product-card--coming">
+          <div class="coming-inner">
+            <span class="coming-label">Coming Soon</span>
+            <h2 class="coming-title">Essential Coherence Diagnostic</h2>
+            <p class="coming-price">$395</p>
+            <p class="coming-desc">A structured 20-question diagnostic that produces a detailed escalation profile across all nine domains of the Coherence Architecture. Designed for individual executives beginning to name what they are seeing.</p>
+            <a href="/contact" class="coming-cta">Inquire →</a>
+          </div>
+        </div>
 
         <div class="product-card product-card--coming">
           <div class="coming-inner">
