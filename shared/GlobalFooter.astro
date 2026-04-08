@@ -1,6 +1,4 @@
-
 ---
-// GlobalFooter.astro - The "Pro" Ecosystem Footer
 const year = new Date().getFullYear();
 ---
 <footer>
@@ -19,18 +17,18 @@ const year = new Date().getFullYear();
 
         <div class="footer-links">
             <h4>Connect</h4>
-            <a href="#">LinkedIn</a>
+            <a href="https://www.linkedin.com/company/instituteforunlearning" target="_blank" rel="noopener">LinkedIn</a>
             <span class="coming-soon-wrap">
-                <a href="#" class="coming-soon-link" aria-disabled="true">
+                <a href="https://www.linkedin.com/newsletters/the-room-7335545768327426048/" class="coming-soon-link" target="_blank" rel="noopener">
                     Newsletter <span class="badge">Coming Soon</span>
                 </a>
             </span>
-            <a href="#">Contact</a>
+            <a href="/contact">Contact</a>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© {year} The Institute for UNLearning. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
-    </div>
+        <p>© {year} The Institute for UNLearning, LLC. All Rights Reserved. | <a href="/privacy">Privacy Policy</a></p>
+        </div>
 </footer>
 <style>
     footer {
