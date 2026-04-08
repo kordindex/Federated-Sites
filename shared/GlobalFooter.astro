@@ -1,8 +1,8 @@
+
 ---
 // GlobalFooter.astro - The "Pro" Ecosystem Footer
 const year = new Date().getFullYear();
 ---
-
 <footer>
     <div class="footer-grid">
         <div class="footer-brand">
@@ -20,16 +20,18 @@ const year = new Date().getFullYear();
         <div class="footer-links">
             <h4>Connect</h4>
             <a href="#">LinkedIn</a>
-            <a href="#">Newsletter</a>
+            <span class="coming-soon-wrap">
+                <a href="#" class="coming-soon-link" aria-disabled="true">
+                    Newsletter <span class="badge">Coming Soon</span>
+                </a>
+            </span>
             <a href="#">Contact</a>
         </div>
     </div>
-
     <div class="footer-bottom">
         <p>© {year} The Institute for UNLearning. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
     </div>
 </footer>
-
 <style>
     footer {
         background: #000;
@@ -58,7 +60,7 @@ const year = new Date().getFullYear();
         font-weight: 900;
         font-size: 1.8rem;
         letter-spacing: 2px;
-        color: #b59353; /* PMS 1245 Gold */
+        color: #b59353;
     }
     .footer-links h4 {
         font-size: 0.75rem;
@@ -77,7 +79,6 @@ const year = new Date().getFullYear();
         transition: 0.3s;
     }
     .footer-links a:hover { opacity: 1; }
-    
     .footer-bottom {
         max-width: 1250px;
         margin: 2rem auto 0;
@@ -86,9 +87,34 @@ const year = new Date().getFullYear();
         font-size: 0.7rem;
     }
     .footer-bottom a { color: #fff; text-decoration: underline; }
-
     @media (max-width: 768px) {
         .footer-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
         .footer-brand p { margin: 1.5rem auto 0; }
+    }
+    .coming-soon-wrap {
+        display: block;
+        margin-bottom: 0.8rem;
+    }
+    .coming-soon-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0.5;
+        font-size: 0.85rem;
+        cursor: default;
+        pointer-events: none;
+    }
+    .coming-soon-link .badge {
+        font-size: 0.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 2px 6px;
+        border-radius: 3px;
+        background: #b59353;
+        color: #000;
+        opacity: 1;
     }
 </style>
