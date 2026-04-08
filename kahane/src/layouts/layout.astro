@@ -1,7 +1,5 @@
 ---
-// Layout.astro — Kahane Coaching
-// Matches the approved design at kahane-coaching.vercel.app
-// Design system: forest green (PMS 5467), Playfair Display body, translucent green bg
+import GlobalFooter from '../../../shared/components/GlobalFooter.astro';
 
 export interface Props {
   title: string;
@@ -19,7 +17,6 @@ const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : null;
 
-// Active nav detection
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) =>
   href === "/" ? currentPath === "/" : currentPath.startsWith(href);
@@ -33,26 +30,20 @@ const isActive = (href: string) =>
     <meta name="description" content={description} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
 
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     <meta property="og:type" content="website" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
-<!-- Fathom - beautiful, simple website analytics -->
-<script src="https://cdn.usefathom.com/script.js" data-site="FXKIHAQN" defer></script>
-<!-- / Fathom -->
-
+    <script src="https://cdn.usefathom.com/script.js" data-site="FXKIHAQN" defer></script>
 
     <title>{title} | Kahane Coaching</title>
 
-    <!-- Fonts: Playfair Display (body/serif) + DM Sans (nav/UI) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -61,42 +52,29 @@ const isActive = (href: string) =>
     />
 
     <style is:global>
-      /* ============================================================
-         DESIGN TOKENS — Kahane Coaching
-         PMS 5467: deep, unsaturated forest green
-         Translucent wash for backgrounds, full-sat for headlines
-         ============================================================ */
-
       :root {
-        /* Core green — PMS 5467 */
-        --green-900: #18332F;   /* deepest — matches mockup --green */
-        --green-800: #1f4038;   /* dark — matches mockup --green-mid */
-        --green-700: #33503f;   /* primary headline color */
-        --green-600: #3d6149;   /* slightly lighter headline alt */
-        --green-500: #4a7358;   /* mid green, accents */
-        --green-400: #6a9a7a;   /* soft green, borders/dividers */
-        --green-200: #c5d9cc;   /* pale green tint */
-        --green-100: #e8f0eb;   /* near-white green wash */
-        --green-50:  #f4f7f5;   /* off-white background base */
+        --green-900: #18332F;
+        --green-800: #1f4038;
+        --green-700: #33503f;
+        --green-600: #3d6149;
+        --green-500: #4a7358;
+        --green-400: #6a9a7a;
+        --green-200: #c5d9cc;
+        --green-100: #e8f0eb;
+        --green-50:  #f4f7f5;
 
-        /* Gold — shared federated accent */
         --gold:       #C4922A;
         --gold-light: #D4A84B;
-
-        /* Silver — labels, muted UI */
         --silver:     #8C9490;
 
-        /* Page backgrounds */
         --limestone:    #EEF2F1;
         --warm-white:   #F4F7F6;
         --warm-white-2: #EFF3F2;
 
-        /* Text */
         --body-color:  #2C3A4A;
         --muted:       #5C7068;
         --divider:     rgba(24, 51, 47, 0.1);
 
-        /* Semantic aliases */
         --bg-page:         var(--warm-white);
         --bg-card:         #ffffff;
         --text-headline:   var(--green-900);
@@ -106,11 +84,9 @@ const isActive = (href: string) =>
         --text-on-dark:    #e8f0eb;
         --text-on-dark-muted: rgba(232, 240, 235, 0.55);
 
-        /* Typography */
         --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
         --font-sans:  'DM Sans', system-ui, sans-serif;
 
-        /* Type scale */
         --text-xs:   0.75rem;
         --text-sm:   0.875rem;
         --text-base: 1rem;
@@ -122,7 +98,6 @@ const isActive = (href: string) =>
         --text-5xl:  3rem;
         --text-6xl:  3.75rem;
 
-        /* Spacing */
         --space-1:  0.25rem;
         --space-2:  0.5rem;
         --space-3:  0.75rem;
@@ -135,27 +110,19 @@ const isActive = (href: string) =>
         --space-20: 5rem;
         --space-24: 6rem;
 
-        /* Layout */
         --max-width:       1200px;
         --max-width-prose: 680px;
 
-        /* Borders & radius */
         --radius-sm: 4px;
         --radius-md: 8px;
         --border-subtle: 1px solid var(--divider);
 
-        /* Transitions */
         --transition-fast: 150ms ease;
         --transition-base: 250ms ease;
 
-        /* Shadows */
         --shadow-sm: 0 1px 3px rgba(30, 48, 40, 0.08);
         --shadow-md: 0 4px 16px rgba(30, 48, 40, 0.10);
       }
-
-      /* ============================================================
-         RESET & BASE
-         ============================================================ */
 
       *, *::before, *::after {
         box-sizing: border-box;
@@ -182,9 +149,7 @@ const isActive = (href: string) =>
         flex-direction: column;
       }
 
-      main {
-        flex: 1;
-      }
+      main { flex: 1; }
 
       img {
         max-width: 100%;
@@ -198,10 +163,6 @@ const isActive = (href: string) =>
         transition: color var(--transition-fast);
       }
 
-      /* ============================================================
-         LAYOUT UTILITIES
-         ============================================================ */
-
       .container {
         max-width: var(--max-width);
         margin: 0 auto;
@@ -211,11 +172,6 @@ const isActive = (href: string) =>
       @media (max-width: 900px) {
         .container { padding: 0 1.5rem; }
       }
-
-      /* ============================================================
-         FEDERATED ECOSYSTEM NAV (Tier 1)
-         White background, dividers, matches mockup exactly
-         ============================================================ */
 
       .ecosystem-bar {
         background: #fff;
@@ -241,17 +197,9 @@ const isActive = (href: string) =>
         min-width: 160px;
       }
 
-      .ecosystem-bar__item:last-child {
-        border-right: none;
-      }
-
-      .ecosystem-bar__item:hover {
-        background: var(--limestone);
-      }
-
-      .ecosystem-bar__item--active {
-        background: var(--limestone);
-      }
+      .ecosystem-bar__item:last-child { border-right: none; }
+      .ecosystem-bar__item:hover { background: var(--limestone); }
+      .ecosystem-bar__item--active { background: var(--limestone); }
 
       .ecosystem-bar__label {
         display: block;
@@ -276,10 +224,6 @@ const isActive = (href: string) =>
       .ecosystem-bar__item--active .ecosystem-bar__name {
         color: var(--green-900);
       }
-
-      /* ============================================================
-         SITE NAV (Tier 2)
-         ============================================================ */
 
       .site-nav {
         position: sticky;
@@ -310,9 +254,7 @@ const isActive = (href: string) =>
         white-space: nowrap;
       }
 
-      .site-nav__brand span {
-        color: var(--gold);
-      }
+      .site-nav__brand span { color: var(--gold); }
 
       .site-nav__links {
         display: flex;
@@ -357,7 +299,6 @@ const isActive = (href: string) =>
         color: #fff;
       }
 
-      /* Mobile toggle */
       .site-nav__toggle {
         display: none;
         flex-direction: column;
@@ -385,7 +326,6 @@ const isActive = (href: string) =>
       .site-nav__toggle.open span:nth-child(2) { opacity: 0; }
       .site-nav__toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-      /* Mobile overlay */
       .mobile-overlay {
         display: none;
         position: fixed;
@@ -417,9 +357,7 @@ const isActive = (href: string) =>
         transition: transform 0.3s ease;
       }
 
-      .mobile-overlay.open .mobile-menu {
-        transform: translateX(0);
-      }
+      .mobile-overlay.open .mobile-menu { transform: translateX(0); }
 
       .mobile-menu a {
         font-family: var(--font-sans);
@@ -450,86 +388,6 @@ const isActive = (href: string) =>
         color: #fff;
       }
 
-      /* ============================================================
-         FOOTER
-         ============================================================ */
-
-      .site-footer {
-        background: var(--green-900);
-        color: var(--text-on-dark);
-        padding: 60px 0 40px;
-      }
-
-      .site-footer__grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 4rem;
-        margin-bottom: 3rem;
-        padding-bottom: 3rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .site-footer__brand-mark {
-        font-family: var(--font-serif);
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--gold);
-        margin-bottom: 1rem;
-      }
-
-      .site-footer__tagline {
-        font-family: var(--font-serif);
-        font-size: 0.8rem;
-        color: var(--text-on-dark-muted);
-        line-height: 1.75;
-        max-width: 280px;
-      }
-
-      .site-footer__heading {
-        font-family: var(--font-sans);
-        font-size: 0.58rem;
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 1.25rem;
-      }
-
-      .site-footer__links {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .site-footer__links a {
-        display: block;
-        font-family: var(--font-sans);
-        font-size: 0.82rem;
-        color: var(--text-on-dark-muted);
-        text-decoration: none;
-        margin-bottom: 0.6rem;
-        transition: color 0.2s;
-      }
-
-      .site-footer__links a:hover {
-        color: #fff;
-      }
-
-      .site-footer__bottom {
-        font-family: var(--font-sans);
-        font-size: 0.72rem;
-        color: rgba(255,255,255,0.25);
-      }
-
-      .site-footer__bottom a {
-        color: rgba(255,255,255,0.25);
-      }
-
-      /* ============================================================
-         SHARED UTILITIES
-         ============================================================ */
-
       .sr-only {
         position: absolute;
         width: 1px;
@@ -553,23 +411,17 @@ const isActive = (href: string) =>
         transform: translateY(0);
       }
 
-      /* ============================================================
-         RESPONSIVE
-         ============================================================ */
-
       @media (max-width: 900px) {
-        .ecosystem-bar span { display: none; }  /* hide labels on mobile, keep names */
+        .ecosystem-bar span { display: none; }
         .site-nav__links { display: none; }
         .site-nav__cta { display: none; }
         .site-nav__toggle { display: flex; }
-        .site-footer__grid { grid-template-columns: 1fr; gap: 2.5rem; }
       }
     </style>
   </head>
 
   <body>
 
-    <!-- ── Federated Ecosystem Nav (Tier 1) ── -->
     <nav class="ecosystem-bar" aria-label="Ecosystem navigation">
       <div class="ecosystem-bar__inner">
         <a href="https://institute-unlearning.vercel.app/" class="ecosystem-bar__item">
@@ -587,13 +439,10 @@ const isActive = (href: string) =>
       </div>
     </nav>
 
-    <!-- ── Site Nav (Tier 2) ── -->
     <header class="site-nav" role="banner">
       <div class="container">
         <nav class="site-nav__inner" aria-label="Primary navigation">
-
           <a href="/" class="site-nav__brand">Kahane <span>Coaching</span></a>
-
           <ul class="site-nav__links" role="list">
             <li><a href="/about" aria-current={isActive("/about") ? "page" : undefined}>About</a></li>
             <li><a href="/coaching" aria-current={isActive("/coaching") ? "page" : undefined}>Coaching</a></li>
@@ -603,9 +452,7 @@ const isActive = (href: string) =>
             <li><a href="/writing" aria-current={isActive("/writing") ? "page" : undefined}>Writing</a></li>
             <li><a href="/contact" aria-current={isActive("/contact") ? "page" : undefined}>Contact</a></li>
           </ul>
-
           <a href="/contact" class="site-nav__cta">Start a Conversation</a>
-
           <button
             class="site-nav__toggle"
             aria-label="Open menu"
@@ -614,12 +461,10 @@ const isActive = (href: string) =>
           >
             <span></span><span></span><span></span>
           </button>
-
         </nav>
       </div>
     </header>
 
-    <!-- Mobile overlay -->
     <div class="mobile-overlay" id="mobileOverlay">
       <div class="mobile-menu">
         <a href="/about">About</a>
@@ -633,48 +478,12 @@ const isActive = (href: string) =>
       </div>
     </div>
 
-    <!-- Page content -->
     <main id="main-content">
       <slot />
     </main>
 
-    <!-- ── Footer ── -->
-    <footer class="site-footer" role="contentinfo">
-      <div class="container">
-        <div class="site-footer__grid">
-          <div>
-            <div class="site-footer__brand-mark">UNL</div>
-            <p class="site-footer__tagline">
-              The Institute for UNLearning is the foundational IP holder
-              for Coherence and Coaching methodologies.
-            </p>
-          </div>
-          <div>
-            <p class="site-footer__heading">Ecosystem</p>
-            <ul class="site-footer__links">
-              <li><a href="https://institute-unlearning.vercel.app/">The Institute</a></li>
-              <li><a href="https://coherence-company.vercel.app/">Coherence Co.</a></li>
-              <li><a href="/">Kahane Coaching</a></li>
-            </ul>
-          </div>
-          <div>
-            <p class="site-footer__heading">Connect</p>
-            <ul class="site-footer__links">
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Newsletter</a></li>
-              <li><a href="/contact">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="site-footer__bottom">
-          &copy; {new Date().getFullYear()} The Institute for UNLearning. All Rights Reserved.
-          &nbsp;|&nbsp;
-          <a href="/privacy">Privacy Policy</a>
-        </div>
-      </div>
-    </footer>
+    <GlobalFooter />
 
-    <!-- Mobile nav script -->
     <script>
       const toggle = document.getElementById('mobile-toggle');
       const overlay = document.getElementById('mobileOverlay');
@@ -701,7 +510,6 @@ const isActive = (href: string) =>
       }
     </script>
 
-    <!-- Scroll animation observer -->
     <script>
       const observer = new IntersectionObserver(
         (entries) => {
