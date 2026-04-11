@@ -1,6 +1,6 @@
 ---
-import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
-import GlobalFooter from '../../../shared/GlobalFooter.astro';
+import FederatedNav from '@shared/FederatedNav.astro';
+import GlobalFooter from '@shared/GlobalFooter.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -328,8 +328,7 @@ import GlobalFooter from '../../../shared/GlobalFooter.astro';
 </head>
 <body>
 
-    <BrandSwitcher activeBrand="institute" />
-
+<FederatedNav activePillar="institute" />
     <header class="site-header">
         <div class="container" style="display:flex; align-items:center; width:100%;">
             <span class="serif" style="font-weight:900; font-size:1.2rem;">
