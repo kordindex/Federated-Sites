@@ -30,11 +30,9 @@ const { activePillar } = Astro.props;
 <style is:global>
   .fed-nav-wrap {
     background: #fff;
-    border-bottom: 1px solid rgba(24, 51, 47, 0.1);
     overflow: visible;
-    height: 46px;
     display: flex;
-    align-items: center;
+    align-items: stretch;
   }
   .fed-nav {
     display: flex;
@@ -50,7 +48,7 @@ const { activePillar } = Astro.props;
     padding: 0.5rem 1rem 0.5rem 0;
     text-decoration: none;
     border-right: 1px solid rgba(24, 51, 47, 0.1);
-    border-bottom: 2px solid transparent;
+    border-bottom: 2px solid rgba(24, 51, 47, 0.1);
     transition: background 0.2s, border-bottom-color 0.2s;
     display: flex;
     flex-direction: column;
