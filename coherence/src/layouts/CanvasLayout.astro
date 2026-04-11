@@ -1,18 +1,17 @@
 ---
 import LayoutNoTailwind from '~/layouts/LayoutNoTailwind.astro';
-import GlobalFooter from '../../../shared/GlobalFooter.astro';
-import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
-import CoherenceNav from '../../../shared/CoherenceNav.astro';
+import GlobalFooter from '@shared/GlobalFooter.astro';
+import FederatedNav from '@shared/FederatedNav.astro';
+import CoherenceNav from '@shared/CoherenceNav.astro';
 import type { MetaData } from '~/types';
 
 export interface Props {
   metadata?: MetaData;
 }
-
 const { metadata } = Astro.props;
 ---
 <LayoutNoTailwind metadata={metadata}>
-  <BrandSwitcher activeBrand="coherence" />
+  <FederatedNav activePillar="coherence" />
   <CoherenceNav />
   <main>
     <slot />

@@ -1,16 +1,17 @@
 ---
 import Layout from '~/layouts/Layout.astro';
-import GlobalFooter from '../../../shared/GlobalFooter.astro';
-import BrandSwitcher from '../../../shared/BrandSwitcher.astro';
+import GlobalFooter from '@shared/GlobalFooter.astro';
+import FederatedNav from '@shared/FederatedNav.astro';
 import type { MetaData } from '~/types';
-import CoherenceNav from '../../../shared/CoherenceNav.astro';
+import CoherenceNav from '@shared/CoherenceNav.astro';
+
 export interface Props {
   metadata?: MetaData;
 }
 const { metadata } = Astro.props;
 ---
 <Layout metadata={metadata}>
-  <BrandSwitcher activeBrand="coherence" />
+  <FederatedNav activePillar="coherence" />
   <CoherenceNav />
   <main>
     <slot />
