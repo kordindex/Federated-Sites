@@ -1,0 +1,181 @@
+---
+import FederatedNav from '@shared/FederatedNav.astro';
+import GlobalFooter from '@shared/GlobalFooter.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "The Institute for UNLearning: workplace culture IP, thought leadership, and the credibility anchor for the world's most critical organizations.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <title>{title} | Institute for UNLearning</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      :root {
+        --bg-mist:        #EAEAEA;
+        --ink-institute:  #111e1c;
+        --gold-accent:    #b59353;
+        --silver-gray:    #b1b3b3;
+        --card-bg:        #ffffff;
+        --transition:     0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --font-serif: 'Playfair Display', Georgia, serif;
+        --font-sans:  'Inter', system-ui, sans-serif;
+
+        --max-width: 1250px;
+        --divider: rgba(17, 30, 28, 0.1);
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--ink-institute);
+        background-color: var(--bg-mist);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      main { flex: 1; }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        color: var(--ink-institute);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .serif { font-family: var(--font-serif); }
+      .sans  { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 1px; }
+
+      /* ── Site nav: wordmark only (no links until destination pages exist) ── */
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--silver-gray);
+        height: 60px;
+        display: flex;
+        align-items: center;
+      }
+
+      .site-nav__inner {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .site-nav__brand {
+        font-family: var(--font-serif);
+        font-weight: 900;
+        font-size: 1.2rem;
+        color: var(--ink-institute);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .site-nav__brand span {
+        color: var(--gold-accent);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <FederatedNav activePillar="institute" />
+
+    <header class="site-nav" role="banner">
+      <div class="container">
+        <nav class="site-nav__inner" aria-label="Primary navigation">
+          <a href="/" class="site-nav__brand">Institute <span>UNLearning</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <GlobalFooter />
+
+    <!-- Statcounter -->
+    <script type="text/javascript">
+      var sc_project=13206431;
+      var sc_invisible=1;
+      var sc_security="0deddaa5";
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    <noscript>
+      <div class="statcounter">
+        <a title="hit counter" href="https://statcounter.com/" target="_blank">
+          <img class="statcounter" src="https://c.statcounter.com/13206431/0/0deddaa5/1/" alt="hit counter" referrerpolicy="no-referrer-when-downgrade" />
+        </a>
+      </div>
+    </noscript>
+
+  </body>
+</html>
