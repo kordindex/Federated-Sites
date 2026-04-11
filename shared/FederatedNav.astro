@@ -49,7 +49,7 @@ const { activePillar } = Astro.props;
     text-decoration: none;
     border-right: 1px solid rgba(24, 51, 47, 0.1);
     border-bottom: 2px solid rgba(24, 51, 47, 0.1);
-    transition: background 0.2s, border-bottom-color 0.2s;
+    transition: background 0.2s, border-bottom-color 0.2s, color 0.2s;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,20 +82,35 @@ const { activePillar } = Astro.props;
   /* ── Institute ── */
   .fed-nav-wrap .pillar-inst:hover { background: #eaeaea; }
   .fed-nav-wrap .pillar-inst:hover .pillar-name { color: #333333; }
-  .fed-nav-wrap .pillar-inst.active { border-bottom-color: #aaaaaa; }
-  .fed-nav-wrap .pillar-inst.active .pillar-name { color: #333333; }
+  .fed-nav-wrap .pillar-inst.active {
+    background: #333333;
+    border-bottom-color: #333333;
+    border-right-color: #333333;
+  }
+  .fed-nav-wrap .pillar-inst.active .pillar-label { color: rgba(255, 255, 255, 0.5); }
+  .fed-nav-wrap .pillar-inst.active .pillar-name { color: #ffffff; }
 
   /* ── Coherence ── */
   .fed-nav-wrap .pillar-cohe:hover { background: rgba(19, 41, 75, 0.05); }
   .fed-nav-wrap .pillar-cohe:hover .pillar-name { color: #13294B; }
-  .fed-nav-wrap .pillar-cohe.active { border-bottom-color: #13294B; }
-  .fed-nav-wrap .pillar-cohe.active .pillar-name { color: #13294B; }
+  .fed-nav-wrap .pillar-cohe.active {
+    background: #13294B;
+    border-bottom-color: #13294B;
+    border-right-color: #13294B;
+  }
+  .fed-nav-wrap .pillar-cohe.active .pillar-label { color: rgba(255, 255, 255, 0.5); }
+  .fed-nav-wrap .pillar-cohe.active .pillar-name { color: #ffffff; }
 
   /* ── Coaching ── */
   .fed-nav-wrap .pillar-coac:hover { background: rgba(24, 51, 47, 0.05); }
   .fed-nav-wrap .pillar-coac:hover .pillar-name { color: #18332F; }
-  .fed-nav-wrap .pillar-coac.active { border-bottom-color: #18332F; }
-  .fed-nav-wrap .pillar-coac.active .pillar-name { color: #18332F; }
+  .fed-nav-wrap .pillar-coac.active {
+    background: #18332F;
+    border-bottom-color: #18332F;
+    border-right-color: #18332F;
+  }
+  .fed-nav-wrap .pillar-coac.active .pillar-label { color: rgba(255, 255, 255, 0.5); }
+  .fed-nav-wrap .pillar-coac.active .pillar-name { color: #ffffff; }
 
   @media (max-width: 900px) {
     .fed-nav { padding: 0 1.5rem; }
