@@ -1,8 +1,4 @@
 ---
-// shared/components/FederatedNav.astro
-// Federated ecosystem switcher — consistent across all three sites
-// Constrained width, per-pillar brand colors, active bottom border indicator
-
 const { activePillar } = Astro.props;
 ---
 
@@ -38,14 +34,12 @@ const { activePillar } = Astro.props;
     border-bottom: 1px solid rgba(24, 51, 47, 0.1);
     overflow-x: auto;
   }
-
   .fed-nav {
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2.5rem;
   }
-
   .pillar {
     flex: 1;
     min-width: 140px;
@@ -58,10 +52,8 @@ const { activePillar } = Astro.props;
     flex-direction: column;
     justify-content: center;
   }
-
   .pillar:first-child { padding-left: 0; }
   .pillar:last-child { border-right: none; padding-right: 0; }
-
   .pillar-label {
     display: block;
     font-family: 'DM Sans', system-ui, sans-serif;
@@ -73,7 +65,6 @@ const { activePillar } = Astro.props;
     margin-bottom: 0.15rem;
     line-height: 1.2;
   }
-
   .pillar-name {
     font-family: 'DM Sans', system-ui, sans-serif;
     font-size: 0.75rem;
@@ -84,19 +75,15 @@ const { activePillar } = Astro.props;
     text-transform: none;
     letter-spacing: normal;
   }
-
   .pillar-inst:hover { background: #eaeaea; }
   .pillar-inst.active { border-bottom-color: #aaaaaa; }
   .pillar-inst.active .pillar-name { color: #333333; }
-
   .pillar-cohe:hover { background: rgba(19, 41, 75, 0.05); }
   .pillar-cohe.active { border-bottom-color: #13294B; }
   .pillar-cohe.active .pillar-name { color: #13294B; }
-
   .pillar-coac:hover { background: rgba(24, 51, 47, 0.05); }
   .pillar-coac.active { border-bottom-color: #18332F; }
   .pillar-coac.active .pillar-name { color: #18332F; }
-
   @media (max-width: 900px) {
     .fed-nav { padding: 0 1.5rem; }
     .pillar-label { display: none; }
@@ -108,7 +95,6 @@ const { activePillar } = Astro.props;
     }
     .pillar:first-child { padding-left: 0.75rem; }
   }
-
   @media (max-width: 480px) {
     .pillar-name { font-size: 0.65rem; }
     .pillar { min-width: 80px; padding: 0.5rem; }
