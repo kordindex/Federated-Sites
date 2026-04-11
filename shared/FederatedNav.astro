@@ -33,14 +33,12 @@ const { activePillar } = Astro.props;
 </div>
 
 <style>
-  /* ── Outer wrapper: full-width white bar ── */
   .fed-nav-wrap {
     background: #fff;
     border-bottom: 1px solid rgba(24, 51, 47, 0.1);
     overflow-x: auto;
   }
 
-  /* ── Inner nav: constrained width, centered ── */
   .fed-nav {
     display: flex;
     max-width: 1200px;
@@ -48,7 +46,6 @@ const { activePillar } = Astro.props;
     padding: 0 2.5rem;
   }
 
-  /* ── Pillar base ── */
   .pillar {
     flex: 1;
     min-width: 140px;
@@ -62,16 +59,9 @@ const { activePillar } = Astro.props;
     justify-content: center;
   }
 
-  .pillar:first-child {
-    padding-left: 0;
-  }
+  .pillar:first-child { padding-left: 0; }
+  .pillar:last-child { border-right: none; padding-right: 0; }
 
-  .pillar:last-child {
-    border-right: none;
-    padding-right: 0;
-  }
-
-  /* ── Labels ── */
   .pillar-label {
     display: block;
     font-family: 'DM Sans', system-ui, sans-serif;
@@ -95,81 +85,32 @@ const { activePillar } = Astro.props;
     letter-spacing: normal;
   }
 
-  /* ── Institute: #eaeaea tint ── */
-  .pillar-inst:hover {
-    background: #eaeaea;
-  }
+  .pillar-inst:hover { background: #eaeaea; }
+  .pillar-inst.active { border-bottom-color: #aaaaaa; }
+  .pillar-inst.active .pillar-name { color: #333333; }
 
-  .pillar-inst.active {
-    border-bottom-color: #aaaaaa;
-    /* ALTERNATE: background tint instead of underline — uncomment to compare */
-    /* background: #eaeaea; border-bottom-color: transparent; */
-  }
+  .pillar-cohe:hover { background: rgba(19, 41, 75, 0.05); }
+  .pillar-cohe.active { border-bottom-color: #13294B; }
+  .pillar-cohe.active .pillar-name { color: #13294B; }
 
-  .pillar-inst.active .pillar-name {
-    color: #333333;
-  }
+  .pillar-coac:hover { background: rgba(24, 51, 47, 0.05); }
+  .pillar-coac.active { border-bottom-color: #18332F; }
+  .pillar-coac.active .pillar-name { color: #18332F; }
 
-  /* ── Coherence: navy/gold ── */
-  .pillar-cohe:hover {
-    background: rgba(19, 41, 75, 0.05);
-  }
-
-  .pillar-cohe.active {
-    border-bottom-color: #13294B;
-    /* ALTERNATE: background tint */
-    /* background: rgba(19, 41, 75, 0.06); border-bottom-color: transparent; */
-  }
-
-  .pillar-cohe.active .pillar-name {
-    color: #13294B;
-  }
-
-  /* ── Kahane Coaching: forest green ── */
-  .pillar-coac:hover {
-    background: rgba(24, 51, 47, 0.05);
-  }
-
-  .pillar-coac.active {
-    border-bottom-color: #18332F;
-    /* ALTERNATE: background tint */
-    /* background: rgba(24, 51, 47, 0.06); border-bottom-color: transparent; */
-  }
-
-  .pillar-coac.active .pillar-name {
-    color: #18332F;
-  }
-
-  /* ── Responsive ── */
   @media (max-width: 900px) {
-    .fed-nav {
-      padding: 0 1.5rem;
-    }
-
-    .pillar-label {
-      display: none;
-    }
-
+    .fed-nav { padding: 0 1.5rem; }
+    .pillar-label { display: none; }
     .pillar {
       padding: 0.6rem 0.75rem;
       min-width: 100px;
       align-items: center;
       text-align: center;
     }
-
-    .pillar:first-child {
-      padding-left: 0.75rem;
-    }
+    .pillar:first-child { padding-left: 0.75rem; }
   }
 
   @media (max-width: 480px) {
-    .pillar-name {
-      font-size: 0.65rem;
-    }
-
-    .pillar {
-      min-width: 80px;
-      padding: 0.5rem;
-    }
+    .pillar-name { font-size: 0.65rem; }
+    .pillar { min-width: 80px; padding: 0.5rem; }
   }
 </style>
