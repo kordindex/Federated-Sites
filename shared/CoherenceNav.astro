@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname;
       <li><a href="/coherence-canvas" class={currentPath.startsWith('/coherence-canvas') ? 'active' : ''}>CANVAS</a></li>
       <li><a href="/intensive" class={currentPath.startsWith('/intensive') ? 'active' : ''}>INTENSIVE</a></li>
       <li><a href="/chronicles" class={currentPath.startsWith('/chronicles') ? 'active' : ''}>CHRONICLES</a></li>
-<li><a href="/resources" class={currentPath.startsWith('/resources') ? 'active' : ''}>RESOURCES</a></li>
+      <li><a href="/resources" class={currentPath.startsWith('/resources') ? 'active' : ''}>RESOURCES</a></li>
     </ul>
     <a href="/contact" class="nav-cta">GET YOUR COHERENCE SCORE</a>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -37,9 +37,8 @@ const currentPath = Astro.url.pathname;
 
 <style>
   .coherence-nav {
-    position: fixed;
-    top: 90px;
-    left: 0;
+    position: sticky;
+    top: 0;
     width: 100%;
     z-index: 1999;
     background: #1b263b;
@@ -139,10 +138,10 @@ const currentPath = Astro.url.pathname;
   .mobile-overlay {
     display: none;
     position: fixed;
-    top: 150px;
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 150px);
+    height: 100vh;
     background: rgba(11, 17, 28, 0.97);
     z-index: 1998;
     opacity: 0;
@@ -200,8 +199,6 @@ const currentPath = Astro.url.pathname;
 
   /* ─── Responsive ─────────────────────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .coherence-nav { top: 65px; }
-    .mobile-overlay { top: 125px; height: calc(100vh - 125px); }
     .nav-links { display: none; }
     .nav-cta { display: none; }
     .standard-badge { display: none; }
