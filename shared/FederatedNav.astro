@@ -29,21 +29,23 @@ const { activePillar } = Astro.props;
 </div>
 
 <style>
-  .fed-nav-wrap {
+ .fed-nav-wrap {
     background: #fff;
     border-bottom: 1px solid rgba(24, 51, 47, 0.1);
     overflow-x: auto;
-    height: 44px;
+    min-height: 44px;
     display: flex;
     align-items: center;
-}
+  }
+
   .fed-nav {
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2.5rem;
+    width: 100%;
   }
-  .pillar {
+   .pillar {
     flex: 1;
     min-width: 140px;
     padding: 0.5rem 1rem 0.5rem 0;
