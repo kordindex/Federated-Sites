@@ -1,69 +1,78 @@
 ---
 // shared/components/FederatedNav.astro
 // Federated ecosystem switcher — consistent across all three sites
-// Style: white background, dividers, active = limestone tint, full width
+// Constrained width, per-pillar brand colors, active bottom border indicator
 
 const { activePillar } = Astro.props;
 ---
 
-<nav class="fed-nav" aria-label="Ecosystem navigation">
-  <a
-    href="https://institute-unlearning.vercel.app/"
-    class={`pillar pillar-inst ${activePillar === 'institute' ? 'active' : ''}`}
-  >
-    <span>The Master Brand</span>
-    <h4>The Institute</h4>
-  </a>
-  <a
-    href="https://coherence-company.vercel.app/"
-    class={`pillar pillar-cohe ${activePillar === 'coherence' ? 'active' : ''}`}
-  >
-    <span>B2B / Organizations</span>
-    <h4>The Coherence Co.</h4>
-  </a>
-  <a
-    href="https://kahane-coaching.vercel.app/"
-    class={`pillar pillar-coac ${activePillar === 'kahane' ? 'active' : ''}`}
-  >
-    <span>B2C / Individuals</span>
-    <h4>Kahane Coaching</h4>
-  </a>
-</nav>
+<div class="fed-nav-wrap">
+  <nav class="fed-nav" aria-label="Ecosystem navigation">
+    
+      href="https://institute-unlearning.vercel.app/"
+      class={`pillar pillar-inst ${activePillar === 'institute' ? 'active' : ''}`}
+    >
+      <span class="pillar-label">The Master Brand</span>
+      <h4 class="pillar-name">The Institute</h4>
+    </a>
+    
+      href="https://coherence-company.vercel.app/"
+      class={`pillar pillar-cohe ${activePillar === 'coherence' ? 'active' : ''}`}
+    >
+      <span class="pillar-label">B2B / Organizations</span>
+      <h4 class="pillar-name">The Coherence Co.</h4>
+    </a>
+    
+      href="https://kahane-coaching.vercel.app/"
+      class={`pillar pillar-coac ${activePillar === 'kahane' ? 'active' : ''}`}
+    >
+      <span class="pillar-label">B2C / Individuals</span>
+      <h4 class="pillar-name">Kahane Coaching</h4>
+    </a>
+  </nav>
+</div>
 
 <style>
-  .fed-nav {
-    display: flex;
-    width: 100%;
+  /* ── Outer wrapper: full-width white bar ── */
+  .fed-nav-wrap {
     background: #fff;
     border-bottom: 1px solid rgba(24, 51, 47, 0.1);
     overflow-x: auto;
   }
 
+  /* ── Inner nav: constrained width, centered ── */
+  .fed-nav {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  /* ── Pillar base ── */
   .pillar {
     flex: 1;
-    min-width: 160px;
-    padding: 0.5rem 1.5rem;
+    min-width: 140px;
+    padding: 0.5rem 1rem 0.5rem 0;
     text-decoration: none;
     border-right: 1px solid rgba(24, 51, 47, 0.1);
-    transition: background 0.2s;
+    border-bottom: 2px solid transparent;
+    transition: background 0.2s, border-bottom-color 0.2s;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
+  .pillar:first-child {
+    padding-left: 0;
+  }
+
   .pillar:last-child {
     border-right: none;
+    padding-right: 0;
   }
 
-  .pillar:hover {
-    background: #EEF2F1;
-  }
-
-  .pillar.active {
-    background: #EEF2F1;
-  }
-
-  .pillar span {
+  /* ── Labels ── */
+  .pillar-label {
     display: block;
     font-family: 'DM Sans', system-ui, sans-serif;
     font-size: 0.52rem;
@@ -75,7 +84,7 @@ const { activePillar } = Astro.props;
     line-height: 1.2;
   }
 
-  .pillar h4 {
+  .pillar-name {
     font-family: 'DM Sans', system-ui, sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
@@ -86,13 +95,81 @@ const { activePillar } = Astro.props;
     letter-spacing: normal;
   }
 
-  .pillar.active h4 {
+  /* ── Institute: #eaeaea tint ── */
+  .pillar-inst:hover {
+    background: #eaeaea;
+  }
+
+  .pillar-inst.active {
+    border-bottom-color: #aaaaaa;
+    /* ALTERNATE: background tint instead of underline — uncomment to compare */
+    /* background: #eaeaea; border-bottom-color: transparent; */
+  }
+
+  .pillar-inst.active .pillar-name {
+    color: #333333;
+  }
+
+  /* ── Coherence: navy/gold ── */
+  .pillar-cohe:hover {
+    background: rgba(19, 41, 75, 0.05);
+  }
+
+  .pillar-cohe.active {
+    border-bottom-color: #13294B;
+    /* ALTERNATE: background tint */
+    /* background: rgba(19, 41, 75, 0.06); border-bottom-color: transparent; */
+  }
+
+  .pillar-cohe.active .pillar-name {
+    color: #13294B;
+  }
+
+  /* ── Kahane Coaching: forest green ── */
+  .pillar-coac:hover {
+    background: rgba(24, 51, 47, 0.05);
+  }
+
+  .pillar-coac.active {
+    border-bottom-color: #18332F;
+    /* ALTERNATE: background tint */
+    /* background: rgba(24, 51, 47, 0.06); border-bottom-color: transparent; */
+  }
+
+  .pillar-coac.active .pillar-name {
     color: #18332F;
   }
 
+  /* ── Responsive ── */
   @media (max-width: 900px) {
-    .pillar span {
+    .fed-nav {
+      padding: 0 1.5rem;
+    }
+
+    .pillar-label {
       display: none;
+    }
+
+    .pillar {
+      padding: 0.6rem 0.75rem;
+      min-width: 100px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .pillar:first-child {
+      padding-left: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pillar-name {
+      font-size: 0.65rem;
+    }
+
+    .pillar {
+      min-width: 80px;
+      padding: 0.5rem;
     }
   }
 </style>
