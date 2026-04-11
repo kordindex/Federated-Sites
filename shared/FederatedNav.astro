@@ -80,20 +80,25 @@ const { activePillar } = Astro.props;
     text-transform: none;
     letter-spacing: normal;
   }
-  .fed-nav-wrap .pillar { border-bottom: 2px solid transparent !important; }
-  .fed-nav-wrap .pillar-inst:hover { background: #eaeaea !important; }
-  .fed-nav-wrap .pillar-inst:hover .pillar-name { color: #333333 !important; }
-  .fed-nav-wrap .pillar-inst.active { border-bottom-color: #aaaaaa !important; }
-  .fed-nav-wrap .pillar-inst.active .pillar-name { color: #333333 !important; }
-  .fed-nav-wrap .pillar-cohe:hover { background: rgba(19, 41, 75, 0.05) !important; }
-  .fed-nav-wrap .pillar-cohe:hover .pillar-name { color: #13294B !important; }
-  .fed-nav-wrap .pillar-cohe.active { border-bottom-color: #13294B !important; }
-  .fed-nav-wrap .pillar-cohe.active .pillar-name { color: #13294B !important; }
-  .fed-nav-wrap .pillar-coac:hover { background: rgba(24, 51, 47, 0.05) !important; }
-  .fed-nav-wrap .pillar-coac:hover .pillar-name { color: #18332F !important; }
-  .fed-nav-wrap .pillar-coac.active { border-bottom-color: #18332F !important; }
-  .fed-nav-wrap .pillar-coac.active .pillar-name { color: #18332F !important; }
-  .fed-nav-wrap .pillar-name { color: #2C3A4A !important; }
+
+  /* ── Institute ── */
+  .pillar-inst:hover { background: #eaeaea; }
+  .pillar-inst:hover .pillar-name { color: #333333; }
+  .pillar-inst.active { border-bottom-color: #aaaaaa; }
+  .pillar-inst.active .pillar-name { color: #333333; }
+
+  /* ── Coherence ── */
+  .pillar-cohe:hover { background: rgba(19, 41, 75, 0.05); }
+  .pillar-cohe:hover .pillar-name { color: #13294B; }
+  .pillar-cohe.active { border-bottom-color: #13294B; }
+  .pillar-cohe.active .pillar-name { color: #13294B; }
+
+  /* ── Coaching ── */
+  .pillar-coac:hover { background: rgba(24, 51, 47, 0.05); }
+  .pillar-coac:hover .pillar-name { color: #18332F; }
+  .pillar-coac.active { border-bottom-color: #18332F; }
+  .pillar-coac.active .pillar-name { color: #18332F; }
+
   @media (max-width: 900px) {
     .fed-nav { padding: 0 1.5rem; }
     .pillar-label { display: none; }
