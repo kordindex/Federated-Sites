@@ -1,5 +1,6 @@
 ---
 import GlobalFooter from '@shared/GlobalFooter.astro';
+import FederatedNav from '@shared/FederatedNav.astro';
 export interface Props {
   title: string;
   description?: string;
@@ -170,58 +171,6 @@ const isActive = (href: string) =>
 
       @media (max-width: 900px) {
         .container { padding: 0 1.5rem; }
-      }
-
-      .ecosystem-bar {
-        background: #fff;
-        border-bottom: 1px solid var(--divider);
-        overflow-x: auto;
-      }
-
-      .ecosystem-bar__inner {
-        display: flex;
-        max-width: var(--max-width);
-        margin: 0 auto;
-      }
-
-      .ecosystem-bar__item {
-        flex: 1;
-        padding: 0.5rem 1.5rem;
-        text-decoration: none;
-        border-right: 1px solid var(--divider);
-        transition: background 0.2s;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-width: 160px;
-      }
-
-      .ecosystem-bar__item:last-child { border-right: none; }
-      .ecosystem-bar__item:hover { background: var(--limestone); }
-      .ecosystem-bar__item--active { background: var(--limestone); }
-
-      .ecosystem-bar__label {
-        display: block;
-        font-family: var(--font-sans);
-        font-size: 0.52rem;
-        font-weight: 600;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--silver);
-        margin-bottom: 0.15rem;
-        line-height: 1.2;
-      }
-
-      .ecosystem-bar__name {
-        font-family: var(--font-sans);
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--body-color);
-        line-height: 1.3;
-      }
-
-      .ecosystem-bar__item--active .ecosystem-bar__name {
-        color: var(--green-900);
       }
 
       .site-nav {
@@ -411,7 +360,6 @@ const isActive = (href: string) =>
       }
 
       @media (max-width: 900px) {
-        .ecosystem-bar span { display: none; }
         .site-nav__links { display: none; }
         .site-nav__cta { display: none; }
         .site-nav__toggle { display: flex; }
@@ -421,22 +369,7 @@ const isActive = (href: string) =>
 
   <body>
 
-    <nav class="ecosystem-bar" aria-label="Ecosystem navigation">
-      <div class="ecosystem-bar__inner">
-        <a href="https://institute-unlearning.vercel.app/" class="ecosystem-bar__item">
-          <span class="ecosystem-bar__label">The Master Brand</span>
-          <span class="ecosystem-bar__name">The Institute</span>
-        </a>
-        <a href="https://coherence-company.vercel.app/" class="ecosystem-bar__item">
-          <span class="ecosystem-bar__label">B2B / Organizations</span>
-          <span class="ecosystem-bar__name">The Coherence Co.</span>
-        </a>
-        <a href="/" class="ecosystem-bar__item ecosystem-bar__item--active">
-          <span class="ecosystem-bar__label">B2C / Individuals</span>
-          <span class="ecosystem-bar__name">Kahane Coaching</span>
-        </a>
-      </div>
-    </nav>
+    <FederatedNav activePillar="kahane" />
 
     <header class="site-nav" role="banner">
       <div class="container">
