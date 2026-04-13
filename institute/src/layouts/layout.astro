@@ -11,6 +11,10 @@ const {
   title,
   description = "The Institute for UNLearning: workplace culture IP, thought leadership, and the credibility anchor for the world's most critical organizations.",
 } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? currentPath === "/" : currentPath.startsWith(href);
 ---
 
 <!doctype html>
@@ -98,7 +102,7 @@ const {
       .serif { font-family: var(--font-serif); }
       .sans  { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 1px; }
 
-      /* ── Site nav: wordmark only (no links until destination pages exist) ── */
+      /* ── Site nav ── */
       .site-nav {
         position: sticky;
         top: 0;
@@ -114,7 +118,9 @@ const {
       .site-nav__inner {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
+        gap: 2rem;
       }
 
       .site-nav__brand {
@@ -124,11 +130,110 @@ const {
         color: var(--ink-institute);
         text-decoration: none;
         white-space: nowrap;
+        flex-shrink: 0;
       }
 
       .site-nav__brand span {
         color: var(--gold-accent);
       }
+
+      .site-nav__links {
+        display: flex;
+        gap: 1.25rem;
+        list-style: none;
+      }
+
+      .site-nav__links a {
+        font-family: var(--font-sans);
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--silver-gray);
+        text-decoration: none;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+
+      .site-nav__links a:hover,
+      .site-nav__links a[aria-current="page"] {
+        color: var(--ink-institute);
+      }
+
+      .site-nav__toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 32px;
+        height: 32px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        flex-shrink: 0;
+      }
+
+      .site-nav__toggle span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--ink-institute);
+        transition: all 0.25s ease;
+        transform-origin: center;
+      }
+
+      .site-nav__toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      .site-nav__toggle.open span:nth-child(2) { opacity: 0; }
+      .site-nav__toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+      .mobile-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(17, 30, 28, 0.6);
+        z-index: 99;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
+      .mobile-overlay.open {
+        display: block;
+        opacity: 1;
+      }
+
+      .mobile-menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100%;
+        background: #fff;
+        padding: 5rem 2rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-left: 2px solid var(--ink-institute);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-overlay.open .mobile-menu { transform: translateX(0); }
+
+      .mobile-menu a {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-institute);
+        text-decoration: none;
+        padding: 1rem 0;
+        border-bottom: 0.5px solid var(--divider);
+        transition: color 0.2s;
+      }
+
+      .mobile-menu a:hover { color: var(--gold-accent); }
 
       .sr-only {
         position: absolute;
@@ -141,6 +246,12 @@ const {
         white-space: nowrap;
         border-width: 0;
       }
+
+      @media (max-width: 900px) {
+        .container { padding: 0 1.5rem; }
+        .site-nav__links { display: none; }
+        .site-nav__toggle { display: flex; }
+      }
     </style>
   </head>
 
@@ -152,9 +263,31 @@ const {
       <div class="container">
         <nav class="site-nav__inner" aria-label="Primary navigation">
           <a href="/" class="site-nav__brand">Institute <span>UNLearning</span></a>
+          <ul class="site-nav__links" role="list">
+            <li><a href="/methodology" aria-current={isActive("/methodology") ? "page" : undefined}>Methodology</a></li>
+            <li><a href="/services" aria-current={isActive("/services") ? "page" : undefined}>Services</a></li>
+            <li><a href="/credentials" aria-current={isActive("/credentials") ? "page" : undefined}>Credentials</a></li>
+          </ul>
+          <button
+            class="site-nav__toggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+            id="mobile-toggle"
+          >
+            <span></span><span></span><span></span>
+          </button>
         </nav>
       </div>
     </header>
+
+    <div class="mobile-overlay" id="mobileOverlay">
+      <div class="mobile-menu">
+        <a href="/">Home</a>
+        <a href="/methodology">Methodology</a>
+        <a href="/services">Services</a>
+        <a href="/credentials">Credentials</a>
+      </div>
+    </div>
 
     <main id="main-content">
       <slot />
@@ -176,6 +309,32 @@ const {
         </a>
       </div>
     </noscript>
+
+    <script>
+      const toggle = document.getElementById('mobile-toggle');
+      const overlay = document.getElementById('mobileOverlay');
+
+      if (toggle && overlay) {
+        toggle.addEventListener('click', () => {
+          const isOpen = overlay.classList.contains('open');
+          overlay.classList.toggle('open', !isOpen);
+          toggle.classList.toggle('open', !isOpen);
+          toggle.setAttribute('aria-expanded', String(!isOpen));
+          toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+          document.body.style.overflow = isOpen ? '' : 'hidden';
+        });
+
+        overlay.addEventListener('click', (e) => {
+          if (!(e.target as Element).closest('.mobile-menu')) {
+            overlay.classList.remove('open');
+            toggle.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Open menu');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+    </script>
 
   </body>
 </html>
