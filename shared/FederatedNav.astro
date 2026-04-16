@@ -4,21 +4,21 @@ const { activePillar } = Astro.props;
 <div class="fed-nav-wrap">
   <nav class="fed-nav" aria-label="Ecosystem navigation">
     <a
-      href="https://institute-unlearning.vercel.app/"
+      href="https://instituteforunlearning.com"
       class={`pillar pillar-inst ${activePillar === 'institute' ? 'active' : ''}`}
     >
       <span class="pillar-label">The Master Brand</span>
       <span class="pillar-name">The Institute</span>
     </a>
     <a
-      href="https://coherence-company.vercel.app/"
+      href="https://coherencecompany.com"
       class={`pillar pillar-cohe ${activePillar === 'coherence' ? 'active' : ''}`}
     >
       <span class="pillar-label">B2B / Organizations</span>
       <span class="pillar-name">The Coherence Co.</span>
     </a>
     <a
-      href="https://kahane-coaching.vercel.app/"
+      href="https://kahanecoaching.com"
       class={`pillar pillar-coac ${activePillar === 'kahane' ? 'active' : ''}`}
     >
       <span class="pillar-label">B2C / Individuals</span>
@@ -54,7 +54,7 @@ const { activePillar } = Astro.props;
     flex-direction: column;
     justify-content: center;
   }
-.fed-nav-wrap .pillar:first-child { padding-left: 1rem; }
+.fed-nav-wrap .pillar:first-child { padding-left: 1.5rem; }
   .fed-nav-wrap .pillar:last-child { border-right: none; padding-right: 0; }
   .fed-nav-wrap .pillar-label {
     display: block;
