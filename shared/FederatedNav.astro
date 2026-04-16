@@ -45,7 +45,7 @@ const { activePillar } = Astro.props;
   .fed-nav-wrap .pillar {
     flex: 1;
     min-width: 140px;
-    padding: 0.5rem 1rem 0.5rem 0;
+    padding: 0.5rem 1rem 0.5rem 1rem;
     text-decoration: none;
     border-right: 1px solid rgba(24, 51, 47, 0.1);
     border-bottom: 2px solid rgba(24, 51, 47, 0.1);
@@ -54,8 +54,8 @@ const { activePillar } = Astro.props;
     flex-direction: column;
     justify-content: center;
   }
-.fed-nav-wrap .pillar:first-child { padding-left: 1.5rem; }
-  .fed-nav-wrap .pillar:last-child { border-right: none; padding-right: 0; }
+  .fed-nav-wrap .pillar:first-child { padding-left: 1.5rem; }
+  .fed-nav-wrap .pillar:last-child { border-right: none; padding-right: 1.5rem; }
   .fed-nav-wrap .pillar-label {
     display: block;
     font-family: 'DM Sans', system-ui, sans-serif;
