@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import dmcLogo from '~/assets/images/dmclogo.png';
 
 const metadata = {
   title: 'Leadership Coherence Diagnostic — Denver Mattress Co.',
@@ -15,11 +16,7 @@ const metadata = {
   <div class="screen" id="screen-orient">
     <div class="orient-inner">
       <div class="dmc-logo-wrap">
-        <svg class="dmc-logo-svg" width="210" height="44" viewBox="0 0 210 44" xmlns="http://www.w3.org/2000/svg" aria-label="Denver Mattress Co.">
-          <rect x="0" y="0" width="4" height="44" fill="#c0392b"/>
-          <text x="16" y="23" style="font-family:'DM Sans',Arial,sans-serif;font-size:15px;font-weight:700;fill:#ffffff;letter-spacing:0.07em">DENVER MATTRESS</text>
-          <text x="16" y="38" style="font-family:'DM Sans',Arial,sans-serif;font-size:8px;font-weight:400;fill:#8a9bb5;letter-spacing:0.35em">COMPANY</text>
-        </svg>
+        <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img orient-logo">
       </div>
       <h1 class="orient-title">Leadership<br>Diagnostic</h1>
       <div class="orient-divider"></div>
@@ -36,7 +33,8 @@ const metadata = {
   <!-- ── QUESTION ────────────────────────────────────────────────────── -->
   <div class="screen screen--hidden" id="screen-question">
     <div class="q-masthead">
-      <span class="q-masthead-text">Denver Mattress Co. — Leadership Coherence Diagnostic</span>
+      <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img q-masthead-logo">
+      <div class="q-progress-bar"><div class="q-progress-fill" id="q-progress-fill"></div></div>
     </div>
     <div class="q-body">
       <p class="q-text" id="q-text"></p>
@@ -87,11 +85,7 @@ const metadata = {
       <h1 class="results-page-title">Your Leadership Diagnostic Results</h1>
 
       <div class="results-masthead">
-        <svg class="dmc-logo-svg" width="180" height="38" viewBox="0 0 210 44" xmlns="http://www.w3.org/2000/svg" aria-label="Denver Mattress Co.">
-          <rect x="0" y="0" width="4" height="44" fill="#c0392b"/>
-          <text x="16" y="23" style="font-family:'DM Sans',Arial,sans-serif;font-size:15px;font-weight:700;fill:#ffffff;letter-spacing:0.07em">DENVER MATTRESS</text>
-          <text x="16" y="38" style="font-family:'DM Sans',Arial,sans-serif;font-size:8px;font-weight:400;fill:#8a9bb5;letter-spacing:0.35em">COMPANY</text>
-        </svg>
+        <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img results-logo">
         <div class="results-masthead-right">
           <span id="res-prepared-for" class="results-prepared"></span>
           <span id="res-date" class="results-date"></span>
@@ -364,6 +358,8 @@ const metadata = {
     btnPrev.style.visibility = idx === 0 ? 'hidden' : 'visible';
     btnNext.classList.toggle('btn--disabled', answers[idx] === null);
     btnNext.textContent = idx === TOTAL - 1 ? 'Continue →' : 'Next →';
+    var fill = document.getElementById('q-progress-fill');
+    if (fill) fill.style.width = Math.round(((idx + 1) / TOTAL) * 100) + '%';
   }
 
   // ── Scoring ───────────────────────────────────────────────────────
@@ -514,22 +510,25 @@ const metadata = {
 
 <style is:global>
   :root {
-    --dmc-navy:       #1a2b5e;
-    --dmc-navy-deep:  #0c1535;
-    --dmc-navy-mid:   #1e3370;
+    --dmc-bg:         #0f1f4d;
+    --dmc-navy:       #1d4ed8;
+    --dmc-navy-mid:   #1a3a7a;
     --dmc-red:        #c0392b;
     --dmc-red-light:  #d9453a;
     --dmc-red-dim:    rgba(192,57,43,0.2);
+    --dmc-gold:       #b59353;
+    --dmc-gold-light: #c9aa70;
+    --dmc-gold-dim:   rgba(181,147,83,0.25);
     --dmc-white:      #ffffff;
-    --dmc-silver:     #8a9bb5;
-    --dmc-silver-dim: rgba(138,155,181,0.6);
-    --dmc-border:     rgba(255,255,255,0.08);
-    --dmc-border-red: rgba(192,57,43,0.25);
+    --dmc-silver:     #c0cfe6;
+    --dmc-silver-dim: rgba(192,207,230,0.88);
+    --dmc-border:     rgba(255,255,255,0.1);
+    --dmc-border-red: rgba(192,57,43,0.3);
   }
 
   .diagnostic-shell {
     min-height: 100vh;
-    background: var(--dmc-navy-deep);
+    background: var(--dmc-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -551,8 +550,27 @@ const metadata = {
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── Logo ── */
+  /* ── Logo sizing ── */
   .dmc-logo-wrap { margin-bottom: 2.5rem; }
+
+  .dmc-logo-img { display: block; height: auto; }
+  .orient-logo { width: 200px; }
+  .q-masthead-logo { width: 88px; }
+  .results-logo { width: 160px; }
+
+  /* ── Question progress bar ── */
+  .q-progress-bar {
+    height: 2px;
+    background: var(--dmc-border);
+    margin-top: 0.85rem;
+  }
+
+  .q-progress-fill {
+    height: 100%;
+    background: var(--dmc-gold);
+    width: 5%;
+    transition: width 0.3s ease;
+  }
 
   /* ── Orient ── */
   .orient-inner { max-width: 540px; }
@@ -609,15 +627,6 @@ const metadata = {
   }
 
   .q-masthead { padding: 1.75rem 2rem 0; }
-
-  .q-masthead-text {
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--dmc-red);
-    opacity: 0.75;
-  }
 
   .q-body { padding: 1.25rem 2rem; }
 
@@ -677,7 +686,7 @@ const metadata = {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.78rem;
     font-weight: 400;
-    color: rgba(138,155,181,0.4);
+    color: rgba(192,207,230,0.45);
     letter-spacing: 0.02em;
   }
 
@@ -686,7 +695,7 @@ const metadata = {
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid var(--dmc-border);
-    background: var(--dmc-navy-deep);
+    background: var(--dmc-bg);
     padding: 1.25rem 2rem 1.75rem;
   }
 
@@ -1005,6 +1014,13 @@ const metadata = {
     pointer-events: none;
   }
 
+  /* Next/Continue button uses gold */
+  #btn-next:not(.btn--disabled) {
+    background: var(--dmc-gold);
+    color: #0f1f4d;
+  }
+  #btn-next:not(.btn--disabled):hover { background: var(--dmc-gold-light); }
+
   .btn-ghost {
     background: none;
     border: none;
@@ -1056,7 +1072,7 @@ const metadata = {
 
     .pattern-block { background: #f5f7fa !important; }
 
-    .dmc-logo-svg text { fill: #111827 !important; }
+    .dmc-logo-img { filter: brightness(0) !important; }
 
     .results-h2,
     .pattern-name,
