@@ -53,11 +53,23 @@ const metadata = {
     <div class="capture-inner">
       <span class="eyebrow">Almost there</span>
       <h2 class="capture-title">Ready to view<br>your results.</h2>
-      <p class="capture-body">Enter your name to personalize your diagnostic report.</p>
+      <p class="capture-body">Enter your information to view your results. All fields are required.</p>
       <div class="capture-form">
         <div class="field-group">
-          <label class="field-label" for="user-name">Your Name</label>
+          <label class="field-label" for="user-name">Full Name</label>
           <input class="field-input" type="text" id="user-name" placeholder="Full name" autocomplete="name">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="user-email">Work Email</label>
+          <input class="field-input" type="email" id="user-email" placeholder="you@denvermatco.com" autocomplete="email">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="user-role">Role / Title</label>
+          <input class="field-input" type="text" id="user-role" placeholder="Your current role">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="user-years">Years at Denver Mattress</label>
+          <input class="field-input" type="number" id="user-years" placeholder="0" min="0">
         </div>
         <button class="btn-primary btn-generate" id="btn-generate">View My Results</button>
       </div>
@@ -67,6 +79,12 @@ const metadata = {
   <!-- ── RESULTS ─────────────────────────────────────────────────────── -->
   <div class="screen screen--hidden" id="screen-results">
     <div class="results-wrap">
+
+      <div class="results-notice">
+        Your results are available on this page only. They will not be saved or sent to you automatically — take a moment to review before closing.
+      </div>
+
+      <h1 class="results-page-title">Your Leadership Diagnostic Results</h1>
 
       <div class="results-masthead">
         <svg class="dmc-logo-svg" width="180" height="38" viewBox="0 0 210 44" xmlns="http://www.w3.org/2000/svg" aria-label="Denver Mattress Co.">
@@ -311,15 +329,24 @@ const metadata = {
   });
 
   btnGenerate.addEventListener('click', function() {
-    var name = document.getElementById('user-name').value.trim();
-    if (!name) { alert('Please enter your name.'); return; }
-    generateReport(name);
+    var name  = document.getElementById('user-name').value.trim();
+    var email = document.getElementById('user-email').value.trim();
+    var role  = document.getElementById('user-role').value.trim();
+    var years = document.getElementById('user-years').value.trim();
+    if (!name || !email || !role || years === '') {
+      alert('Please complete all four fields before continuing.');
+      return;
+    }
+    generateReport(name, email, role, years);
   });
 
   btnRestart.addEventListener('click', function() {
     current = 0;
     answers = new Array(TOTAL).fill(null);
-    document.getElementById('user-name').value = '';
+    document.getElementById('user-name').value  = '';
+    document.getElementById('user-email').value = '';
+    document.getElementById('user-role').value  = '';
+    document.getElementById('user-years').value = '';
     showScreen(screenOrient);
   });
 
@@ -358,7 +385,7 @@ const metadata = {
     return 'DMC-' + prefix + '-' + Date.now().toString(36).toUpperCase();
   }
 
-  function scoreAnswers(answerArray, name) {
+  function scoreAnswers(answerArray, name, email, role, years) {
     var scored = answerArray.map(function(a) { return SCORE_MAP[a]; });
     var patternScores = {};
     Object.keys(CLUSTERS).forEach(function(pattern) {
@@ -373,15 +400,18 @@ const metadata = {
     });
     var positiveTotal = scored.reduce(function(s, v) { return s + (v > 0 ? v : 0); }, 0);
     var pressureLevel = PRESSURE_LEVELS.find(function(p) { return positiveTotal >= p.min; }).label;
+    var dCount = answerArray.filter(function(a) { return a === 'D'; }).length;
     return {
       report_id:    generateReportId(sortedPatterns[0]),
-      participant:  { name: name },
+      participant:  { name: name, email: email, role: role, years: years },
       patterns: {
         primary:   sortedPatterns[0],
         secondary: sortedPatterns[1],
         scores:    patternScores,
       },
       pressure:     { level: pressureLevel },
+      validity:     { d_count: dCount, likely_gamed: dCount >= 14 },
+      raw_answers:  answerArray,
       date_display: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     };
   }
@@ -429,12 +459,35 @@ const metadata = {
     showScreen(screenResults);
   }
 
-  function generateReport(name) {
+  var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbym-UpGG7a9QEs9z4juRe-fSukKwSdsto48a4-hAk7vQ5IV1eRnf3kYtUTwY3ENfbc8aw/exec';
+
+  function generateReport(name, email, role, years) {
     btnGenerate.textContent = 'Loading...';
     btnGenerate.disabled = true;
     try {
       var answerLetters = answers.map(function(i) { return ['A','B','C','D'][i]; });
-      var result = scoreAnswers(answerLetters, name);
+      var result = scoreAnswers(answerLetters, name, email, role, years);
+
+      // Fire-and-forget POST to Google Sheets logger
+      fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          name:              result.participant.name,
+          email:             result.participant.email,
+          role:              result.participant.role,
+          years:             result.participant.years,
+          primary_pattern:   result.patterns.primary,
+          secondary_pattern: result.patterns.secondary,
+          pressure_level:    result.pressure.level,
+          report_id:         result.report_id,
+          date:              result.date_display,
+          likely_gamed:      result.validity.likely_gamed ? 'YES' : 'No',
+          raw_answers:       result.raw_answers,
+        }),
+      }).catch(function() {});
+
       displayResults(result);
     } catch (err) {
       alert('Something went wrong. Please try again.');
@@ -697,6 +750,27 @@ const metadata = {
   .field-input:focus { border-color: rgba(192,57,43,0.5) !important; }
 
   .btn-generate { margin-top: 0.5rem; }
+
+  /* ── Results notice + page title ── */
+  .results-notice {
+    background: rgba(192,57,43,0.1);
+    border: 1px solid var(--dmc-border-red);
+    border-left: 3px solid var(--dmc-red);
+    padding: 0.9rem 1.1rem;
+    font-size: 0.82rem;
+    color: var(--dmc-silver);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  .results-page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--dmc-white);
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
 
   /* ── Results screen ── */
   #screen-results {
@@ -975,6 +1049,7 @@ const metadata = {
     .results-wrap { max-width: 100% !important; }
 
     .results-actions,
+    .results-notice,
     #screen-orient,
     #screen-question,
     #screen-capture { display: none !important; }
