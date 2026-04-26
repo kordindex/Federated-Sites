@@ -15,6 +15,10 @@ const metadata = {
   <!-- ── ORIENT ──────────────────────────────────────────────────────── -->
   <div class="screen" id="screen-orient">
     <div class="orient-inner">
+      <div class="lang-selector">
+        <a href="/dmc" class="lang-btn lang-btn--active">English</a>
+        <a href="/dmc-es" class="lang-btn">Español</a>
+      </div>
       <div class="dmc-logo-wrap">
         <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img orient-logo">
       </div>
@@ -84,7 +88,7 @@ const metadata = {
     <div class="results-wrap">
 
       <div class="results-notice">
-        Your results are available on this page only. They will not be saved or sent to you automatically. Take a moment to review before closing.
+        Your results are available on this page only. Use the Print Results button below to save or print a copy before closing.
       </div>
 
       <h1 class="results-page-title">Your Leadership Diagnostic Results</h1>
@@ -298,6 +302,14 @@ const metadata = {
 
   var current = 0;
   var answers = new Array(TOTAL).fill(null);
+  var currentDepartment = '';
+
+  var ACCESS_CODES = {
+    'DENVERMAN': { department: 'Manufacturing', opens: Date.UTC(2026, 3, 27, 18, 0, 0), closes: Date.UTC(2026, 3, 29, 3, 0, 0) },
+    'DENVERDIS': { department: 'Distribution',  opens: Date.UTC(2026, 4, 1,  12, 0, 0), closes: Date.UTC(2026, 4, 5,  0, 0, 0) },
+    'DENVERRET': { department: 'Retail',         opens: Date.UTC(2026, 4, 8,  12, 0, 0), closes: Date.UTC(2026, 4, 12, 0, 0, 0) },
+    'DENVERCOR': { department: 'Corporate',      opens: Date.UTC(2026, 4, 15, 12, 0, 0), closes: Date.UTC(2026, 4, 19, 0, 0, 0) },
+  };
 
   var screenOrient  = document.getElementById('screen-orient');
   var screenQ       = document.getElementById('screen-question');
@@ -322,10 +334,19 @@ const metadata = {
   btnBegin.addEventListener('click', function() {
     var code = document.getElementById('access-code').value.trim().toUpperCase();
     var errorEl = document.getElementById('access-error');
-    if (code !== 'DENVER') {
+    var config = ACCESS_CODES[code];
+    if (!config) {
+      errorEl.textContent = 'Invalid access code. Please check your invitation email.';
       errorEl.classList.remove('screen--hidden');
       return;
     }
+    var now = Date.now();
+    if (now < config.opens || now > config.closes) {
+      errorEl.textContent = 'This access code is not currently active. Please check your invitation email for the correct dates and times.';
+      errorEl.classList.remove('screen--hidden');
+      return;
+    }
+    currentDepartment = config.department;
     errorEl.classList.add('screen--hidden');
     showScreen(screenQ);
     renderQuestion(0);
@@ -356,6 +377,7 @@ const metadata = {
   btnRestart.addEventListener('click', function() {
     current = 0;
     answers = new Array(TOTAL).fill(null);
+    currentDepartment = '';
     document.getElementById('user-name').value  = '';
     document.getElementById('user-email').value = '';
     document.getElementById('user-role').value  = '';
@@ -493,6 +515,7 @@ const metadata = {
           email:             result.participant.email,
           role:              result.participant.role,
           years:             result.participant.years,
+          department:        currentDepartment,
           primary_pattern:   result.patterns.primary,
           secondary_pattern: result.patterns.secondary,
           pressure_level:    result.pressure.level,
@@ -651,6 +674,32 @@ const metadata = {
     color: var(--dmc-red-light);
     margin: 0;
     line-height: 1.5;
+  }
+
+  /* ── Language selector ── */
+  .lang-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .lang-btn {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dmc-silver-dim);
+    text-decoration: none;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--dmc-border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .lang-btn:hover { color: var(--dmc-silver); border-color: rgba(255,255,255,0.25); }
+
+  .lang-btn--active {
+    color: var(--dmc-white);
+    border-color: var(--dmc-gold);
   }
 
   /* ── Question screen ── */

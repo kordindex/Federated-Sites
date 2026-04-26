@@ -1,0 +1,1183 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import dmcLogo from '~/assets/images/dmclogo.png';
+
+const metadata = {
+  title: 'Diagnóstico de Liderazgo — Denver Mattress Co.',
+  description: 'Un diagnóstico estructural que identifica cómo se mueve la presión a través de su sistema de liderazgo.',
+};
+---
+
+<Layout metadata={metadata}>
+
+<div class="diagnostic-shell" id="diagnostic-shell">
+
+  <!-- ── ORIENT ──────────────────────────────────────────────────────── -->
+  <div class="screen" id="screen-orient">
+    <div class="orient-inner">
+      <div class="lang-selector">
+        <a href="/dmc" class="lang-btn">English</a>
+        <a href="/dmc-es" class="lang-btn lang-btn--active">Español</a>
+      </div>
+      <div class="dmc-logo-wrap">
+        <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img orient-logo">
+      </div>
+      <h1 class="orient-title">Diagnóstico de<br>Liderazgo</h1>
+      <div class="orient-divider"></div>
+      <p class="orient-body">Este diagnóstico analiza cómo se mueve actualmente la presión a través de su sistema de liderazgo en Denver Mattress Company.</p>
+      <p class="orient-body">Responderá a 20 preguntas. Cada una describe una situación organizacional reconocible. Seleccione la respuesta que más se acerque a cómo funcionan las cosas en este momento, no cómo le gustaría que funcionaran.</p>
+      <p class="orient-body">No hay respuestas correctas o incorrectas. El diagnóstico identifica patrones estructurales, no el desempeño individual. Sus respuestas honestas producen los resultados más útiles.</p>
+      <p class="orient-body orient-note">Reserve aproximadamente 15 minutos de tiempo sin interrupciones. Cuando esté listo, comience.</p>
+      <div class="orient-what-label">Sobre su Facilitadora</div>
+      <p class="orient-body">Christine Kahane es estratega de liderazgo y diseñadora de sistemas organizacionales con veinte años de experiencia trabajando dentro de organizaciones complejas y de alta presión. Es la fundadora de The Coherence Company y el Institute for UNLearning, y autora de <em>UNLEARNING: Leading Change Without Resistance</em>. Su trabajo tiene una historia específica con Denver Mattress: anteriormente diseñó y facilitó un programa de desarrollo de liderazgo bilingüe de un año para los capataces de planta y supervisores de línea de DMC. Este diagnóstico está construido sobre esa misma base.</p>
+      <div class="orient-access-group">
+        <label class="field-label" for="access-code">Código de Acceso</label>
+        <input class="field-input" type="text" id="access-code" placeholder="Ingrese su código de acceso" autocomplete="off" spellcheck="false">
+        <p class="access-error screen--hidden" id="access-error">Código de acceso inválido. Por favor revise su correo de invitación.</p>
+      </div>
+      <button class="btn-primary" id="btn-begin">Comenzar Diagnóstico</button>
+    </div>
+  </div>
+
+  <!-- ── QUESTION ────────────────────────────────────────────────────── -->
+  <div class="screen screen--hidden" id="screen-question">
+    <div class="q-masthead">
+      <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img q-masthead-logo">
+      <div class="q-progress-bar"><div class="q-progress-fill" id="q-progress-fill"></div></div>
+    </div>
+    <div class="q-body">
+      <p class="q-text" id="q-text"></p>
+      <div class="q-answers" id="q-answers"></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-ghost" id="btn-prev">← Anterior</button>
+      <button class="btn-primary btn--disabled" id="btn-next">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- ── CAPTURE ─────────────────────────────────────────────────────── -->
+  <div class="screen screen--hidden" id="screen-capture">
+    <div class="capture-inner">
+      <span class="eyebrow">Ya casi</span>
+      <h2 class="capture-title">Listo para ver<br>sus resultados.</h2>
+      <p class="capture-body">Ingrese su información para ver sus resultados. Todos los campos son obligatorios.</p>
+      <div class="capture-form">
+        <div class="field-group">
+          <label class="field-label" for="user-name">Nombre Completo</label>
+          <input class="field-input" type="text" id="user-name" placeholder="Nombre completo" autocomplete="name">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="user-email">Correo de Trabajo</label>
+          <input class="field-input" type="email" id="user-email" placeholder="usted@denvermatco.com" autocomplete="email">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="user-role">Cargo / Título</label>
+          <input class="field-input" type="text" id="user-role" placeholder="Su cargo actual">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="user-years">Años en Denver Mattress</label>
+          <input class="field-input" type="number" id="user-years" placeholder="0" min="0">
+        </div>
+        <button class="btn-primary btn-generate" id="btn-generate">Ver Mis Resultados</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RESULTS ─────────────────────────────────────────────────────── -->
+  <div class="screen screen--hidden" id="screen-results">
+    <div class="results-wrap">
+
+      <div class="results-notice">
+        Sus resultados están disponibles en esta página únicamente. Use el botón Imprimir Resultados a continuación para guardar o imprimir una copia antes de cerrar.
+      </div>
+
+      <h1 class="results-page-title">Sus Resultados del Diagnóstico de Liderazgo</h1>
+
+      <div class="results-masthead">
+        <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img results-logo">
+        <div class="results-masthead-right">
+          <span id="res-prepared-for" class="results-prepared"></span>
+          <span id="res-date" class="results-date"></span>
+        </div>
+      </div>
+
+      <div class="results-meta-grid">
+        <div class="results-meta-cell">
+          <span class="results-meta-label">Patrón Principal</span>
+          <span id="res-pattern-meta" class="results-meta-value"></span>
+        </div>
+        <div class="results-meta-cell">
+          <span class="results-meta-label">Nivel de Presión</span>
+          <span id="res-pressure-meta" class="results-meta-value"></span>
+        </div>
+        <div class="results-meta-cell">
+          <span class="results-meta-label">ID de Informe</span>
+          <span id="res-report-id" class="results-meta-value results-meta-mono"></span>
+        </div>
+      </div>
+
+      <!-- Section I -->
+      <div class="results-section">
+        <div class="results-section-eyebrow">Sección I: Reconocimiento de Patrón Estructural</div>
+        <h2 class="results-h2">Su Patrón Estructural Principal</h2>
+
+        <div class="pattern-block">
+          <div class="pattern-eyebrow">Patrón Estructural Principal Detectado</div>
+          <div class="pattern-name" id="res-pattern-name"></div>
+          <p class="pattern-identifier" id="res-pattern-identifier"></p>
+        </div>
+
+        <h3 class="results-h3">Síntomas de Apoyo</h3>
+        <ul class="symptom-list" id="res-symptoms"></ul>
+      </div>
+
+      <!-- Section II -->
+      <div class="results-section">
+        <div class="results-section-eyebrow">Sección II: Explicación del Patrón</div>
+        <h2 class="results-h2">Cómo se Forma Este Patrón</h2>
+        <p class="results-body" id="res-how-it-forms"></p>
+
+        <h3 class="results-h3">Cómo la Presión Amplifica el Patrón</h3>
+        <p class="results-body" id="res-pressure-text"></p>
+      </div>
+
+      <!-- Section III -->
+      <div class="results-section">
+        <div class="results-section-eyebrow">Sección III: Comportamiento del Sistema</div>
+        <h2 class="results-h2">Cómo se Manifiesta el Patrón</h2>
+        <p class="results-intro-note">Los líderes a menudo perciben cuando algo en el sistema está desalineado antes de poder articular completamente la causa. Los escenarios a continuación ilustran cómo el patrón identificado en su diagnóstico típicamente aparece en las interacciones de liderazgo cotidianas, decisiones y flujos de comunicación.</p>
+        <div id="res-scenes"></div>
+      </div>
+
+      <!-- Section IV -->
+      <div class="results-section">
+        <div class="results-section-eyebrow">Sección IV: Recalibración de Liderazgo</div>
+        <h2 class="results-h2">Dónde Enfocarse a Continuación</h2>
+
+        <h3 class="results-h3">Dónde la Atención del Liderazgo Importa Más</h3>
+        <p class="results-body" id="res-recalibration"></p>
+
+        <h3 class="results-h3">El Primer Movimiento de Recalibración</h3>
+        <p class="results-body" id="res-first-move"></p>
+      </div>
+
+      <!-- Próximos Pasos -->
+      <div class="results-section">
+        <div class="results-section-eyebrow">Próximos Pasos</div>
+        <h2 class="results-h2">Qué Sucede Después</h2>
+        <p class="results-body">Un miembro del equipo de Coherence Co. estará en contacto para programar una conversación de seguimiento, generalmente de 45 a 60 minutos, para revisar lo que significan sus resultados en el contexto de su rol y su departamento. Sus resultados son confidenciales y no se compartirán con otros participantes ni con la dirección de Denver Mattress sin su conocimiento.</p>
+      </div>
+
+      <div class="results-actions">
+        <button class="btn-primary" onclick="window.print()">Imprimir Resultados</button>
+        <button class="btn-ghost" id="btn-restart">← Tomar de Nuevo</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script is:inline>
+  // ── Report Content Library (ES) ───────────────────────────────────
+  var REPORT_CONTENT = {
+    'Velocity Strain': {
+      name: 'Tensión de Velocidad',
+      pattern_identifier: 'Su sistema de liderazgo opera a un ritmo más rápido del que puede integrar el cambio de manera confiable.',
+      symptoms: [
+        'Las decisiones se toman rápidamente pero requieren frecuentes correcciones de rumbo',
+        'La información importante llega tarde o parcialmente filtrada',
+        'Los equipos sienten presión de responder antes de que la interpretación se estabilice'
+      ],
+      how_it_forms: 'La Tensión de Velocidad aparece cuando el ritmo de las decisiones e iniciativas comienza a superar la capacidad de la organización para integrar el cambio. La velocidad en sí misma no es el problema. Muchas organizaciones operan con éxito a alta velocidad. La tensión emerge cuando las decisiones se aceleran más rápido de lo que el entendimiento compartido y la capacidad de integración pueden seguir el ritmo. Cuando esto ocurre, los líderes frecuentemente experimentan un fuerte impulso junto con un creciente esfuerzo de coordinación. Los equipos continúan ejecutando, pero la narrativa detrás de las prioridades se vuelve más difícil de sostener en toda la organización.',
+      scenes: [
+        {
+          title: 'Escena 1: La Iniciativa Que Nunca Aterriza del Todo',
+          body: 'Una nueva prioridad estratégica se introduce con claridad e impulso. Los líderes se alinean en la sala. Dentro de dos semanas, sigue una segunda iniciativa, igualmente urgente, igualmente clara. Los equipos comienzan a absorber ambas simultáneamente. La primera iniciativa continúa avanzando, pero el trabajo de integración que requería se deja silenciosamente a un lado. Con el tiempo, la ejecución permanece activa mientras el entendimiento que la respalda se vuelve desigual en toda la organización.'
+        },
+        {
+          title: 'Escena 2: La Decisión Que Avanza Demasiado Rápido',
+          body: 'Una reunión de liderazgo hace visible un desafío emergente. Antes de que las implicaciones sean completamente examinadas, se alcanza una decisión. El ritmo de la reunión, la presión de las prioridades en competencia y la incomodidad de la incertidumbre sostenida empujan la conversación hacia una resolución. La decisión es sólida en su superficie. Pero tres semanas después, los líderes descubren que diferentes equipos la han interpretado de manera distinta. Comienzan los ciclos de clarificación.'
+        },
+        {
+          title: 'Escena 3: El Costo de Coordinación Que Nadie Rastrea',
+          body: 'Los indicadores de desempeño permanecen sólidos. La producción continúa. Pero los líderes comienzan a notar que una parte creciente de su tiempo se gasta en conversaciones de alineación, clarificando la dirección, resolviendo diferencias de interpretación, reconectando la ejecución con la intención. El trabajo en sí mismo no ha cambiado. El esfuerzo requerido para mantenerlo coherente sí.'
+        }
+      ],
+      recalibration_focus: 'Las organizaciones que experimentan Tensión de Velocidad a menudo recuperan la coherencia recalibrando la relación entre ritmo e integración. Los líderes frecuentemente comienzan reordenando las iniciativas activas para que los equipos puedan integrar completamente la dirección ya introducida en el sistema. Esto permite que la claridad y la coordinación se estabilicen sin sacrificar el impulso. Cuando el ritmo y la integración avanzan juntos nuevamente, la alineación se vuelve más fácil de mantener.',
+      first_move: 'Mapee las iniciativas estratégicas activas dentro del sistema en este momento. Identifique dónde la concurrencia es más alta, dónde los equipos están absorbiendo la mayor dirección simultánea. Durante 30 días, introduzca una disciplina de secuenciación simple: ningún nuevo hilo estratégico entra al sistema hasta que un hilo existente haya aterrizado completamente. Esto no es una desaceleración. Es una recalibración de la relación entre velocidad e integración, la condición estructural que impulsa más directamente el patrón identificado en su diagnóstico.',
+      pressure: {
+        'Early Signals': 'Sus respuestas indican que las señales de presión están comenzando a aparecer en los bordes del sistema de liderazgo. Las organizaciones en esta etapa a menudo continúan ejecutando de manera efectiva, pero están presentes marcadores tempranos de tensión de velocidad. La ventana para recalibrar está abierta, y es más amplia ahora, antes de que la tensión se intensifique.',
+        'Structural Pressure': 'Sus respuestas indican que las señales de presión pueden estar apareciendo en múltiples áreas del sistema de liderazgo. Las organizaciones en esta etapa a menudo continúan ejecutando de manera efectiva, pero mantener la alineación requiere un esfuerzo creciente. Los líderes pueden notar más ciclos de clarificación, más trabajo de coordinación y mayor atención para mantener las prioridades avanzando en la misma dirección.',
+        'Systemic Strain': 'Sus respuestas indican una presión significativa en todo el sistema de liderazgo. Las organizaciones en esta etapa frecuentemente experimentan que la ejecución continúa junto con una dificultad de coordinación visible. Las conversaciones de alineación están consumiendo cada vez más el ancho de banda del liderazgo, y el esfuerzo requerido para sostener la coherencia se está volviendo estructural en lugar de situacional.'
+      }
+    },
+    'Interpretation Drift': {
+      name: 'Deriva de Interpretación',
+      pattern_identifier: 'Su sistema de liderazgo está generando interpretaciones inconsistentes de la información compartida.',
+      symptoms: [
+        'Los líderes describen la misma situación de maneras notablemente diferentes',
+        'Los equipos reciben señales contradictorias cuando la dirección cambia',
+        'Los supuestos que parecían compartidos surgen como divergentes durante la ejecución'
+      ],
+      how_it_forms: 'La Deriva de Interpretación aparece cuando los líderes consistentemente pasan de la información a la acción sin verificar primero que sus interpretaciones de esa información son compartidas. En entornos de ritmo acelerado, esta brecha es fácil de pasar por alto. Los líderes se alinean en los resultados mientras mantienen supuestos diferentes sobre lo que esos resultados requieren. Con el tiempo, la ejecución diverge no por desacuerdo, sino porque el entendimiento compartido nunca se estableció completamente.',
+      scenes: [
+        {
+          title: 'Escena 1: La Reunión Que Terminó en Acuerdo',
+          body: 'Una discusión de liderazgo alcanza un consenso aparente. Todos en la sala asienten. Se toma una decisión. Durante la semana siguiente, cada líder comunica la decisión a sus equipos, y cada comunicación lleva un énfasis ligeramente diferente. Para cuando la decisión llega a la ejecución, tres versiones de la misma están en marcha. Nadie lo pretendía. La deriva comenzó en el momento en que la sala avanzó hacia la resolución sin asegurarse de que la interpretación era compartida.'
+        },
+        {
+          title: 'Escena 2: La Prioridad Que Aterrizó Diferente',
+          body: 'Un cambio estratégico se anuncia con claridad y urgencia. Los líderes abandonan la reunión alineados en el qué. Llevan supuestos diferentes sobre el por qué, y sobre lo que significa para el trabajo existente. Dos semanas después, algunos equipos han reordenado sus prioridades. Otros han añadido la nueva prioridad junto al trabajo existente. La diferencia se remonta a un momento de alineación asumida que nunca fue verificada.'
+        },
+        {
+          title: 'Escena 3: El Supuesto Que Nadie Nombró',
+          body: 'Se toma una decisión significativa. Descansa sobre varios supuestos: sobre el mercado, sobre la capacidad del equipo, sobre el cronograma. Ninguno de estos supuestos se articula durante la conversación de decisión. Se mantienen individualmente, parecen obvios y nunca se expresan. Cuando la ejecución revela que los supuestos eran diferentes en todo el equipo de liderazgo, la conversación que debería haber ocurrido antes de la decisión comienza a ocurrir después.'
+        }
+      ],
+      recalibration_focus: 'Las organizaciones que experimentan Deriva de Interpretación a menudo se recalibran introduciendo una alineación explícita de supuestos antes de que las decisiones importantes pasen a la ejecución. Esto no requiere un proceso extenso. Requiere una pausa breve y deliberada antes del compromiso para expresar lo que cada líder cree que significa la decisión, qué supuestos la sustentan y qué requiere de la organización. Cuando las interpretaciones se verifican en lugar de asumirse, la alineación se vuelve duradera en lugar de provisional.',
+      first_move: 'Antes de la próxima decisión significativa que tome su equipo de liderazgo, introduzca una sola pregunta de alineación: "¿Qué cree cada uno de nosotros que requiere esta decisión de la organización en los próximos 30 días?" Registre las respuestas. Donde difieran, aclare antes de proceder. Esto no es un proceso adicional. Es el paso estructural mínimo que convierte la alineación asumida en alineación verificada. Haga esto consistentemente durante 30 días y mida con qué frecuencia disminuyen los ciclos de clarificación posteriores.',
+      pressure: {
+        'Early Signals': 'Sus respuestas indican marcadores tempranos de deriva de interpretación dentro del sistema de liderazgo. El patrón aún no se está intensificando, pero las condiciones para la deriva están presentes. La intervención más efectiva ocurre antes de que los supuestos se acumulen, cuando el costo de la alineación todavía es bajo.',
+        'Structural Pressure': 'Sus respuestas indican que las brechas de interpretación están comenzando a afectar la ejecución en toda la organización. Los equipos probablemente están experimentando señales contradictorias, y los líderes pueden estar invirtiendo un esfuerzo creciente en conversaciones de clarificación que podrían haberse prevenido antes.',
+        'Systemic Strain': 'Sus respuestas indican una divergencia de interpretación significativa en todo el sistema de liderazgo. Los equipos probablemente están operando desde entendimientos sustancialmente diferentes de la dirección estratégica, y el esfuerzo organizacional requerido para mantener la coordinación está aumentando. La recalibración en esta etapa requiere una intervención estructural deliberada, no un ajuste incremental.'
+      }
+    },
+    'Signal Suppression': {
+      name: 'Supresión de Señales',
+      pattern_identifier: 'Su sistema de liderazgo no está captando la información que necesita para navegar la presión de manera efectiva.',
+      symptoms: [
+        'Las preocupaciones surgen después del hecho en lugar de cuando todavía hay tiempo para actuar',
+        'Las discusiones de liderazgo convergen rápidamente sin desacuerdo sustancial',
+        'Los equipos continúan ejecutando incluso cuando tienen reservas sobre la dirección'
+      ],
+      how_it_forms: 'La Supresión de Señales aparece cuando las condiciones organizacionales para la honestidad comienzan a erosionarse. Esto raramente ocurre a través de instrucciones explícitas. Ocurre a través de señales acumuladas: la preocupación que fue planteada y dejada a un lado, la reunión que avanzó rápidamente más allá del desacuerdo, el líder cuya resistencia fue recibida como obstrucción. Con el tiempo, los equipos aprenden a calibrar lo que es seguro expresar. La información comienza a llegar al liderazgo filtrada, retrasada o ausente.',
+      scenes: [
+        {
+          title: 'Escena 1: La Preocupación Que Se Mantuvo Privada',
+          body: 'Un miembro del equipo identifica un riesgo significativo en una iniciativa activa. Considera plantearlo. Lee la urgencia en la sala: la presión de ejecutar, la inversión ya realizada, la señal implícita de que la dirección está establecida. La preocupación no se plantea en la reunión. Surge en una conversación privada después, o en una retrospectiva semanas más tarde, después de que el riesgo se ha materializado. La información existía. No llegó a los líderes que la necesitaban.'
+        },
+        {
+          title: 'Escena 2: La Reunión Que Fluyó Demasiado Suavemente',
+          body: 'Una discusión de liderazgo produce un consenso rápido. No se plantean objeciones significativas. La decisión se toma eficientemente. Más tarde, varios participantes reconocen en privado que tenían reservas que eligieron no expresar. La reunión pareció productiva. La decisión avanzó faltando información que estaba presente en la sala pero que nunca se expresó. El costo de ese silencio aparece en la ejecución.'
+        },
+        {
+          title: 'Escena 3: La Señal Que Llegó Demasiado Tarde',
+          body: 'Un problema emergente de ejecución se vuelve visible para los equipos de primera línea antes de que aparezca en las métricas del liderazgo. Los equipos observan las señales tempranas. Esperan a ver si la situación se resuelve. Cuando no lo hace, la señal comienza a moverse hacia arriba, lentamente, cuidadosamente, con creciente calificación. Para cuando llega al liderazgo, la ventana para una intervención de bajo costo ha pasado. El retraso no fue intencional. Fue estructural.'
+        }
+      ],
+      recalibration_focus: 'Las organizaciones que experimentan Supresión de Señales a menudo se recalibran rediseñando deliberadamente las condiciones en las que surgen las preocupaciones, no pidiendo a las personas que hablen más libremente, sino creando momentos estructurados donde el disenso y la preocupación son formalmente invitados antes de que las decisiones se cierren. Cuando la señal organizacional es que la honestidad es bienvenida y tomada en cuenta, la información comienza a moverse más confiablemente a través del sistema.',
+      first_move: 'En sus próximas tres reuniones de liderazgo, introduzca un momento estructurado de disenso antes de que cualquier decisión significativa se cierre: "Antes de avanzar, quiero escuchar específicamente qué preocupaciones o reservas tiene alguien sobre esta dirección." Registre lo que surge. Actúe visiblemente sobre al menos una preocupación. Repita. El objetivo no es ralentizar las decisiones. Es demostrar que la honestidad tiene un camino confiable y una consecuencia visible. Cuando esa señal esté establecida, la calidad de la información mejora antes.',
+      pressure: {
+        'Early Signals': 'Sus respuestas indican señales tempranas de supresión de señales en el sistema de liderazgo. El patrón aún no está arraigado, pero las condiciones para el filtrado de información están presentes. La intervención más efectiva ocurre temprano, antes de que los equipos hayan calibrado completamente lo que es seguro expresar.',
+        'Structural Pressure': 'Sus respuestas indican que el flujo de señales está siendo afectado en toda la organización. Es probable que los líderes estén recibiendo información que ha sido parcialmente filtrada antes de llegar a ellos. La brecha entre lo que los equipos observan y lo que escucha el liderazgo puede estar ampliándose de maneras que aún no son completamente visibles.',
+        'Systemic Strain': 'Sus respuestas indican una supresión de señales significativa en todo el sistema de liderazgo. Es probable que la información llegue al liderazgo retrasada, filtrada o ausente. Los equipos han calibrado su comunicación a las preferencias y presiones percibidas del entorno. La recalibración requiere un cambio estructural deliberado y sostenido. Las señales sobre la honestidad deben enviarse de manera consistente y visible con el tiempo.'
+      }
+    }
+  };
+
+  // ── Questions (ES) ────────────────────────────────────────────────
+  var QUESTIONS = [
+    { id:1,  cluster:'Interpretation Drift', text:'Cuando las condiciones cambian rápidamente, ¿qué tan consistentes son las descripciones y explicaciones de los líderes sobre lo que está sucediendo y lo que significa para los equipos?', answers:['Los líderes describen la situación de manera diferente, y la alineación toma tiempo','Los líderes eventualmente se alinean, pero mientras tanto aparecen señales contradictorias','Los líderes generalmente describen la situación de manera similar','Los líderes se detienen brevemente para alinear la interpretación antes de actuar'] },
+    { id:2,  cluster:'Interpretation Drift', text:'Cuando las prioridades cambian, ¿con qué claridad se comunica el razonamiento detrás del cambio entre los líderes?', answers:['Diferentes líderes explican el cambio de maneras notablemente distintas','La explicación se aclara con el tiempo, pero la comunicación inicial varía','Los líderes generalmente comunican una explicación compartida desde el principio','Los líderes alinean el razonamiento juntos antes de comunicar el cambio'] },
+    { id:3,  cluster:'Interpretation Drift', text:'En las discusiones de liderazgo, ¿con qué frecuencia los líderes descubren que están trabajando desde diferentes supuestos?', answers:['Con frecuencia: las diferencias surgen tarde en el proceso de discusión, lo que ralentiza la alineación','Ocasionalmente: las diferencias emergen durante la discusión y requieren clarificación','Raramente: los supuestos son en su mayoría compartidos desde el inicio de la discusión','Los líderes sacan intencionalmente los supuestos temprano en la discusión antes de tomar decisiones'] },
+    { id:4,  cluster:'Interpretation Drift', text:'Después de que se toman decisiones importantes, ¿con qué consistencia los equipos actúan desde el mismo entendimiento?', answers:['Los equipos avanzan, pero en direcciones notablemente diferentes','La alineación mejora gradualmente a medida que los equipos obtienen clarificación','La mayoría de los equipos actúan desde un entendimiento compartido','Los equipos comienzan con un entendimiento claro y consistente'] },
+    { id:5,  cluster:'Interpretation Drift', text:'Cuando aparecen nuevas presiones externas (cambios de mercado, regulación, tecnología), ¿con qué rapidez los líderes llegan a un entendimiento compartido de las implicaciones e impacto?', answers:['Los líderes interpretan las implicaciones de manera diferente','El entendimiento compartido se forma solo después de una discusión extensa','El entendimiento compartido generalmente se forma con bastante rapidez','Los líderes intencionalmente se alinean en las implicaciones antes de comenzar a actuar'] },
+    { id:6,  cluster:'Interpretation Drift', text:'¿Con qué frecuencia las conversaciones de liderazgo terminan con acuerdo superficial mientras la ambigüedad permanece sin resolver?', answers:['Con frecuencia','A veces','Raramente','Los líderes generalmente resuelven la ambigüedad antes de llegar a un acuerdo'] },
+    { id:7,  cluster:'Interpretation Drift', text:'Cuando los líderes comunican la dirección a la organización, ¿qué tan consistentes son los mensajes que recibe la gente?', answers:['Los mensajes varían notablemente entre los líderes','Los mensajes son ampliamente similares, pero el énfasis difiere','Los mensajes son mayormente consistentes entre el liderazgo','Los líderes coordinan intencionalmente los mensajes antes de comunicarlos'] },
+    { id:8,  cluster:'Velocity Strain', text:'Cuando se introducen nuevas iniciativas, ¿qué suele suceder con las prioridades existentes?', answers:['La mayor parte del trabajo existente continúa junto con la nueva iniciativa','Algunas prioridades cambian, pero muchas permanecen activas','El trabajo se reconfigura selectivamente para mantener el enfoque','Los líderes hacen una pausa para reevaluar las prioridades antes de introducir nuevo trabajo'] },
+    { id:9,  cluster:'Velocity Strain', text:'¿Con qué frecuencia se pide a los equipos que absorban nueva dirección mientras aún están ejecutando iniciativas anteriores?', answers:['Con frecuencia: múltiples prioridades se superponen a la vez','A veces: el nuevo trabajo llega antes de que el trabajo anterior esté completamente integrado','Raramente: las prioridades generalmente se secuencian con cuidado','Los líderes gestionan activamente cuánto cambio ingresa al sistema a la vez'] },
+    { id:10, cluster:'Velocity Strain', text:'¿Cómo se maneja habitualmente el ritmo de cambio en su organización?', answers:['Se asume la velocidad y se prioriza el impulso','Se discute el ritmo, pero es difícil regularlo en la práctica','El ritmo se monitorea y se ajusta ocasionalmente','El ritmo se regula activamente en relación con la capacidad del sistema'] },
+    { id:11, cluster:'Velocity Strain', text:'Cuando se toman decisiones de liderazgo, ¿con qué consistencia los equipos avanzan en la misma dirección después?', answers:['Los equipos frecuentemente avanzan en diferentes direcciones antes de que la alineación se estabilice','Los equipos usualmente avanzan en la misma dirección pero requieren clarificación','Los equipos generalmente avanzan en la misma dirección con mínima clarificación','Los equipos avanzan en la misma dirección con un entendimiento compartido claro'] },
+    { id:12, cluster:'Velocity Strain', text:'¿Con qué frecuencia la organización introduce nuevo trabajo para abordar problemas creados por cambios anteriores?', answers:['Con frecuencia: nuevas iniciativas se superponen a las no resueltas','A veces: aparece trabajo adicional antes de que el cambio anterior se estabilice','Raramente: las iniciativas anteriores generalmente se estabilizan primero','Los líderes típicamente estabilizan el cambio anterior antes de agregar más'] },
+    { id:13, cluster:'Velocity Strain', text:'Cuando las prioridades cambian, ¿cuánto tiempo tienen las personas para absorber la nueva dirección?', answers:['Muy poco: las expectativas cambian inmediatamente','Hay algo de tiempo disponible, pero no siempre suficiente para la integración completa','Los equipos generalmente tienen tiempo suficiente para absorber el cambio','Los líderes crean intencionalmente tiempo para la integración antes de esperar la ejecución completa'] },
+    { id:14, cluster:'Velocity Strain', text:'¿Con qué frecuencia el liderazgo revisa iniciativas anteriores para ver con qué eficacia se han integrado en el trabajo continuo?', answers:['Raramente: la atención se mueve rápidamente hacia lo siguiente','A veces: se verifica la integración más tarde, si aparecen problemas','Con frecuencia: los líderes revisan si el cambio realmente ha aterrizado','Las verificaciones de integración están incorporadas en cómo se secuencian las iniciativas'] },
+    { id:15, cluster:'Signal Suppression', text:'En las reuniones de liderazgo, ¿con qué frecuencia surge un desacuerdo sustancial antes de que se finalicen las decisiones?', answers:['Raramente: las discusiones convergen rápidamente','A veces: el desacuerdo aparece, pero con cautela','Con frecuencia: el desacuerdo ayuda a clarificar las decisiones','Los líderes invitan activamente diferencias sustanciales de opinión antes de llegar a un acuerdo'] },
+    { id:16, cluster:'Signal Suppression', text:'¿Cómo suelen surgir las preocupaciones sobre problemas emergentes en su organización?', answers:['Principalmente en conversaciones privadas o después del hecho','Con cautela, una vez que la preocupación es más difícil de ignorar','Abiertamente, mientras aún hay tiempo para responder','Los líderes crean activamente condiciones para que las preocupaciones emerjan temprano'] },
+    { id:17, cluster:'Signal Suppression', text:'Cuando los problemas comienzan a emerger en la ejecución, ¿con qué anticipación se vuelven visibles para el liderazgo?', answers:['Tarde: los problemas a menudo aparecen de repente','Solo después de que los resultados comienzan a cambiar, ya sea positiva o negativamente','Las señales tempranas generalmente aparecen antes de que los indicadores formales cambien','Los líderes buscan intencionalmente señales tempranas antes de que los indicadores formales se muevan'] },
+    { id:18, cluster:'Signal Suppression', text:'¿Con qué frecuencia los equipos continúan ejecutando incluso cuando surgen preocupaciones sobre la dirección del trabajo o las prioridades?', answers:['Con frecuencia: la ejecución continúa mientras las preocupaciones permanecen mayormente sin expresarse','A veces: las preocupaciones están presentes pero solo se expresan parcialmente','Raramente: las preocupaciones generalmente se expresan temprano','Se espera que los equipos planteen preocupaciones tan pronto como aparezcan'] },
+    { id:19, cluster:'Signal Suppression', text:'Cuando la presión se acumula en la organización, ¿cuándo suelen hacerse visibles sus efectos para el liderazgo?', answers:['Solo después de que la ejecución comienza a fallar','Cuando los equipos comienzan a señalar dificultades de coordinación','Cuando los líderes comienzan a discutir preocupaciones emergentes','Temprano, a través de preguntas, desacuerdos y señales operativas'] },
+    { id:20, cluster:'Signal Suppression', text:'Cuando los problemas involucran riesgo, tensión o prioridades en conflicto, ¿cómo se maneja habitualmente la honestidad?', answers:['La armonía o la apariencia de armonía generalmente se protege sobre el cuestionamiento del status quo','El cuestionamiento aparece, pero con cautela','El desacuerdo honesto es generalmente aceptable','Los líderes crean activamente espacio para la discusión honesta'] },
+  ];
+
+  var LABELS = ['A','B','C','D'];
+  var TOTAL  = QUESTIONS.length;
+
+  var current = 0;
+  var answers = new Array(TOTAL).fill(null);
+  var currentDepartment = '';
+
+  var ACCESS_CODES = {
+    'DENVERMAN': { department: 'Manufacturing', opens: Date.UTC(2026, 3, 27, 18, 0, 0), closes: Date.UTC(2026, 3, 29, 3, 0, 0) },
+    'DENVERDIS': { department: 'Distribution',  opens: Date.UTC(2026, 4, 1,  12, 0, 0), closes: Date.UTC(2026, 4, 5,  0, 0, 0) },
+    'DENVERRET': { department: 'Retail',         opens: Date.UTC(2026, 4, 8,  12, 0, 0), closes: Date.UTC(2026, 4, 12, 0, 0, 0) },
+    'DENVERCOR': { department: 'Corporate',      opens: Date.UTC(2026, 4, 15, 12, 0, 0), closes: Date.UTC(2026, 4, 19, 0, 0, 0) },
+  };
+
+  var PRESSURE_LABELS_ES = {
+    'Early Signals': 'Señales Tempranas',
+    'Structural Pressure': 'Presión Estructural',
+    'Systemic Strain': 'Tensión Sistémica'
+  };
+
+  var screenOrient  = document.getElementById('screen-orient');
+  var screenQ       = document.getElementById('screen-question');
+  var screenCap     = document.getElementById('screen-capture');
+  var screenResults = document.getElementById('screen-results');
+  var qText         = document.getElementById('q-text');
+  var qAnswers      = document.getElementById('q-answers');
+  var btnPrev       = document.getElementById('btn-prev');
+  var btnNext       = document.getElementById('btn-next');
+  var btnBegin      = document.getElementById('btn-begin');
+  var btnGenerate   = document.getElementById('btn-generate');
+  var btnRestart    = document.getElementById('btn-restart');
+
+  function showScreen(screen) {
+    [screenOrient, screenQ, screenCap, screenResults].forEach(function(s) {
+      s.classList.add('screen--hidden');
+    });
+    screen.classList.remove('screen--hidden');
+    window.scrollTo(0, 0);
+  }
+
+  btnBegin.addEventListener('click', function() {
+    var code = document.getElementById('access-code').value.trim().toUpperCase();
+    var errorEl = document.getElementById('access-error');
+    var config = ACCESS_CODES[code];
+    if (!config) {
+      errorEl.textContent = 'Código de acceso inválido. Por favor revise su correo de invitación.';
+      errorEl.classList.remove('screen--hidden');
+      return;
+    }
+    var now = Date.now();
+    if (now < config.opens || now > config.closes) {
+      errorEl.textContent = 'Este código de acceso no está activo actualmente. Por favor revise su correo de invitación para las fechas y horas correctas.';
+      errorEl.classList.remove('screen--hidden');
+      return;
+    }
+    currentDepartment = config.department;
+    errorEl.classList.add('screen--hidden');
+    showScreen(screenQ);
+    renderQuestion(0);
+  });
+
+  btnPrev.addEventListener('click', function() {
+    if (current > 0) { current--; renderQuestion(current); }
+  });
+
+  btnNext.addEventListener('click', function() {
+    if (answers[current] === null) return;
+    if (current < TOTAL - 1) { current++; renderQuestion(current); }
+    else { showScreen(screenCap); }
+  });
+
+  btnGenerate.addEventListener('click', function() {
+    var name  = document.getElementById('user-name').value.trim();
+    var email = document.getElementById('user-email').value.trim();
+    var role  = document.getElementById('user-role').value.trim();
+    var years = document.getElementById('user-years').value.trim();
+    if (!name || !email || !role || years === '') {
+      alert('Por favor complete los cuatro campos antes de continuar.');
+      return;
+    }
+    generateReport(name, email, role, years);
+  });
+
+  btnRestart.addEventListener('click', function() {
+    current = 0;
+    answers = new Array(TOTAL).fill(null);
+    currentDepartment = '';
+    document.getElementById('user-name').value  = '';
+    document.getElementById('user-email').value = '';
+    document.getElementById('user-role').value  = '';
+    document.getElementById('user-years').value = '';
+    showScreen(screenOrient);
+  });
+
+  function renderQuestion(idx) {
+    var q = QUESTIONS[idx];
+    qText.innerHTML = q.text + '<span class="q-inline-counter"> (Pregunta ' + (idx + 1) + ' de ' + TOTAL + ')</span>';
+    qAnswers.innerHTML = '';
+    q.answers.forEach(function(ansText, i) {
+      var btn = document.createElement('button');
+      btn.className = 'answer-btn' + (answers[idx] === i ? ' answer-btn--selected' : '');
+      btn.innerHTML = '<span class="answer-label">' + LABELS[i] + '</span><span class="answer-text">' + ansText + '</span>';
+      btn.addEventListener('click', function() { answers[idx] = i; renderQuestion(idx); });
+      qAnswers.appendChild(btn);
+    });
+    btnPrev.style.visibility = idx === 0 ? 'hidden' : 'visible';
+    btnNext.classList.toggle('btn--disabled', answers[idx] === null);
+    btnNext.textContent = idx === TOTAL - 1 ? 'Continuar →' : 'Siguiente →';
+    var fill = document.getElementById('q-progress-fill');
+    if (fill) fill.style.width = Math.round(((idx + 1) / TOTAL) * 100) + '%';
+  }
+
+  // ── Scoring ───────────────────────────────────────────────────────
+  var SCORE_MAP = { A: 2, B: 1, C: 0, D: -1 };
+  var CLUSTERS = {
+    'Interpretation Drift': { start: 0, end: 6 },
+    'Velocity Strain':      { start: 7, end: 13 },
+    'Signal Suppression':   { start: 14, end: 19 },
+  };
+  var PRESSURE_LEVELS = [
+    { label: 'Systemic Strain',     min: 13 },
+    { label: 'Structural Pressure', min: 7  },
+    { label: 'Early Signals',       min: 0  },
+  ];
+  var TIE_PRIORITY = ['Velocity Strain', 'Interpretation Drift', 'Signal Suppression'];
+
+  function generateReportId(primary) {
+    var prefix = { 'Interpretation Drift': 'ID', 'Velocity Strain': 'VS', 'Signal Suppression': 'SS' }[primary] || 'CD';
+    return 'DMC-' + prefix + '-' + Date.now().toString(36).toUpperCase();
+  }
+
+  function scoreAnswers(answerArray, name, email, role, years) {
+    var scored = answerArray.map(function(a) { return SCORE_MAP[a]; });
+    var patternScores = {};
+    Object.keys(CLUSTERS).forEach(function(pattern) {
+      var c = CLUSTERS[pattern];
+      var total = 0;
+      for (var i = c.start; i <= c.end; i++) { total += scored[i]; }
+      patternScores[pattern] = total;
+    });
+    var sortedPatterns = Object.keys(patternScores).sort(function(a, b) {
+      if (patternScores[b] !== patternScores[a]) return patternScores[b] - patternScores[a];
+      return TIE_PRIORITY.indexOf(a) - TIE_PRIORITY.indexOf(b);
+    });
+    var positiveTotal = scored.reduce(function(s, v) { return s + (v > 0 ? v : 0); }, 0);
+    var pressureLevel = PRESSURE_LEVELS.find(function(p) { return positiveTotal >= p.min; }).label;
+    var dCount = answerArray.filter(function(a) { return a === 'D'; }).length;
+    return {
+      report_id:    generateReportId(sortedPatterns[0]),
+      participant:  { name: name, email: email, role: role, years: years },
+      patterns: {
+        primary:   sortedPatterns[0],
+        secondary: sortedPatterns[1],
+        scores:    patternScores,
+      },
+      pressure:     { level: pressureLevel },
+      validity:     { d_count: dCount, likely_gamed: dCount >= 14 },
+      raw_answers:  answerArray,
+      date_display: new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' }),
+    };
+  }
+
+  // ── Render results on screen ──────────────────────────────────────
+  function displayResults(result) {
+    var primary      = result.patterns.primary;
+    var pressure     = result.pressure.level;
+    var content      = REPORT_CONTENT[primary];
+    var pressureText = content.pressure[pressure];
+
+    document.getElementById('res-prepared-for').textContent = 'Preparado para ' + result.participant.name;
+    document.getElementById('res-date').textContent = result.date_display;
+    document.getElementById('res-report-id').textContent = result.report_id;
+    document.getElementById('res-pattern-meta').textContent = content.name;
+    document.getElementById('res-pressure-meta').textContent = PRESSURE_LABELS_ES[pressure];
+
+    document.getElementById('res-pattern-name').textContent = content.name;
+    document.getElementById('res-pattern-identifier').textContent = content.pattern_identifier;
+
+    var symptomsList = document.getElementById('res-symptoms');
+    symptomsList.innerHTML = '';
+    content.symptoms.forEach(function(s) {
+      var li = document.createElement('li');
+      li.className = 'symptom-item';
+      li.innerHTML = '<span class="symptom-dash">—</span><span>' + s + '</span>';
+      symptomsList.appendChild(li);
+    });
+
+    document.getElementById('res-how-it-forms').textContent = content.how_it_forms;
+    document.getElementById('res-pressure-text').textContent = pressureText;
+
+    var scenesEl = document.getElementById('res-scenes');
+    scenesEl.innerHTML = '';
+    content.scenes.forEach(function(scene) {
+      var div = document.createElement('div');
+      div.className = 'scene-block';
+      div.innerHTML = '<div class="scene-title">' + scene.title + '</div><p class="scene-body">' + scene.body + '</p>';
+      scenesEl.appendChild(div);
+    });
+
+    document.getElementById('res-recalibration').textContent = content.recalibration_focus;
+    document.getElementById('res-first-move').textContent = content.first_move;
+
+    showScreen(screenResults);
+  }
+
+  var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbym-UpGG7a9QEs9z4juRe-fSukKwSdsto48a4-hAk7vQ5IV1eRnf3kYtUTwY3ENfbc8aw/exec';
+
+  function generateReport(name, email, role, years) {
+    btnGenerate.textContent = 'Cargando...';
+    btnGenerate.disabled = true;
+    try {
+      var answerLetters = answers.map(function(i) { return ['A','B','C','D'][i]; });
+      var result = scoreAnswers(answerLetters, name, email, role, years);
+
+      // Fire-and-forget POST to Google Sheets logger
+      fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          name:              result.participant.name,
+          email:             result.participant.email,
+          role:              result.participant.role,
+          years:             result.participant.years,
+          department:        currentDepartment,
+          primary_pattern:   result.patterns.primary,
+          secondary_pattern: result.patterns.secondary,
+          pressure_level:    result.pressure.level,
+          report_id:         result.report_id,
+          date:              result.date_display,
+          likely_gamed:      result.validity.likely_gamed ? 'YES' : 'No',
+          raw_answers:       result.raw_answers,
+        }),
+      }).catch(function() {});
+
+      displayResults(result);
+    } catch (err) {
+      alert('Algo salió mal. Por favor intente de nuevo.');
+      console.error(err);
+      btnGenerate.textContent = 'Ver Mis Resultados';
+      btnGenerate.disabled = false;
+    }
+  }
+</script>
+
+</Layout>
+
+<style is:global>
+  body:has(.diagnostic-shell) .coherence-nav,
+  body:has(.diagnostic-shell) .fed-nav,
+  body:has(.diagnostic-shell) footer {
+    display: none !important;
+  }
+  body:has(.diagnostic-shell) main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+</style>
+
+<style is:global>
+  :root {
+    --dmc-bg:         #0f1f4d;
+    --dmc-navy:       #1d4ed8;
+    --dmc-navy-mid:   #1a3a7a;
+    --dmc-red:        #c0392b;
+    --dmc-red-light:  #d9453a;
+    --dmc-red-dim:    rgba(192,57,43,0.2);
+    --dmc-gold:       #b59353;
+    --dmc-gold-light: #c9aa70;
+    --dmc-gold-dim:   rgba(181,147,83,0.25);
+    --dmc-white:      #ffffff;
+    --dmc-silver:     #c0cfe6;
+    --dmc-silver-dim: rgba(192,207,230,0.88);
+    --dmc-border:     rgba(255,255,255,0.1);
+    --dmc-border-red: rgba(192,57,43,0.3);
+  }
+
+  .diagnostic-shell {
+    min-height: 100vh;
+    background: var(--dmc-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+  }
+
+  .screen {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 2rem 100px;
+    animation: fadeUp 0.35s ease both;
+  }
+
+  .screen--hidden { display: none !important; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Logo sizing ── */
+  .dmc-logo-wrap { margin-bottom: 2.5rem; }
+
+  .dmc-logo-img { display: block; height: auto; mix-blend-mode: screen; }
+  .orient-logo { width: 200px; }
+  .q-masthead-logo { width: 88px; }
+  .results-logo { width: 160px; }
+
+  /* ── Question progress bar ── */
+  .q-progress-bar {
+    height: 2px;
+    background: var(--dmc-border);
+    margin-top: 0.85rem;
+  }
+
+  .q-progress-fill {
+    height: 100%;
+    background: var(--dmc-gold);
+    width: 5%;
+    transition: width 0.3s ease;
+  }
+
+  /* ── Orient ── */
+  .orient-inner { max-width: 540px; }
+
+  .orient-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--dmc-white);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .orient-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--dmc-red);
+    margin-bottom: 2rem;
+    opacity: 0.5;
+  }
+
+  .orient-body {
+    font-size: 1rem;
+    color: var(--dmc-silver-dim);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  .orient-body strong { color: var(--dmc-silver); font-weight: 600; }
+
+  .orient-note {
+    font-size: 1rem;
+    border-left: 2px solid var(--dmc-red-dim);
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .orient-what-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dmc-gold-light);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .orient-access-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    max-width: 320px;
+  }
+
+  .access-error {
+    font-size: 0.85rem;
+    color: var(--dmc-red-light);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── Language selector ── */
+  .lang-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .lang-btn {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dmc-silver-dim);
+    text-decoration: none;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--dmc-border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .lang-btn:hover { color: var(--dmc-silver); border-color: rgba(255,255,255,0.25); }
+
+  .lang-btn--active {
+    color: var(--dmc-white);
+    border-color: var(--dmc-gold);
+  }
+
+  /* ── Question screen ── */
+  #screen-question {
+    padding-top: 0;
+    padding-bottom: 0;
+    max-width: 680px;
+  }
+
+  .q-masthead { padding: 1.75rem 2rem 0; }
+
+  .q-body { padding: 1.25rem 2rem; }
+
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    color: var(--dmc-white);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .q-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .answer-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--dmc-navy-mid);
+    border: 1px solid var(--dmc-border);
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.15s, background 0.15s;
+    width: 100%;
+  }
+
+  .answer-btn:hover { border-color: var(--dmc-border-red); background: rgba(192,57,43,0.04); }
+  .answer-btn--selected { border-color: var(--dmc-red) !important; background: rgba(192,57,43,0.08) !important; }
+
+  .answer-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--dmc-gold-light);
+    opacity: 0.8;
+    min-width: 16px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .answer-btn--selected .answer-label { opacity: 1; }
+
+  .answer-text {
+    font-size: 1rem;
+    color: var(--dmc-silver-dim);
+    line-height: 1.6;
+  }
+
+  .answer-btn--selected .answer-text { color: var(--dmc-silver); }
+
+  .q-inline-counter {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: rgba(192,207,230,0.45);
+    letter-spacing: 0.02em;
+  }
+
+  .q-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--dmc-border);
+    background: var(--dmc-bg);
+    padding: 1.25rem 2rem 1.75rem;
+  }
+
+  /* ── Capture screen ── */
+  .eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dmc-gold-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .capture-inner { max-width: 480px; }
+
+  .capture-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--dmc-white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .capture-body {
+    font-size: 1rem;
+    color: var(--dmc-silver-dim);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .capture-form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .field-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .field-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dmc-silver);
+  }
+
+  .field-input {
+    background: var(--dmc-navy-mid) !important;
+    border: 1px solid var(--dmc-border) !important;
+    color: var(--dmc-white) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.9rem !important;
+    padding: 0.85rem 1rem !important;
+    outline: none !important;
+    transition: border-color 0.2s !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-radius: 0 !important;
+    -webkit-appearance: none !important;
+  }
+
+  .field-input::placeholder { color: var(--dmc-silver-dim) !important; }
+  .field-input:focus { border-color: rgba(192,57,43,0.5) !important; }
+
+  .btn-generate { margin-top: 0.5rem; }
+
+  /* ── Results notice + page title ── */
+  .results-notice {
+    background: rgba(192,57,43,0.1);
+    border: 1px solid var(--dmc-border-red);
+    border-left: 3px solid var(--dmc-red);
+    padding: 0.9rem 1.1rem;
+    font-size: 1rem;
+    color: var(--dmc-silver);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  .results-page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--dmc-white);
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  /* ── Results screen ── */
+  #screen-results {
+    max-width: 760px;
+    padding-top: 60px;
+    padding-bottom: 100px;
+  }
+
+  .results-wrap { max-width: 720px; }
+
+  .results-masthead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--dmc-border);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .results-masthead-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+
+  .results-prepared {
+    font-size: 0.78rem;
+    color: var(--dmc-silver);
+    font-weight: 600;
+  }
+
+  .results-date {
+    font-size: 0.72rem;
+    color: var(--dmc-silver-dim);
+  }
+
+  .results-meta-grid {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--dmc-border);
+  }
+
+  .results-meta-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .results-meta-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dmc-gold-light);
+  }
+
+  .results-meta-value {
+    font-size: 0.9rem;
+    color: var(--dmc-white);
+    font-weight: 600;
+  }
+
+  .results-meta-mono {
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--dmc-silver);
+  }
+
+  .results-section {
+    border-top: 1px solid var(--dmc-border);
+    padding-top: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .results-section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dmc-gold-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .results-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    font-weight: 700;
+    color: var(--dmc-white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .results-h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dmc-white);
+    margin: 2rem 0 0.75rem;
+  }
+
+  .results-body {
+    font-size: 1rem;
+    color: var(--dmc-silver-dim);
+    line-height: 1.9;
+  }
+
+  .results-intro-note {
+    font-size: 1rem;
+    color: var(--dmc-silver-dim);
+    line-height: 1.85;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .pattern-block {
+    background: var(--dmc-navy-mid);
+    border: 1px solid var(--dmc-border);
+    border-top: 3px solid var(--dmc-red);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .pattern-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dmc-gold-light);
+    margin-bottom: 0.6rem;
+  }
+
+  .pattern-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dmc-white);
+    margin-bottom: 0.75rem;
+  }
+
+  .pattern-identifier {
+    font-size: 1rem;
+    color: var(--dmc-silver);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .symptom-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .symptom-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    font-size: 1rem;
+    color: var(--dmc-silver-dim);
+    line-height: 1.65;
+  }
+
+  .symptom-dash {
+    color: var(--dmc-red);
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+
+  .scene-block {
+    border-left: 2px solid var(--dmc-border);
+    padding-left: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .scene-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--dmc-white);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .scene-body {
+    font-size: 1rem;
+    color: var(--dmc-silver-dim);
+    line-height: 1.85;
+    margin: 0;
+  }
+
+  .results-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--dmc-border);
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-block;
+    background: var(--dmc-red);
+    color: var(--dmc-white);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover { background: var(--dmc-red-light); }
+
+  .btn-primary.btn--disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Next/Continue button uses gold */
+  #btn-next:not(.btn--disabled) {
+    background: var(--dmc-gold);
+    color: #0f1f4d;
+  }
+  #btn-next:not(.btn--disabled):hover { background: var(--dmc-gold-light); }
+
+  .btn-ghost {
+    background: none;
+    border: none;
+    color: var(--dmc-silver-dim);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--dmc-silver); }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .screen { padding: 60px 1.25rem 80px; }
+    #screen-question { padding: 0; }
+    .q-body { padding: 1.75rem 1.25rem; }
+    .q-nav { padding: 1.25rem 1.25rem 2rem; }
+    #screen-results { padding: 40px 1.25rem 80px; }
+    .results-masthead { flex-direction: column; }
+    .results-masthead-right { align-items: flex-start; }
+    .results-meta-grid { gap: 1.5rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff !important; }
+
+    .diagnostic-shell {
+      background: #fff !important;
+      padding-top: 0 !important;
+      display: block !important;
+    }
+
+    #screen-results {
+      display: block !important;
+      padding: 1rem 0 !important;
+      max-width: 100% !important;
+    }
+
+    .results-wrap { max-width: 100% !important; }
+
+    .results-actions,
+    .results-notice,
+    #screen-orient,
+    #screen-question,
+    #screen-capture { display: none !important; }
+
+    .pattern-block { background: #f5f7fa !important; }
+
+    .results-h2,
+    .pattern-name,
+    .scene-title,
+    .results-prepared { color: #111827 !important; }
+
+    .results-h3,
+    .results-meta-value,
+    .results-meta-mono,
+    .pattern-identifier { color: #374151 !important; }
+
+    .results-body,
+    .scene-body,
+    .results-intro-note,
+    .symptom-item,
+    .results-date { color: #4b5563 !important; }
+  }
+</style>
