@@ -85,96 +85,14 @@ const metadata = {
 
   <!-- ── RESULTS ─────────────────────────────────────────────────────── -->
   <div class="screen screen--hidden" id="screen-results">
-    <div class="results-wrap">
-
-      <div class="results-notice">
-        Your results are available on this page only. Use the Print Results button below to save or print a copy before closing.
+    <div class="thankyou-wrap">
+      <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img thankyou-logo">
+      <h1 class="thankyou-heading">Your Results Are Ready.</h1>
+      <p class="thankyou-body">Thank you for completing the Leadership Diagnostic. Your responses contribute to a picture of how communication and decision-making move through Denver Mattress as a whole. Christine Kahane and the Coherence Co. team will review your results as part of a broader analysis of your department and organization.</p>
+      <div class="thankyou-meta">
+        <span id="res-report-id" class="thankyou-meta-id"></span>
+        <span id="res-date" class="thankyou-meta-date"></span>
       </div>
-
-      <div class="results-guidepost" id="res-guidepost"></div>
-
-      <h1 class="results-page-title">Your Leadership Diagnostic Results</h1>
-
-      <div class="results-masthead">
-        <img src={dmcLogo.src} alt="Denver Mattress Co." class="dmc-logo-img results-logo">
-        <div class="results-masthead-right">
-          <span id="res-prepared-for" class="results-prepared"></span>
-          <span id="res-date" class="results-date"></span>
-        </div>
-      </div>
-
-      <div class="results-meta-grid">
-        <div class="results-meta-cell">
-          <span class="results-meta-label">Primary Pattern</span>
-          <span id="res-pattern-meta" class="results-meta-value"></span>
-        </div>
-        <div class="results-meta-cell">
-          <span class="results-meta-label">Pressure Level</span>
-          <span id="res-pressure-meta" class="results-meta-value"></span>
-        </div>
-        <div class="results-meta-cell">
-          <span class="results-meta-label">Report ID</span>
-          <span id="res-report-id" class="results-meta-value results-meta-mono"></span>
-        </div>
-      </div>
-
-      <!-- Section I: Pattern Recognition -->
-      <div class="results-section">
-        <div class="results-section-eyebrow">Section I: Structural Pattern Recognition</div>
-        <h2 class="results-h2">Your Primary Structural Pattern</h2>
-
-        <div class="pattern-block">
-          <div class="pattern-eyebrow">Primary Structural Pattern Detected</div>
-          <div class="pattern-name" id="res-pattern-name"></div>
-          <p class="pattern-identifier" id="res-pattern-identifier"></p>
-        </div>
-
-        <h3 class="results-h3">Supporting Symptoms</h3>
-        <ul class="symptom-list" id="res-symptoms"></ul>
-      </div>
-
-      <!-- Section II: Pattern Explanation -->
-      <div class="results-section">
-        <div class="results-section-eyebrow">Section II: Pattern Explanation</div>
-        <h2 class="results-h2">How This Pattern Forms</h2>
-        <p class="results-body" id="res-how-it-forms"></p>
-
-        <h3 class="results-h3">How Pressure Amplifies the Pattern</h3>
-        <p class="results-body" id="res-pressure-text"></p>
-      </div>
-
-      <!-- Section III: System Behavior -->
-      <div class="results-section">
-        <div class="results-section-eyebrow">Section III: System Behavior</div>
-        <h2 class="results-h2">How the Pattern Shows Up</h2>
-        <p class="results-intro-note">Leaders often sense when something in the system is misaligned before they can fully articulate the cause. The scenarios below illustrate how the pattern identified in your diagnostic typically appears in everyday leadership interactions, decisions, and communication flows.</p>
-        <div id="res-scenes"></div>
-      </div>
-
-      <!-- Section IV: Recalibration -->
-      <div class="results-section">
-        <div class="results-section-eyebrow">Section IV: Leadership Recalibration</div>
-        <h2 class="results-h2">Where to Focus Next</h2>
-
-        <h3 class="results-h3">Where Leadership Attention Matters Most</h3>
-        <p class="results-body" id="res-recalibration"></p>
-
-        <h3 class="results-h3">The First Recalibration Move</h3>
-        <p class="results-body" id="res-first-move"></p>
-      </div>
-
-      <!-- Next Steps -->
-      <div class="results-section">
-        <div class="results-section-eyebrow">Next Steps</div>
-        <h2 class="results-h2">What Happens Next</h2>
-        <p class="results-body">A member of the Coherence Co. team will be in touch to schedule a debrief conversation, typically 45 to 60 minutes, to walk through what your results mean in the context of your role and your department. Your results are confidential and will not be shared with other participants or with Denver Mattress leadership without your knowledge.</p>
-      </div>
-
-      <div class="results-actions">
-        <button class="btn-primary" onclick="window.print()">Print Results</button>
-        <button class="btn-ghost" id="btn-restart">← Take Again</button>
-      </div>
-
     </div>
   </div>
 
@@ -324,7 +242,6 @@ const metadata = {
   var btnNext       = document.getElementById('btn-next');
   var btnBegin      = document.getElementById('btn-begin');
   var btnGenerate   = document.getElementById('btn-generate');
-  var btnRestart    = document.getElementById('btn-restart');
 
   function showScreen(screen) {
     [screenOrient, screenQ, screenCap, screenResults].forEach(function(s) {
@@ -377,16 +294,6 @@ const metadata = {
     generateReport(name, email, role, years);
   });
 
-  btnRestart.addEventListener('click', function() {
-    current = 0;
-    answers = new Array(TOTAL).fill(null);
-    currentDepartment = '';
-    document.getElementById('user-name').value  = '';
-    document.getElementById('user-email').value = '';
-    document.getElementById('user-role').value  = '';
-    document.getElementById('user-years').value = '';
-    showScreen(screenOrient);
-  });
 
   function renderQuestion(idx) {
     var q = QUESTIONS[idx];
@@ -464,45 +371,8 @@ const metadata = {
   };
 
   function displayResults(result) {
-    var primary      = result.patterns.primary;
-    var pressure     = result.pressure.level;
-    var content      = REPORT_CONTENT[primary];
-    var pressureText = content.pressure[pressure];
-
-    document.getElementById('res-guidepost').textContent = GUIDEPOST[pressure];
-    document.getElementById('res-prepared-for').textContent = 'Prepared for ' + result.participant.name;
-    document.getElementById('res-date').textContent = result.date_display;
     document.getElementById('res-report-id').textContent = result.report_id;
-    document.getElementById('res-pattern-meta').textContent = primary;
-    document.getElementById('res-pressure-meta').textContent = pressure;
-
-    document.getElementById('res-pattern-name').textContent = primary;
-    document.getElementById('res-pattern-identifier').textContent = content.pattern_identifier;
-
-    var symptomsList = document.getElementById('res-symptoms');
-    symptomsList.innerHTML = '';
-    content.symptoms.forEach(function(s) {
-      var li = document.createElement('li');
-      li.className = 'symptom-item';
-      li.innerHTML = '<span class="symptom-dash">—</span><span>' + s + '</span>';
-      symptomsList.appendChild(li);
-    });
-
-    document.getElementById('res-how-it-forms').textContent = content.how_it_forms;
-    document.getElementById('res-pressure-text').textContent = pressureText;
-
-    var scenesEl = document.getElementById('res-scenes');
-    scenesEl.innerHTML = '';
-    content.scenes.forEach(function(scene) {
-      var div = document.createElement('div');
-      div.className = 'scene-block';
-      div.innerHTML = '<div class="scene-title">' + scene.title + '</div><p class="scene-body">' + scene.body + '</p>';
-      scenesEl.appendChild(div);
-    });
-
-    document.getElementById('res-recalibration').textContent = content.recalibration_focus;
-    document.getElementById('res-first-move').textContent = content.first_move;
-
+    document.getElementById('res-date').textContent = result.date_display;
     showScreen(screenResults);
   }
 
@@ -1092,6 +962,52 @@ const metadata = {
     margin-top: 1rem;
     padding-top: 2.5rem;
     border-top: 1px solid var(--dmc-border);
+  }
+
+  /* ── Thank-you screen ── */
+  .thankyou-wrap {
+    max-width: 520px;
+  }
+
+  .thankyou-logo {
+    width: 160px;
+    margin-bottom: 3rem;
+  }
+
+  .thankyou-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--dmc-white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .thankyou-body {
+    font-size: 1rem;
+    color: var(--dmc-silver);
+    line-height: 1.9;
+    margin-bottom: 3rem;
+  }
+
+  .thankyou-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--dmc-border);
+  }
+
+  .thankyou-meta-id {
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--dmc-silver-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .thankyou-meta-date {
+    font-size: 0.7rem;
+    color: var(--dmc-silver-dim);
   }
 
   /* ── Buttons ── */
