@@ -91,6 +91,8 @@ const metadata = {
         Sus resultados están disponibles en esta página únicamente. Use el botón Imprimir Resultados a continuación para guardar o imprimir una copia antes de cerrar.
       </div>
 
+      <div class="results-guidepost" id="res-guidepost"></div>
+
       <h1 class="results-page-title">Sus Resultados del Diagnóstico de Liderazgo</h1>
 
       <div class="results-masthead">
@@ -463,12 +465,19 @@ const metadata = {
   }
 
   // ── Render results on screen ──────────────────────────────────────
+  var GUIDEPOST = {
+    'Early Signals':       'Su sistema de liderazgo muestra señales tempranas de presión. Los patrones identificados a continuación vale la pena comprenderlos ahora, mientras la ventana para actuar todavía está ampliamente abierta.',
+    'Structural Pressure': 'Su sistema de liderazgo opera bajo una presión medible. El análisis a continuación identifica dónde la coherencia está comenzando a tensarse y qué significa para cómo avanza su organización.',
+    'Systemic Strain':     'Su sistema de liderazgo lleva una presión estructural significativa. El análisis a continuación describe qué está sucediendo, por qué importa y dónde enfocarse primero.',
+  };
+
   function displayResults(result) {
     var primary      = result.patterns.primary;
     var pressure     = result.pressure.level;
     var content      = REPORT_CONTENT[primary];
     var pressureText = content.pressure[pressure];
 
+    document.getElementById('res-guidepost').textContent = GUIDEPOST[pressure];
     document.getElementById('res-prepared-for').textContent = 'Preparado para ' + result.participant.name;
     document.getElementById('res-date').textContent = result.date_display;
     document.getElementById('res-report-id').textContent = result.report_id;
@@ -862,6 +871,18 @@ const metadata = {
     color: var(--dmc-silver);
     line-height: 1.7;
     margin-bottom: 1.75rem;
+  }
+
+  .results-guidepost {
+    border-left: 4px solid var(--dmc-gold);
+    background: rgba(181,147,83,0.07);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 400;
+    color: var(--dmc-white);
+    line-height: 1.65;
   }
 
   .results-page-title {

@@ -91,6 +91,8 @@ const metadata = {
         Your results are available on this page only. Use the Print Results button below to save or print a copy before closing.
       </div>
 
+      <div class="results-guidepost" id="res-guidepost"></div>
+
       <h1 class="results-page-title">Your Leadership Diagnostic Results</h1>
 
       <div class="results-masthead">
@@ -454,12 +456,19 @@ const metadata = {
   }
 
   // ── Render results on screen ──────────────────────────────────────
+  var GUIDEPOST = {
+    'Early Signals':       'Your leadership system is showing early signs of pressure. The patterns identified below are worth understanding now, while the window to act is still wide open.',
+    'Structural Pressure': 'Your leadership system is operating under measurable pressure. The analysis below identifies where coherence is beginning to strain and what it means for how your organization moves forward.',
+    'Systemic Strain':     'Your leadership system is carrying significant structural pressure. The analysis below describes what is happening, why it matters, and where to focus first.',
+  };
+
   function displayResults(result) {
     var primary      = result.patterns.primary;
     var pressure     = result.pressure.level;
     var content      = REPORT_CONTENT[primary];
     var pressureText = content.pressure[pressure];
 
+    document.getElementById('res-guidepost').textContent = GUIDEPOST[pressure];
     document.getElementById('res-prepared-for').textContent = 'Prepared for ' + result.participant.name;
     document.getElementById('res-date').textContent = result.date_display;
     document.getElementById('res-report-id').textContent = result.report_id;
@@ -853,6 +862,18 @@ const metadata = {
     color: var(--dmc-silver);
     line-height: 1.7;
     margin-bottom: 1.75rem;
+  }
+
+  .results-guidepost {
+    border-left: 4px solid var(--dmc-gold);
+    background: rgba(181,147,83,0.07);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 400;
+    color: var(--dmc-white);
+    line-height: 1.65;
   }
 
   .results-page-title {
